@@ -7,6 +7,36 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" FontSize="30" FontWeight="Bold" 
+                   HorizontalAlignment="Center" VerticalAlignment="Center">Шапка</TextBlock>
+        <TextBox Name="EnterBoltSizeText" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" 
+                 FontSize="20" MinWidth="100" MaxLength="30"></TextBox>
+        <StackPanel Grid.Row="2" Grid.Column="0" Orientation="Horizontal">
+            <TextBox Name="TextBoxFor_D" VerticalAlignment="Center" FontSize="20" MinWidth="35" MaxLength="6" IsReadOnly="True"></TextBox>
+            <TextBlock FontSize="20" Margin="0 0 5 0" VerticalAlignment="Center">1 еи</TextBlock>
+            <TextBox Name="TextBoxFor_E" VerticalAlignment="Center" FontSize="20" MinWidth="35" MaxLength="6"></TextBox>
+            <TextBlock FontSize="20" Margin="0 0 5 0" VerticalAlignment="Center">2 еи</TextBlock>
+            <TextBox Name="TextBoxFor_H" VerticalAlignment="Center" FontSize="20" MinWidth="35" MaxLength="6"></TextBox>
+            <TextBlock FontSize="20" Margin="0 0 5 0" VerticalAlignment="Center">3 еи</TextBlock>
+            <TextBox Name="TextBoxFor_K" VerticalAlignment="Center" FontSize="20" MinWidth="35" MaxLength="6"></TextBox>
+            <TextBlock FontSize="20" Margin="0 0 5 0" VerticalAlignment="Center">4 еи</TextBlock>
+            <TextBox Name="TextBoxFor_P" VerticalAlignment="Center" FontSize="20" MinWidth="35" MaxLength="6"></TextBox>
+            <TextBlock FontSize="20" Margin="0 0 5 0" VerticalAlignment="Center">5 еи</TextBlock>
+        </StackPanel>
+        <Button Name="CalculateButton" Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="2" FontSize="30">Посчитать</Button>
     </Grid>
 </Window>
