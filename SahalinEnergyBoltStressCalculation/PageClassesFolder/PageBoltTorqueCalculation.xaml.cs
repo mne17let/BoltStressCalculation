@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,18 +13,18 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using SahalinEnergyBoltStressCalculation;
-using System.Data.Entity;
 
-
-namespace SahalinEnergyBoltStressCalculation
+namespace SahalinEnergyBoltStressCalculation.PageClassesFolder
 {
     /// <summary>
-    /// Логика взаимодействия для MainWindow.xaml
+    /// Логика взаимодействия для PageBoltTorqueCalculation.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class PageBoltTorqueCalculation : Page
     {
-        public MainWindow()
+        MyDataBaseContext dataBaseContextObject = new MyDataBaseContext();
+        Array listBolts;
+
+        public PageBoltTorqueCalculation()
         {
             InitializeComponent();
             InitFun();
@@ -33,7 +34,10 @@ namespace SahalinEnergyBoltStressCalculation
         public void InitFun()
         {
             CalculateButton.Click += ReturnTableData;
+            dataBaseContextObject.Bolts.Load();
+            listBolts = dataBaseContextObject.Bolts.Local.ToArray();
         }
+
 
         public void ReturnTableData(object sender, RoutedEventArgs e)
         {
@@ -44,10 +48,7 @@ namespace SahalinEnergyBoltStressCalculation
             }
             else
             {
-                MyDataBaseContext dataBaseContextObject = new MyDataBaseContext();
-                dataBaseContextObject.Bolts.Load();
 
-                Array listBolts = dataBaseContextObject.Bolts.Local.ToArray();
 
                 var d = 0;
 
@@ -61,12 +62,13 @@ namespace SahalinEnergyBoltStressCalculation
                         TextBoxFor_K.Text = i.NutInternalChamfer_K.ToString();
                         TextBoxFor_P.Text = i.ThreadPitch_P.ToString();
                         return;
-                    } else
+                    }
+                    else
                     {
                         d++;
                     }
                 }
-                if (d == 2)
+                if (d == listBolts.Length)
                 {
                     MessageBox.Show("Ничего не найдено");
                 }

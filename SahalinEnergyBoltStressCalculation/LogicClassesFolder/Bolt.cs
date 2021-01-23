@@ -17,10 +17,12 @@ namespace SahalinEnergyBoltStressCalculation
         public double HexSize_H { get; set; }
         public double NutInternalChamfer_K { get; set; }
         public double ThreadPitch_P { get; set; }
+        public double NumberOfThreadsPerInch { get; set; }
+        public double NutWidth { get; set; }
 
         public Bolt() { }
 
-        public Bolt(string bs, double d, double e, double h, double k, double p)
+        public Bolt(string bs, double d, double e, double h, double k, double p, double numOfTPI, double nW)
         {
             BoltSize = bs;
             ThreadMajorDiameter_D = d;
@@ -28,6 +30,8 @@ namespace SahalinEnergyBoltStressCalculation
             HexSize_H = h;
             NutInternalChamfer_K = k;
             ThreadPitch_P = p;
+            NumberOfThreadsPerInch = numOfTPI;
+            NutWidth = nW;
         }
     }
 }
