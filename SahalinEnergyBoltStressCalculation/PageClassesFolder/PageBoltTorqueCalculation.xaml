@@ -39,6 +39,12 @@
             <TextBox Name="TextBoxFor_P" VerticalAlignment="Center" FontSize="20" MinWidth="35" MaxLength="6"></TextBox>
             <TextBlock FontSize="20" Margin="0 0 5 0" VerticalAlignment="Center">5 еи</TextBlock>
         </StackPanel>
+        <ComboBox Name="ComboForBoltSize" Grid.Row="6" Grid.Column="0" FontSize="20" FontWeight="Bold" SelectedIndex="0">
+            <ComboBoxItem Name="FakeComboBoxItem">Выберите размер болта</ComboBoxItem>
+            <ComboBoxItem Name="FirstComboBoxItem">Текст 1</ComboBoxItem>
+            <ComboBoxItem Name="SecondComboBoxItem">Текст 2</ComboBoxItem>
+            <ComboBoxItem Name="ThirdComboBoxItem">Текст 3</ComboBoxItem>
+        </ComboBox>
         <Button Name="CalculateButton" Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="2" FontSize="30">Посчитать</Button>
     </Grid>
 </Page>

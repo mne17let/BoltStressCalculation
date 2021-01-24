@@ -36,7 +36,7 @@ namespace SahalinEnergyBoltStressCalculation
 
         public void InitFun()
         {
-            MainFrame.Content = new PageBoltTorqueCalculation();
+            MainFrame.Content = pageBoltTorqueCalculation;
             ButtonOpenCalculateBTC.Click += OpenCalculateBTC;
             ButtonOpenCalculate2.Click += OpenCalculate2;
         }

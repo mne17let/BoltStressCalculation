@@ -83,7 +83,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="LogicClassesFolder\Bolt.cs" />
+    <Compile Include="LogicClassesFolder\BoltProperties.cs" />
     <Compile Include="PageClassesFolder\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>

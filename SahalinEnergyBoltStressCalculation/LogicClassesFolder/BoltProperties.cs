@@ -7,7 +7,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace SahalinEnergyBoltStressCalculation
 {
-    class Bolt
+    class BoltProperties
     {
         [Key]
         public string BoltSize {get; set;}
@@ -20,9 +20,9 @@ namespace SahalinEnergyBoltStressCalculation
         public double NumberOfThreadsPerInch { get; set; }
         public double NutWidth { get; set; }
 
-        public Bolt() { }
+        public BoltProperties() { }
 
-        public Bolt(string bs, double d, double e, double h, double k, double p, double numOfTPI, double nW)
+        public BoltProperties(string bs, double d, double e, double h, double k, double p, double numOfTPI, double nW)
         {
             BoltSize = bs;
             ThreadMajorDiameter_D = d;

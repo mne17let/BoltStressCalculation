@@ -28,14 +28,15 @@ namespace SahalinEnergyBoltStressCalculation.PageClassesFolder
         {
             InitializeComponent();
             InitFun();
+            ComboForBoltSize.Items.RemoveAt(1);
         }
 
 
         public void InitFun()
         {
             CalculateButton.Click += ReturnTableData;
-            dataBaseContextObject.Bolts.Load();
-            listBolts = dataBaseContextObject.Bolts.Local.ToArray();
+            dataBaseContextObject.BoltProperties.Load();
+            listBolts = dataBaseContextObject.BoltProperties.Local.ToArray();
         }
 
 
@@ -52,7 +53,7 @@ namespace SahalinEnergyBoltStressCalculation.PageClassesFolder
 
                 var d = 0;
 
-                foreach (Bolt i in listBolts)
+                foreach (BoltProperties i in listBolts)
                 {
                     if (EnterBoltSizeText.Text == i.BoltSize)
                     {

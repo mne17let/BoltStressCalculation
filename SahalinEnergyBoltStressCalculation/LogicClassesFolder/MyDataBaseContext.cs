@@ -15,6 +15,6 @@ namespace SahalinEnergyBoltStressCalculation
         }
 
         // Буду забирать данные из базы данных, но сохранять в неё ничего не буду, так как она неизменна
-        public DbSet<Bolt> Bolts { get; set; }
+        public DbSet<BoltProperties> BoltProperties { get; set; }
     }
 }
