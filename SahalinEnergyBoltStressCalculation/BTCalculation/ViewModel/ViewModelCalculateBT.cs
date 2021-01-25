@@ -4,6 +4,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,6 +23,10 @@ namespace SahalinEnergyBoltStressCalculation.LogicClassesFolder
         // Переменная со списком данных для определённых Bolt Grade и Bolt Size
         List<BoltGradeProperties> gradeData = new List<BoltGradeProperties>();
         List<BoltProperties> boltData = new List<BoltProperties>();
+
+        // Переменные конкретного типа болта
+        private BoltGradeProperties currentBoltGrade;
+        private BoltProperties currentBolt;
 
         // Реализация Singleton
 
@@ -43,12 +48,26 @@ namespace SahalinEnergyBoltStressCalculation.LogicClassesFolder
             switch (grade)
             {
                 case "Custom":
+                    ReturnForChangingGrade("Custom");
                     break;
                 default:
                     UpdateDataBaseForGradeChange(grade);
-                    ReturnForChangingGrades();
+                    ReturnForChangingGrade("not custom");
+                    setArrayOfCurrentSizes();
                     break;
             }
+        }
+
+        public void setArrayOfCurrentSizes()
+        {
+            string[] sizesArrayForItems = new string[boltData.Count];
+
+            for (int i = 0;i < boltData.Count;i++)
+            {
+                sizesArrayForItems[i] = boltData[i].BoltSize;
+            }
+
+            PageCalculationBT.UpdateComboBoxWithSize(sizesArrayForItems);
         }
 
         public void UpdateDataBaseForGradeChange(string filter)
@@ -75,10 +94,57 @@ namespace SahalinEnergyBoltStressCalculation.LogicClassesFolder
 
         }
 
-        public void ReturnForChangingGrades()
+        public void ReturnForChangingGrade(string customGradeOrNot)
         {
-            PageCalculationBT.BlockYieldTextBox();
+            PageCalculationBT.ChangeUiWhenGradePicked(customGradeOrNot);
         }
-       
+
+
+        public void UpdateViewModelWithComboBoxWithSizes(string size)
+        {
+            switch (size)
+            {
+                case "Custom":
+                    break;
+                default:
+                    UpdateDataBaseForSizeChange(size);
+                    ReturnForChangingSize();
+                    break;
+
+            }
+        }
+
+        public void UpdateDataBaseForSizeChange(string size)
+        {
+            foreach (var i in boltData)
+            {
+                if (i.BoltSize == size)
+                {
+                    currentBolt = i;
+                }
+            }
+
+            foreach (var a in gradeData)
+            {
+                if (a.BoltDiameter == currentBolt.ThreadMajorDiameter_D)
+                {
+                    currentBoltGrade = a;
+                }
+            }
+        }
+
+        public void ReturnForChangingSize()
+        {
+            double currentThreadMajorDiameter_D = currentBolt.ThreadMajorDiameter_D;
+            double currentPitchDiameterOfThread_E = currentBolt.PitchDiameterOfThread_E;
+            double currentHexSize_H = currentBolt.HexSize_H;
+            double currentNutInternalChamfer_K = currentBolt.NutInternalChamfer_K;
+            double currentThreadPitch_P = currentBolt.ThreadPitch_P;
+
+            PageCalculationBT.ChangeUiWhenSizePicked(currentThreadMajorDiameter_D, currentPitchDiameterOfThread_E, currentHexSize_H,
+                currentNutInternalChamfer_K, currentThreadPitch_P);
+        }
+
+
     }
 }

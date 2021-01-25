@@ -29,7 +29,8 @@
         </StackPanel>
         <ComboBox Name="ComboBoxWithGrades" Grid.Row="1" Grid.Column="0" 
                   HorizontalAlignment="Center" VerticalAlignment="Center" 
-                  FontSize="20" FontWeight="Bold" SelectedIndex="0" IsEditable="True">
+                  FontSize="20" FontWeight="Bold" SelectedIndex="0">
+            <ComboBoxItem Name="HintItemGrade" MaxHeight="0">Pick bolt grade</ComboBoxItem>
             <ComboBoxItem Name="DefaultItemGrade">Custom</ComboBoxItem>
             <ComboBoxItem Name="Grade111">A193 B7</ComboBoxItem>
             <ComboBoxItem Name="Grade22">A193 B7M</ComboBoxItem>
@@ -62,7 +63,9 @@
 
         <ComboBox Name="ComboBoxWithBoltSize" Grid.Row="3" Grid.Column="0" 
                   HorizontalAlignment="Center" VerticalAlignment="Center" 
-                  FontSize="20" FontWeight="Bold" SelectedIndex="0" IsEditable="True">
+                  FontSize="20" FontWeight="Bold" SelectedIndex="0" IsEnabled="False">
+            <ComboBoxItem Name="HintItemSizeBeforeGrade" MaxHeight="0">Pick bolt grade at first</ComboBoxItem>
+            <ComboBoxItem Name="HintItemSize" MaxHeight="0">Pick bolt size</ComboBoxItem>
             <ComboBoxItem Name="DefaultItem">Custom</ComboBoxItem>
             <ComboBoxItem Name="Size1">1/2" UNC</ComboBoxItem>
             <ComboBoxItem Name="Size2">5/8" UNC</ComboBoxItem>

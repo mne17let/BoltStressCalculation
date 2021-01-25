@@ -41,7 +41,7 @@ namespace SahalinEnergyBoltStressCalculation.PageClassesFolder
 
             CalculateButton.Click += ListenerForCalculateButton;
             ComboBoxWithGrades.SelectionChanged += ListenerForGradeComboBox;
-            viewModelAtCalculationBTC.UpdateDataBase();
+            ComboBoxWithBoltSize.SelectionChanged += ListenerForBoltSizeComboBox;
 
 
             
@@ -50,23 +50,30 @@ namespace SahalinEnergyBoltStressCalculation.PageClassesFolder
         public void ListenerForGradeComboBox(object viewObject, RoutedEventArgs someArgs)
         {
             var comboBoxItem = (ComboBoxItem)((ComboBox)viewObject).SelectedItem;
-            string stringForViewModel = comboBoxItem.Content.ToString();
+            string gradeStringForViewModel = comboBoxItem.Content.ToString();
+            viewModelAtCalculationBTC.UpdateViewModelWithComboBoxWithGrades(gradeStringForViewModel);
         }
 
-        public void ListenerForBoltSizeComboBox()
+        public void ListenerForBoltSizeComboBox(object viewObject, RoutedEventArgs someArgs)
         {
-
+            var comboBoxItem = (ComboBoxItem)((ComboBox)viewObject).SelectedItem;
+            if (comboBoxItem == null)
+            {
+                return;
+            } else if (comboBoxItem.Content.ToString() == "Pick bolt size")
+            {
+                return;
+            } else
+            {
+                string sizeStringForViewModel = comboBoxItem.Content.ToString();
+                viewModelAtCalculationBTC.UpdateViewModelWithComboBoxWithSizes(sizeStringForViewModel);
+            }
+            
         }
-        
+
         public void ListenerForCalculateButton(object sender, RoutedEventArgs e)
         {
-
-            MyDataBaseContext dataBaseContextObject = new MyDataBaseContext();
-
-            dataBaseContextObject.BoltProperties.Load();
-            listBolts = dataBaseContextObject.BoltProperties.Local.ToArray();
-            dataBaseContextObject.BoltGradeProperties.Where(p => p.BoltGrade == "A193 B8M2 class 2B").Load();
-            var b = dataBaseContextObject.BoltGradeProperties.Local.ToList();
+        }
             
 
         public void ShowEmptyMessage(string code)
@@ -82,14 +89,54 @@ namespace SahalinEnergyBoltStressCalculation.PageClassesFolder
             }
         }
 
-        public void OnChangeGradeComboBox(string code)
+        public void ChangeUiWhenGradePicked(string status)
         {
-
+            switch (status)
+            {
+                case "Custom":
+                    ComboBoxWithBoltSize.IsEnabled = true;
+                    break;
+                default:
+                    TextBoxYieldStress.IsReadOnly = true;
+                    ComboBoxWithBoltSize.IsEnabled = true;
+                    break;
+            }
+            
         }
 
-        public void BlockYieldTextBox()
+        public void UpdateComboBoxWithSize(string[] arrayOfItem)
         {
-            TextBoxYieldStress.IsReadOnly = true;
+            ComboBoxWithBoltSize.Items.Clear();
+
+            ComboBoxItem localItem = new ComboBoxItem();
+            localItem.MaxHeight = 0;
+            localItem.Content = "Pick bolt size";
+            ComboBoxWithBoltSize.SelectedIndex = 0;
+
+            ComboBoxWithBoltSize.Items.Add(localItem);
+            
+            foreach (string s in arrayOfItem)
+            {
+                ComboBoxWithBoltSize.Items.Add(s);
+            };
+        }
+
+        public void ChangeUiWhenSizePicked(double d, double e, double h, double k, double p)
+        {
+            TextBoxFor_D.Text = d.ToString();
+            TextBoxFor_D.IsReadOnly = true;
+
+            TextBoxFor_E.Text = e.ToString();
+            TextBoxFor_E.IsReadOnly = true;
+
+            TextBoxFor_H.Text = h.ToString();
+            TextBoxFor_H.IsReadOnly = true;
+
+            TextBoxFor_K.Text = k.ToString();
+            TextBoxFor_K.IsReadOnly = true;
+
+            TextBoxFor_P.Text = p.ToString();
+            TextBoxFor_P.IsReadOnly = true;
         }
     }
 }
