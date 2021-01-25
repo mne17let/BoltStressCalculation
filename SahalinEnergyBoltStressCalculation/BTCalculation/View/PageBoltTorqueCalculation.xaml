@@ -1,0 +1,118 @@
+﻿<Page x:Class="SahalinEnergyBoltStressCalculation.PageClassesFolder.PageBoltTorqueCalculation"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:SahalinEnergyBoltStressCalculation.PageClassesFolder"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="PageBoltTorqueCalculation">
+
+    <Grid Background="Aqua">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal" 
+                   HorizontalAlignment="Center" VerticalAlignment="Center">
+            <TextBlock FontSize="30" FontWeight="Bold">Название расчёта</TextBlock>
+        </StackPanel>
+        <ComboBox Name="ComboBoxWithGrades" Grid.Row="1" Grid.Column="0" 
+                  HorizontalAlignment="Center" VerticalAlignment="Center" 
+                  FontSize="20" FontWeight="Bold" SelectedIndex="0" IsEditable="True">
+            <ComboBoxItem Name="DefaultItemGrade">Custom</ComboBoxItem>
+            <ComboBoxItem Name="Grade111">A193 B7</ComboBoxItem>
+            <ComboBoxItem Name="Grade22">A193 B7M</ComboBoxItem>
+            <ComboBoxItem Name="Grade32">A193 B16</ComboBoxItem>
+            <ComboBoxItem Name="Grade42">A320 L7</ComboBoxItem>
+            <ComboBoxItem Name="Grade52">A320 L7M</ComboBoxItem>
+            <ComboBoxItem Name="Grade62">A320 L43</ComboBoxItem>
+            <ComboBoxItem Name="Grade72">A193 B8 class 1</ComboBoxItem>
+            <ComboBoxItem Name="Grade82">A193/A320 B8 class 2</ComboBoxItem>
+            <ComboBoxItem Name="Grade92">A193/A320 B8M class 2</ComboBoxItem>
+            <ComboBoxItem Name="Grade102">A193 B8M2 class 2B</ComboBoxItem>
+            <ComboBoxItem Name="Grade112">A453 grade 660 A, B and C</ComboBoxItem>
+        </ComboBox>
+        <StackPanel Grid.Row="2" Grid.Column="0" Orientation="Horizontal">
+            <TextBlock FontSize="15" VerticalAlignment="Center"
+                       Background="White">Yield Stress</TextBlock>
+            <TextBox Name="TextBoxYieldStress" FontSize="15" MinWidth="25" 
+                     VerticalAlignment="Center"></TextBox>
+            <TextBlock FontSize="15" VerticalAlignment="Center"
+                       Background="White">% of YEILD stress</TextBlock>
+            <TextBox Name="TextBoxForYieldPercent" FontSize="15" VerticalAlignment="Center"
+                     MinWidth="50"></TextBox>
+            <TextBlock FontSize="15" VerticalAlignment="Center"
+                       Background="White">%</TextBlock>
+            <TextBlock FontSize="15" VerticalAlignment="Center"
+                       Background="White" Visibility="Hidden">Sigma</TextBlock>
+            <TextBlock FontSize="15" VerticalAlignment="Center"
+                       Background="White" Visibility="Hidden"></TextBlock>
+        </StackPanel>
+
+        <ComboBox Name="ComboBoxWithBoltSize" Grid.Row="3" Grid.Column="0" 
+                  HorizontalAlignment="Center" VerticalAlignment="Center" 
+                  FontSize="20" FontWeight="Bold" SelectedIndex="0" IsEditable="True">
+            <ComboBoxItem Name="DefaultItem">Custom</ComboBoxItem>
+            <ComboBoxItem Name="Size1">1/2" UNC</ComboBoxItem>
+            <ComboBoxItem Name="Size2">5/8" UNC</ComboBoxItem>
+            <ComboBoxItem Name="Size3">3/4" UNC</ComboBoxItem>
+            <ComboBoxItem Name="Size4">7/8" UNC</ComboBoxItem>
+            <ComboBoxItem Name="Size5">1" UN8</ComboBoxItem>
+            <ComboBoxItem Name="Size6">1 1/8" UN8</ComboBoxItem>
+            <ComboBoxItem Name="Size7">1 1/4" UN8</ComboBoxItem>
+            <ComboBoxItem Name="Size8">1 3/8" UN8</ComboBoxItem>
+            <ComboBoxItem Name="Size9">1 1/2" UN8</ComboBoxItem>
+            <ComboBoxItem Name="Size10">1 5/8" UN8</ComboBoxItem>
+            <ComboBoxItem Name="Size11">1 3/4" UN8</ComboBoxItem>
+            <ComboBoxItem Name="Size12">1 7/8" UN8</ComboBoxItem>
+            <ComboBoxItem Name="Size13">2" UN8</ComboBoxItem>
+            <ComboBoxItem Name="Size14">2 1/4" UN8</ComboBoxItem>
+            <ComboBoxItem Name="Size15">2 1/2" UN8</ComboBoxItem>
+            <ComboBoxItem Name="Size16">2 3/4" UN8</ComboBoxItem>
+            <ComboBoxItem Name="Size17">3" UN8</ComboBoxItem>
+            <ComboBoxItem Name="Size18">3 1/4" UN8</ComboBoxItem>
+            <ComboBoxItem Name="Size19">3 1/2" UN8</ComboBoxItem>
+            <ComboBoxItem Name="Size20">3 3/4" UN8</ComboBoxItem>
+            <ComboBoxItem Name="Size21">4" UN8</ComboBoxItem>
+        </ComboBox>
+
+        <StackPanel Grid.Row="4" Grid.Column="0" Orientation="Horizontal">
+            <TextBlock FontSize="20" Margin="0 0 5 0" VerticalAlignment="Center" 
+                       Background="White">D</TextBlock>
+            <TextBox Name="TextBoxFor_D" VerticalAlignment="Center" FontSize="20" 
+                     MinWidth="35" MaxLength="6" IsReadOnly="True"></TextBox>
+            <TextBlock FontSize="20" Margin="0 0 5 0" VerticalAlignment="Center"
+                       Background="White">E</TextBlock>
+            <TextBox Name="TextBoxFor_E" VerticalAlignment="Center" FontSize="20" MinWidth="35" MaxLength="6"></TextBox>
+            <TextBlock FontSize="20" Margin="0 0 5 0" VerticalAlignment="Center"
+                       Background="White">H</TextBlock>
+            <TextBox Name="TextBoxFor_H" VerticalAlignment="Center" FontSize="20" MinWidth="35" MaxLength="6"></TextBox>
+            <TextBlock FontSize="20" Margin="0 0 5 0" VerticalAlignment="Center"
+                       Background="White">K</TextBlock>
+            <TextBox Name="TextBoxFor_K" VerticalAlignment="Center" FontSize="20" MinWidth="35" MaxLength="6"></TextBox>
+            <TextBlock FontSize="20" Margin="0 0 5 0" VerticalAlignment="Center"
+                       Background="White">P</TextBlock>
+            <TextBox Name="TextBoxFor_P" VerticalAlignment="Center" FontSize="20" MinWidth="35" MaxLength="6"></TextBox>
+            
+        </StackPanel>
+        <StackPanel Grid.Row="5" Grid.Column="0" Orientation="Horizontal">
+            <TextBlock Name="FrictionCoefficientText" FontSize="20" Grid.Row="5"
+                   Grid.Column="0" Background="White" VerticalAlignment="Center">Friction coefficient f</TextBlock>
+            <TextBox Name="TextBoxForFrictionCoefficient" VerticalAlignment="Center" FontSize="20" 
+                     MinWidth="35" MaxLength="6"></TextBox>
+        </StackPanel>
+        
+        <Button Name="CalculateButton" Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="2" FontSize="30">Посчитать</Button>
+    </Grid>
+</Page>

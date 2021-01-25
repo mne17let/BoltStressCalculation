@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data.Entity;
+using SahalinEnergyBoltStressCalculation.LogicClassesFolder.CalculationOne;
 
 namespace SahalinEnergyBoltStressCalculation
 {
@@ -16,5 +17,7 @@ namespace SahalinEnergyBoltStressCalculation
 
         // Буду забирать данные из базы данных, но сохранять в неё ничего не буду, так как она неизменна
         public DbSet<BoltProperties> BoltProperties { get; set; }
+
+        public DbSet<BoltGradeProperties> BoltGradeProperties { get; set; }
     }
 }
