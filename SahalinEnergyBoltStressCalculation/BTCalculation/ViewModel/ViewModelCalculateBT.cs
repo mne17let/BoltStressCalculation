@@ -1,4 +1,5 @@
-﻿using SahalinEnergyBoltStressCalculation.BTCalculation.Model;
+﻿using SahalinEnergyBoltStressCalculation.BTCalculation.CalculationBTClasses;
+using SahalinEnergyBoltStressCalculation.BTCalculation.Model;
 using SahalinEnergyBoltStressCalculation.LogicClassesFolder.CalculationOne;
 using SahalinEnergyBoltStressCalculation.PageClassesFolder;
 using System;
@@ -28,6 +29,18 @@ namespace SahalinEnergyBoltStressCalculation.LogicClassesFolder
         // Переменные конкретного типа болта
         private BoltGradeProperties currentBoltGrade;
         private BoltProperties currentBolt;
+
+        // Переменные, получаемые из View
+        double yieldStressValueCustom;
+        double yieldStressPerCent;
+        double customD;
+        double customE;
+        double customH;
+        double customK;
+        double customP;
+
+        double frictionCoeffViewModel;
+
 
         // Реализация Singleton
 
@@ -150,176 +163,198 @@ namespace SahalinEnergyBoltStressCalculation.LogicClassesFolder
             workWithDataBaseBTCObject.LoadData();
         }
 
-        public void BeginCalculate(string statusGrade, string statusSize)
+        public bool SetUpGrade(string statusGrade)
         {
+            bool res;
             switch (statusGrade)
             {
                 case "Pick bolt grade":
                     PageCalculationBT.ShowErrorMessage("BoltGrade");
+                    res = false;
                     break;
                 case "Custom":
-                    ChooseWhenCustomGrade(statusSize);
+                    res = SetUpYield(statusGrade);
                     break;
                 default:
-                    ChooseWhenDefaultGrade(statusSize, statusGrade);
+                    res = SetUpYield(statusGrade);
                     break;
             }
+            return res;
         }
 
-        public void ChooseWhenDefaultGrade(string statusSize, string statusGrade)
+        public bool SetUpSize(string statusSize)
         {
+            bool res;
             switch (statusSize)
             {
                 case "Pick bolt size":
                     PageCalculationBT.ShowErrorMessage("BoltSize");
+                    res = false;
                     break;
                 case "Custom":
-                    if (CheckProperties() == false)
-                    {
-                        return;
-                    }
-                    else
-                    {
-                        WorkWithCalculationCustomSize();
-                    }
+                    res = setUpProperties(statusSize);
                     break;
                 default:
-                    if (CheckYieldFields() == false)
-                    {
-                        return;
-                    } else
-                    {
-                        WorkWithCalculationDefaultGradeSize(statusSize, statusGrade);
-                    }
-                    
+                    res = setUpProperties(statusSize);
                     break;
             }
+            return res;
         }
 
-        public void ChooseWhenCustomGrade(string statusSize)
-        {
-            if (CheckYieldFields() == false)
-            {
-                return;
-            }
-            else
-            {
-                switch (statusSize)
-                {
-                    case "Pick bolt size":
-                        PageCalculationBT.ShowErrorMessage("BoltSize");
-                        break;
-                    case "Custom":
-                        if (CheckProperties() == false)
-                        {
-                            return;
-                        }
-                        else
-                        {
-                            WorkWithCalculationCustomGradeCustomSize();
-                        }
-                        break;
-                    default:
-                        WorkWithCalculationCustomGrade();
-                        break;
-                }
-            }
-        }
-
-        public void WorkWithCalculationCustomGrade()
-        {
-            if (CheckFCoeff() == false)
-            {
-                return;
-            } else
-            {
-                PageCalculationBT.ShowResult("Custom Grade, Def Size");
-            }
-        }
-
-        public void WorkWithCalculationCustomGradeCustomSize()
-        {
-            if (CheckFCoeff() == false)
-            {
-                return;
-            }
-            else
-            {
-                PageCalculationBT.ShowResult("Custom Grade, Custom Size");
-            }
-                
-        }
-
-        public void WorkWithCalculationCustomSize()
-        {
-            if (CheckFCoeff() == false)
-            {
-                return;
-            }
-            else
-            {
-                PageCalculationBT.ShowResult("Def Grade, Custom Size");
-            }
-                
-        }
-
-        public void WorkWithCalculationDefaultGradeSize(string size, string grade)
-        {
-            if (CheckFCoeff() == false)
-            {
-                return;
-            }
-            else
-            {
-                PageCalculationBT.ShowResult("Def Grade, Def Size");
-                PageCalculationBT.ShowInfoMessage(size, grade);
-            }
-                
-        }
-
-        public bool CheckYieldFields()
-        {
-            bool checkingYield;
-            double[] yieldStrings = PageCalculationBT.GetYieldStressCustom();
-            if (yieldStrings[0] == 0 || yieldStrings[1] == 0)
-            {
-                PageCalculationBT.ShowErrorMessage("Yield");
-                checkingYield = false;
-            } else
-            {
-                checkingYield = true;
-            }
-            return checkingYield;
-        }
-
-        public bool CheckProperties()
+        public bool setUpProperties(string statusSize)
         {
             bool checkingProp;
-            double[] prop = PageCalculationBT.GetProperties();
-            if (prop[0] == 0 || prop[1] == 0 || prop[2] == 0 || prop[3] == 0 || prop[4] == 0)
+            double helpD;
+            double helpE;
+            double helpH;
+            double helpK;
+            double helpP;
+            string[] prop = PageCalculationBT.GetProperties();
+            if (Double.TryParse(prop[0], out helpD) == false || Double.TryParse(prop[1], out helpE) == false
+                || Double.TryParse(prop[2], out helpH) == false
+                || Double.TryParse(prop[3], out helpK) == false || Double.TryParse(prop[4], out helpP) == false)
             {
                 PageCalculationBT.ShowErrorMessage("Properties");
                 checkingProp = false;
-            } else
+            }
+            else
             {
+                customD = helpD;
+                customE = helpE;
+                customH = helpH;
+                customK = helpK;
+                customP = helpP;
                 checkingProp = true;
             }
             return checkingProp;
         }
 
+        public bool SetUpYield(string grade)
+        {
+            bool res;
+            if (grade == "Custom")
+            {
+                double help;
+                string[] yieldValues = PageCalculationBT.GetYieldStressCustom();
+                if (Double.TryParse(yieldValues[0], out help) == true)
+                {
+                    yieldStressValueCustom = help;
+                    res = true;
+                } else
+                {
+                    PageCalculationBT.ShowErrorMessage("Yield");
+                    res = false;
+                }
+
+                if (Double.TryParse(yieldValues[1], out help) == true)
+                {
+                    yieldStressPerCent = help;
+                    res = true;
+                }
+                else
+                {
+                    PageCalculationBT.ShowErrorMessage("PerCent");
+                    res = false;
+                }
+            } else
+            {
+                string[] yieldValues = PageCalculationBT.GetYieldStressCustom();
+                double help;
+                if (Double.TryParse(yieldValues[1], out help) == true)
+                {
+                    yieldStressPerCent = help;
+                    res = true;
+                }
+                else
+                {
+                    PageCalculationBT.ShowErrorMessage("PerCent");
+                    res = false;
+                }
+            }
+            return res;
+        }
+
+
         public bool CheckFCoeff()
         {
+
             bool checkFC;
-            double fCoeff = PageCalculationBT.GetFCoeff();
-            if (fCoeff == 0)
+            double help;
+            string helpString = PageCalculationBT.GetFCoeff();
+            if (Double.TryParse(helpString, out help) == false)
             {
                 PageCalculationBT.ShowErrorMessage("FCoeff");
                 checkFC = false;
-            } else
+            }
+            else if (help < 0 || help > 1)
             {
+                PageCalculationBT.ShowErrorMessage("FCoeffLimits");
+                checkFC = false;
+            }
+            else
+            {
+                frictionCoeffViewModel = help;
                 checkFC = true;
             }
+            
             return checkFC;
+        }
+
+        public void BeginCalculation(string statusGrade, string statusSize)
+        {
+            if (SetUpGrade(statusGrade) == false)
+            {
+                return;
+            } else if (SetUpSize(statusSize) == false)
+            {
+                return;
+            } else if (CheckFCoeff() == false)
+            {
+                return;
+            } else
+            {
+                var obj = Calculation(statusGrade, statusSize);
+                string grade = currentBoltGrade.BoltGrade;
+                string size = currentBolt.BoltSize;
+                PageCalculationBT.ChangeUIOnCalculation(obj, grade, size);
+            }
+        }
+
+        public CalculateBTC Calculation(string statusGrade, string starusSize)
+        {
+            CalculateBTC objectCalculator = new CalculateBTC();
+
+            if (statusGrade == "Custom")
+            {
+                objectCalculator.yieldStressPsi = yieldStressValueCustom;
+                objectCalculator.perCent = yieldStressPerCent;
+            } else
+            {
+                objectCalculator.yieldStressPsi = currentBoltGrade.YieldStressPsi;
+                objectCalculator.perCent = yieldStressPerCent;
+            }
+
+            if (starusSize == "Custom")
+            {
+                objectCalculator.threadMajorDiameter_D = currentBolt.ThreadMajorDiameter_D;
+                objectCalculator.pitchDiameterOfThread_E = currentBolt.PitchDiameterOfThread_E;
+                objectCalculator.hexSize_H = currentBolt.HexSize_H;
+                objectCalculator.nutInternalChamfer_K = currentBolt.NutInternalChamfer_K;
+                objectCalculator.threadPitch_P = currentBolt.ThreadPitch_P;
+
+            } else
+            {
+                objectCalculator.threadMajorDiameter_D = customD;
+                objectCalculator.pitchDiameterOfThread_E = customE;
+                objectCalculator.hexSize_H = customH;
+                objectCalculator.nutInternalChamfer_K = customK;
+                objectCalculator.threadPitch_P = customP;
+            }
+
+            objectCalculator.fCoeff = frictionCoeffViewModel;
+
+            return objectCalculator;
+            
         }
     }
 }

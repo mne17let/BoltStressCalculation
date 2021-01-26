@@ -1,4 +1,5 @@
-﻿using SahalinEnergyBoltStressCalculation.LogicClassesFolder;
+﻿using SahalinEnergyBoltStressCalculation.BTCalculation.CalculationBTClasses;
+using SahalinEnergyBoltStressCalculation.LogicClassesFolder;
 using SahalinEnergyBoltStressCalculation.LogicClassesFolder.CalculationOne;
 using System;
 using System.Collections;
@@ -83,7 +84,7 @@ namespace SahalinEnergyBoltStressCalculation.PageClassesFolder
             statusGrade = itemGrade.Content.ToString();
             statusSize = itemSize.Content.ToString();
 
-            viewModelAtCalculationBTC.BeginCalculate(statusGrade, statusSize);
+            viewModelAtCalculationBTC.BeginCalculation(statusGrade, statusSize);
         }
             
 
@@ -260,38 +261,30 @@ namespace SahalinEnergyBoltStressCalculation.PageClassesFolder
             }
         }
 
-        public double[] GetYieldStressCustom()
+        public string[] GetYieldStressCustom()
         {
-            double value;
-            double perCent;
-            var tryBool = Double.TryParse(TextBoxYieldStress.Text, out value);
-            tryBool = Double.TryParse(TextBoxForYieldPercent.Text, out perCent);
+            string valueYield = TextBoxYieldStress.Text;
+            string perCent = TextBoxForYieldPercent.Text;
 
-            double[] yieldDouble = new double[] { value, perCent };
-            return yieldDouble;
+            string[] arrString = new string[] { valueYield, perCent };
+            return arrString;
         }
 
-        public double[] GetProperties()
+        public string[] GetProperties()
         {
-            double d;
-            double e;
-            double h;
-            double k;
-            double p;
-            var trybool = Double.TryParse(TextBoxFor_D.Text, out d);
-            trybool = Double.TryParse(TextBoxFor_E.Text, out e);
-            trybool = Double.TryParse(TextBoxFor_H.Text, out h);
-            trybool = Double.TryParse(TextBoxFor_K.Text, out k);
-            trybool = Double.TryParse(TextBoxFor_P.Text, out p);
-
-            double[] properties = new double[] { d, e, h, k, p };
+            string d = TextBoxFor_D.Text;
+            string e = TextBoxFor_E.Text;
+            string h = TextBoxFor_H.Text;
+            string k = TextBoxFor_K.Text;
+            string p = TextBoxFor_P.Text;
+            
+            string[] properties = new string[] { d, e, h, k, p };
             return properties;
         }
 
-        public double GetFCoeff()
+        public string GetFCoeff()
         {
-            double fCoeff;
-            bool tryBool = Double.TryParse(TextBoxForFrictionCoefficient.Text, out fCoeff);
+            string fCoeff = TextBoxForFrictionCoefficient.Text;
             return fCoeff;
         }
 
@@ -300,10 +293,10 @@ namespace SahalinEnergyBoltStressCalculation.PageClassesFolder
             switch (code)
             {
                 case "Yield":
-                    MessageBox.Show("Введите значения для Yield Stress");
+                    MessageBox.Show("Введите значение Yield Stress");
                     break;
-                case "FrictionCoefficient":
-                    MessageBox.Show("Введите значение коэффициента трения");
+                case "PerCent":
+                    MessageBox.Show("Введите значение % Yield Stress");
                     break;
                 case "Properties":
                     MessageBox.Show("Введите значения всех характеристик болта");
@@ -315,19 +308,23 @@ namespace SahalinEnergyBoltStressCalculation.PageClassesFolder
                     MessageBox.Show("Pick bolt grade");
                     break;
                 case "FCoeff":
+                    
                     MessageBox.Show("Введите значение коэффициента трения");
+                    break;
+                case "FCoeffLimits":
+                    MessageBox.Show("Коэффициент трения не может быть меньше 0 и больше 1");
                     break;
             }
         }
 
-        public void ShowResult(string res)
+        public void ChangeUIOnCalculation(CalculateBTC objectCalculator, string grade, string size)
         {
-            ResultText.Text = res;
-        }
-
-        public void ShowInfoMessage(string s1, string s2)
-        {
-            MessageBox.Show(s1 + " size" + s2 + " grade" );
+            SigmaTextTest.Text += objectCalculator.GetSigma().ToString();
+            AsTextTest.Text += objectCalculator.GetAs().ToString();
+            BSTextTest.Text += grade;
+            BGTextTest.Text += size;
+            FTextTest.Text += objectCalculator.GetF().ToString();
+            TauText.Text += objectCalculator.GetTau().ToString();
         }
 
         
