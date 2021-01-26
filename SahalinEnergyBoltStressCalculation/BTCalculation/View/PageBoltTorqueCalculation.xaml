@@ -45,16 +45,21 @@
             <ComboBoxItem Name="Grade112">A453 grade 660 A, B and C</ComboBoxItem>
         </ComboBox>
         <StackPanel Grid.Row="2" Grid.Column="0" Orientation="Horizontal">
-            <TextBlock FontSize="15" VerticalAlignment="Center"
-                       Background="White">Yield Stress</TextBlock>
+            <TextBlock Name="TextYeildStress" FontSize="15" VerticalAlignment="Center"
+                       Background="White" Visibility="Hidden">Yield Stress</TextBlock>
             <TextBox Name="TextBoxYieldStress" FontSize="15" MinWidth="25" 
-                     VerticalAlignment="Center"></TextBox>
+                     VerticalAlignment="Center" Visibility="Hidden" 
+                     PreviewTextInput="OnlyNumbers" PreviewKeyDown="WithoutSpace">
+                
+            </TextBox>
+            
+            <TextBox Name="TextBoxForYieldPercent" FontSize="15" VerticalAlignment="Center"
+                     MinWidth="50" PreviewTextInput="OnlyNumbers" PreviewKeyDown="WithoutSpace"
+                     MaxLength="3">
+                
+            </TextBox>
             <TextBlock FontSize="15" VerticalAlignment="Center"
                        Background="White">% of YEILD stress</TextBlock>
-            <TextBox Name="TextBoxForYieldPercent" FontSize="15" VerticalAlignment="Center"
-                     MinWidth="50"></TextBox>
-            <TextBlock FontSize="15" VerticalAlignment="Center"
-                       Background="White">%</TextBlock>
             <TextBlock FontSize="15" VerticalAlignment="Center"
                        Background="White" Visibility="Hidden">Sigma</TextBlock>
             <TextBlock FontSize="15" VerticalAlignment="Center"
@@ -94,27 +99,49 @@
             <TextBlock FontSize="20" Margin="0 0 5 0" VerticalAlignment="Center" 
                        Background="White">D</TextBlock>
             <TextBox Name="TextBoxFor_D" VerticalAlignment="Center" FontSize="20" 
-                     MinWidth="35" MaxLength="6" IsReadOnly="True"></TextBox>
+                     MinWidth="35" IsReadOnly="True" 
+                     PreviewTextInput="OnlyNumbers" PreviewKeyDown="WithoutSpace">
+                
+            </TextBox>
             <TextBlock FontSize="20" Margin="0 0 5 0" VerticalAlignment="Center"
                        Background="White">E</TextBlock>
-            <TextBox Name="TextBoxFor_E" VerticalAlignment="Center" FontSize="20" MinWidth="35" MaxLength="6"></TextBox>
+            <TextBox Name="TextBoxFor_E" VerticalAlignment="Center" FontSize="20" MinWidth="35" 
+                     PreviewTextInput="OnlyNumbers" PreviewKeyDown="WithoutSpace">
+
+            </TextBox>
             <TextBlock FontSize="20" Margin="0 0 5 0" VerticalAlignment="Center"
                        Background="White">H</TextBlock>
-            <TextBox Name="TextBoxFor_H" VerticalAlignment="Center" FontSize="20" MinWidth="35" MaxLength="6"></TextBox>
+            <TextBox Name="TextBoxFor_H" VerticalAlignment="Center" FontSize="20" MinWidth="35" 
+                     PreviewTextInput="OnlyNumbers" PreviewKeyDown="WithoutSpace">
+                
+            </TextBox>
             <TextBlock FontSize="20" Margin="0 0 5 0" VerticalAlignment="Center"
                        Background="White">K</TextBlock>
-            <TextBox Name="TextBoxFor_K" VerticalAlignment="Center" FontSize="20" MinWidth="35" MaxLength="6"></TextBox>
+            <TextBox Name="TextBoxFor_K" VerticalAlignment="Center" FontSize="20" MinWidth="35" 
+                     PreviewTextInput="OnlyNumbers" PreviewKeyDown="WithoutSpace">
+                
+            </TextBox>
             <TextBlock FontSize="20" Margin="0 0 5 0" VerticalAlignment="Center"
                        Background="White">P</TextBlock>
-            <TextBox Name="TextBoxFor_P" VerticalAlignment="Center" FontSize="20" MinWidth="35" MaxLength="6"></TextBox>
+            <TextBox Name="TextBoxFor_P" VerticalAlignment="Center" FontSize="20" MinWidth="35" 
+                     PreviewTextInput="OnlyNumbers" PreviewKeyDown="WithoutSpace">
+            </TextBox>
             
         </StackPanel>
         <StackPanel Grid.Row="5" Grid.Column="0" Orientation="Horizontal">
             <TextBlock Name="FrictionCoefficientText" FontSize="20" Grid.Row="5"
-                   Grid.Column="0" Background="White" VerticalAlignment="Center">Friction coefficient f</TextBlock>
+                   Grid.Column="0" Background="White" VerticalAlignment="Center">
+                Friction coefficient f
+            </TextBlock>
             <TextBox Name="TextBoxForFrictionCoefficient" VerticalAlignment="Center" FontSize="20" 
-                     MinWidth="35" MaxLength="6"></TextBox>
+                     MinWidth="35" MaxLength="4" PreviewTextInput="OnlyNumbers" 
+                     PreviewKeyDown="WithoutSpace">
+            </TextBox>
         </StackPanel>
+
+        <TextBlock Name="ResultText" FontSize="30" FontWeight="Bold" Grid.Column="1" Grid.Row="2">
+            Здесь будет результат
+        </TextBlock>
         
         <Button Name="CalculateButton" Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="2" FontSize="30">Посчитать</Button>
     </Grid>

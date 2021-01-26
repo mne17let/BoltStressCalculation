@@ -85,6 +85,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="BTCalculation\Model\BoltProperties.cs" />
+    <Compile Include="BTCalculation\Model\WorkWithDataBaseBTC.cs" />
     <Compile Include="BTCalculation\ViewModel\ViewModelCalculateBT.cs" />
     <Compile Include="PageClassesFolder\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
@@ -143,6 +144,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\rgungLogo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="BTCalculation\CalculationBTClasses\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

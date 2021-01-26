@@ -19,5 +19,7 @@ namespace SahalinEnergyBoltStressCalculation
         public DbSet<BoltProperties> BoltProperties { get; set; }
 
         public DbSet<BoltGradeProperties> BoltGradeProperties { get; set; }
+
     }
+
 }
