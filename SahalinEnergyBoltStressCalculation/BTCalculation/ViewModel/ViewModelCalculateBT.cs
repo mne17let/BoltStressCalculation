@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace SahalinEnergyBoltStressCalculation.LogicClassesFolder
 {
-    class ViewModelCalculeteBT
+    class ViewModelCalculateBT
     {
         // Переменная модели
         private WorkWithDataBaseBTC workWithDataBaseBTCObject = WorkWithDataBaseBTC.GetInstance();
@@ -44,15 +44,15 @@ namespace SahalinEnergyBoltStressCalculation.LogicClassesFolder
 
         // Реализация Singleton
 
-        private static ViewModelCalculeteBT instance;
+        private static ViewModelCalculateBT instance;
 
-        private ViewModelCalculeteBT() { }
+        private ViewModelCalculateBT() { }
 
-        public static ViewModelCalculeteBT GetInstance()
+        public static ViewModelCalculateBT GetInstance()
         {
             if (instance == null)
             {
-                instance = new ViewModelCalculeteBT();
+                instance = new ViewModelCalculateBT();
             }
             return instance;
         }

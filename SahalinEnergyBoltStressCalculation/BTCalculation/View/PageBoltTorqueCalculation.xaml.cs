@@ -26,7 +26,7 @@ namespace SahalinEnergyBoltStressCalculation.PageClassesFolder
     public partial class PageBoltTorqueCalculation : Page
     {
         
-        private ViewModelCalculeteBT viewModelAtCalculationBTC = ViewModelCalculeteBT.GetInstance();
+        private ViewModelCalculeteBT viewModelAtCalculationBTC = ViewModelCalculateBT.GetInstance();
 
         private string statusGrade, statusSize;
 
