@@ -319,12 +319,12 @@ namespace SahalinEnergyBoltStressCalculation.PageClassesFolder
 
         public void ChangeUIOnCalculation(CalculateBTC objectCalculator, string grade, string size)
         {
-            SigmaTextTest.Text += objectCalculator.GetSigma().ToString();
-            AsTextTest.Text += objectCalculator.GetAs().ToString();
-            BSTextTest.Text += grade;
-            BGTextTest.Text += size;
-            FTextTest.Text += objectCalculator.GetF().ToString();
-            TauText.Text += objectCalculator.GetTau().ToString();
+            SigmaTextTest.Text = "Sigma=" + objectCalculator.GetSigma().ToString();
+            AsTextTest.Text = "As=" +  objectCalculator.GetAs().ToString();
+            BSTextTest.Text = "BS=" + grade;
+            BGTextTest.Text = "BG=" + size;
+            FTextTest.Text = "F=" + objectCalculator.GetF().ToString();
+            TauText.Text = "Tau=" + objectCalculator.GetTau().ToString();
         }
 
         
