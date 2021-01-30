@@ -9,6 +9,10 @@ namespace SahalinEnergyBoltStressCalculation
 {
     class BoltProperties
     {
+
+        // Класс-модель болта из таблицы с bolt size
+
+
         [Key]
         public string BoltSize {get; set;}
 

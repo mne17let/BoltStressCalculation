@@ -25,18 +25,20 @@ namespace SahalinEnergyBoltStressCalculation.PageClassesFolder
     /// </summary>
     public partial class PageBoltTorqueCalculation : Page
     {
-        
-        private ViewModelCalculeteBT viewModelAtCalculationBTC = ViewModelCalculateBT.GetInstance();
+        // Переменная ViewModel
+        private ViewModelCalculateBT viewModelAtCalculationBTC = ViewModelCalculateBT.GetInstance();
 
+        // Переменные, отвечающие за то, выбран ли "Custom" size или grade болта
         private string statusGrade, statusSize;
 
+        // Конструктор класса, который вызывается при создании страницы
         public PageBoltTorqueCalculation()
         {
             InitializeComponent();
             InitFun();
         }
 
-
+        // Функция для установки начальных параметров
         public void InitFun()
         {
             viewModelAtCalculationBTC.PageCalculationBT = this;
@@ -50,6 +52,7 @@ namespace SahalinEnergyBoltStressCalculation.PageClassesFolder
 
         }
 
+        // Слушатель ComboBox с grade болтов
         public void ListenerForGradeComboBox(object viewObject, RoutedEventArgs someArgs)
         {
             var comboBoxItem = (ComboBoxItem)((ComboBox)viewObject).SelectedItem;
@@ -58,6 +61,7 @@ namespace SahalinEnergyBoltStressCalculation.PageClassesFolder
 
         }
 
+        // Слушатель ComboBox с размерами болтов
         public void ListenerForBoltSizeComboBox(object viewObject, RoutedEventArgs someArgs)
         {
             var comboBoxItem = (ComboBoxItem)((ComboBox)viewObject).SelectedItem;
@@ -76,6 +80,7 @@ namespace SahalinEnergyBoltStressCalculation.PageClassesFolder
             
         }
 
+        // Слушатель кнопки "Посчитать"
         public void ListenerForCalculateButton(object sender, RoutedEventArgs e)
         {
             ComboBoxItem itemSize = (ComboBoxItem)((ComboBox)ComboBoxWithBoltSize).SelectedItem;
@@ -86,10 +91,10 @@ namespace SahalinEnergyBoltStressCalculation.PageClassesFolder
 
             viewModelAtCalculationBTC.BeginCalculation(statusGrade, statusSize);
         }
-            
 
-        
 
+
+        // Изменения View, когда выбрал grade болта
         public void ChangeUiWhenGradePicked(string status)
         {
             switch (status)
@@ -111,18 +116,21 @@ namespace SahalinEnergyBoltStressCalculation.PageClassesFolder
             
         }
 
+        // Установка видимости для полей YieldStress и YieldStress-подписи
         public void SetVisibileYield()
         {
             TextYeildStress.Visibility = Visibility.Visible;
             TextBoxYieldStress.Visibility = Visibility.Visible;
         }
 
+        // Скрытие полей YieldStress и YieldStress-подписи
         public void SetVisibilityForYieldStress()
         {
             TextYeildStress.Visibility = Visibility.Hidden;
             TextBoxYieldStress.Visibility = Visibility.Hidden;
         }
 
+        // Очистка полей свойств болта, зависящих от его размера
         public void SetEmptyPropertiesWhenGradeChange()
         {
             TextBoxFor_D.Text = "";
@@ -132,6 +140,7 @@ namespace SahalinEnergyBoltStressCalculation.PageClassesFolder
             TextBoxFor_P.Text = "";
         }
 
+        // Установка параметра "Можно вписывать значения" для полей свойств болта, зависящих от его размера
         public void SetReadOnlyFalseForPropertiesTextBlocks()
         {
             TextBoxFor_D.IsReadOnly = false;
@@ -141,6 +150,7 @@ namespace SahalinEnergyBoltStressCalculation.PageClassesFolder
             TextBoxFor_P.IsReadOnly = false;
         }
 
+        // Обновление списка ComboBox с размерами после выбора grade болта
         public void UpdateComboBoxWithSize()
         {
             ComboBoxWithBoltSize.Items.Clear();
@@ -166,6 +176,7 @@ namespace SahalinEnergyBoltStressCalculation.PageClassesFolder
             };
         }
 
+        // Изменение View после выбора размера болта
         public void ChangeUiWhenSizePicked(string size)
         {
             switch (size)
@@ -182,6 +193,7 @@ namespace SahalinEnergyBoltStressCalculation.PageClassesFolder
             }
         }
 
+        // Установка YieldStress в случае, если выбран не "Custom" grade болта и не "Custom" размер болта
         public void SetYieldStress()
         {
             var a = viewModelAtCalculationBTC.GetCurrentYieldStress();
@@ -195,6 +207,7 @@ namespace SahalinEnergyBoltStressCalculation.PageClassesFolder
             }
         }
 
+        // Установка параметра "Заблокировать возможность вписать данные" для полей свойств болта, зависящих от его размера
         public void SetIsReadOnlyForPropertiesTextBlocks()
         {
             TextBoxFor_D.IsReadOnly = true;
@@ -204,6 +217,7 @@ namespace SahalinEnergyBoltStressCalculation.PageClassesFolder
             TextBoxFor_P.IsReadOnly = true;
         }
 
+        // Получение свойств болта, зависящих от его размера и установка в текстовые поля
         public void SetSizeProperties()
         {
             double[] properties = viewModelAtCalculationBTC.GetBoltSizeProperties();
@@ -224,6 +238,10 @@ namespace SahalinEnergyBoltStressCalculation.PageClassesFolder
             TextBoxFor_P.Text = p.ToString();
         }
 
+        // Проверка вводимых знаков и отклонение любых знаков, кроме
+        // Цифр
+        // Точки не в начале числа и только один раз
+        // Точки после нуля и ничего кроме
         private void OnlyNumbers(object sender, TextCompositionEventArgs textSymbols)
         {
             var currentText = (string)((TextBox)sender).Text;
@@ -250,9 +268,16 @@ namespace SahalinEnergyBoltStressCalculation.PageClassesFolder
                         return;
                     }
                 }
+            } else if (currentText == "0")
+            {
+                if (textSymbols.Text != ".")
+                {
+                    textSymbols.Handled = true; // отклоняем ввод
+                }
             }
         }
 
+        // Отклоняем ввод пробела в нужных полях ввода
         private void WithoutSpace(object sender, KeyEventArgs button)
         {
             if (button.Key == Key.Space)
@@ -261,6 +286,7 @@ namespace SahalinEnergyBoltStressCalculation.PageClassesFolder
             }
         }
 
+        // Отдаём "собранные" с полей YieldStress и YieldPercent данные
         public string[] GetYieldStressCustom()
         {
             string valueYield = TextBoxYieldStress.Text;
@@ -270,6 +296,7 @@ namespace SahalinEnergyBoltStressCalculation.PageClassesFolder
             return arrString;
         }
 
+        // Отдаём "собранные" с полей ввода свойства болта
         public string[] GetProperties()
         {
             string d = TextBoxFor_D.Text;
@@ -282,12 +309,14 @@ namespace SahalinEnergyBoltStressCalculation.PageClassesFolder
             return properties;
         }
 
+        // Отдаём "собранный" с поля ввода коэффициент трения
         public string GetFCoeff()
         {
             string fCoeff = TextBoxForFrictionCoefficient.Text;
             return fCoeff;
         }
 
+        // Показываем окно ошибки с нужным текстом
         public void ShowErrorMessage(string code)
         {
             switch (code)
@@ -308,15 +337,21 @@ namespace SahalinEnergyBoltStressCalculation.PageClassesFolder
                     MessageBox.Show("Pick bolt grade");
                     break;
                 case "FCoeff":
-                    
                     MessageBox.Show("Введите значение коэффициента трения");
                     break;
                 case "FCoeffLimits":
-                    MessageBox.Show("Коэффициент трения не может быть меньше 0 и больше 1");
+                    MessageBox.Show("Коэффициент трения не может быть меньше или равен 0 или больше 1");
+                    break;
+                case "PropertiesNull":
+                    MessageBox.Show("Значения характеристик болта не могут быть равны 0");
+                    break;
+                case "YieldStressNull":
+                    MessageBox.Show("Значения Yield Stress и % Yield Stress не могут быть равны 0");
                     break;
             }
         }
 
+        // Изменения View в результате вычислительных операций
         public void ChangeUIOnCalculation(CalculateBTC objectCalculator, string grade, string size)
         {
             SigmaTextTest.Text = "Sigma=" + objectCalculator.GetSigma().ToString();

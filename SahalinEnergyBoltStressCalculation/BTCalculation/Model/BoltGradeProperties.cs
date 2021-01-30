@@ -9,6 +9,8 @@ namespace SahalinEnergyBoltStressCalculation.LogicClassesFolder.CalculationOne
 {
     class BoltGradeProperties
     {
+        // Класс-модель болта из таблицы с bolt grade
+
         [Key]
         public int Id { get; set; }
         public string Auxiliary { get; set; }

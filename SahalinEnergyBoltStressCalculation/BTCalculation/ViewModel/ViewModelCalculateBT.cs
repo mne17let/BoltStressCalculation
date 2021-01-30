@@ -46,8 +46,10 @@ namespace SahalinEnergyBoltStressCalculation.LogicClassesFolder
 
         private static ViewModelCalculateBT instance;
 
+        // Реализация Singleton
         private ViewModelCalculateBT() { }
 
+        // Реализация Singleton
         public static ViewModelCalculateBT GetInstance()
         {
             if (instance == null)
@@ -57,6 +59,8 @@ namespace SahalinEnergyBoltStressCalculation.LogicClassesFolder
             return instance;
         }
 
+        // Выбран Bolt Grade в ComboBox
+        // Обновление списков ViewModel с объектами болтов из таблиц BoltSize и BoltGrade и вызов методов у View с передачей туда параметров
         public void UpdateViewModelWithComboBoxWithGrades(string grade)
         {
             switch (grade)
@@ -72,6 +76,7 @@ namespace SahalinEnergyBoltStressCalculation.LogicClassesFolder
             }
         }
 
+        // Обновление списков ViewModel с объектами болтов из таблиц BoltSize и BoltGrade
         public void UpdateViewModelLists(string filter)
         {
             workWithDataBaseBTCObject.UpdateModelListsForGradeChange(filter);
@@ -80,12 +85,14 @@ namespace SahalinEnergyBoltStressCalculation.LogicClassesFolder
         }
 
 
-
+        // Вызов метода реакции у View на выбор Bolt Grade и передача в этот метод информации, выбран ли "Custom" Bolt Grade
         public void ReturnForChangingGrade(string customGradeOrNot)
         {
             PageCalculationBT.ChangeUiWhenGradePicked(customGradeOrNot);
         }
 
+        // Выбран BoltSize
+        // Обновление ViewModel в зависимости от выбранного размера болта и вызов методов реакции у View
         public void UpdateViewModelWithComboBoxWithSizes(string size)
         {
             switch (size)
@@ -101,6 +108,7 @@ namespace SahalinEnergyBoltStressCalculation.LogicClassesFolder
             }
         }
 
+        // Присвоение переменным-объектам конкретного болта из таблиц BoltSize и BoltGrade
         public void UpdateViewModelCurrentBolt(string size)
         {
             workWithDataBaseBTCObject.UpdateDataBaseForSizeChange(size);
@@ -108,6 +116,7 @@ namespace SahalinEnergyBoltStressCalculation.LogicClassesFolder
             currentBoltGrade = workWithDataBaseBTCObject.GetCurrentBoltGradeProperties();
         }
 
+        // Вызов методов у View в качествер реакции на выбор bolt size
         public void ReturnForChangingSize(string size)
         {
             switch (size)
@@ -121,6 +130,7 @@ namespace SahalinEnergyBoltStressCalculation.LogicClassesFolder
             }
         }
 
+        // Возврат массива со значениями размеров (bolt size) в зависимости от выбранного bolt grade
         public string[] GetArrayOfCurrentSizes()
         {
             string[] sizesArrayForItems = new string[boltData.Count];
@@ -133,6 +143,8 @@ namespace SahalinEnergyBoltStressCalculation.LogicClassesFolder
             return sizesArrayForItems;
         }
 
+        // Выбран bolt size
+        // Возврат характеристик конкретного болта, выбранного пользователем
         public double[] GetBoltSizeProperties()
         {
             double currentThreadMajorDiameter_D = currentBolt.ThreadMajorDiameter_D;
@@ -146,6 +158,8 @@ namespace SahalinEnergyBoltStressCalculation.LogicClassesFolder
             return properties;
         }
 
+        // Выбран bolt size и bolt grade (оба - не custom)
+        // Возврат конкретного значения YieldStressPsi для выбранного пользователем болта 
         public double GetCurrentYieldStress()
         {
             if (currentBoltGrade == null)
@@ -158,24 +172,29 @@ namespace SahalinEnergyBoltStressCalculation.LogicClassesFolder
             }
         }
 
+        // Подключение к базе данных и загрузка из неё двух таблиц
         public void LoadDataFromDB()
         {
             workWithDataBaseBTCObject.LoadData();
         }
 
+        // 
         public bool SetUpGrade(string statusGrade)
         {
             bool res;
             switch (statusGrade)
             {
+                // Проверка, введён ли Yield Stress и % от Yield Stress в случае, если bolt grade выбран "Custom"
                 case "Pick bolt grade":
                     PageCalculationBT.ShowErrorMessage("BoltGrade");
                     res = false;
                     break;
                 case "Custom":
+                    // Проверка, введён ли Yield Stress и % от Yield Stress в случае, если bolt grade выбран "Custom"
                     res = SetUpYield(statusGrade);
                     break;
                 default:
+                    // Проверка, введён ли Yield Stress и % от Yield Stress в случае, если bolt grade выбран из списка
                     res = SetUpYield(statusGrade);
                     break;
             }
@@ -203,6 +222,10 @@ namespace SahalinEnergyBoltStressCalculation.LogicClassesFolder
 
         public bool setUpProperties(string statusSize)
         {
+
+            // Считывание данных с полей свойств болта
+            // Проверка, введены ли свойства болта в случае, если выбран размер болта Custom
+
             bool checkingProp;
             double helpD;
             double helpE;
@@ -217,7 +240,11 @@ namespace SahalinEnergyBoltStressCalculation.LogicClassesFolder
                 PageCalculationBT.ShowErrorMessage("Properties");
                 checkingProp = false;
             }
-            else
+            else if (helpD == 0.0 || helpE == 0.0 || helpH == 0.0 || helpK == 0.0 || helpP == 0.0)
+            {
+                PageCalculationBT.ShowErrorMessage("PropertiesNull");
+                checkingProp = false;
+            } else
             {
                 customD = helpD;
                 customE = helpE;
@@ -234,26 +261,48 @@ namespace SahalinEnergyBoltStressCalculation.LogicClassesFolder
             bool res;
             if (grade == "Custom")
             {
-                double help;
+                double help1;
+                double help2;
                 string[] yieldValues = PageCalculationBT.GetYieldStressCustom();
-                if (Double.TryParse(yieldValues[0], out help) == true)
+                if (Double.TryParse(yieldValues[0], out help1) == true && Double.TryParse(yieldValues[1], out help2) == true)
                 {
-                    yieldStressValueCustom = help;
-                    res = true;
-                } else
+                    if (help1 != 0.0 && help2 != 0.0)
+                    {
+                        yieldStressValueCustom = help1;
+                        yieldStressPerCent = help2;
+                        res = true;
+                    }
+                    else if (help1 == 0.0)
+                    {
+                        // Введён Yield Stress, равный 0
+                        PageCalculationBT.ShowErrorMessage("YieldStressNull");
+                        res = false;
+                    }
+                    else if (help2 == 0.0)
+                    {
+                        // Введён % Yield Stress, равный 0
+                        PageCalculationBT.ShowErrorMessage("YieldStressNull");
+                        res = false;
+                    } else
+                    {
+                        // Введён Yield Stress И % Yield Stress, равный 0
+                        PageCalculationBT.ShowErrorMessage("YieldStressNull");
+                        res = false;
+                    }
+                } else if (Double.TryParse(yieldValues[0], out help1) == false && Double.TryParse(yieldValues[1], out help2) == true)
                 {
+                    // Не введён Yield Stress при выбранном bolt grade "Custom"
                     PageCalculationBT.ShowErrorMessage("Yield");
                     res = false;
-                }
-
-                if (Double.TryParse(yieldValues[1], out help) == true)
+                } else if (Double.TryParse(yieldValues[0], out help1) == true && Double.TryParse(yieldValues[1], out help2) == false)
                 {
-                    yieldStressPerCent = help;
-                    res = true;
-                }
-                else
-                {
+                    // Не введён % YieldStress при выбранном bolt grade "Custom"
                     PageCalculationBT.ShowErrorMessage("PerCent");
+                    res = false;
+                } else
+                {
+                    // Не введён % YieldStress И YieldStress при выбранном bolt grade "Custom"
+                    PageCalculationBT.ShowErrorMessage("Yield");
                     res = false;
                 }
             } else
@@ -262,11 +311,21 @@ namespace SahalinEnergyBoltStressCalculation.LogicClassesFolder
                 double help;
                 if (Double.TryParse(yieldValues[1], out help) == true)
                 {
-                    yieldStressPerCent = help;
-                    res = true;
+                    if (help == 0)
+                    {
+                        // Введён % Yield Stress, равный 0
+                        PageCalculationBT.ShowErrorMessage("YieldStressNull");
+                        res = false;
+                    }
+                    else
+                    {
+                        yieldStressPerCent = help;
+                        res = true;
+                    }
                 }
                 else
                 {
+                    // Не введён % YieldStress при выбранном bolt grade из списка
                     PageCalculationBT.ShowErrorMessage("PerCent");
                     res = false;
                 }
@@ -277,7 +336,7 @@ namespace SahalinEnergyBoltStressCalculation.LogicClassesFolder
 
         public bool CheckFCoeff()
         {
-
+            // Проверка, введён ли коэффициент трения
             bool checkFC;
             double help;
             string helpString = PageCalculationBT.GetFCoeff();
@@ -286,13 +345,15 @@ namespace SahalinEnergyBoltStressCalculation.LogicClassesFolder
                 PageCalculationBT.ShowErrorMessage("FCoeff");
                 checkFC = false;
             }
-            else if (help < 0 || help > 1)
+            else if (help <= 0 || help > 1)
             {
+                // Коэффициент трения не входит необходимый диапазон
                 PageCalculationBT.ShowErrorMessage("FCoeffLimits");
                 checkFC = false;
             }
             else
             {
+                // Всё в порядке, устанавливаем нужное значение коэффициента трения во ViewModel
                 frictionCoeffViewModel = help;
                 checkFC = true;
             }
@@ -304,24 +365,48 @@ namespace SahalinEnergyBoltStressCalculation.LogicClassesFolder
         {
             if (SetUpGrade(statusGrade) == false)
             {
+                // Bolt Grade не выбран
                 return;
             } else if (SetUpSize(statusSize) == false)
             {
+                // Размер болта не выбран
                 return;
             } else if (CheckFCoeff() == false)
             {
+                // Коэффициент трения не введён
                 return;
             } else
             {
+                // Всё в порядке. Создаём необходимые объекты калькулятора, а также размера и grade болта
+                // Передаём всё в метод View и вызываем у него в качествер реакциии на нажатие кнопки "Calculate"
                 var obj = Calculation(statusGrade, statusSize);
-                string grade = currentBoltGrade.BoltGrade;
-                string size = currentBolt.BoltSize;
+                string grade;
+                string size;
+                if (statusGrade == "Custom")
+                {
+                    grade = "Custom";
+                } else
+                {
+                    grade = currentBoltGrade.BoltGrade;
+                }
+
+                if (statusSize == "Custom")
+                {
+                    size = "Custom";
+                }
+                else
+                {
+                    size = currentBolt.BoltSize;
+                }
+
                 PageCalculationBT.ChangeUIOnCalculation(obj, grade, size);
             }
         }
 
-        public CalculateBTC Calculation(string statusGrade, string starusSize)
+        public CalculateBTC Calculation(string statusGrade, string statusSize)
         {
+            // Создание объекта-калькулятора и установка в него необходимых параметров
+
             CalculateBTC objectCalculator = new CalculateBTC();
 
             if (statusGrade == "Custom")
@@ -334,21 +419,20 @@ namespace SahalinEnergyBoltStressCalculation.LogicClassesFolder
                 objectCalculator.perCent = yieldStressPerCent;
             }
 
-            if (starusSize == "Custom")
-            {
-                objectCalculator.threadMajorDiameter_D = currentBolt.ThreadMajorDiameter_D;
-                objectCalculator.pitchDiameterOfThread_E = currentBolt.PitchDiameterOfThread_E;
-                objectCalculator.hexSize_H = currentBolt.HexSize_H;
-                objectCalculator.nutInternalChamfer_K = currentBolt.NutInternalChamfer_K;
-                objectCalculator.threadPitch_P = currentBolt.ThreadPitch_P;
-
-            } else
+            if (statusSize == "Custom")
             {
                 objectCalculator.threadMajorDiameter_D = customD;
                 objectCalculator.pitchDiameterOfThread_E = customE;
                 objectCalculator.hexSize_H = customH;
                 objectCalculator.nutInternalChamfer_K = customK;
                 objectCalculator.threadPitch_P = customP;
+            } else
+            {
+                objectCalculator.threadMajorDiameter_D = currentBolt.ThreadMajorDiameter_D;
+                objectCalculator.pitchDiameterOfThread_E = currentBolt.PitchDiameterOfThread_E;
+                objectCalculator.hexSize_H = currentBolt.HexSize_H;
+                objectCalculator.nutInternalChamfer_K = currentBolt.NutInternalChamfer_K;
+                objectCalculator.threadPitch_P = currentBolt.ThreadPitch_P;
             }
 
             objectCalculator.fCoeff = frictionCoeffViewModel;
