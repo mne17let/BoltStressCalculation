@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SahalinEnergyBoltStressCalculation"
         mc:Ignorable="d"
-        Title="MainWindow"
+        Title="Sakhalin Energy Bolt torque calculation"
         WindowState="Maximized"
         ResizeMode="CanMinimize">
     <Grid>

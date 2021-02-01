@@ -88,19 +88,18 @@ namespace SahalinEnergyBoltStressCalculation.BTCalculation.CalculationBTClasses
 
         public double GetTau_ASMEPCC_1AppendixJ()
         {
-            double someN = 1;
-            double d2 = threadMajorDiameter_D - 0.6495 * someN;
+            double d2 = threadMajorDiameter_D - 0.6495 / numberOfThreadsPerInch;
 
             double de = (threadMajorDiameter_D + nutWidth) / 2.0;
 
 
-            double someP = 1;
-            double res1 = 0.15915 * someP;
+            double res1 = 0.15915 * threadPitch_P;
             double res2 = 0.57735 * fCoeff * d2;
             double res3 = (de * fCoeff) / 2.0;
 
 
-            tau = GetF() * (res1 + res2 + res3);
+            double res4 = GetF() * (res1 + res2 + res3);
+            tau = res4 / 12.0;
 
 
             return tau;
@@ -108,7 +107,7 @@ namespace SahalinEnergyBoltStressCalculation.BTCalculation.CalculationBTClasses
 
         public double GetTau_ASMEPCC_1AppendixK_Simplified()
         {
-            tau = (kCoeff * threadMajorDiameter_D * GetF()) / 1000.0;
+            tau = (kCoeff * threadMajorDiameter_D * GetF()) / 12.0;
 
             return tau;
         }
