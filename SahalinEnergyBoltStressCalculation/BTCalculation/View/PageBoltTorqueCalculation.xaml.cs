@@ -260,10 +260,10 @@ namespace SahalinEnergyBoltStressCalculation.PageClassesFolder
             var currentText = (string)((TextBox)sender).Text;
 
             int resParse;
-            if (Int32.TryParse(textSymbols.Text, out resParse) == false && textSymbols.Text != ".")
+            if (Int32.TryParse(textSymbols.Text, out resParse) == false && textSymbols.Text != ",")
             {
                 textSymbols.Handled = true; // отклоняем ввод   
-            } else if (textSymbols.Text == ".")
+            } else if (textSymbols.Text == ",")
             {
                 var arrText = currentText.ToArray();
                 if(currentText == "")
@@ -283,7 +283,7 @@ namespace SahalinEnergyBoltStressCalculation.PageClassesFolder
                 }
             } else if (currentText == "0")
             {
-                if (textSymbols.Text != ".")
+                if (textSymbols.Text != ",")
                 {
                     textSymbols.Handled = true; // отклоняем ввод
                 }
@@ -296,11 +296,11 @@ namespace SahalinEnergyBoltStressCalculation.PageClassesFolder
             var currentText = (string)((TextBox)sender).Text;
 
             int resParse;
-            if (Int32.TryParse(textSymbols.Text, out resParse) == false && textSymbols.Text != ".")
+            if (Int32.TryParse(textSymbols.Text, out resParse) == false && textSymbols.Text != ",")
             {
                 textSymbols.Handled = true; // отклоняем ввод   
             }
-            else if (textSymbols.Text == ".")
+            else if (textSymbols.Text == ",")
             {
                 var arrText = currentText.ToArray();
                 if (currentText == "")
@@ -321,7 +321,7 @@ namespace SahalinEnergyBoltStressCalculation.PageClassesFolder
             }
             else if (currentText == "0")
             {
-                if (textSymbols.Text != ".")
+                if (textSymbols.Text != ",")
                 {
                     textSymbols.Handled = true; // отклоняем ввод
                 }
@@ -341,11 +341,11 @@ namespace SahalinEnergyBoltStressCalculation.PageClassesFolder
 
             int resParse;
             bool resultWriting = false;
-            if (Int32.TryParse(textSymbols.Text, out resParse) == false && textSymbols.Text != ".")
+            if (Int32.TryParse(textSymbols.Text, out resParse) == false && textSymbols.Text != ",")
             {
                 textSymbols.Handled = true; // отклоняем ввод   
             }
-            else if (textSymbols.Text == ".")
+            else if (textSymbols.Text == ",")
             {
                 var arrText = currentText.ToArray();
                 if (currentText == "")
