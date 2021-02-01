@@ -138,6 +138,8 @@ namespace SahalinEnergyBoltStressCalculation.PageClassesFolder
             TextBoxFor_H.Text = "";
             TextBoxFor_K.Text = "";
             TextBoxFor_P.Text = "";
+            TextBoxFor_NOTPI.Text = "";
+            TextBoxFor_NutWidth.Text = "";
         }
 
         // Установка параметра "Можно вписывать значения" для полей свойств болта, зависящих от его размера
@@ -148,6 +150,8 @@ namespace SahalinEnergyBoltStressCalculation.PageClassesFolder
             TextBoxFor_H.IsReadOnly = false;
             TextBoxFor_K.IsReadOnly = false;
             TextBoxFor_P.IsReadOnly = false;
+            TextBoxFor_NOTPI.IsReadOnly = false;
+            TextBoxFor_NutWidth.IsReadOnly = false;
         }
 
         // Обновление списка ComboBox с размерами после выбора grade болта
@@ -215,6 +219,8 @@ namespace SahalinEnergyBoltStressCalculation.PageClassesFolder
             TextBoxFor_H.IsReadOnly = true;
             TextBoxFor_K.IsReadOnly = true;
             TextBoxFor_P.IsReadOnly = true;
+            TextBoxFor_NOTPI.IsReadOnly = true;
+            TextBoxFor_NutWidth.IsReadOnly = true;
         }
 
         // Получение свойств болта, зависящих от его размера и установка в текстовые поля
@@ -226,6 +232,9 @@ namespace SahalinEnergyBoltStressCalculation.PageClassesFolder
             double h = properties[2];
             double k = properties[3];
             double p = properties[4];
+            double notpi = properties[5];
+            double nW = properties[6];
+
 
             TextBoxFor_D.Text = d.ToString();
 
@@ -236,6 +245,10 @@ namespace SahalinEnergyBoltStressCalculation.PageClassesFolder
             TextBoxFor_K.Text = k.ToString();
 
             TextBoxFor_P.Text = p.ToString();
+
+            TextBoxFor_NOTPI.Text = notpi.ToString();
+
+            TextBoxFor_NutWidth.Text = nW.ToString();
         }
 
         // Проверка вводимых знаков и отклонение любых знаков, кроме
@@ -277,6 +290,105 @@ namespace SahalinEnergyBoltStressCalculation.PageClassesFolder
             }
         }
 
+        // Отклоняем ввод числа больше 100, буквы, пробела или повторяющуюся точку, либо точки в начале в % YIELD Stress
+        private void OnlyNumbersAndOnly100(object sender, TextCompositionEventArgs textSymbols)
+        {
+            var currentText = (string)((TextBox)sender).Text;
+
+            int resParse;
+            if (Int32.TryParse(textSymbols.Text, out resParse) == false && textSymbols.Text != ".")
+            {
+                textSymbols.Handled = true; // отклоняем ввод   
+            }
+            else if (textSymbols.Text == ".")
+            {
+                var arrText = currentText.ToArray();
+                if (currentText == "")
+                {
+                    textSymbols.Handled = true; // отклоняем ввод
+                    return;
+                }
+
+                var arrSymbols = textSymbols.Text.ToArray();
+                for (int i = 0; i < arrText.Length; i++)
+                {
+                    if (arrSymbols[0] == arrText[i])
+                    {
+                        textSymbols.Handled = true; // отклоняем ввод
+                        return;
+                    }
+                }
+            }
+            else if (currentText == "0")
+            {
+                if (textSymbols.Text != ".")
+                {
+                    textSymbols.Handled = true; // отклоняем ввод
+                }
+            } else if (currentText == "10")
+            {
+                if (textSymbols.Text != "0")
+                {
+                    textSymbols.Handled = true;
+                }
+            }
+        }
+
+        // Показываем сразу же подсчёт коэффициента K в случае, если вводится коэффициент трения
+        private void OnlyNumbersAndCountK(object sender, TextCompositionEventArgs textSymbols)
+        {
+            var currentText = (string)((TextBox)sender).Text;
+
+            int resParse;
+            bool resultWriting = false;
+            if (Int32.TryParse(textSymbols.Text, out resParse) == false && textSymbols.Text != ".")
+            {
+                textSymbols.Handled = true; // отклоняем ввод   
+            }
+            else if (textSymbols.Text == ".")
+            {
+                var arrText = currentText.ToArray();
+                if (currentText == "")
+                {
+                    textSymbols.Handled = true; // отклоняем ввод
+                    return;
+                }
+
+                var arrSymbols = textSymbols.Text.ToArray();
+                for (int i = 0; i < arrText.Length; i++)
+                {
+                    if (arrSymbols[0] == arrText[i])
+                    {
+                        textSymbols.Handled = true; // отклоняем ввод
+                        return;
+                    }
+                }
+            }
+            else if (currentText == "0")
+            {
+                if (textSymbols.Text != ".")
+                {
+                    textSymbols.Handled = true; // отклоняем ввод
+                }
+            } else
+            {
+                resultWriting = true;
+            }
+
+            string helpCurrentTextFCoeff = currentText + textSymbols.Text;
+            double helpK;
+            if (Double.TryParse(helpCurrentTextFCoeff, out helpK) == true && resultWriting == true){
+                SetAutoK(helpK);
+            }
+        }
+
+        // Вводим коэфффициент К "на ходу"
+        public void SetAutoK(double fCoeff)
+        {
+            double k = fCoeff+ 0.04;
+            TextBoxForKCoefficient.Text = k.ToString();
+        }
+
         // Отклоняем ввод пробела в нужных полях ввода
         private void WithoutSpace(object sender, KeyEventArgs button)
         {
@@ -284,6 +396,36 @@ namespace SahalinEnergyBoltStressCalculation.PageClassesFolder
             {
                 button.Handled = true; // если пробел, отклоняем ввод
             }
+        }
+
+        // Обновляем коэффициент K в случае "стирания" числа
+        private void WithoutSpaceAndMinus004(object sender, KeyEventArgs button)
+        {
+            if (button.Key == Key.Space)
+            {
+                button.Handled = true; // если пробел, отклоняем ввод
+            } else if (button.Key == Key.Back)
+            {
+                string helpCurrentTextFCoeff = TextBoxForFrictionCoefficient.Text;
+                int countCurrentLength = helpCurrentTextFCoeff.Length;
+                if (countCurrentLength > 0)
+                {
+                    string deleteLast = helpCurrentTextFCoeff.Remove(countCurrentLength - 1);
+                    double helpK;
+                    if (Double.TryParse(deleteLast, out helpK) == true)
+                    {
+                        SetAutoK(helpK);
+                    }
+                    else
+                    {
+                        TextBoxForKCoefficient.Text = "";
+                    }
+
+                }
+                
+
+            }
+
         }
 
         // Отдаём "собранные" с полей YieldStress и YieldPercent данные
@@ -304,8 +446,10 @@ namespace SahalinEnergyBoltStressCalculation.PageClassesFolder
             string h = TextBoxFor_H.Text;
             string k = TextBoxFor_K.Text;
             string p = TextBoxFor_P.Text;
-            
-            string[] properties = new string[] { d, e, h, k, p };
+            string notpi = TextBoxFor_NOTPI.Text;
+            string nW = TextBoxFor_NutWidth.Text;
+
+            string[] properties = new string[] { d, e, h, k, p, notpi, nW };
             return properties;
         }
 
@@ -348,21 +492,42 @@ namespace SahalinEnergyBoltStressCalculation.PageClassesFolder
                 case "YieldStressNull":
                     MessageBox.Show("Значения Yield Stress и % Yield Stress не могут быть равны 0");
                     break;
+                case "KCoeff":
+                    MessageBox.Show("Введите коэффициент К");
+                    break;
+                case "KCoeffLimits":
+                    MessageBox.Show("Коэффициент К не может быть равен 0");
+                    break;
             }
         }
 
         // Изменения View в результате вычислительных операций
         public void ChangeUIOnCalculation(CalculateBTC objectCalculator, string grade, string size)
         {
-            SigmaTextTest.Text = "Sigma=" + objectCalculator.GetSigma().ToString();
-            AsTextTest.Text = "As=" +  objectCalculator.GetAs().ToString();
-            BSTextTest.Text = "BS=" + grade;
-            BGTextTest.Text = "BG=" + size;
-            FTextTest.Text = "F=" + objectCalculator.GetF().ToString();
-            TauText.Text = "Tau=" + objectCalculator.GetTau().ToString();
+            InfoBanner.Visibility = Visibility.Hidden;
+            ResOne_Table.Visibility = Visibility.Visible;
+            ResTwo_Table.Visibility = Visibility.Visible;
+            ResThree_Table.Visibility = Visibility.Visible;
+
+            TauOne_Table.Text = "τ = " + objectCalculator.GetTau_API6AAnnexD().ToString();
+            FOne_Table.Text = "F = " + objectCalculator.GetF().ToString();
+
+            TauTwo_Table.Text = "τ = " + objectCalculator.GetTau_ASMEPCC_1AppendixJ().ToString();
+            FTwo_Table.Text = "F = " + objectCalculator.GetF().ToString();
+
+            TauThree_Table.Text = "τ = " + objectCalculator.GetTau_ASMEPCC_1AppendixK_Simplified().ToString();
+            FThree_Table.Text = "F = " + objectCalculator.GetF().ToString() + "D= " + objectCalculator.threadMajorDiameter_D.ToString() + "т =" + GetKCoeff();
+
+
+            TextBoxForCalculateSigma.Text = objectCalculator.GetSigma().ToString();
         }
 
-        
+        // Отдаю "собранный" с поля ввода коэффициент К
+        public string GetKCoeff()
+        {
+            string kCoeff = TextBoxForKCoefficient.Text;
+            return kCoeff;
+        }
     }
 
     

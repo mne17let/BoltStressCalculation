@@ -19,12 +19,14 @@ namespace SahalinEnergyBoltStressCalculation.BTCalculation.CalculationBTClasses
         public double numberOfThreadsPerInch;
         public double nutWidth;
         public double fCoeff;
+        public double kCoeff;
         private double sigma;
         private double aS;
         private double f;
         private double tau;
 
         public CalculateBTC() { }
+
         public double GetF()
         {
             double sigmaLocal = GetSigma();
@@ -33,6 +35,8 @@ namespace SahalinEnergyBoltStressCalculation.BTCalculation.CalculationBTClasses
             f = sigmaLocal * aSLocal;
             return f;
         }
+
+        
 
         public double GetAs()
         {
@@ -54,7 +58,7 @@ namespace SahalinEnergyBoltStressCalculation.BTCalculation.CalculationBTClasses
             return sigma;
         }
 
-        public double GetTau()
+        public double GetTau_API6AAnnexD()
         {
             double n1_1 = Math.PI * fCoeff * pitchDiameterOfThread_E;
             double n1_2 = Math.Cos(Math.PI / 6.0);
@@ -78,6 +82,33 @@ namespace SahalinEnergyBoltStressCalculation.BTCalculation.CalculationBTClasses
             double res2 = res1 + n3_3;
 
             tau = res2 / 12.0;
+
+            return tau;
+        }
+
+        public double GetTau_ASMEPCC_1AppendixJ()
+        {
+            double someN = 1;
+            double d2 = threadMajorDiameter_D - 0.6495 * someN;
+
+            double de = (threadMajorDiameter_D + nutWidth) / 2.0;
+
+
+            double someP = 1;
+            double res1 = 0.15915 * someP;
+            double res2 = 0.57735 * fCoeff * d2;
+            double res3 = (de * fCoeff) / 2.0;
+
+
+            tau = GetF() * (res1 + res2 + res3);
+
+
+            return tau;
+        }
+
+        public double GetTau_ASMEPCC_1AppendixK_Simplified()
+        {
+            tau = (kCoeff * threadMajorDiameter_D * GetF()) / 1000.0;
 
             return tau;
         }

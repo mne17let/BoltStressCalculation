@@ -23,7 +23,7 @@ namespace SahalinEnergyBoltStressCalculation
     /// </summary>
     public partial class MainWindow : Window
     {
-        PageCalculate2 pageCalculate2 = new PageCalculate2();
+        // PageCalculate2 pageCalculate2 = new PageCalculate2();
         PageBoltTorqueCalculation pageBoltTorqueCalculation = new PageBoltTorqueCalculation();
         
 
@@ -37,11 +37,11 @@ namespace SahalinEnergyBoltStressCalculation
         public void InitFun()
         {
             MainFrame.Content = pageBoltTorqueCalculation;
-            ButtonOpenCalculateBTC.Click += OpenCalculateBTC;
-            ButtonOpenCalculate2.Click += OpenCalculate2;
+         //   ButtonOpenCalculateBTC.Click += OpenCalculateBTC;
+         //   ButtonOpenCalculate2.Click += OpenCalculate2;
         }
 
-        public void OpenCalculateBTC(object variable_name, RoutedEventArgs args_name)
+        /*public void OpenCalculateBTC(object variable_name, RoutedEventArgs args_name)
         {
             MainFrame.Content = pageBoltTorqueCalculation;
         }
@@ -49,6 +49,6 @@ namespace SahalinEnergyBoltStressCalculation
         public void OpenCalculate2(object variable_name, RoutedEventArgs args_name)
         {
             MainFrame.Content = pageCalculate2;
-        }
+        }*/
     }
 }

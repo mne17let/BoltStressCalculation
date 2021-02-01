@@ -38,8 +38,11 @@ namespace SahalinEnergyBoltStressCalculation.LogicClassesFolder
         double customH;
         double customK;
         double customP;
+        double customNOTPI;
+        double customNutWidth;
 
         double frictionCoeffViewModel;
+        double kCoeffViewModel;
 
 
         // Реализация Singleton
@@ -152,9 +155,11 @@ namespace SahalinEnergyBoltStressCalculation.LogicClassesFolder
             double currentHexSize_H = currentBolt.HexSize_H;
             double currentNutInternalChamfer_K = currentBolt.NutInternalChamfer_K;
             double currentThreadPitch_P = currentBolt.ThreadPitch_P;
+            double currentNumberOfThreadsPerInch_NOTPI = currentBolt.NumberOfThreadsPerInch;
+            double currentNutWidth = currentBolt.NutWidth;
 
             var properties = new double[] {currentThreadMajorDiameter_D, currentPitchDiameterOfThread_E, currentHexSize_H,
-            currentNutInternalChamfer_K, currentThreadPitch_P};
+            currentNutInternalChamfer_K, currentThreadPitch_P, currentNumberOfThreadsPerInch_NOTPI, currentNutWidth};
             return properties;
         }
 
@@ -232,15 +237,18 @@ namespace SahalinEnergyBoltStressCalculation.LogicClassesFolder
             double helpH;
             double helpK;
             double helpP;
+            double helpNOTPI;
+            double helpNutWidth;
             string[] prop = PageCalculationBT.GetProperties();
             if (Double.TryParse(prop[0], out helpD) == false || Double.TryParse(prop[1], out helpE) == false
                 || Double.TryParse(prop[2], out helpH) == false
-                || Double.TryParse(prop[3], out helpK) == false || Double.TryParse(prop[4], out helpP) == false)
+                || Double.TryParse(prop[3], out helpK) == false || Double.TryParse(prop[4], out helpP) == false
+                || Double.TryParse(prop[5], out helpNOTPI) == false|| Double.TryParse(prop[6], out helpNutWidth) == false)
             {
                 PageCalculationBT.ShowErrorMessage("Properties");
                 checkingProp = false;
             }
-            else if (helpD == 0.0 || helpE == 0.0 || helpH == 0.0 || helpK == 0.0 || helpP == 0.0)
+            else if (helpD == 0.0 || helpE == 0.0 || helpH == 0.0 || helpK == 0.0 || helpP == 0.0 || helpNOTPI == 0.0 || helpNutWidth == 0.0)
             {
                 PageCalculationBT.ShowErrorMessage("PropertiesNull");
                 checkingProp = false;
@@ -251,6 +259,8 @@ namespace SahalinEnergyBoltStressCalculation.LogicClassesFolder
                 customH = helpH;
                 customK = helpK;
                 customP = helpP;
+                customNOTPI = helpNOTPI;
+                customNutWidth = helpNutWidth;
                 checkingProp = true;
             }
             return checkingProp;
@@ -361,6 +371,34 @@ namespace SahalinEnergyBoltStressCalculation.LogicClassesFolder
             return checkFC;
         }
 
+        // Проверка, введён ли коэффициент К
+        public bool CheckKCoeff()
+        {
+            // Проверка, введён ли коэффициент трения
+            bool checkKC;
+            double help;
+            string helpString = PageCalculationBT.GetKCoeff();
+            if (Double.TryParse(helpString, out help) == false)
+            {
+                PageCalculationBT.ShowErrorMessage("KCoeff");
+                checkKC = false;
+            }
+            else if (help <= 0)
+            {
+                // Коэффициент трения не входит необходимый диапазон
+                PageCalculationBT.ShowErrorMessage("KCoeffLimits");
+                checkKC = false;
+            }
+            else
+            {
+                // Всё в порядке, устанавливаем нужное значение коэффициента трения во ViewModel
+                kCoeffViewModel = help;
+                checkKC = true;
+            }
+
+            return checkKC;
+        }
+
         public void BeginCalculation(string statusGrade, string statusSize)
         {
             if (SetUpGrade(statusGrade) == false)
@@ -375,11 +413,16 @@ namespace SahalinEnergyBoltStressCalculation.LogicClassesFolder
             {
                 // Коэффициент трения не введён
                 return;
-            } else
+            } else if (CheckKCoeff() == false)
+            {
+                // Коэффициент К не введён
+                return;
+            }
+                else
             {
                 // Всё в порядке. Создаём необходимые объекты калькулятора, а также размера и grade болта
                 // Передаём всё в метод View и вызываем у него в качествер реакциии на нажатие кнопки "Calculate"
-                var obj = Calculation(statusGrade, statusSize);
+                var obj = CreateCalculator(statusGrade, statusSize);
                 string grade;
                 string size;
                 if (statusGrade == "Custom")
@@ -403,9 +446,9 @@ namespace SahalinEnergyBoltStressCalculation.LogicClassesFolder
             }
         }
 
-        public CalculateBTC Calculation(string statusGrade, string statusSize)
+        public CalculateBTC CreateCalculator(string statusGrade, string statusSize)
         {
-            // Создание объекта-калькулятора и установка в него необходимых параметров
+            // Создание объекта-калькулятора API6A и установка в него необходимых параметров
 
             CalculateBTC objectCalculator = new CalculateBTC();
 
@@ -426,6 +469,8 @@ namespace SahalinEnergyBoltStressCalculation.LogicClassesFolder
                 objectCalculator.hexSize_H = customH;
                 objectCalculator.nutInternalChamfer_K = customK;
                 objectCalculator.threadPitch_P = customP;
+                objectCalculator.numberOfThreadsPerInch = customNOTPI;
+                objectCalculator.nutWidth = customNutWidth;
             } else
             {
                 objectCalculator.threadMajorDiameter_D = currentBolt.ThreadMajorDiameter_D;
@@ -433,9 +478,12 @@ namespace SahalinEnergyBoltStressCalculation.LogicClassesFolder
                 objectCalculator.hexSize_H = currentBolt.HexSize_H;
                 objectCalculator.nutInternalChamfer_K = currentBolt.NutInternalChamfer_K;
                 objectCalculator.threadPitch_P = currentBolt.ThreadPitch_P;
+                objectCalculator.numberOfThreadsPerInch = currentBolt.NumberOfThreadsPerInch;
+                objectCalculator.nutWidth = currentBolt.NutWidth;
             }
 
             objectCalculator.fCoeff = frictionCoeffViewModel;
+            objectCalculator.kCoeff = kCoeffViewModel;
 
             return objectCalculator;
             
