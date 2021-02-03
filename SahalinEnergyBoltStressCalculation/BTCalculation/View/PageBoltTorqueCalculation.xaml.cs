@@ -296,6 +296,7 @@ namespace SahalinEnergyBoltStressCalculation.PageClassesFolder
             var currentText = (string)((TextBox)sender).Text;
 
             int resParse;
+            double doubleResParse;
             if (Int32.TryParse(textSymbols.Text, out resParse) == false && textSymbols.Text != ",")
             {
                 textSymbols.Handled = true; // отклоняем ввод   
@@ -325,9 +326,9 @@ namespace SahalinEnergyBoltStressCalculation.PageClassesFolder
                 {
                     textSymbols.Handled = true; // отклоняем ввод
                 }
-            } else if (currentText == "10")
+            } else if (Double.TryParse(currentText + textSymbols.Text, out doubleResParse) == true)
             {
-                if (textSymbols.Text != "0")
+                if (doubleResParse > 100)
                 {
                     textSymbols.Handled = true;
                 }
