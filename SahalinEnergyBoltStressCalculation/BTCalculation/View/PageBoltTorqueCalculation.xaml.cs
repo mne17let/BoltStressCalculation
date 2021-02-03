@@ -509,14 +509,21 @@ namespace SahalinEnergyBoltStressCalculation.PageClassesFolder
             ResTwo_Table.Visibility = Visibility.Visible;
             ResThree_Table.Visibility = Visibility.Visible;
 
-            TauOne_Table.Text = "τ = " + objectCalculator.GetTau_API6AAnnexD().ToString();
-            FOne_Table.Text = "F = " + objectCalculator.GetF().ToString();
 
-            TauTwo_Table.Text = "τ = " + objectCalculator.GetTau_ASMEPCC_1AppendixJ().ToString();
-            FTwo_Table.Text = "F = " + objectCalculator.GetF().ToString();
+            var f = Math.Round(objectCalculator.GetF(), 0);
+            var tauAPI6AAnnexD = Math.Round(objectCalculator.GetTau_API6AAnnexD(), 0);
+            var tauASMEPCC_1AppendixJ = Math.Round(objectCalculator.GetTau_ASMEPCC_1AppendixJ(), 0);
+            var tauASMEPCC_1AppendixK_Simplified = Math.Round(objectCalculator.GetTau_ASMEPCC_1AppendixK_Simplified(), 0);
 
-            TauThree_Table.Text = "τ = " + objectCalculator.GetTau_ASMEPCC_1AppendixK_Simplified().ToString();
-            FThree_Table.Text = "F = " + objectCalculator.GetF().ToString() + "D= " + objectCalculator.threadMajorDiameter_D.ToString() + "т =" + GetKCoeff();
+
+            TauOne_Table.Text = "τ = " + tauAPI6AAnnexD.ToString();
+            FOne_Table.Text = "F = " + f.ToString();
+
+            TauTwo_Table.Text = "τ = " + tauASMEPCC_1AppendixJ.ToString();
+            FTwo_Table.Text = "F = " + f.ToString();
+
+            TauThree_Table.Text = "τ = " + tauASMEPCC_1AppendixK_Simplified.ToString();
+            FThree_Table.Text = "F = " + f.ToString();
 
 
             TextBoxForCalculateSigma.Text = objectCalculator.GetSigma().ToString();
