@@ -303,67 +303,67 @@
         </StackPanel>
 
 
+        <StackPanel Name="ForcePerBoltTable" Orientation="Vertical" Grid.Row="1" Grid.Column="1"
+                    HorizontalAlignment="Center" VerticalAlignment="Center"
+                    Visibility="Hidden">
+            <TextBlock Background="#e64d3d" FontSize="25" FontWeight="Bold"
+                       Foreground="White" Padding="2" Margin="0">
+                Force per bolt
+            </TextBlock>
+            <TextBlock Name="TextBlock_ForcePerBolt" Background="White" FontSize="25" FontWeight="Bold"
+                       Foreground="Black" Padding="2" Margin="0">
+                F
+            </TextBlock>
+        </StackPanel>
 
-        <StackPanel  Name="ResOne_Table" Orientation="Vertical" Grid.Row="1" Grid.Column="1" Grid.RowSpan="2"
+        <StackPanel  Name="ResOne_Table" Orientation="Vertical" Grid.Row="2" Grid.Column="1"
                     HorizontalAlignment="Center" VerticalAlignment="Center"
                     Visibility="Hidden">
             <TextBlock Background="#e64d3d" FontSize="25" FontWeight="Bold"
                        Foreground="White" Padding="2" Margin="0">
                 API 6A Annex D
             </TextBlock>
-            <TextBlock Name="TauOne_Table" Background="White" FontSize="25" FontWeight="Bold"
+            <TextBlock Name="Text_TauAPI6AAnnexD" Background="White" FontSize="25" FontWeight="Bold"
                        Foreground="Black" Padding="2" Margin="0">
                 τ
-            </TextBlock>
-            <TextBlock Name="FOne_Table" Background="White" FontSize="25" FontWeight="Bold"
-                       Foreground="Black" Padding="2" Margin="0">
-                F
             </TextBlock>
         </StackPanel>
 
 
 
-        <StackPanel Name="ResTwo_Table" Orientation="Vertical" Grid.Row="3" Grid.Column="1" Grid.RowSpan="2"
+        <StackPanel Name="ResTwo_Table" Orientation="Vertical" Grid.Row="3" Grid.Column="1"
                     HorizontalAlignment="Center" VerticalAlignment="Center"
                     Visibility="Hidden">
             <TextBlock Background="#e64d3d" FontSize="25" FontWeight="Bold"
                        Foreground="White" Padding="2" Margin="0">
                 ASME PCC-1 Appendix J
             </TextBlock>
-            <TextBlock Name="TauTwo_Table" Background="White" FontSize="25" FontWeight="Bold"
+            <TextBlock Name="Text_TauASMEPCC_1AppendixJ" Background="White" FontSize="25" FontWeight="Bold"
                        Foreground="Black" Padding="2" Margin="0">
                 τ
             </TextBlock>
-            <TextBlock Name="FTwo_Table" Background="White" FontSize="25" FontWeight="Bold"
-                       Foreground="Black" Padding="2" Margin="0">
-                F
-            </TextBlock>
         </StackPanel>
 
-        <StackPanel Name="ResThree_Table" Orientation="Vertical" Grid.Row="5" Grid.Column="1" Grid.RowSpan="2"
+        <StackPanel Name="ResThree_Table" Orientation="Vertical" Grid.Row="4" Grid.Column="1"
                     HorizontalAlignment="Center" VerticalAlignment="Center"
                     Visibility="Hidden">
             <TextBlock Background="#e64d3d" FontSize="25" FontWeight="Bold"
                        Foreground="White" Padding="2" Margin="0">
                 ASME PCC-1 Appendix K (Simplified)
             </TextBlock>
-            <TextBlock Name="TauThree_Table" Background="White" FontSize="25" FontWeight="Bold"
+            <TextBlock Name="Text_TauASMEPCC_1AppendixK_Simplified" Background="White" FontSize="25" FontWeight="Bold"
                        Foreground="Black" Padding="2" Margin="0">
                 τ
             </TextBlock>
-            <TextBlock Name="FThree_Table" Background="White" FontSize="25" FontWeight="Bold"
-                       Foreground="Black" Padding="2" Margin="0">
-                F
-            </TextBlock>
         </StackPanel>
 
-        <TextBlock Name="InfoBanner" Grid.Row="3" Grid.Column="1" Grid.RowSpan="2" Background="#e64d3d"
+        <TextBlock Name="InfoBanner" Grid.Row="3" Grid.Column="1" Grid.RowSpan="1" Background="#e64d3d"
                    Foreground="White" HorizontalAlignment="Center"
                    VerticalAlignment="Stretch" FontWeight="Bold"
-                   FontSize="50" Padding="20">
-            Введите данные
+                   FontSize="30" Padding="10">
+            ВВЕДИТЕ ДАННЫЕ
             <LineBreak/>
-            и нажмите "посчитать"
+            И НАЖМИТЕ "ПОСЧИТАТЬ"
         </TextBlock>
 
         <Button Name="CalculateButton" Grid.Row="7" Grid.Column="0" 

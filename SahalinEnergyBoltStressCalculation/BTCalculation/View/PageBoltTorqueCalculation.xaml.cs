@@ -508,23 +508,26 @@ namespace SahalinEnergyBoltStressCalculation.PageClassesFolder
             ResOne_Table.Visibility = Visibility.Visible;
             ResTwo_Table.Visibility = Visibility.Visible;
             ResThree_Table.Visibility = Visibility.Visible;
-
+            ForcePerBoltTable.Visibility = Visibility.Visible;
 
             var f = Math.Round(objectCalculator.GetF(), 0);
             var tauAPI6AAnnexD = Math.Round(objectCalculator.GetTau_API6AAnnexD(), 0);
             var tauASMEPCC_1AppendixJ = Math.Round(objectCalculator.GetTau_ASMEPCC_1AppendixJ(), 0);
             var tauASMEPCC_1AppendixK_Simplified = Math.Round(objectCalculator.GetTau_ASMEPCC_1AppendixK_Simplified(), 0);
 
+            var convertF = Math.Round(objectCalculator.GetF() * 4.4482, 0);
+            var convertTauAPI6AAnnexD = Math.Round(objectCalculator.GetTau_API6AAnnexD() * 1.3558, 0);
+            var convertTauASMEPCC_1AppendixJ = Math.Round(objectCalculator.GetTau_ASMEPCC_1AppendixJ() * 1.3558, 0);
+            var convertTauASMEPCC_1AppendixK_Simplified = Math.Round(objectCalculator.GetTau_ASMEPCC_1AppendixK_Simplified() * 1.3558, 0);
 
-            TauOne_Table.Text = "τ = " + tauAPI6AAnnexD.ToString();
-            FOne_Table.Text = "F = " + f.ToString();
 
-            TauTwo_Table.Text = "τ = " + tauASMEPCC_1AppendixJ.ToString();
-            FTwo_Table.Text = "F = " + f.ToString();
+            Text_TauAPI6AAnnexD.Text = "τ = " + tauAPI6AAnnexD.ToString() + " Lbf-Ft = " + convertTauAPI6AAnnexD.ToString() + " N-m";
 
-            TauThree_Table.Text = "τ = " + tauASMEPCC_1AppendixK_Simplified.ToString();
-            FThree_Table.Text = "F = " + f.ToString();
+            Text_TauASMEPCC_1AppendixJ.Text = "τ = " + tauASMEPCC_1AppendixJ.ToString() + " Lbf-Ft = " + convertTauASMEPCC_1AppendixJ.ToString() + " N-m";
 
+            Text_TauASMEPCC_1AppendixK_Simplified.Text = "τ = " + tauASMEPCC_1AppendixK_Simplified.ToString() + " Lbf-Ft = " + convertTauASMEPCC_1AppendixK_Simplified.ToString() + " N-m";
+
+            TextBlock_ForcePerBolt.Text = "F = " + f.ToString() + " Lbf = " + convertF.ToString() + " N";
 
             TextBoxForCalculateSigma.Text = objectCalculator.GetSigma().ToString();
         }
