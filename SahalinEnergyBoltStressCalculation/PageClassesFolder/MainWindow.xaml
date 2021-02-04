@@ -9,6 +9,34 @@
         WindowState="Maximized"
         ResizeMode="CanMinimize">
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.05*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Button Padding="2" VerticalContentAlignment="Center"
+                    HorizontalContentAlignment="Center" FontSize="13"
+                    Grid.Column="0">
+                BTC based on single bolt stress
+            </Button>
+            <Button Padding="2" VerticalContentAlignment="Center"
+                    HorizontalContentAlignment="Center" FontSize="13"
+                    Grid.Column="1">
+                BTC based on gasket target stress
+            </Button>
+            <Button Padding="2" VerticalContentAlignment="Center"
+                    HorizontalContentAlignment="Center" FontSize="13"
+                    Grid.Column="2">
+                BTC based on pressure and gasket type
+            </Button>
+        </Grid>
+        
         <Frame Name="MainFrame" Grid.Row="1"></Frame>
     </Grid>
 </Window>

@@ -1,15 +1,14 @@
-﻿<Page x:Class="SahalinEnergyBoltStressCalculation.PageClassesFolder.PageCalculate2"
+﻿<Page x:Class="SahalinEnergyBoltStressCalculation.BTC_GasketTargetStress.View.Page_GasketTargetStress"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:SahalinEnergyBoltStressCalculation.PageClassesFolder"
+      xmlns:local="clr-namespace:SahalinEnergyBoltStressCalculation.BTC_GasketTargetStress.View"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="PageCalculate2">
+      Title="Page_GasketTargetStress">
 
     <Grid>
-        <TextBlock FontSize="50" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold">Расчёт 2</TextBlock>
         
     </Grid>
 </Page>

@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace SahalinEnergyBoltStressCalculation.PageClassesFolder
+namespace SahalinEnergyBoltStressCalculation.BTC_GasketTargetStress.View
 {
     /// <summary>
-    /// Логика взаимодействия для PageCalculate2.xaml
+    /// Логика взаимодействия для Page_GasketTargetStress.xaml
     /// </summary>
-    public partial class PageCalculate2 : Page
+    public partial class Page_GasketTargetStress : Page
     {
-        public PageCalculate2()
+        public Page_GasketTargetStress()
         {
             InitializeComponent();
         }
