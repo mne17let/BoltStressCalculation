@@ -355,7 +355,7 @@ namespace SahalinEnergyBoltStressCalculation.PageClassesFolder
             }
             else if (currentText == "0")
             {
-                if (textSymbols.Text != ".")
+                if (textSymbols.Text != ",")
                 {
                     textSymbols.Handled = true; // отклоняем ввод
                 }
@@ -371,8 +371,8 @@ namespace SahalinEnergyBoltStressCalculation.PageClassesFolder
             }
         }
 
-        // Вводим коэфффициент К "на ходу"
-        public void SetAutoK(double fCoeff)
+        // Вводим коэфффициент К "на ходу", добавляя 0,04
+        private void SetAutoK(double fCoeff)
         {
             double k = fCoeff+ 0.04;
             TextBoxForKCoefficient.Text = k.ToString();

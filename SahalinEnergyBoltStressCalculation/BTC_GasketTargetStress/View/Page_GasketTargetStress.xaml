@@ -9,6 +9,10 @@
       Title="Page_GasketTargetStress">
 
     <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="pack://application:,,,/Images/backgroundWhite.png"/>
+        </Grid.Background>
+        
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
             <ColumnDefinition/>
@@ -66,10 +70,11 @@
                        Background="#674172" 
                        Foreground="White" Visibility="Visible"
                            Padding="3">YEILD Stress, psi</TextBlock>
-                    <TextBox Name="TextBoxYieldStress" FontSize="15" 
-                     VerticalAlignment="Center" Visibility="Visible">
-                        <!--PreviewTextInput="OnlyNumbers" PreviewKeyDown="WithoutSpace"-->
-                    </TextBox>
+                <TextBox Name="TextBoxYieldStress" FontSize="15" 
+                     VerticalAlignment="Center" Visibility="Visible"
+                             PreviewTextInput="OnlyNumbersOrCommaOneTime"
+                             PreviewKeyDown="WithoutSpace">
+                </TextBox>
                 </StackPanel>
 
                 <StackPanel Orientation="Vertical" VerticalAlignment="Center"
@@ -79,9 +84,10 @@
                        Foreground="White"
                            Padding="3">% of YEILD stress</TextBlock>
                     <TextBox Name="TextBoxForYieldPercent" FontSize="15" VerticalAlignment="Center"
-                     MinWidth="50" 
-                     MaxLength="3" >
-                        <!--PreviewTextInput="OnlyNumbersAndOnly100" PreviewKeyDown="WithoutSpace"-->
+                     MinWidth="50" MaxLength="10"
+                             PreviewTextInput="OnlyNumbersAndMax100"
+                             PreviewKeyDown="WithoutSpace">
+                        
                     </TextBox>
                 </StackPanel>
 
@@ -136,8 +142,9 @@
                        Foreground="White" Visibility="Visible"
                            Padding="3">Number of bolts</TextBlock>
                 <TextBox Name="TextBoxNumberOfBolts" FontSize="15" 
-                     VerticalAlignment="Center" Visibility="Visible">
-                    <!--PreviewTextInput="OnlyNumbers" PreviewKeyDown="WithoutSpace"-->
+                     VerticalAlignment="Center" Visibility="Visible"
+                         PreviewTextInput="OnlyIntegerNumbers"
+                             PreviewKeyDown="WithoutSpace">
                 </TextBox>
             </StackPanel>
             
@@ -156,56 +163,14 @@
                     <LineBreak/>
                     Diameter D, in
                 </TextBlock>
-                <TextBox Name="TextBoxFor_D" VerticalAlignment="Center" FontSize="20">
-                    <!--PreviewTextInput="OnlyNumbers" PreviewKeyDown="WithoutSpace"-->
+                <TextBox Name="TextBoxFor_D" VerticalAlignment="Center" FontSize="20"
+                         PreviewTextInput="OnlyNumbersOrCommaOneTime"
+                             PreviewKeyDown="WithoutSpace">
+                   
                 </TextBox>
             </StackPanel>
 
-            <StackPanel Orientation="Vertical" VerticalAlignment="Center"
-                        Margin="5">
-                <TextBlock FontSize="12" VerticalAlignment="Center"
-                       Background="#674172" 
-                       Foreground="White"
-                           Padding="3 0 3 0">
-                    Pitch diameter
-                    <LineBreak/>
-                    of thread E, in
-                </TextBlock>
-                <TextBox Name="TextBoxFor_E" VerticalAlignment="Center" FontSize="20">
-                    <!--PreviewTextInput="OnlyNumbers" PreviewKeyDown="WithoutSpace"-->
-                </TextBox>
-            </StackPanel>
 
-            <StackPanel Orientation="Vertical" VerticalAlignment="Center"
-                        Margin="5">
-                <TextBlock FontSize="12" VerticalAlignment="Center"
-                       Background="#674172" 
-                       Foreground="White"
-                           Padding="3 0 3 0">
-                    Hex size (nut)
-                    <LineBreak/>
-                    H, in
-                </TextBlock>
-                <TextBox Name="TextBoxFor_H" VerticalAlignment="Center" FontSize="20" 
-                     >
-                    <!--PreviewTextInput="OnlyNumbers" PreviewKeyDown="WithoutSpace"-->
-                </TextBox>
-            </StackPanel>
-
-            <StackPanel Orientation="Vertical" VerticalAlignment="Center"
-                        Margin="5">
-                <TextBlock FontSize="12" VerticalAlignment="Center"
-                       Background="#674172" 
-                       Foreground="White"
-                           Padding="3 0 3 0">
-                    Nut internal
-                    <LineBreak/>
-                    chamfer K, in
-                </TextBlock>
-                <TextBox Name="TextBoxFor_K" VerticalAlignment="Center" FontSize="20">
-                    <!--PreviewTextInput="OnlyNumbers" PreviewKeyDown="WithoutSpace"-->
-                </TextBox>
-            </StackPanel>
 
             <StackPanel Orientation="Vertical" VerticalAlignment="Center"
                         Margin="5">
@@ -217,38 +182,114 @@
                     <LineBreak/>
                     P, in
                 </TextBlock>
-                <TextBox Name="TextBoxFor_P" VerticalAlignment="Center" FontSize="20">
-                    <!--PreviewTextInput="OnlyNumbers" PreviewKeyDown="WithoutSpace"-->
+                <TextBox Name="TextBoxFor_P" VerticalAlignment="Center" FontSize="20"
+                         PreviewTextInput="OnlyNumbersOrCommaOneTime"
+                             PreviewKeyDown="WithoutSpace">
+                    
+                </TextBox>
+            </StackPanel>
+            
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" VerticalAlignment="Center"
+                    HorizontalAlignment="Center" Grid.Column="0" Grid.Row="5">
+            <StackPanel Orientation="Vertical" VerticalAlignment="Center"
+                        Margin="5">
+                <TextBlock Name="FrictionCoefficientText" FontSize="12"
+                           VerticalAlignment="Center"
+                           Background="#674172" 
+                       Foreground="White"
+                       Padding="3 0 3 0">
+                    Friction
+                    <LineBreak/>
+                    coefficient f
+                </TextBlock>
+                <TextBox Name="TextBoxForFrictionCoefficient" VerticalAlignment="Center"
+                         FontSize="20"
+                     MaxLength="7"  ToolTip="Введите коэффициент трения"
+                         PreviewTextInput="OnlyNumbersAndCountK"
+                         PreviewKeyDown="WithoutSpaceAndMinus004">
                 </TextBox>
             </StackPanel>
 
             <StackPanel Orientation="Vertical" VerticalAlignment="Center"
                         Margin="5">
-                <TextBlock FontSize="12" VerticalAlignment="Center"
-                       Background="#674172" 
+                <TextBlock Name="KCoefficientText" FontSize="12"
+                           VerticalAlignment="Center"
+                           Background="#674172" 
                        Foreground="White"
-                           Padding="3 0 3 0">
-                    Number of threads
+                       Padding="3 0 3 0">
+                    Nut
                     <LineBreak/>
-                    per inch
+                    factor K
                 </TextBlock>
-                <TextBox Name="TextBoxFor_NOTPI" VerticalAlignment="Center" FontSize="20">
-                    <!--PreviewTextInput="OnlyNumbers" PreviewKeyDown="WithoutSpace"-->
+                <TextBox Name="TextBoxForKCoefficient" VerticalAlignment="Center"
+                         FontSize="20"
+                     MaxLength="7" PreviewTextInput="OnlyNumbersOrCommaOneTime"
+                             PreviewKeyDown="WithoutSpace">
                 </TextBox>
             </StackPanel>
 
             <StackPanel Orientation="Vertical" VerticalAlignment="Center"
                         Margin="5">
                 <TextBlock FontSize="12"
-                       Background="#674172" 
+                           VerticalAlignment="Center"
+                           Background="#674172" 
                        Foreground="White"
-                           Padding="3 0 3 0">
-                    Nut width
+                       Padding="3 0 3 0">
+                    Gasket outside
                     <LineBreak/>
+                    diameter G
+                    <TextBlock FontSize="10">
+                        od
+                    </TextBlock>
                 </TextBlock>
-                <TextBox Name="TextBoxFor_NutWidth" VerticalAlignment="Center"
-                         FontSize="20">
-                    <!--PreviewTextInput="OnlyNumbers" PreviewKeyDown="WithoutSpace"-->
+                <TextBox Name="TextBoxFor_GasketOutsideDiameter" VerticalAlignment="Center"
+                         FontSize="20"
+                     PreviewTextInput="OnlyNumbersOrCommaOneTime"
+                             PreviewKeyDown="WithoutSpace">
+                </TextBox>
+            </StackPanel>
+
+            <StackPanel Orientation="Vertical" VerticalAlignment="Center"
+                        Margin="5">
+                <TextBlock FontSize="12"
+                           VerticalAlignment="Center"
+                           Background="#674172" 
+                       Foreground="White"
+                       Padding="3 0 3 0">
+                    Gasket inside
+                    <LineBreak/>
+                    diameter G
+                    <TextBlock FontSize="10">
+                        id
+                    </TextBlock>
+                </TextBlock>
+                <TextBox Name="TextBoxFor_GasketInsideDiameter" VerticalAlignment="Center"
+                         FontSize="20"
+                     PreviewTextInput="OnlyNumbersOrCommaOneTime"
+                             PreviewKeyDown="WithoutSpace">
+                </TextBox>
+            </StackPanel>
+
+            <StackPanel Orientation="Vertical" VerticalAlignment="Center"
+                        Margin="5">
+                <TextBlock FontSize="12"
+                           VerticalAlignment="Center"
+                           Background="#674172" 
+                       Foreground="White"
+                       Padding="3 0 3 0">
+                    Target assembly
+                    <LineBreak/>
+                    gasket stress Sg
+                    <TextBlock FontSize="10">
+                        т
+                    </TextBlock>
+                </TextBlock>
+                <TextBox Name="TextBoxFor_TargetAssemblyGasketStress" VerticalAlignment="Center"
+                         FontSize="20"
+                     PreviewTextInput="OnlyNumbersOrCommaOneTime"
+                             PreviewKeyDown="WithoutSpace">
                 </TextBox>
             </StackPanel>
 

@@ -113,7 +113,7 @@
                            Padding="3">% of YEILD stress</TextBlock>
                 <TextBox Name="TextBoxForYieldPercent" FontSize="15" VerticalAlignment="Center"
                      MinWidth="50" PreviewTextInput="OnlyNumbersAndOnly100" PreviewKeyDown="WithoutSpace"
-                     MaxLength="3" >
+                     MaxLength="10">
                 </TextBox>
             </StackPanel>
 
@@ -286,8 +286,8 @@
                 Friction coefficient f
                 </TextBlock>
                 <TextBox Name="TextBoxForFrictionCoefficient" VerticalAlignment="Center"
-                         FontSize="20"
-                     MaxLength="4" PreviewTextInput="OnlyNumbersAndCountK" 
+                         FontSize="20" MaxLength="8"
+                     PreviewTextInput="OnlyNumbersAndCountK" 
                      PreviewKeyDown="WithoutSpaceAndMinus004" ToolTip="Введите коэффициент трения">
                 </TextBox>
             </StackPanel>
@@ -299,11 +299,11 @@
                            Background="#674172" 
                        Foreground="White"
                        Padding="3 0 3 0">
-                K coefficient
+                Nut factor K
                 </TextBlock>
                 <TextBox Name="TextBoxForKCoefficient" VerticalAlignment="Center"
-                         FontSize="20"
-                     MaxLength="4" PreviewTextInput="OnlyNumbers" 
+                         FontSize="20" MaxLength="8"
+                         PreviewTextInput="OnlyNumbers" 
                      PreviewKeyDown="WithoutSpace">
                 </TextBox>
             </StackPanel>
