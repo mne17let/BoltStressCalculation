@@ -23,7 +23,6 @@ namespace SahalinEnergyBoltStressCalculation
     /// </summary>
     public partial class MainWindow : Window
     {
-        // PageCalculate2 pageCalculate2 = new PageCalculate2();
         PageBoltTorqueCalculation pageBoltTorqueCalculation = new PageBoltTorqueCalculation();
         
 
@@ -37,18 +36,54 @@ namespace SahalinEnergyBoltStressCalculation
         public void InitFun()
         {
             MainFrame.Content = pageBoltTorqueCalculation;
-         //   ButtonOpenCalculateBTC.Click += OpenCalculateBTC;
-         //   ButtonOpenCalculate2.Click += OpenCalculate2;
+            ButtonNavigation_BTC_SingleBoltStress.Click += BTCSingleBoltStressButtonClick;
+
+            ButtonNavigation_BTC_GasketTargetStress.Click += BTCGasketTargetStressButtonClick;
+
+            ButtonNavigation_BTC_PressureAndGasketType.Click += BTCPressureAndGasketTypeButtonClick;
         }
 
-        /*public void OpenCalculateBTC(object variable_name, RoutedEventArgs args_name)
+        public void BTCSingleBoltStressButtonClick(object buttonIbject, RoutedEventArgs args_name)
         {
             MainFrame.Content = pageBoltTorqueCalculation;
+
+            Button btn = (Button)((Control)buttonIbject);
+
+            
+            btn.Style = (Style)this.FindResource("NavigationPickedButtonStyle");
+
+            ButtonNavigation_BTC_GasketTargetStress.Style = (Style)this.FindResource("NavigationUnpickedButtonStyle");
+            ButtonNavigation_BTC_PressureAndGasketType.Style = (Style)this.FindResource("NavigationUnpickedButtonStyle");
+        }
+        
+
+        public void BTCGasketTargetStressButtonClick(object buttonIbject, RoutedEventArgs args_name)
+        {
+            
+            Button btn = (Button)((Control)buttonIbject);
+
+
+            btn.Style = (Style)this.FindResource("NavigationPickedButtonStyle");
+
+            ButtonNavigation_BTC_SingleBoltStress.Style = (Style)this.FindResource("NavigationUnpickedButtonStyle");
+            ButtonNavigation_BTC_PressureAndGasketType.Style = (Style)this.FindResource("NavigationUnpickedButtonStyle");
+
         }
 
-        public void OpenCalculate2(object variable_name, RoutedEventArgs args_name)
+        public void BTCPressureAndGasketTypeButtonClick(object buttonIbject, RoutedEventArgs args_name)
         {
-            MainFrame.Content = pageCalculate2;
-        }*/
+            Button btn = (Button)((Control)buttonIbject);
+
+
+            btn.Style = (Style)this.FindResource("NavigationPickedButtonStyle");
+
+            ButtonNavigation_BTC_GasketTargetStress.Style = (Style)this.FindResource("NavigationUnpickedButtonStyle");
+            ButtonNavigation_BTC_SingleBoltStress.Style = (Style)this.FindResource("NavigationUnpickedButtonStyle");
+
+        }
+
+
+
+
     }
 }

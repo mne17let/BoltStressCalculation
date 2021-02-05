@@ -8,31 +8,86 @@
         Title="Sakhalin Energy Bolt torque calculation"
         WindowState="Maximized"
         ResizeMode="CanMinimize">
+    <Window.Resources>
+        <Style x:Key="NavigationUnpickedButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="#674172"/>
+
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button" x:Name="NotPicked">
+                        <Border  Background="{TemplateBinding Background}">
+                            <ContentControl Content="{TemplateBinding Content}"
+                                            Foreground="White"
+                                            VerticalAlignment="Center"
+                                            HorizontalAlignment="Center">
+                            </ContentControl>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#476995"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Background" Value="#e64d3d"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+
+        </Style>
+
+        <Style x:Key="NavigationPickedButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="Green"/>
+
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button" x:Name="NotPicked">
+                        <Border  Background="{TemplateBinding Background}">
+                            <ContentControl Content="{TemplateBinding Content}"
+                                            Foreground="White"
+                                            VerticalAlignment="Center"
+                                            HorizontalAlignment="Center">
+                            </ContentControl>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#476995"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Background" Value="#e64d3d"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+
+        </Style>
+
+
+    </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="0.05*"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
-
+        
         <Grid Grid.Row="0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <Button Padding="2" VerticalContentAlignment="Center"
-                    HorizontalContentAlignment="Center" FontSize="13"
-                    Grid.Column="0">
+            <Button x:Name="ButtonNavigation_BTC_SingleBoltStress" Padding="2"
+                    FontSize="13"
+                    Grid.Column="0" Style="{StaticResource NavigationUnpickedButtonStyle}">
                 BTC based on single bolt stress
             </Button>
-            <Button Padding="2" VerticalContentAlignment="Center"
-                    HorizontalContentAlignment="Center" FontSize="13"
-                    Grid.Column="1">
+            <Button x:Name="ButtonNavigation_BTC_GasketTargetStress" Padding="2" FontSize="13"
+                    Grid.Column="1" Style="{StaticResource NavigationUnpickedButtonStyle}">
                 BTC based on gasket target stress
             </Button>
-            <Button Padding="2" VerticalContentAlignment="Center"
-                    HorizontalContentAlignment="Center" FontSize="13"
-                    Grid.Column="2">
+            <Button x:Name="ButtonNavigation_BTC_PressureAndGasketType" Padding="2" FontSize="13"
+                    Grid.Column="2" Style="{StaticResource NavigationUnpickedButtonStyle}">
                 BTC based on pressure and gasket type
             </Button>
         </Grid>

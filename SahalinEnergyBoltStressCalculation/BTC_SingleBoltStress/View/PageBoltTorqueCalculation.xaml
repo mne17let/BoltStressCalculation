@@ -360,7 +360,7 @@
         <TextBlock Name="InfoBanner" Grid.Row="3" Grid.Column="1" Grid.RowSpan="1" Background="#e64d3d"
                    Foreground="White" HorizontalAlignment="Center"
                    VerticalAlignment="Stretch" FontWeight="Bold"
-                   FontSize="30" Padding="10">
+                   FontSize="30" Padding="5">
             ВВЕДИТЕ ДАННЫЕ
             <LineBreak/>
             И НАЖМИТЕ "ПОСЧИТАТЬ"
