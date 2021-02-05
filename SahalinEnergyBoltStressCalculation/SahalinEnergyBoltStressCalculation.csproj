@@ -113,24 +113,31 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="PageClassesFolder\MainWindow.xaml">
+    <Page Include="BTC_PressureAndGasketType\View\Page_PressureAndGasketType.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MainWindowFolder\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
     <Compile Include="BTC_GasketTargetStress\View\Page_GasketTargetStress.xaml.cs">
       <DependentUpon>Page_GasketTargetStress.xaml</DependentUpon>
     </Compile>
+    <Compile Include="BTC_PressureAndGasketType\View\Page_PressureAndGasketType.xaml.cs">
+      <DependentUpon>Page_PressureAndGasketType.xaml</DependentUpon>
+    </Compile>
     <Compile Include="BTC_SingleBoltStress\CalculationBTClasses\CalculateBTC.cs" />
-    <Compile Include="BTC_SingleBoltStress\Model\BoltGradeProperties.cs" />
-    <Compile Include="BTC_SingleBoltStress\Model\MyDataBaseContext.cs" />
+    <Compile Include="Model\Model_Classes\BoltGradeProperties.cs" />
+    <Compile Include="Model\DataBaseClasses\MyDataBaseContext.cs" />
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="BTC_SingleBoltStress\Model\BoltProperties.cs" />
-    <Compile Include="BTC_SingleBoltStress\Model\WorkWithDataBaseBTC.cs" />
+    <Compile Include="Model\Model_Classes\BoltProperties.cs" />
+    <Compile Include="Model\DataBaseClasses\WorkWithDataBaseBTC.cs" />
     <Compile Include="BTC_SingleBoltStress\Presenter\ViewModelCalculateBT.cs" />
-    <Compile Include="PageClassesFolder\MainWindow.xaml.cs">
+    <Compile Include="MainWindowFolder\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
@@ -192,12 +199,12 @@
     <Resource Include="Images\iconLogoIco.ico" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="iconLogoIco.ico" />
+    <Folder Include="BTC_GasketTargetStress\Presenter\" />
+    <Folder Include="BTC_PressureAndGasketType\Model\" />
+    <Folder Include="BTC_PressureAndGasketType\Presenter\" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="BTC_GasketTargetStress\Model\" />
-    <Folder Include="BTC_GasketTargetStress\Presenter\" />
-    <Folder Include="BTC_PressureAndGasketType\" />
+    <Resource Include="iconLogoIco.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

@@ -1,10 +1,10 @@
-﻿using SahalinEnergyBoltStressCalculation.LogicClassesFolder;
-using System;
+﻿using System;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using SahalinEnergyBoltStressCalculation.BTCalculation.CalculationBTClasses;
+using SahalinEnergyBoltStressCalculation.LogicClassesFolder;
 
 namespace SahalinEnergyBoltStressCalculation.PageClassesFolder
 {
@@ -494,12 +494,8 @@ namespace SahalinEnergyBoltStressCalculation.PageClassesFolder
         public void ChangeUIOnCalculation(CalculateBTC objectCalculator, string grade, string size)
         {
 
+            SetResultTablesVisibility();
 
-            InfoBanner.Visibility = Visibility.Hidden;
-            ResOne_Table.Visibility = Visibility.Visible;
-            ResTwo_Table.Visibility = Visibility.Visible;
-            ResThree_Table.Visibility = Visibility.Visible;
-            ForcePerBoltTable.Visibility = Visibility.Visible;
 
             var f = Math.Round(objectCalculator.GetF(), 0);
             var tauAPI6AAnnexD = Math.Round(objectCalculator.GetTau_API6AAnnexD(), 0);
@@ -521,6 +517,16 @@ namespace SahalinEnergyBoltStressCalculation.PageClassesFolder
             TextBlock_ForcePerBolt.Text = "F = " + f.ToString() + " Lbf = " + convertF.ToString() + " N";
 
             TextBoxForCalculateSigma.Text = objectCalculator.GetSigma().ToString();
+        }
+
+        // Делаю видимыми таблицы с результатами и невидимым инфобаннер
+        public void SetResultTablesVisibility()
+        {
+            InfoBanner.Visibility = Visibility.Hidden;
+            ResOne_Table.Visibility = Visibility.Visible;
+            ResTwo_Table.Visibility = Visibility.Visible;
+            ResThree_Table.Visibility = Visibility.Visible;
+            ForcePerBoltTable.Visibility = Visibility.Visible;
         }
 
         // Отдаю "собранный" с поля ввода коэффициент К

@@ -20,7 +20,7 @@ namespace SahalinEnergyBoltStressCalculation.BTCalculation.Model
         // Переменные конкретного типа болта
         private BoltGradeProperties currentBoltGrade;
         private BoltProperties currentBolt;
-
+        
         // Вспомогательные списки для загрузки данных
         List<BoltGradeProperties> helpGradeList = new List<BoltGradeProperties>();
         List<BoltProperties> helpBoltSizeList = new List<BoltProperties>();

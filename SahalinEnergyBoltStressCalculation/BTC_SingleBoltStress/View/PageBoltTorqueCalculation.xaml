@@ -39,12 +39,11 @@
             <ImageBrush ImageSource="pack://application:,,,/Images/backgroundWhite.png"/>
         </Grid.Background>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition></ColumnDefinition>
-            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="0.6*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="*"></RowDefinition>
-            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="0.6*"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
@@ -52,18 +51,32 @@
             <RowDefinition Height="*"></RowDefinition>
             <RowDefinition Height="0.5*"></RowDefinition>
         </Grid.RowDefinitions>
-        <StackPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal" 
-                   VerticalAlignment="Center" HorizontalAlignment="Center">
-            <TextBlock FontSize="30" VerticalAlignment="Center"
-                       Foreground="White" Background="#e64d3d" Padding="10"
-                       Margin="20 0 20 20" FontWeight="Bold">
-                Torque calculation based on bolt material yield stress</TextBlock>
-        </StackPanel>
+        
+        
+        
+        
+        
+
+        <Button Grid.ColumnSpan="2" Grid.Row="0" 
+                Foreground="White">
+            <Button.Template>
+                <ControlTemplate TargetType="Button">
+                    <Border Background="#e64d3d">
+                        <ContentControl Content="{TemplateBinding Content}"
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
+            </Button.Template>
+            <TextBlock FontSize="25" FontWeight="Bold">
+                Torque calculation based on bolt material yield stress
+            </TextBlock>
+        </Button>
+
         <ComboBox Name="ComboBoxWithGrades" Grid.Row="1" Grid.Column="0" 
                   HorizontalAlignment="Center" VerticalAlignment="Center"
                   FontSize="30" FontWeight="Bold" SelectedIndex="0"
-                  VerticalContentAlignment="Center"
-                  Margin="0 10 0 0">
+                  VerticalContentAlignment="Center">
             <ComboBoxItem Name="HintItemGrade" MaxHeight="0">Pick bolt grade</ComboBoxItem>
             <ComboBoxItem Name="DefaultItemGrade">Custom</ComboBoxItem>
             <ComboBoxItem Name="Grade111">A193 B7</ComboBoxItem>
@@ -100,7 +113,7 @@
                            Padding="3">% of YEILD stress</TextBlock>
                 <TextBox Name="TextBoxForYieldPercent" FontSize="15" VerticalAlignment="Center"
                      MinWidth="50" PreviewTextInput="OnlyNumbersAndOnly100" PreviewKeyDown="WithoutSpace"
-                     MaxLength="3">
+                     MaxLength="3" >
                 </TextBox>
             </StackPanel>
 
@@ -109,7 +122,7 @@
                 <TextBlock FontSize="15" VerticalAlignment="Center"
                        Background="#674172" 
                        Foreground="White" Visibility="Visible"
-                           Padding="3">Sigma, psi</TextBlock>
+                           Padding="3">σ, psi</TextBlock>
                 <TextBlock Name ="TextBoxForCalculateSigma" FontSize="15" VerticalAlignment="Center"
                        Background="White" Visibility="Visible"></TextBlock>
             </StackPanel>
@@ -258,12 +271,7 @@
                      PreviewTextInput="OnlyNumbers" PreviewKeyDown="WithoutSpace">
                 </TextBox>
             </StackPanel>
-
-
-
-
-
-
+            
         </StackPanel>
         <StackPanel Grid.Row="5" Grid.Column="0" Orientation="Horizontal"
                     VerticalAlignment="Center" HorizontalAlignment="Center">
@@ -280,7 +288,7 @@
                 <TextBox Name="TextBoxForFrictionCoefficient" VerticalAlignment="Center"
                          FontSize="20"
                      MaxLength="4" PreviewTextInput="OnlyNumbersAndCountK" 
-                     PreviewKeyDown="WithoutSpaceAndMinus004">
+                     PreviewKeyDown="WithoutSpaceAndMinus004" ToolTip="Введите коэффициент трения">
                 </TextBox>
             </StackPanel>
 
@@ -303,68 +311,77 @@
         </StackPanel>
 
 
-        <StackPanel Name="ForcePerBoltTable" Orientation="Vertical" Grid.Row="1" Grid.Column="1"
+        <StackPanel Name="ForcePerBoltTable" Orientation="Vertical" Grid.Row="2" Grid.Column="1"
                     HorizontalAlignment="Center" VerticalAlignment="Center"
                     Visibility="Hidden">
             <TextBlock Background="#e64d3d" FontSize="25" FontWeight="Bold"
-                       Foreground="White" Padding="2" Margin="0">
+                       Foreground="White" Padding="5 2 5 2" Margin="0">
                 Force per bolt
             </TextBlock>
             <TextBlock Name="TextBlock_ForcePerBolt" Background="White" FontSize="25" FontWeight="Bold"
-                       Foreground="Black" Padding="2" Margin="0">
+                       Foreground="Black" Padding="5 2 5 2" Margin="0">
                 F
             </TextBlock>
         </StackPanel>
 
-        <StackPanel  Name="ResOne_Table" Orientation="Vertical" Grid.Row="2" Grid.Column="1"
+        <StackPanel  Name="ResOne_Table" Orientation="Vertical" Grid.Row="3" Grid.Column="1"
                     HorizontalAlignment="Center" VerticalAlignment="Center"
                     Visibility="Hidden">
             <TextBlock Background="#e64d3d" FontSize="25" FontWeight="Bold"
-                       Foreground="White" Padding="2" Margin="0">
+                       Foreground="White" Padding="5 2 5 2" Margin="0">
                 API 6A Annex D
             </TextBlock>
             <TextBlock Name="Text_TauAPI6AAnnexD" Background="White" FontSize="25" FontWeight="Bold"
-                       Foreground="Black" Padding="2" Margin="0">
+                       Foreground="Black" Padding="5 2 5 2" Margin="0">
                 τ
             </TextBlock>
         </StackPanel>
 
 
 
-        <StackPanel Name="ResTwo_Table" Orientation="Vertical" Grid.Row="3" Grid.Column="1"
+        <StackPanel Name="ResTwo_Table" Orientation="Vertical" Grid.Row="4" Grid.Column="1"
                     HorizontalAlignment="Center" VerticalAlignment="Center"
                     Visibility="Hidden">
             <TextBlock Background="#e64d3d" FontSize="25" FontWeight="Bold"
-                       Foreground="White" Padding="2" Margin="0">
+                       Foreground="White" Padding="5 2 5 2" Margin="0">
                 ASME PCC-1 Appendix J
             </TextBlock>
             <TextBlock Name="Text_TauASMEPCC_1AppendixJ" Background="White" FontSize="25" FontWeight="Bold"
-                       Foreground="Black" Padding="2" Margin="0">
+                       Foreground="Black" Padding="5 2 5 2" Margin="0">
                 τ
             </TextBlock>
         </StackPanel>
 
-        <StackPanel Name="ResThree_Table" Orientation="Vertical" Grid.Row="4" Grid.Column="1"
+        <StackPanel Name="ResThree_Table" Orientation="Vertical" Grid.Row="5" Grid.Column="1"
                     HorizontalAlignment="Center" VerticalAlignment="Center"
                     Visibility="Hidden">
             <TextBlock Background="#e64d3d" FontSize="25" FontWeight="Bold"
-                       Foreground="White" Padding="2" Margin="0">
+                       Foreground="White" Padding="5 2 5 2" Margin="0">
                 ASME PCC-1 Appendix K (Simplified)
             </TextBlock>
             <TextBlock Name="Text_TauASMEPCC_1AppendixK_Simplified" Background="White" FontSize="25" FontWeight="Bold"
-                       Foreground="Black" Padding="2" Margin="0">
+                       Foreground="Black" Padding="5 2 5 2" Margin="0">
                 τ
             </TextBlock>
         </StackPanel>
 
-        <TextBlock Name="InfoBanner" Grid.Row="3" Grid.Column="1" Grid.RowSpan="1" Background="#e64d3d"
-                   Foreground="White" HorizontalAlignment="Center"
-                   VerticalAlignment="Stretch" FontWeight="Bold"
-                   FontSize="30" Padding="5">
-            ВВЕДИТЕ ДАННЫЕ
-            <LineBreak/>
-            И НАЖМИТЕ "ПОСЧИТАТЬ"
-        </TextBlock>
+
+        <Button x:Name="InfoBanner" Grid.Row="3" Grid.Column="1">
+            <Button.Template>
+                <ControlTemplate TargetType="Button">
+                    <Border Background="#e64d3d" HorizontalAlignment="Center">
+                        <ContentControl Content="{TemplateBinding Content}"
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
+            </Button.Template>
+            <TextBlock FontSize="25" Foreground="White" Padding="10" FontWeight="Bold">
+                ВВЕДИТЕ ДАННЫЕ
+                <LineBreak/>
+                И НАЖМИТЕ "ПОСЧИТАТЬ"
+            </TextBlock>
+        </Button>
 
         <Button Name="CalculateButton" Grid.Row="7" Grid.Column="0" 
                 Grid.ColumnSpan="2" FontSize="30" 

@@ -15,6 +15,8 @@ using System.Windows.Shapes;
 using SahalinEnergyBoltStressCalculation;
 using System.Data.Entity;
 using SahalinEnergyBoltStressCalculation.PageClassesFolder;
+using SahalinEnergyBoltStressCalculation.BTC_GasketTargetStress.View;
+using SahalinEnergyBoltStressCalculation.BTC_PressureAndGasketType.View;
 
 namespace SahalinEnergyBoltStressCalculation
 {
@@ -24,7 +26,8 @@ namespace SahalinEnergyBoltStressCalculation
     public partial class MainWindow : Window
     {
         PageBoltTorqueCalculation pageBoltTorqueCalculation = new PageBoltTorqueCalculation();
-        
+        Page_GasketTargetStress page_GasketTargetStress = new Page_GasketTargetStress();
+        Page_PressureAndGasketType page_PressureAndGasketType = new Page_PressureAndGasketType();
 
 
         public MainWindow()
@@ -59,7 +62,8 @@ namespace SahalinEnergyBoltStressCalculation
 
         public void BTCGasketTargetStressButtonClick(object buttonIbject, RoutedEventArgs args_name)
         {
-            
+            MainFrame.Content = page_GasketTargetStress;
+
             Button btn = (Button)((Control)buttonIbject);
 
 
@@ -72,6 +76,8 @@ namespace SahalinEnergyBoltStressCalculation
 
         public void BTCPressureAndGasketTypeButtonClick(object buttonIbject, RoutedEventArgs args_name)
         {
+            MainFrame.Content = page_PressureAndGasketType;
+
             Button btn = (Button)((Control)buttonIbject);
 
 

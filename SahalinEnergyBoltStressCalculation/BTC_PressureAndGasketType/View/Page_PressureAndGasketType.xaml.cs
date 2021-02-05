@@ -13,19 +13,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace SahalinEnergyBoltStressCalculation.BTC_GasketTargetStress.View
+namespace SahalinEnergyBoltStressCalculation.BTC_PressureAndGasketType.View
 {
     /// <summary>
-    /// Логика взаимодействия для Page_GasketTargetStress.xaml
+    /// Логика взаимодействия для Page_PressureAndGasketType.xaml
     /// </summary>
-    public partial class Page_GasketTargetStress : Page
+    public partial class Page_PressureAndGasketType : Page
     {
-        public Page_GasketTargetStress()
+        public Page_PressureAndGasketType()
         {
             InitializeComponent();
-            ComboBoxWithGrades.SelectedIndex = 6;
         }
-
-
     }
 }
