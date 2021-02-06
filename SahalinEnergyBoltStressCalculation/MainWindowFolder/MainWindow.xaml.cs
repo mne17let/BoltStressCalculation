@@ -58,7 +58,6 @@ namespace SahalinEnergyBoltStressCalculation
             ButtonNavigation_BTC_GasketTargetStress.Style = (Style)this.FindResource("NavigationUnpickedButtonStyle");
             ButtonNavigation_BTC_PressureAndGasketType.Style = (Style)this.FindResource("NavigationUnpickedButtonStyle");
         }
-        
 
         public void BTCGasketTargetStressButtonClick(object buttonIbject, RoutedEventArgs args_name)
         {

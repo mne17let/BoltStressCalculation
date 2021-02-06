@@ -20,16 +20,38 @@ namespace SahalinEnergyBoltStressCalculation.BTC_GasketTargetStress.View
     /// </summary>
     public partial class Page_GasketTargetStress : Page
     {
+
+
+
+
         public Page_GasketTargetStress()
         {
             InitializeComponent();
+            InitFun();
         }
 
+        // Функция для установки начальных параметров
+        private void InitFun()
+        {
+            ComboBoxWithGrades.SelectionChanged += ListenerForGradeComboBox;
+        }
+
+
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        // Слушатели для кнопок и Combobox
+        private void ListenerForGradeComboBox(object viewObject, RoutedEventArgs someArgs)
+        {
+
+        }
+
+
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        //Блок кода для проверки вводимого текста
 
         // Проверка вводимых знаков и отклонение любых знаков, кроме
         // Цифр
         // Точки не в начале числа и только один раз
-        // Точки после нуля и ничего кроме
+        // Точки после нуля и ничего кроме неё
         private void OnlyNumbersOrCommaOneTime(object sender, TextCompositionEventArgs textSymbols)
         {
             var currentText = (string)((TextBox)sender).Text;
@@ -198,7 +220,6 @@ namespace SahalinEnergyBoltStressCalculation.BTC_GasketTargetStress.View
             double k = fCoeff + 0.04;
             TextBoxForKCoefficient.Text = k.ToString();
         }
-
 
         // Обновляем коэффициент K в случае "стирания" коэффициента трения f
         private void WithoutSpaceAndMinus004(object sender, KeyEventArgs button)

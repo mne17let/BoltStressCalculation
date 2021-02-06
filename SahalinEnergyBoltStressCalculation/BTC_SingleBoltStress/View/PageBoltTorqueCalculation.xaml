@@ -383,7 +383,7 @@
             </TextBlock>
         </Button>
 
-        <Button Name="CalculateButton" Grid.Row="7" Grid.Column="0" 
+        <Button Name="CalculationButton_SingleBoltStress" Grid.Row="7" Grid.Column="0" 
                 Grid.ColumnSpan="2" FontSize="30" 
                 Style="{StaticResource CalcButtonStyle}" Foreground="White"
                 HorizontalContentAlignment="Center"

@@ -14,8 +14,8 @@
         </Grid.Background>
         
         <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="0.6*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="0.6*"/>
@@ -295,6 +295,8 @@
 
 
         </StackPanel>
+        
+        
 
 
     </Grid>

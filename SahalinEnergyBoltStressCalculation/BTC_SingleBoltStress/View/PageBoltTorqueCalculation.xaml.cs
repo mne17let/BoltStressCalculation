@@ -27,21 +27,26 @@ namespace SahalinEnergyBoltStressCalculation.PageClassesFolder
         }
 
         // Функция для установки начальных параметров
-        public void InitFun()
+        private void InitFun()
         {
             viewModelAtCalculationBTC.PageCalculationBT = this;
             viewModelAtCalculationBTC.LoadDataFromDB();
 
             ComboBoxWithGrades.SelectionChanged += ListenerForGradeComboBox;
             ComboBoxWithBoltSize.SelectionChanged += ListenerForBoltSizeComboBox;
-            CalculateButton.Click += ListenerForCalculateButton;
+            CalculationButton_SingleBoltStress.Click += ListenerForCalculateButton;
 
 
 
         }
 
+
+
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        // Слушатели для кнопок и Combobox
+
         // Слушатель ComboBox с grade болтов
-        public void ListenerForGradeComboBox(object viewObject, RoutedEventArgs someArgs)
+        private void ListenerForGradeComboBox(object viewObject, RoutedEventArgs someArgs)
         {
             var comboBoxItem = (ComboBoxItem)((ComboBox)viewObject).SelectedItem;
             string gradeStringForViewModel = comboBoxItem.Content.ToString();
@@ -50,7 +55,7 @@ namespace SahalinEnergyBoltStressCalculation.PageClassesFolder
         }
 
         // Слушатель ComboBox с размерами болтов
-        public void ListenerForBoltSizeComboBox(object viewObject, RoutedEventArgs someArgs)
+        private void ListenerForBoltSizeComboBox(object viewObject, RoutedEventArgs someArgs)
         {
             var comboBoxItem = (ComboBoxItem)((ComboBox)viewObject).SelectedItem;
 
@@ -69,7 +74,7 @@ namespace SahalinEnergyBoltStressCalculation.PageClassesFolder
         }
 
         // Слушатель кнопки "Посчитать"
-        public void ListenerForCalculateButton(object sender, RoutedEventArgs e)
+        private void ListenerForCalculateButton(object sender, RoutedEventArgs e)
         {
             ComboBoxItem itemSize = (ComboBoxItem)((ComboBox)ComboBoxWithBoltSize).SelectedItem;
             ComboBoxItem itemGrade = (ComboBoxItem)((ComboBox)ComboBoxWithGrades).SelectedItem;
@@ -81,6 +86,9 @@ namespace SahalinEnergyBoltStressCalculation.PageClassesFolder
         }
 
 
+
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        // Изменения UI после выбора bolt grade
 
         // Изменения View, когда выбрал grade болта
         public void ChangeUiWhenGradePicked(string status)
@@ -98,28 +106,28 @@ namespace SahalinEnergyBoltStressCalculation.PageClassesFolder
                     ComboBoxWithBoltSize.IsEnabled = true;
                     UpdateComboBoxWithSize();
                     SetEmptyPropertiesWhenGradeChange();
-                    SetVisibilityForYieldStress();
+                    SetHiddenVisibilityForYieldStress();
                     break;
             }
             
         }
 
         // Установка видимости для полей YieldStress и YieldStress-подписи
-        public void SetVisibileYield()
+        private void SetVisibileYield()
         {
             TextYeildStress.Visibility = Visibility.Visible;
             TextBoxYieldStress.Visibility = Visibility.Visible;
         }
 
         // Скрытие полей YieldStress и YieldStress-подписи
-        public void SetVisibilityForYieldStress()
+        private void SetHiddenVisibilityForYieldStress()
         {
             TextYeildStress.Visibility = Visibility.Hidden;
             TextBoxYieldStress.Visibility = Visibility.Hidden;
         }
 
         // Очистка полей свойств болта, зависящих от его размера
-        public void SetEmptyPropertiesWhenGradeChange()
+        private void SetEmptyPropertiesWhenGradeChange()
         {
             TextBoxFor_D.Text = "";
             TextBoxFor_E.Text = "";
@@ -130,20 +138,8 @@ namespace SahalinEnergyBoltStressCalculation.PageClassesFolder
             TextBoxFor_NutWidth.Text = "";
         }
 
-        // Установка параметра "Можно вписывать значения" для полей свойств болта, зависящих от его размера
-        public void SetReadOnlyFalseForPropertiesTextBlocks()
-        {
-            TextBoxFor_D.IsReadOnly = false;
-            TextBoxFor_E.IsReadOnly = false;
-            TextBoxFor_H.IsReadOnly = false;
-            TextBoxFor_K.IsReadOnly = false;
-            TextBoxFor_P.IsReadOnly = false;
-            TextBoxFor_NOTPI.IsReadOnly = false;
-            TextBoxFor_NutWidth.IsReadOnly = false;
-        }
-
         // Обновление списка ComboBox с размерами после выбора grade болта
-        public void UpdateComboBoxWithSize()
+        private void UpdateComboBoxWithSize()
         {
             ComboBoxWithBoltSize.Items.Clear();
 
@@ -168,6 +164,11 @@ namespace SahalinEnergyBoltStressCalculation.PageClassesFolder
             };
         }
 
+
+
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        // Изменения UI после выбора bolt size
+
         // Изменение View после выбора размера болта
         public void ChangeUiWhenSizePicked(string size)
         {
@@ -185,8 +186,20 @@ namespace SahalinEnergyBoltStressCalculation.PageClassesFolder
             }
         }
 
+        // Установка параметра "Можно вписывать значения" для полей свойств болта, зависящих от его размера
+        private void SetReadOnlyFalseForPropertiesTextBlocks()
+        {
+            TextBoxFor_D.IsReadOnly = false;
+            TextBoxFor_E.IsReadOnly = false;
+            TextBoxFor_H.IsReadOnly = false;
+            TextBoxFor_K.IsReadOnly = false;
+            TextBoxFor_P.IsReadOnly = false;
+            TextBoxFor_NOTPI.IsReadOnly = false;
+            TextBoxFor_NutWidth.IsReadOnly = false;
+        }
+
         // Установка YieldStress в случае, если выбран не "Custom" grade болта и не "Custom" размер болта
-        public void SetYieldStress()
+        private void SetYieldStress()
         {
             var a = viewModelAtCalculationBTC.GetCurrentYieldStress();
             if (viewModelAtCalculationBTC.GetCurrentYieldStress() == 0.0)
@@ -200,7 +213,7 @@ namespace SahalinEnergyBoltStressCalculation.PageClassesFolder
         }
 
         // Установка параметра "Заблокировать возможность вписать данные" для полей свойств болта, зависящих от его размера
-        public void SetIsReadOnlyForPropertiesTextBlocks()
+        private void SetIsReadOnlyForPropertiesTextBlocks()
         {
             TextBoxFor_D.IsReadOnly = true;
             TextBoxFor_E.IsReadOnly = true;
@@ -212,7 +225,7 @@ namespace SahalinEnergyBoltStressCalculation.PageClassesFolder
         }
 
         // Получение свойств болта, зависящих от его размера и установка в текстовые поля
-        public void SetSizeProperties()
+        private void SetSizeProperties()
         {
             double[] properties = viewModelAtCalculationBTC.GetBoltSizeProperties();
             double d = properties[0];
@@ -238,6 +251,11 @@ namespace SahalinEnergyBoltStressCalculation.PageClassesFolder
 
             TextBoxFor_NutWidth.Text = nW.ToString();
         }
+
+
+
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        //Блок кода для проверки вводимого текста
 
         // Проверка вводимых знаков и отклонение любых знаков, кроме
         // Цифр
@@ -417,37 +435,9 @@ namespace SahalinEnergyBoltStressCalculation.PageClassesFolder
 
         }
 
-        // Отдаём "собранные" с полей YieldStress и YieldPercent данные
-        public string[] GetYieldStressCustom()
-        {
-            string valueYield = TextBoxYieldStress.Text;
-            string perCent = TextBoxForYieldPercent.Text;
 
-            string[] arrString = new string[] { valueYield, perCent };
-            return arrString;
-        }
-
-        // Отдаём "собранные" с полей ввода свойства болта
-        public string[] GetProperties()
-        {
-            string d = TextBoxFor_D.Text;
-            string e = TextBoxFor_E.Text;
-            string h = TextBoxFor_H.Text;
-            string k = TextBoxFor_K.Text;
-            string p = TextBoxFor_P.Text;
-            string notpi = TextBoxFor_NOTPI.Text;
-            string nW = TextBoxFor_NutWidth.Text;
-
-            string[] properties = new string[] { d, e, h, k, p, notpi, nW };
-            return properties;
-        }
-
-        // Отдаём "собранный" с поля ввода коэффициент трения
-        public string GetFCoeff()
-        {
-            string fCoeff = TextBoxForFrictionCoefficient.Text;
-            return fCoeff;
-        }
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        // Изменения UI после нажатия кнопки "Посчитать"
 
         // Показываем окно ошибки с нужным текстом
         public void ShowErrorMessage(string code)
@@ -514,13 +504,13 @@ namespace SahalinEnergyBoltStressCalculation.PageClassesFolder
 
             Text_TauASMEPCC_1AppendixK_Simplified.Text = "τ = " + tauASMEPCC_1AppendixK_Simplified.ToString() + " Lbf-Ft = " + convertTauASMEPCC_1AppendixK_Simplified.ToString() + " N-m";
 
-            TextBlock_ForcePerBolt.Text = "F = " + f.ToString() + " Lbf = " + convertF.ToString() + " N";
+            TextBlock_ForcePerBolt.Text = "F = " + objectCalculator.threadMajorDiameter_D.ToString() + " Lbf = " + objectCalculator.pitchDiameterOfThread_E.ToString() + " N";
 
             TextBoxForCalculateSigma.Text = objectCalculator.GetSigma().ToString();
         }
 
         // Делаю видимыми таблицы с результатами и невидимым инфобаннер
-        public void SetResultTablesVisibility()
+        private void SetResultTablesVisibility()
         {
             InfoBanner.Visibility = Visibility.Hidden;
             ResOne_Table.Visibility = Visibility.Visible;
@@ -529,11 +519,47 @@ namespace SahalinEnergyBoltStressCalculation.PageClassesFolder
             ForcePerBoltTable.Visibility = Visibility.Visible;
         }
 
+
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        // Парсим данные и отдаём их в Presenter
+
         // Отдаю "собранный" с поля ввода коэффициент К
         public string GetKCoeff()
         {
             string kCoeff = TextBoxForKCoefficient.Text;
             return kCoeff;
+        }
+
+        // Отдаём "собранные" с полей YieldStress и YieldPercent данные
+        public string[] GetYieldStressCustom()
+        {
+            string valueYield = TextBoxYieldStress.Text;
+            string perCent = TextBoxForYieldPercent.Text;
+
+            string[] arrString = new string[] { valueYield, perCent };
+            return arrString;
+        }
+
+        // Отдаём "собранные" с полей ввода свойства болта
+        public string[] GetProperties()
+        {
+            string d = TextBoxFor_D.Text;
+            string e = TextBoxFor_E.Text;
+            string h = TextBoxFor_H.Text;
+            string k = TextBoxFor_K.Text;
+            string p = TextBoxFor_P.Text;
+            string notpi = TextBoxFor_NOTPI.Text;
+            string nW = TextBoxFor_NutWidth.Text;
+
+            string[] properties = new string[] { d, e, h, k, p, notpi, nW };
+            return properties;
+        }
+
+        // Отдаём "собранный" с поля ввода коэффициент трения
+        public string GetFCoeff()
+        {
+            string fCoeff = TextBoxForFrictionCoefficient.Text;
+            return fCoeff;
         }
     }
 

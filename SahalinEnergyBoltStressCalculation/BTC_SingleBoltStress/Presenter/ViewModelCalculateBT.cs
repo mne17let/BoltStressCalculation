@@ -15,6 +15,21 @@ namespace SahalinEnergyBoltStressCalculation.LogicClassesFolder
 {
     class ViewModelCalculateBT
     {
+        // Реализация Singleton
+
+        private static ViewModelCalculateBT instance;
+
+        private ViewModelCalculateBT() { }
+
+        public static ViewModelCalculateBT GetInstance()
+        {
+            if (instance == null)
+            {
+                instance = new ViewModelCalculateBT();
+            }
+            return instance;
+        }
+
         // Переменная модели
         private WorkWithDataBaseBTC workWithDataBaseBTCObject = WorkWithDataBaseBTC.GetInstance();
 
@@ -45,22 +60,9 @@ namespace SahalinEnergyBoltStressCalculation.LogicClassesFolder
         double kCoeffViewModel;
 
 
-        // Реализация Singleton
 
-        private static ViewModelCalculateBT instance;
-
-        // Реализация Singleton
-        private ViewModelCalculateBT() { }
-
-        // Реализация Singleton
-        public static ViewModelCalculateBT GetInstance()
-        {
-            if (instance == null)
-            {
-                instance = new ViewModelCalculateBT();
-            }
-            return instance;
-        }
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        // Обработка выбора bolt grade
 
         // Выбран Bolt Grade в ComboBox
         // Обновление списков ViewModel с объектами болтов из таблиц BoltSize и BoltGrade и вызов методов у View с передачей туда параметров
@@ -87,12 +89,18 @@ namespace SahalinEnergyBoltStressCalculation.LogicClassesFolder
             boltData = workWithDataBaseBTCObject.GetBoltProperties();
         }
 
-
         // Вызов метода реакции у View на выбор Bolt Grade и передача в этот метод информации, выбран ли "Custom" Bolt Grade
         public void ReturnForChangingGrade(string customGradeOrNot)
         {
             PageCalculationBT.ChangeUiWhenGradePicked(customGradeOrNot);
         }
+
+
+
+
+
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        // Обработка выбора bolt size
 
         // Выбран BoltSize
         // Обновление ViewModel в зависимости от выбранного размера болта и вызов методов реакции у View
@@ -170,12 +178,39 @@ namespace SahalinEnergyBoltStressCalculation.LogicClassesFolder
             if (currentBoltGrade == null)
             {
                 return 0.0;
-            } else
+            }
+            else
             {
 
                 return currentBoltGrade.YieldStressPsi;
             }
         }
+
+
+
+
+
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        // Обработка нажатия кнопки "посчитать"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         // Подключение к базе данных и загрузка из неё двух таблиц
         public void LoadDataFromDB()
@@ -422,9 +457,10 @@ namespace SahalinEnergyBoltStressCalculation.LogicClassesFolder
             {
                 // Всё в порядке. Создаём необходимые объекты калькулятора, а также размера и grade болта
                 // Передаём всё в метод View и вызываем у него в качествер реакциии на нажатие кнопки "Calculate"
-                var obj = CreateCalculator(statusGrade, statusSize);
+                var objectCalculator = CreateCalculator(statusGrade, statusSize);
                 string grade;
                 string size;
+
                 if (statusGrade == "Custom")
                 {
                     grade = "Custom";
@@ -442,7 +478,7 @@ namespace SahalinEnergyBoltStressCalculation.LogicClassesFolder
                     size = currentBolt.BoltSize;
                 }
 
-                PageCalculationBT.ChangeUIOnCalculation(obj, grade, size);
+                PageCalculationBT.ChangeUIOnCalculation(objectCalculator, grade, size);
             }
         }
 

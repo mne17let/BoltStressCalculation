@@ -121,6 +121,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Compile Include="BTC_GasketTargetStress\Presenter\Presenter_GasketTargetStress.cs" />
     <Compile Include="BTC_GasketTargetStress\View\Page_GasketTargetStress.xaml.cs">
       <DependentUpon>Page_GasketTargetStress.xaml</DependentUpon>
     </Compile>
@@ -199,7 +200,6 @@
     <Resource Include="Images\iconLogoIco.ico" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="BTC_GasketTargetStress\Presenter\" />
     <Folder Include="BTC_PressureAndGasketType\Model\" />
     <Folder Include="BTC_PressureAndGasketType\Presenter\" />
   </ItemGroup>
