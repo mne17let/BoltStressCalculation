@@ -482,12 +482,12 @@ namespace SahalinEnergyBoltStressCalculation.LogicClassesFolder
             if (statusGrade == "Custom")
             {
                 objectCalculator.yieldStressPsi = yieldStressValueCustom;
-                objectCalculator.perCent = yieldStressPerCent;
+                objectCalculator.perCentYieldStress = yieldStressPerCent;
             }
             else
             {
                 objectCalculator.yieldStressPsi = currentBoltGrade.YieldStressPsi;
-                objectCalculator.perCent = yieldStressPerCent;
+                objectCalculator.perCentYieldStress = yieldStressPerCent;
             }
 
             if (statusSize == "Custom")

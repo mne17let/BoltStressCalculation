@@ -8,7 +8,37 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="Page_GasketTargetStress">
 
+    <Page.Resources>
+        <Style x:Key="CalculationButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="#37496d"/>
+
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Name="CalcButtonBorder" Background="{TemplateBinding Background}">
+                            <ContentControl Content="{TemplateBinding Content}"
+                            HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                            VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#476995"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Background" Value="#e64d3d"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+
+    </Page.Resources>
+
+
     <Grid>
+        
         <Grid.Background>
             <ImageBrush ImageSource="pack://application:,,,/Images/backgroundWhite.png"/>
         </Grid.Background>
@@ -97,7 +127,7 @@
                        Background="#674172" 
                        Foreground="White" Visibility="Visible"
                            Padding="3">σ, psi</TextBlock>
-                    <TextBlock Name ="TextBoxForCalculateSigma" FontSize="15" VerticalAlignment="Center"
+                    <TextBlock Name ="TextBoxFor_CalculateSigma" FontSize="15" VerticalAlignment="Center"
                        Background="White" Visibility="Visible"></TextBlock>
                 </StackPanel>
             </StackPanel>
@@ -295,9 +325,78 @@
 
 
         </StackPanel>
-        
+
+
+        <StackPanel Name="Table_BoltStressRequired" Orientation="Vertical" Grid.Row="2" Grid.Column="1"
+                    HorizontalAlignment="Center" VerticalAlignment="Center"
+                    Visibility="Hidden">
+            <TextBlock Background="#e64d3d" FontSize="25" FontWeight="Bold"
+                       Foreground="White" Padding="5 2 5 2" Margin="0">
+                Bolt stress required
+            </TextBlock>
+            <TextBlock Name="TextBlock_BoltStressRequired" Background="White" FontSize="25" FontWeight="Bold"
+                       Foreground="Black" Padding="5 2 5 2" Margin="0">
+                Sbsel
+            </TextBlock>
+        </StackPanel>
+
+        <StackPanel  Name="Table_PerCentOfYIELDStress" Orientation="Vertical" Grid.Row="3" Grid.Column="1"
+                    HorizontalAlignment="Center" VerticalAlignment="Center"
+                    Visibility="Hidden">
+            <TextBlock Background="#e64d3d" FontSize="25" FontWeight="Bold"
+                       Foreground="White" Padding="5 2 5 2" Margin="0">
+                % of yield stress
+            </TextBlock>
+            <TextBlock Name="TextBlock_PerCentOfYIELDStress" Background="White" FontSize="25" FontWeight="Bold"
+                       Foreground="Black" Padding="5 2 5 2" Margin="0">
+                %
+            </TextBlock>
+        </StackPanel>
+
+
+
+        <StackPanel Name="Table_TorqueMoment" Orientation="Vertical" Grid.Row="4" Grid.Column="1"
+                    HorizontalAlignment="Center" VerticalAlignment="Center"
+                    Visibility="Hidden">
+            <TextBlock Background="#e64d3d" FontSize="25" FontWeight="Bold"
+                       Foreground="White" Padding="5 2 5 2" Margin="0">
+                ASME PCC-1 Appendix O
+            </TextBlock>
+            <TextBlock Name="TextBlock_TorqueMoment" Background="White" FontSize="25" FontWeight="Bold"
+                       Foreground="Black" Padding="5 2 5 2" Margin="0">
+                τ
+            </TextBlock>
+        </StackPanel>
+
+
+        <Button x:Name="InfoBanner" Grid.Row="3" Grid.Column="1" Visibility="Visible">
+            <Button.Template>
+                <ControlTemplate TargetType="Button">
+                    <Border Background="#e64d3d" HorizontalAlignment="Center">
+                        <ContentControl Content="{TemplateBinding Content}"
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
+            </Button.Template>
+            <TextBlock FontSize="25" Foreground="White" Padding="10" FontWeight="Bold">
+                ВВЕДИТЕ ДАННЫЕ
+                <LineBreak/>
+                И НАЖМИТЕ "ПОСЧИТАТЬ"
+            </TextBlock>
+        </Button>
         
 
+
+
+        <Button Name="CalculationButton_GasketTargetStress" Grid.Row="7" Grid.Column="0" 
+                Grid.ColumnSpan="2" FontSize="30" 
+                Style="{StaticResource CalculationButtonStyle}" Foreground="White"
+                HorizontalContentAlignment="Center"
+                VerticalContentAlignment="Center"
+                FontWeight="Bold">
+            ПОСЧИТАТЬ
+        </Button>
 
     </Grid>
 </Page>

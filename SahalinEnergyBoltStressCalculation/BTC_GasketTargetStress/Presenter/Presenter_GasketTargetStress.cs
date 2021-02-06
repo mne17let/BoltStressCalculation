@@ -1,4 +1,5 @@
-﻿using SahalinEnergyBoltStressCalculation.BTC_GasketTargetStress.View;
+﻿using SahalinEnergyBoltStressCalculation.BTC_GasketTargetStress.CalculationClass;
+using SahalinEnergyBoltStressCalculation.BTC_GasketTargetStress.View;
 using SahalinEnergyBoltStressCalculation.BTCalculation.Model;
 using SahalinEnergyBoltStressCalculation.LogicClassesFolder.CalculationOne;
 using System;
@@ -253,10 +254,45 @@ namespace SahalinEnergyBoltStressCalculation.BTC_GasketTargetStress.Presenter
                     size = currentBolt.BoltSize;
                 }
 
-                PageCalculationBT.ChangeUIOnCalculation(objectCalculator, grade, size);
+                PageView.ChangeUIOnCalculation(objectCalculator, grade, size);
             }
         }
 
+        // Создание объекта-калькулятора и установка в него необходимых данных
+        private Calculator_GasketTargetStress CreateCalculator(string statusGrade, string statusSize)
+        {
+            Calculator_GasketTargetStress objectCalculator = new Calculator_GasketTargetStress();
+
+            if (statusGrade == "Custom")
+            {
+                objectCalculator.yieldStressPsi = yieldStressValueCustom;
+                objectCalculator.perCentYieldStress = yieldStressPerCent;
+            } else
+            {
+                objectCalculator.yieldStressPsi = currentBoltGrade.YieldStressPsi;
+                objectCalculator.perCentYieldStress = yieldStressPerCent;
+            }
+
+            if (statusSize == "Custom")
+            {
+                objectCalculator.threadMajorDiameter_D = customD;
+                objectCalculator.threadPitch_P = customP;
+            } else
+            {
+                objectCalculator.threadMajorDiameter_D = currentBolt.ThreadMajorDiameter_D;
+                objectCalculator.threadPitch_P = currentBolt.ThreadPitch_P;
+            }
+
+            objectCalculator.fCoeff = frictionCoeffPresenter;
+            objectCalculator.kCoeff = kCoeffPresenter;
+            objectCalculator.numOfBolts = numOfBoltsPresenter;
+            objectCalculator.gasketOutsideDiameter = gasketOutsideDiameterPresenter;
+            objectCalculator.gasketInsideDiameter = gasketInsideDiameterPresenter;
+            objectCalculator.targetAssemblyGasketStress = targetAssemblyGasketStressPresenter;
+
+            return objectCalculator;
+
+        }
 
         // Проверка, выбран ли bolt grade, вызов методов проверки ввода данных, которые от него зависят
         private bool SetUpGrade(string statusGrade)

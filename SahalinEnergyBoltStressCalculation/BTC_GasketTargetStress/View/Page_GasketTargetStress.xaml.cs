@@ -1,4 +1,5 @@
-﻿using SahalinEnergyBoltStressCalculation.BTC_GasketTargetStress.Presenter;
+﻿using SahalinEnergyBoltStressCalculation.BTC_GasketTargetStress.CalculationClass;
+using SahalinEnergyBoltStressCalculation.BTC_GasketTargetStress.Presenter;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -38,6 +39,7 @@ namespace SahalinEnergyBoltStressCalculation.BTC_GasketTargetStress.View
 
             ComboBoxWithGrades.SelectionChanged += ListenerForGradeComboBox;
             ComboBoxWithBoltSize.SelectionChanged += ListenerForBoltSizeComboBox;
+            CalculationButton_GasketTargetStress.Click += ListenerForCalculationButton;
         }
 
 
@@ -78,6 +80,22 @@ namespace SahalinEnergyBoltStressCalculation.BTC_GasketTargetStress.View
                 presenter_GasketTargetStress.UpdateViewModelWithComboBoxWithSizes(sizeStringForViewModel, statusGrade);
             }
 
+        }
+
+        // Слушатель кнопки "Посчитать"
+        private void ListenerForCalculationButton(object sender, RoutedEventArgs e)
+        {
+            ComboBoxItem itemSize = (ComboBoxItem)((ComboBox)ComboBoxWithBoltSize).SelectedItem;
+            ComboBoxItem itemGrade = (ComboBoxItem)((ComboBox)ComboBoxWithGrades).SelectedItem;
+
+
+            // Переменные, отвечающие за то, выбран ли "Custom" size или grade болта (или вообще ничего не выбрано и стоит "Pick grade/size")
+            string statusGrade, statusSize;
+
+            statusGrade = itemGrade.Content.ToString();
+            statusSize = itemSize.Content.ToString();
+
+            presenter_GasketTargetStress.BeginCalculation(statusGrade, statusSize);
         }
 
 
@@ -572,6 +590,40 @@ namespace SahalinEnergyBoltStressCalculation.BTC_GasketTargetStress.View
                     MessageBox.Show("Target Assembly Gasket Stress должен быть больше 0");
                     break;
             }
+        }
+
+        // Изменения View в результате вычислительных операций
+        public void ChangeUIOnCalculation(Calculator_GasketTargetStress objectCalculator, string grade, string size)
+        {
+
+            SetResultTablesVisibility();
+
+
+            var bSR = Math.Round(objectCalculator.GetSbsel(), 0);
+            var perCent = Math.Round(objectCalculator.GetPercentOfYIELDStress(), 0);
+            var tau = Math.Round(objectCalculator.GetTauGasketTargetStress(), 0);
+            var sigma = Math.Round(objectCalculator.GetSigma(), 0);
+
+
+            var convertTau = Math.Round(objectCalculator.GetTauGasketTargetStress() * 1.3558, 0);
+
+
+            TextBlock_BoltStressRequired.Text = bSR.ToString() + " psi";
+
+            TextBlock_PerCentOfYIELDStress.Text = perCent.ToString() + " %";
+
+            TextBlock_TorqueMoment.Text = "τ = " + tau.ToString() + " Lbf-Ft = " + convertTau.ToString() + " N-m";
+
+            TextBoxFor_CalculateSigma.Text = sigma.ToString();
+        }
+
+        // Делаю видимыми таблицы с результатами и невидимым инфобаннер
+        private void SetResultTablesVisibility()
+        {
+            InfoBanner.Visibility = Visibility.Hidden;
+            Table_BoltStressRequired.Visibility = Visibility.Visible;
+            Table_PerCentOfYIELDStress.Visibility = Visibility.Visible;
+            Table_TorqueMoment.Visibility = Visibility.Visible;
         }
     }
 }

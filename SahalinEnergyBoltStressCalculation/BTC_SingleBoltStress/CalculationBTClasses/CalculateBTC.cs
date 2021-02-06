@@ -8,7 +8,7 @@ namespace SahalinEnergyBoltStressCalculation.BTCalculation.CalculationBTClasses
 {
     public class CalculateBTC
     {
-        public double perCent;
+        public double perCentYieldStress;
         public double boltDiameter;
         public double yieldStressPsi;
         public double threadMajorDiameter_D;
@@ -53,7 +53,7 @@ namespace SahalinEnergyBoltStressCalculation.BTCalculation.CalculationBTClasses
 
         public double GetSigma()
         {
-            double turnFromPerCent = perCent / 100.0;
+            double turnFromPerCent = perCentYieldStress / 100.0;
             sigma = yieldStressPsi * turnFromPerCent;
             return sigma;
         }

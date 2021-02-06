@@ -499,6 +499,8 @@ namespace SahalinEnergyBoltStressCalculation.PageClassesFolder
             var tauAPI6AAnnexD = Math.Round(objectCalculator.GetTau_API6AAnnexD(), 0);
             var tauASMEPCC_1AppendixJ = Math.Round(objectCalculator.GetTau_ASMEPCC_1AppendixJ(), 0);
             var tauASMEPCC_1AppendixK_Simplified = Math.Round(objectCalculator.GetTau_ASMEPCC_1AppendixK_Simplified(), 0);
+            var sigma = Math.Round(objectCalculator.GetSigma(), 0);
+
 
             var convertF = Math.Round(objectCalculator.GetF() * 4.4482, 0);
             var convertTauAPI6AAnnexD = Math.Round(objectCalculator.GetTau_API6AAnnexD() * 1.3558, 0);
@@ -514,7 +516,7 @@ namespace SahalinEnergyBoltStressCalculation.PageClassesFolder
 
             TextBlock_ForcePerBolt.Text = "F = " + f.ToString() + " Lbf = " + convertF.ToString() + " N";
 
-            TextBoxForCalculateSigma.Text = objectCalculator.GetSigma().ToString();
+            TextBoxForCalculateSigma.Text = sigma.ToString();
         }
 
         // Делаю видимыми таблицы с результатами и невидимым инфобаннер
