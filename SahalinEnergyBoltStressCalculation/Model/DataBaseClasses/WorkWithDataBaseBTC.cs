@@ -106,8 +106,10 @@ namespace SahalinEnergyBoltStressCalculation.BTCalculation.Model
         }
 
         // Присваивание переменным-объектам болта конкретного выбранного пользователем болта из списков
-        public void UpdateDataBaseForSizeChange(string size)
+        public void UpdateDataBaseForSizeChange(string size, string grade)
         {
+            UpdateModelListsForGradeChange(grade);
+
             foreach (var i in boltData)
             {
                 if (i.BoltSize == size)

@@ -16,9 +16,7 @@ namespace SahalinEnergyBoltStressCalculation.PageClassesFolder
         // Переменная ViewModel
         private ViewModelCalculateBT viewModelAtCalculationBTC = ViewModelCalculateBT.GetInstance();
 
-        // Переменные, отвечающие за то, выбран ли "Custom" size или grade болта
-        private string statusGrade, statusSize;
-
+        
         // Конструктор класса, который вызывается при создании страницы
         public PageBoltTorqueCalculation()
         {
@@ -59,6 +57,12 @@ namespace SahalinEnergyBoltStressCalculation.PageClassesFolder
         {
             var comboBoxItem = (ComboBoxItem)((ComboBox)viewObject).SelectedItem;
 
+            ComboBoxItem itemGrade = (ComboBoxItem)((ComboBox)ComboBoxWithGrades).SelectedItem;
+
+            // Вспомогательная переменная для считывания grade болта в данный момент
+            string statusGrade;
+            statusGrade = itemGrade.Content.ToString();
+
             if (comboBoxItem == null)
             {
                 return;
@@ -68,7 +72,7 @@ namespace SahalinEnergyBoltStressCalculation.PageClassesFolder
             } else
             {
                 string sizeStringForViewModel = comboBoxItem.Content.ToString();
-                viewModelAtCalculationBTC.UpdateViewModelWithComboBoxWithSizes(sizeStringForViewModel);
+                viewModelAtCalculationBTC.UpdateViewModelWithComboBoxWithSizes(sizeStringForViewModel, statusGrade);
             }
             
         }
@@ -79,6 +83,10 @@ namespace SahalinEnergyBoltStressCalculation.PageClassesFolder
             ComboBoxItem itemSize = (ComboBoxItem)((ComboBox)ComboBoxWithBoltSize).SelectedItem;
             ComboBoxItem itemGrade = (ComboBoxItem)((ComboBox)ComboBoxWithGrades).SelectedItem;
 
+
+            // Переменные, отвечающие за то, выбран ли "Custom" size или grade болта (или вообще ничего не выбрано и стоит "Pick grade/size")
+            string statusGrade, statusSize;
+            
             statusGrade = itemGrade.Content.ToString();
             statusSize = itemSize.Content.ToString();
 
@@ -504,7 +512,7 @@ namespace SahalinEnergyBoltStressCalculation.PageClassesFolder
 
             Text_TauASMEPCC_1AppendixK_Simplified.Text = "τ = " + tauASMEPCC_1AppendixK_Simplified.ToString() + " Lbf-Ft = " + convertTauASMEPCC_1AppendixK_Simplified.ToString() + " N-m";
 
-            TextBlock_ForcePerBolt.Text = "F = " + objectCalculator.threadMajorDiameter_D.ToString() + " Lbf = " + objectCalculator.pitchDiameterOfThread_E.ToString() + " N";
+            TextBlock_ForcePerBolt.Text = "F = " + f.ToString() + " Lbf = " + convertF.ToString() + " N";
 
             TextBoxForCalculateSigma.Text = objectCalculator.GetSigma().ToString();
         }

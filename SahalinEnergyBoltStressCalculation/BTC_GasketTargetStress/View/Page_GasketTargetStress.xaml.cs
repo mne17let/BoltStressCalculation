@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SahalinEnergyBoltStressCalculation.BTC_GasketTargetStress.Presenter;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,8 +21,8 @@ namespace SahalinEnergyBoltStressCalculation.BTC_GasketTargetStress.View
     /// </summary>
     public partial class Page_GasketTargetStress : Page
     {
-
-
+        // Переменная Presenter'а
+        private Presenter_GasketTargetStress presenter_GasketTargetStress = Presenter_GasketTargetStress.GetInstance();
 
 
         public Page_GasketTargetStress()
@@ -33,7 +34,10 @@ namespace SahalinEnergyBoltStressCalculation.BTC_GasketTargetStress.View
         // Функция для установки начальных параметров
         private void InitFun()
         {
+            presenter_GasketTargetStress.PageView = this;
+
             ComboBoxWithGrades.SelectionChanged += ListenerForGradeComboBox;
+            ComboBoxWithBoltSize.SelectionChanged += ListenerForBoltSizeComboBox;
         }
 
 
@@ -41,17 +45,49 @@ namespace SahalinEnergyBoltStressCalculation.BTC_GasketTargetStress.View
         // Слушатели для кнопок и Combobox
         private void ListenerForGradeComboBox(object viewObject, RoutedEventArgs someArgs)
         {
+            var comboBoxItem = (ComboBoxItem)((ComboBox)viewObject).SelectedItem;
+            string gradeStatusForPresenter = comboBoxItem.Content.ToString();
+
+            presenter_GasketTargetStress.UpdateViewModelWithComboBoxWithGrades(gradeStatusForPresenter);
+        }
+
+
+        // Слушатель ComboBox с размерами болтов
+        private void ListenerForBoltSizeComboBox(object viewObject, RoutedEventArgs someArgs)
+        {
+            var comboBoxItem = (ComboBoxItem)((ComboBox)viewObject).SelectedItem;
+
+            ComboBoxItem itemGrade = (ComboBoxItem)((ComboBox)ComboBoxWithGrades).SelectedItem;
+
+            // Вспомогательная переменная для считывания grade болта в данный момент
+            string statusGrade;
+            statusGrade = itemGrade.Content.ToString();
+
+            if (comboBoxItem == null)
+            {
+                return;
+            }
+            else if (comboBoxItem.Content.ToString() == "Pick bolt size")
+            {
+                return;
+            }
+            else
+            {
+                string sizeStringForViewModel = comboBoxItem.Content.ToString();
+                
+                presenter_GasketTargetStress.UpdateViewModelWithComboBoxWithSizes(sizeStringForViewModel, statusGrade);
+            }
 
         }
+
+
 
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         //Блок кода для проверки вводимого текста
 
-        // Проверка вводимых знаков и отклонение любых знаков, кроме
-        // Цифр
-        // Точки не в начале числа и только один раз
-        // Точки после нуля и ничего кроме неё
+        // Проверка вводимых знаков и отклонение любых знаков, кроме цифр
+        // точки не в начале числа и только один раз, точки после нуля и ничего кроме неё
         private void OnlyNumbersOrCommaOneTime(object sender, TextCompositionEventArgs textSymbols)
         {
             var currentText = (string)((TextBox)sender).Text;
@@ -251,5 +287,151 @@ namespace SahalinEnergyBoltStressCalculation.BTC_GasketTargetStress.View
             }
 
         }
+
+
+
+
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        // Изменения UI после выбора bolt grade
+
+        // Изменения View, когда выбрал grade болта
+        public void ChangeUiWhenGradePicked(string status)
+        {
+            switch (status)
+            {
+                case "Custom":
+                    ComboBoxWithBoltSize.IsEnabled = true;
+                    TextBoxYieldStress.IsReadOnly = false;
+                    UpdateComboBoxWithSize();
+                    SetVisibileYield();
+                    break;
+                default:
+                    TextBoxYieldStress.IsReadOnly = true;
+                    ComboBoxWithBoltSize.IsEnabled = true;
+                    UpdateComboBoxWithSize();
+                    SetEmptyPropertiesWhenGradeChange();
+                    SetHiddenVisibilityForYieldStress();
+                    break;
+            }
+
+        }
+
+        // Установка видимости для полей YieldStress и YieldStress-подписи
+        private void SetVisibileYield()
+        {
+            TextYeildStress.Visibility = Visibility.Visible;
+            TextBoxYieldStress.Visibility = Visibility.Visible;
+        }
+
+        // Скрытие полей YieldStress и YieldStress-подписи
+        private void SetHiddenVisibilityForYieldStress()
+        {
+            TextYeildStress.Visibility = Visibility.Hidden;
+            TextBoxYieldStress.Visibility = Visibility.Hidden;
+        }
+
+        // Очистка полей свойств болта, зависящих от его размера
+        private void SetEmptyPropertiesWhenGradeChange()
+        {
+            TextBoxFor_D.Text = "";
+            TextBoxFor_P.Text = "";
+        }
+
+        // Обновление списка ComboBox с размерами после выбора grade болта
+        private void UpdateComboBoxWithSize()
+        {
+            ComboBoxWithBoltSize.Items.Clear();
+
+            ComboBoxItem pickBoltSizeItem = new ComboBoxItem();
+            pickBoltSizeItem.MaxHeight = 0;
+            pickBoltSizeItem.Content = "Pick bolt size";
+            ComboBoxWithBoltSize.Items.Add(pickBoltSizeItem);
+            ComboBoxWithBoltSize.SelectedIndex = 0;
+
+            ComboBoxItem customItem = new ComboBoxItem();
+            customItem.Content = "Custom";
+            ComboBoxWithBoltSize.Items.Add(customItem);
+
+
+            var arrayOfItems = presenter_GasketTargetStress.GetArrayOfCurrentSizes();
+
+            foreach (string s in arrayOfItems)
+            {
+                var cmbItem = new ComboBoxItem();
+                cmbItem.Content = s;
+                ComboBoxWithBoltSize.Items.Add(cmbItem);
+            };
+        }
+
+
+
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        // Изменения UI после выбора bolt size
+
+        // Изменение View после выбора размера болта
+        public void ChangeUiWhenSizePicked(string size)
+        {
+            switch (size)
+            {
+                case "Custom":
+                    SetReadOnlyFalseForPropertiesTextBlocks();
+                    SetEmptyPropertiesWhenGradeChange();
+                    break;
+                default:
+                    SetSizeProperties();
+                    SetIsReadOnlyForPropertiesTextBlocks();
+                    SetYieldStress();
+                    break;
+            }
+        }
+
+        // Установка параметра "Можно вписывать значения" для полей свойств болта, зависящих от его размера
+        private void SetReadOnlyFalseForPropertiesTextBlocks()
+        {
+            TextBoxFor_D.IsReadOnly = false;
+            TextBoxFor_P.IsReadOnly = false;
+        }
+
+        // Установка YieldStress в случае, если выбран не "Custom" grade болта и не "Custom" размер болта
+        private void SetYieldStress()
+        {
+            if (presenter_GasketTargetStress.GetCurrentYieldStress() == 0.0)
+            {
+                return;
+            }
+            else
+            {
+                TextBoxYieldStress.Text = presenter_GasketTargetStress.GetCurrentYieldStress().ToString();
+                SetVisibileYield();
+            }
+        }
+
+        // Установка параметра "Заблокировать возможность вписать данные" для полей свойств болта, зависящих от его размера
+        private void SetIsReadOnlyForPropertiesTextBlocks()
+        {
+            TextBoxFor_D.IsReadOnly = true;
+            TextBoxFor_P.IsReadOnly = true;
+        }
+
+        // Получение свойств болта, зависящих от его размера и установка в текстовые поля
+        private void SetSizeProperties()
+        {
+            double[] properties = presenter_GasketTargetStress.GetBoltSizeProperties();
+            double d = properties[0];
+            double e = properties[1];
+            double h = properties[2];
+            double k = properties[3];
+            double p = properties[4];
+            double notpi = properties[5];
+            double nW = properties[6];
+
+
+
+           TextBoxFor_D.Text = d.ToString();
+
+           TextBoxFor_P.Text = p.ToString();
+
+        }
+
     }
 }

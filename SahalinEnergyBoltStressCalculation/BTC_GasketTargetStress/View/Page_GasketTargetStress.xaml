@@ -106,7 +106,7 @@
                     HorizontalAlignment="Center">
             <ComboBox Name="ComboBoxWithBoltSize"
                   HorizontalAlignment="Center" VerticalAlignment="Center"
-                  FontSize="30" FontWeight="Bold" SelectedIndex="0" IsEnabled="True"
+                  FontSize="30" FontWeight="Bold" SelectedIndex="0" IsEnabled="False"
                   HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
 
                 <ComboBoxItem Name="HintItemSizeBeforeGrade" MaxHeight="0">Pick bolt grade at first</ComboBoxItem>

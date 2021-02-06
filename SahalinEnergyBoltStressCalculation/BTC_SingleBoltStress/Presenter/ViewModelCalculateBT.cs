@@ -37,7 +37,7 @@ namespace SahalinEnergyBoltStressCalculation.LogicClassesFolder
         public PageBoltTorqueCalculation PageCalculationBT { private get; set; }
 
 
-        // Переменная со списком данных для определённых Bolt Grade и Bolt Size
+        // Переменные со списком данных для определённых Bolt Grade и Bolt Size
         List<BoltGradeProperties> gradeData = new List<BoltGradeProperties>();
         List<BoltProperties> boltData = new List<BoltProperties>();
 
@@ -82,7 +82,7 @@ namespace SahalinEnergyBoltStressCalculation.LogicClassesFolder
         }
 
         // Обновление списков ViewModel с объектами болтов из таблиц BoltSize и BoltGrade
-        public void UpdateViewModelLists(string filter)
+        private void UpdateViewModelLists(string filter)
         {
             workWithDataBaseBTCObject.UpdateModelListsForGradeChange(filter);
             gradeData = workWithDataBaseBTCObject.GetBoltGradeProperties();
@@ -90,55 +90,9 @@ namespace SahalinEnergyBoltStressCalculation.LogicClassesFolder
         }
 
         // Вызов метода реакции у View на выбор Bolt Grade и передача в этот метод информации, выбран ли "Custom" Bolt Grade
-        public void ReturnForChangingGrade(string customGradeOrNot)
+        private void ReturnForChangingGrade(string customGradeOrNot)
         {
             PageCalculationBT.ChangeUiWhenGradePicked(customGradeOrNot);
-        }
-
-
-
-
-
-        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        // Обработка выбора bolt size
-
-        // Выбран BoltSize
-        // Обновление ViewModel в зависимости от выбранного размера болта и вызов методов реакции у View
-        public void UpdateViewModelWithComboBoxWithSizes(string size)
-        {
-            switch (size)
-            {
-                case "Custom":
-                    ReturnForChangingSize(size);
-                    break;
-                default:
-                    UpdateViewModelCurrentBolt(size);
-                    ReturnForChangingSize(size);
-                    break;
-
-            }
-        }
-
-        // Присвоение переменным-объектам конкретного болта из таблиц BoltSize и BoltGrade
-        public void UpdateViewModelCurrentBolt(string size)
-        {
-            workWithDataBaseBTCObject.UpdateDataBaseForSizeChange(size);
-            currentBolt = workWithDataBaseBTCObject.GetCurrentBoltProperties();
-            currentBoltGrade = workWithDataBaseBTCObject.GetCurrentBoltGradeProperties();
-        }
-
-        // Вызов методов у View в качествер реакции на выбор bolt size
-        public void ReturnForChangingSize(string size)
-        {
-            switch (size)
-            {
-                case "Custom":
-                    PageCalculationBT.ChangeUiWhenSizePicked("Custom");
-                    break;
-                default:
-                    PageCalculationBT.ChangeUiWhenSizePicked("not custom");
-                    break;
-            }
         }
 
         // Возврат массива со значениями размеров (bolt size) в зависимости от выбранного bolt grade
@@ -152,6 +106,52 @@ namespace SahalinEnergyBoltStressCalculation.LogicClassesFolder
             }
 
             return sizesArrayForItems;
+        }
+
+
+
+
+
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        // Обработка выбора bolt size
+
+        // Выбран BoltSize
+        // Обновление ViewModel в зависимости от выбранного размера болта и вызов методов реакции у View
+        public void UpdateViewModelWithComboBoxWithSizes(string size, string grade)
+        {
+            switch (size)
+            {
+                case "Custom":
+                    ReturnForChangingSize(size);
+                    break;
+                default:
+                    UpdateViewModelCurrentBolt(size, grade);
+                    ReturnForChangingSize(size);
+                    break;
+
+            }
+        }
+
+        // Присвоение переменным-объектам конкретного болта из таблиц BoltSize и BoltGrade
+        private void UpdateViewModelCurrentBolt(string size, string grade)
+        {
+            workWithDataBaseBTCObject.UpdateDataBaseForSizeChange(size, grade);
+            currentBolt = workWithDataBaseBTCObject.GetCurrentBoltProperties();
+            currentBoltGrade = workWithDataBaseBTCObject.GetCurrentBoltGradeProperties();
+        }
+
+        // Вызов методов у View в качествер реакции на выбор bolt size
+        private void ReturnForChangingSize(string size)
+        {
+            switch (size)
+            {
+                case "Custom":
+                    PageCalculationBT.ChangeUiWhenSizePicked("Custom");
+                    break;
+                default:
+                    PageCalculationBT.ChangeUiWhenSizePicked("not custom");
+                    break;
+            }
         }
 
         // Выбран bolt size
@@ -193,33 +193,8 @@ namespace SahalinEnergyBoltStressCalculation.LogicClassesFolder
         ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         // Обработка нажатия кнопки "посчитать"
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        // Подключение к базе данных и загрузка из неё двух таблиц
-        public void LoadDataFromDB()
-        {
-            workWithDataBaseBTCObject.LoadData();
-        }
-
-        // 
-        public bool SetUpGrade(string statusGrade)
+        // Проверка, выбран ли bolt grade, вызов методов проверки ввода данных, которые от него зависят
+        private bool SetUpGrade(string statusGrade)
         {
             bool res;
             switch (statusGrade)
@@ -241,7 +216,8 @@ namespace SahalinEnergyBoltStressCalculation.LogicClassesFolder
             return res;
         }
 
-        public bool SetUpSize(string statusSize)
+        // Проверка, выбран ли bolt size, вызов методов проверки ввода данных, которые от него зависят
+        private bool SetUpSize(string statusSize)
         {
             bool res;
             switch (statusSize)
@@ -260,11 +236,11 @@ namespace SahalinEnergyBoltStressCalculation.LogicClassesFolder
             return res;
         }
 
-        public bool setUpProperties(string statusSize)
+        // Считывание данных с полей свойств болта
+        // Проверка, введены ли свойства болта в случае, если выбран размер болта Custom и установка их
+        // в специальные переменные в Presenter'е
+        private bool setUpProperties(string statusSize)
         {
-
-            // Считывание данных с полей свойств болта
-            // Проверка, введены ли свойства болта в случае, если выбран размер болта Custom
 
             bool checkingProp;
             double helpD;
@@ -278,7 +254,7 @@ namespace SahalinEnergyBoltStressCalculation.LogicClassesFolder
             if (Double.TryParse(prop[0], out helpD) == false || Double.TryParse(prop[1], out helpE) == false
                 || Double.TryParse(prop[2], out helpH) == false
                 || Double.TryParse(prop[3], out helpK) == false || Double.TryParse(prop[4], out helpP) == false
-                || Double.TryParse(prop[5], out helpNOTPI) == false|| Double.TryParse(prop[6], out helpNutWidth) == false)
+                || Double.TryParse(prop[5], out helpNOTPI) == false || Double.TryParse(prop[6], out helpNutWidth) == false)
             {
                 PageCalculationBT.ShowErrorMessage("Properties");
                 checkingProp = false;
@@ -287,7 +263,8 @@ namespace SahalinEnergyBoltStressCalculation.LogicClassesFolder
             {
                 PageCalculationBT.ShowErrorMessage("PropertiesNull");
                 checkingProp = false;
-            } else
+            }
+            else
             {
                 customD = helpD;
                 customE = helpE;
@@ -301,7 +278,10 @@ namespace SahalinEnergyBoltStressCalculation.LogicClassesFolder
             return checkingProp;
         }
 
-        public bool SetUpYield(string grade)
+        // Считывание данных с полей свойств болта
+        // Проверка, введены ли b в случае, если выбран размер болта Custom и установка их
+        // в специальные переменные в Presenter'е
+        private bool SetUpYield(string grade)
         {
             bool res;
             if (grade == "Custom")
@@ -328,29 +308,34 @@ namespace SahalinEnergyBoltStressCalculation.LogicClassesFolder
                         // Введён % Yield Stress, равный 0
                         PageCalculationBT.ShowErrorMessage("YieldStressNull");
                         res = false;
-                    } else
+                    }
+                    else
                     {
                         // Введён Yield Stress И % Yield Stress, равный 0
                         PageCalculationBT.ShowErrorMessage("YieldStressNull");
                         res = false;
                     }
-                } else if (Double.TryParse(yieldValues[0], out help1) == false && Double.TryParse(yieldValues[1], out help2) == true)
+                }
+                else if (Double.TryParse(yieldValues[0], out help1) == false && Double.TryParse(yieldValues[1], out help2) == true)
                 {
                     // Не введён Yield Stress при выбранном bolt grade "Custom"
                     PageCalculationBT.ShowErrorMessage("Yield");
                     res = false;
-                } else if (Double.TryParse(yieldValues[0], out help1) == true && Double.TryParse(yieldValues[1], out help2) == false)
+                }
+                else if (Double.TryParse(yieldValues[0], out help1) == true && Double.TryParse(yieldValues[1], out help2) == false)
                 {
                     // Не введён % YieldStress при выбранном bolt grade "Custom"
                     PageCalculationBT.ShowErrorMessage("PerCent");
                     res = false;
-                } else
+                }
+                else
                 {
                     // Не введён % YieldStress И YieldStress при выбранном bolt grade "Custom"
                     PageCalculationBT.ShowErrorMessage("Yield");
                     res = false;
                 }
-            } else
+            }
+            else
             {
                 string[] yieldValues = PageCalculationBT.GetYieldStressCustom();
                 double help;
@@ -378,10 +363,10 @@ namespace SahalinEnergyBoltStressCalculation.LogicClassesFolder
             return res;
         }
 
-
-        public bool CheckFCoeff()
+        // Проверка, введён ли коэффициент трения и запись его в переменную
+        private bool CheckFCoeff()
         {
-            // Проверка, введён ли коэффициент трения
+            
             bool checkFC;
             double help;
             string helpString = PageCalculationBT.GetFCoeff();
@@ -402,14 +387,14 @@ namespace SahalinEnergyBoltStressCalculation.LogicClassesFolder
                 frictionCoeffViewModel = help;
                 checkFC = true;
             }
-            
+
             return checkFC;
         }
 
-        // Проверка, введён ли коэффициент К
-        public bool CheckKCoeff()
+        // Проверка, введён ли коэффициент К и запись его в переменную
+        private bool CheckKCoeff()
         {
-            // Проверка, введён ли коэффициент трения
+            
             bool checkKC;
             double help;
             string helpString = PageCalculationBT.GetKCoeff();
@@ -420,13 +405,13 @@ namespace SahalinEnergyBoltStressCalculation.LogicClassesFolder
             }
             else if (help <= 0)
             {
-                // Коэффициент трения не входит необходимый диапазон
+                // Коэффициент К не входит необходимый диапазон
                 PageCalculationBT.ShowErrorMessage("KCoeffLimits");
                 checkKC = false;
             }
             else
             {
-                // Всё в порядке, устанавливаем нужное значение коэффициента трения во ViewModel
+                // Всё в порядке, устанавливаем нужное значение коэффициента К во ViewModel
                 kCoeffViewModel = help;
                 checkKC = true;
             }
@@ -434,26 +419,30 @@ namespace SahalinEnergyBoltStressCalculation.LogicClassesFolder
             return checkKC;
         }
 
+        // Метод-организатор расчёта в Presenter
         public void BeginCalculation(string statusGrade, string statusSize)
         {
             if (SetUpGrade(statusGrade) == false)
             {
                 // Bolt Grade не выбран
                 return;
-            } else if (SetUpSize(statusSize) == false)
+            }
+            else if (SetUpSize(statusSize) == false)
             {
                 // Размер болта не выбран
                 return;
-            } else if (CheckFCoeff() == false)
+            }
+            else if (CheckFCoeff() == false)
             {
                 // Коэффициент трения не введён
                 return;
-            } else if (CheckKCoeff() == false)
+            }
+            else if (CheckKCoeff() == false)
             {
                 // Коэффициент К не введён
                 return;
             }
-                else
+            else
             {
                 // Всё в порядке. Создаём необходимые объекты калькулятора, а также размера и grade болта
                 // Передаём всё в метод View и вызываем у него в качествер реакциии на нажатие кнопки "Calculate"
@@ -464,7 +453,8 @@ namespace SahalinEnergyBoltStressCalculation.LogicClassesFolder
                 if (statusGrade == "Custom")
                 {
                     grade = "Custom";
-                } else
+                }
+                else
                 {
                     grade = currentBoltGrade.BoltGrade;
                 }
@@ -482,7 +472,8 @@ namespace SahalinEnergyBoltStressCalculation.LogicClassesFolder
             }
         }
 
-        public CalculateBTC CreateCalculator(string statusGrade, string statusSize)
+        // Создание объекта-калькулятора и установка в него необходимых данных
+        private CalculateBTC CreateCalculator(string statusGrade, string statusSize)
         {
             // Создание объекта-калькулятора API6A и установка в него необходимых параметров
 
@@ -492,7 +483,8 @@ namespace SahalinEnergyBoltStressCalculation.LogicClassesFolder
             {
                 objectCalculator.yieldStressPsi = yieldStressValueCustom;
                 objectCalculator.perCent = yieldStressPerCent;
-            } else
+            }
+            else
             {
                 objectCalculator.yieldStressPsi = currentBoltGrade.YieldStressPsi;
                 objectCalculator.perCent = yieldStressPerCent;
@@ -507,7 +499,8 @@ namespace SahalinEnergyBoltStressCalculation.LogicClassesFolder
                 objectCalculator.threadPitch_P = customP;
                 objectCalculator.numberOfThreadsPerInch = customNOTPI;
                 objectCalculator.nutWidth = customNutWidth;
-            } else
+            }
+            else
             {
                 objectCalculator.threadMajorDiameter_D = currentBolt.ThreadMajorDiameter_D;
                 objectCalculator.pitchDiameterOfThread_E = currentBolt.PitchDiameterOfThread_E;
@@ -522,7 +515,17 @@ namespace SahalinEnergyBoltStressCalculation.LogicClassesFolder
             objectCalculator.kCoeff = kCoeffViewModel;
 
             return objectCalculator;
-            
+
         }
+
+
+
+
+        // Подключение к базе данных и загрузка из неё двух таблиц
+        public void LoadDataFromDB()
+        {
+            workWithDataBaseBTCObject.LoadData();
+        }
+
     }
 }
