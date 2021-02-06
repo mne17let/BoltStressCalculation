@@ -141,7 +141,7 @@
                        Background="#674172" 
                        Foreground="White" Visibility="Visible"
                            Padding="3">Number of bolts</TextBlock>
-                <TextBox Name="TextBoxNumberOfBolts" FontSize="15" 
+                <TextBox Name="TextBoxFor_NumberOfBolts" FontSize="15" 
                      VerticalAlignment="Center" Visibility="Visible"
                          PreviewTextInput="OnlyIntegerNumbers"
                              PreviewKeyDown="WithoutSpace">

@@ -569,6 +569,7 @@ namespace SahalinEnergyBoltStressCalculation.PageClassesFolder
             string fCoeff = TextBoxForFrictionCoefficient.Text;
             return fCoeff;
         }
+
     }
 
     

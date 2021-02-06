@@ -193,6 +193,59 @@ namespace SahalinEnergyBoltStressCalculation.LogicClassesFolder
         ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         // Обработка нажатия кнопки "посчитать"
 
+        // Метод-организатор расчёта в Presenter
+        public void BeginCalculation(string statusGrade, string statusSize)
+        {
+            if (SetUpGrade(statusGrade) == false)
+            {
+                // Bolt Grade не выбран
+                return;
+            }
+            else if (SetUpSize(statusSize) == false)
+            {
+                // Размер болта не выбран
+                return;
+            }
+            else if (CheckFCoeff() == false)
+            {
+                // Коэффициент трения не введён
+                return;
+            }
+            else if (CheckKCoeff() == false)
+            {
+                // Коэффициент К не введён
+                return;
+            }
+            else
+            {
+                // Всё в порядке. Создаём необходимые объекты калькулятора, а также размера и grade болта
+                // Передаём всё в метод View и вызываем у него в качествер реакциии на нажатие кнопки "Calculate"
+                var objectCalculator = CreateCalculator(statusGrade, statusSize);
+                string grade;
+                string size;
+
+                if (statusGrade == "Custom")
+                {
+                    grade = "Custom";
+                }
+                else
+                {
+                    grade = currentBoltGrade.BoltGrade;
+                }
+
+                if (statusSize == "Custom")
+                {
+                    size = "Custom";
+                }
+                else
+                {
+                    size = currentBolt.BoltSize;
+                }
+
+                PageCalculationBT.ChangeUIOnCalculation(objectCalculator, grade, size);
+            }
+        }
+
         // Проверка, выбран ли bolt grade, вызов методов проверки ввода данных, которые от него зависят
         private bool SetUpGrade(string statusGrade)
         {
@@ -284,7 +337,7 @@ namespace SahalinEnergyBoltStressCalculation.LogicClassesFolder
         private bool SetUpYield(string grade)
         {
             bool res;
-            if (grade == "Custom")
+            if (grade == "Custom") // Выбран кастомный grade
             {
                 double help1;
                 double help2;
@@ -292,7 +345,7 @@ namespace SahalinEnergyBoltStressCalculation.LogicClassesFolder
                 if (Double.TryParse(yieldValues[0], out help1) == true && Double.TryParse(yieldValues[1], out help2) == true)
                 {
                     if (help1 != 0.0 && help2 != 0.0)
-                    {
+                    {   // Введены YIELD Stress и его %
                         yieldStressValueCustom = help1;
                         yieldStressPerCent = help2;
                         res = true;
@@ -335,7 +388,7 @@ namespace SahalinEnergyBoltStressCalculation.LogicClassesFolder
                     res = false;
                 }
             }
-            else
+            else // Выбран grade из списка
             {
                 string[] yieldValues = PageCalculationBT.GetYieldStressCustom();
                 double help;
@@ -417,59 +470,6 @@ namespace SahalinEnergyBoltStressCalculation.LogicClassesFolder
             }
 
             return checkKC;
-        }
-
-        // Метод-организатор расчёта в Presenter
-        public void BeginCalculation(string statusGrade, string statusSize)
-        {
-            if (SetUpGrade(statusGrade) == false)
-            {
-                // Bolt Grade не выбран
-                return;
-            }
-            else if (SetUpSize(statusSize) == false)
-            {
-                // Размер болта не выбран
-                return;
-            }
-            else if (CheckFCoeff() == false)
-            {
-                // Коэффициент трения не введён
-                return;
-            }
-            else if (CheckKCoeff() == false)
-            {
-                // Коэффициент К не введён
-                return;
-            }
-            else
-            {
-                // Всё в порядке. Создаём необходимые объекты калькулятора, а также размера и grade болта
-                // Передаём всё в метод View и вызываем у него в качествер реакциии на нажатие кнопки "Calculate"
-                var objectCalculator = CreateCalculator(statusGrade, statusSize);
-                string grade;
-                string size;
-
-                if (statusGrade == "Custom")
-                {
-                    grade = "Custom";
-                }
-                else
-                {
-                    grade = currentBoltGrade.BoltGrade;
-                }
-
-                if (statusSize == "Custom")
-                {
-                    size = "Custom";
-                }
-                else
-                {
-                    size = currentBolt.BoltSize;
-                }
-
-                PageCalculationBT.ChangeUIOnCalculation(objectCalculator, grade, size);
-            }
         }
 
         // Создание объекта-калькулятора и установка в него необходимых данных

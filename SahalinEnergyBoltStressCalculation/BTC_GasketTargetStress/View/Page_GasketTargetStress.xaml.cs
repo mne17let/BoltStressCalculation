@@ -418,12 +418,7 @@ namespace SahalinEnergyBoltStressCalculation.BTC_GasketTargetStress.View
         {
             double[] properties = presenter_GasketTargetStress.GetBoltSizeProperties();
             double d = properties[0];
-            double e = properties[1];
-            double h = properties[2];
-            double k = properties[3];
-            double p = properties[4];
-            double notpi = properties[5];
-            double nW = properties[6];
+            double p = properties[1];
 
 
 
@@ -433,5 +428,150 @@ namespace SahalinEnergyBoltStressCalculation.BTC_GasketTargetStress.View
 
         }
 
+
+
+
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        // Парсим данные и отдаём их в Presenter
+
+        // Отдаём "собранные" с полей YieldStress и YieldPercent данные
+        public string[] GetYieldStressCustom()
+        {
+            string valueYield = TextBoxYieldStress.Text;
+            string perCent = TextBoxForYieldPercent.Text;
+
+            string[] arrString = new string[] { valueYield, perCent };
+            return arrString;
+        }
+
+        // Отдаём "собранные" с полей ввода свойства болта
+        public string[] GetProperties()
+        {
+            string d = TextBoxFor_D.Text;
+            string p = TextBoxFor_P.Text;
+
+            string[] properties = new string[] { d, p };
+            return properties;
+        }
+
+        // Отдаём "собранный" с поля ввода коэффициент трения
+        public string GetFCoeff()
+        {
+            string fCoeff = TextBoxForFrictionCoefficient.Text;
+            return fCoeff;
+        }
+
+        // Отдаю "собранный" с поля ввода коэффициент К
+        public string GetKCoeff()
+        {
+            string kCoeff = TextBoxForKCoefficient.Text;
+            return kCoeff;
+        }
+
+        // Отдаём "собанное" с поля ввода число болтов
+        public string GetBoltNumbers()
+        {
+            string numOfBolts = TextBoxFor_NumberOfBolts.Text;
+            return numOfBolts;
+        }
+
+        // Отдаём "собанный" с поля ввода Gasket Outside Diameter
+        public string GetGasketOutsideDiameter()
+        {
+            string gOD = TextBoxFor_GasketOutsideDiameter.Text;
+            return gOD;
+        }
+
+        // Отдаём "собанный" с поля ввода Gasket Outside Diameter
+        public string GetGasketInsideDiameter()
+        {
+            string gID = TextBoxFor_GasketInsideDiameter.Text;
+            return gID;
+        }
+
+        // Отдаём "собанный" с поля ввода Target Assembly Gasket Stress
+        public string GetTargetAssemblyGasketStress()
+        {
+            string tAGS = TextBoxFor_TargetAssemblyGasketStress.Text;
+            return tAGS;
+        }
+        
+
+
+
+
+
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        // Изменения UI после нажатия кнопки "Посчитать"
+
+        // Показываем окно ошибки с нужным текстом
+        public void ShowErrorMessage(string code)
+        {
+            switch (code)
+            {
+                case "Yield":
+                    MessageBox.Show("Введите значение Yield Stress");
+                    break;
+                case "PerCent":
+                    MessageBox.Show("Введите значение % Yield Stress");
+                    break;
+                case "Properties":
+                    MessageBox.Show("Введите значения всех характеристик болта");
+                    break;
+                case "BoltSize":
+                    MessageBox.Show("Pick bolt size");
+                    break;
+                case "BoltGrade":
+                    MessageBox.Show("Pick bolt grade");
+                    break;
+                case "FCoeff":
+                    MessageBox.Show("Введите значение коэффициента трения");
+                    break;
+                case "FCoeffLimits":
+                    MessageBox.Show("Коэффициент трения не может быть меньше или равен 0 или больше 1");
+                    break;
+                case "PropertiesNull":
+                    MessageBox.Show("Значения характеристик болта не могут быть равны 0");
+                    break;
+                case "YieldStressNull":
+                    MessageBox.Show("Значения Yield Stress и % Yield Stress не могут быть равны 0");
+                    break;
+
+                case "KCoeff":
+                    MessageBox.Show("Введите коэффициент К");
+                    break;
+                case "KCoeffLimits":
+                    MessageBox.Show("Коэффициент К не может быть равен 0");
+                    break;
+
+                case "NumberOfBolts":
+                    MessageBox.Show("Введите число болтов");
+                    break;
+                case "NumberOfBoltsLimits":
+                    MessageBox.Show("Число болтов должно быть больше 0");
+                    break;
+
+                case "GasketOutsideDiameter":
+                    MessageBox.Show("Введите Gasket Outside Diameter");
+                    break;
+                case "GasketOutsideDiameterLimits":
+                    MessageBox.Show("Gasket Outside Diameter должен быть больше 0");
+                    break;
+
+                case "GasketInsideDiameter":
+                    MessageBox.Show("Введите Gasket Inside Diameter");
+                    break;
+                case "GasketInsideDiameterLimits":
+                    MessageBox.Show("Gasket Inside Diameter должен быть больше 0");
+                    break;
+
+                case "TargetAssemblyGasketStress":
+                    MessageBox.Show("Введите Target Assembly Gasket Stress");
+                    break;
+                case "TargetAssemblyGasketStressLimits":
+                    MessageBox.Show("Target Assembly Gasket Stress должен быть больше 0");
+                    break;
+            }
+        }
     }
 }
