@@ -24,7 +24,7 @@ namespace SahalinEnergyBoltStressCalculation.BTC_GasketTargetStress.CalculationC
         public double GetAG()
         {
             double n1 = Math.PI;
-            double n2 = Math.Pow(gasketOutsideDiameter * 0.039, 2) - Math.Pow(gasketInsideDiameter * 0.039, 2);
+            double n2 = Math.Pow(gasketOutsideDiameter / 25.4, 2) - Math.Pow(gasketInsideDiameter / 25.4, 2);
 
             aG = n1 * n2;
 
