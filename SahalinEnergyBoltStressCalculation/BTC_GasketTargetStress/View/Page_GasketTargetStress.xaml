@@ -73,27 +73,30 @@
             </TextBlock>
         </Button>
 
-        <ComboBox Name="ComboBoxWithGrades" Grid.Row="1" Grid.Column="0" 
+
+        <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="0"
+                    HorizontalAlignment="Center">
+
+            <ComboBox Name="ComboBoxWithGrades" Grid.Row="1" Grid.Column="0" 
                   HorizontalAlignment="Center" VerticalAlignment="Center"
                   FontSize="30" FontWeight="Bold" SelectedIndex="0"
                   VerticalContentAlignment="Center">
-            <ComboBoxItem Name="HintItemGrade" MaxHeight="0">Pick bolt grade</ComboBoxItem>
-            <ComboBoxItem Name="DefaultItemGrade">Custom</ComboBoxItem>
-            <ComboBoxItem Name="Grade111">A193 B7</ComboBoxItem>
-            <ComboBoxItem Name="Grade22">A193 B7M</ComboBoxItem>
-            <ComboBoxItem Name="Grade32">A193 B16</ComboBoxItem>
-            <ComboBoxItem Name="Grade42">A320 L7</ComboBoxItem>
-            <ComboBoxItem Name="Grade52">A320 L7M</ComboBoxItem>
-            <ComboBoxItem Name="Grade62">A320 L43</ComboBoxItem>
-            <ComboBoxItem Name="Grade72">A193 B8 class 1</ComboBoxItem>
-            <ComboBoxItem Name="Grade82">A193/A320 B8 class 2</ComboBoxItem>
-            <ComboBoxItem Name="Grade92">A193/A320 B8M class 2</ComboBoxItem>
-            <ComboBoxItem Name="Grade102">A193 B8M2 class 2B</ComboBoxItem>
-            <ComboBoxItem Name="Grade112">A453 grade 660 A, B and C</ComboBoxItem>
-        </ComboBox>
+                <ComboBoxItem Name="HintItemGrade" MaxHeight="0">Pick bolt grade</ComboBoxItem>
+                <ComboBoxItem Name="DefaultItemGrade">Custom</ComboBoxItem>
+                <ComboBoxItem Name="Grade111">A193 B7</ComboBoxItem>
+                <ComboBoxItem Name="Grade22">A193 B7M</ComboBoxItem>
+                <ComboBoxItem Name="Grade32">A193 B16</ComboBoxItem>
+                <ComboBoxItem Name="Grade42">A320 L7</ComboBoxItem>
+                <ComboBoxItem Name="Grade52">A320 L7M</ComboBoxItem>
+                <ComboBoxItem Name="Grade62">A320 L43</ComboBoxItem>
+                <ComboBoxItem Name="Grade72">A193 B8 class 1</ComboBoxItem>
+                <ComboBoxItem Name="Grade82">A193/A320 B8 class 2</ComboBoxItem>
+                <ComboBoxItem Name="Grade92">A193/A320 B8M class 2</ComboBoxItem>
+                <ComboBoxItem Name="Grade102">A193 B8M2 class 2B</ComboBoxItem>
+                <ComboBoxItem Name="Grade112">A453 grade 660 A, B and C</ComboBoxItem>
+            </ComboBox>
 
-        <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.Column="0"
-                    HorizontalAlignment="Center">
+
             <StackPanel Orientation="Vertical" VerticalAlignment="Center"
                         Margin="5 0 5 0">
                     <TextBlock Name="TextYeildStress" FontSize="15" VerticalAlignment="Center"
@@ -107,32 +110,10 @@
                 </TextBox>
                 </StackPanel>
 
-                <StackPanel Orientation="Vertical" VerticalAlignment="Center"
-                        Margin="5 0 5 0">
-                    <TextBlock FontSize="15" VerticalAlignment="Center"
-                       Background="#674172" 
-                       Foreground="White"
-                           Padding="3">% of YEILD stress</TextBlock>
-                    <TextBox Name="TextBoxForYieldPercent" FontSize="15" VerticalAlignment="Center"
-                     MinWidth="50" MaxLength="10"
-                             PreviewTextInput="OnlyNumbersAndMax100"
-                             PreviewKeyDown="WithoutSpace">
-                        
-                    </TextBox>
-                </StackPanel>
-
-                <StackPanel Orientation="Vertical" VerticalAlignment="Center"
-                        Margin="5 0 5 0">
-                    <TextBlock FontSize="15" VerticalAlignment="Center"
-                       Background="#674172" 
-                       Foreground="White" Visibility="Visible"
-                           Padding="3">σ, psi</TextBlock>
-                    <TextBlock Name ="TextBoxFor_CalculateSigma" FontSize="15" VerticalAlignment="Center"
-                       Background="White" Visibility="Visible"></TextBlock>
-                </StackPanel>
+                
             </StackPanel>
 
-        <StackPanel Orientation="Horizontal" Grid.Row="3" Grid.Column="0"
+        <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.Column="0"
                     HorizontalAlignment="Center">
             <ComboBox Name="ComboBoxWithBoltSize"
                   HorizontalAlignment="Center" VerticalAlignment="Center"
@@ -181,7 +162,7 @@
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center"
-                    VerticalAlignment="Center" Grid.Row="4" Grid.Column="0">
+                    VerticalAlignment="Center" Grid.Row="3" Grid.Column="0">
 
             <StackPanel Orientation="Vertical" VerticalAlignment="Center"
                         Margin="5">
@@ -222,7 +203,7 @@
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" VerticalAlignment="Center"
-                    HorizontalAlignment="Center" Grid.Column="0" Grid.Row="5">
+                    HorizontalAlignment="Center" Grid.Column="0" Grid.Row="4">
             <StackPanel Orientation="Vertical" VerticalAlignment="Center"
                         Margin="5">
                 <TextBlock Name="FrictionCoefficientText" FontSize="12"
@@ -259,6 +240,14 @@
                              PreviewKeyDown="WithoutSpace">
                 </TextBox>
             </StackPanel>
+
+            
+
+
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" VerticalAlignment="Center"
+                    HorizontalAlignment="Center" Grid.Column="0" Grid.Row="5">
 
             <StackPanel Orientation="Vertical" VerticalAlignment="Center"
                         Margin="5">

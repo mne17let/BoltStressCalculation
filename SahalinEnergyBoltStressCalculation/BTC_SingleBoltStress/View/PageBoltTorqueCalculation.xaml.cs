@@ -108,6 +108,7 @@ namespace SahalinEnergyBoltStressCalculation.PageClassesFolder
                     TextBoxYieldStress.IsReadOnly = false;
                     UpdateComboBoxWithSize();
                     SetVisibileYield();
+                    TextBoxYieldStress.Text = "";
                     break;
                 default: 
                     TextBoxYieldStress.IsReadOnly = true;

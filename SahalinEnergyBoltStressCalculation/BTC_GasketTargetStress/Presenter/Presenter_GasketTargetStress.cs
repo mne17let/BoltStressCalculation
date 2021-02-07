@@ -266,11 +266,9 @@ namespace SahalinEnergyBoltStressCalculation.BTC_GasketTargetStress.Presenter
             if (statusGrade == "Custom")
             {
                 objectCalculator.yieldStressPsi = yieldStressValueCustom;
-                objectCalculator.perCentYieldStress = yieldStressPerCent;
             } else
             {
                 objectCalculator.yieldStressPsi = currentBoltGrade.YieldStressPsi;
-                objectCalculator.perCentYieldStress = yieldStressPerCent;
             }
 
             if (statusSize == "Custom")
@@ -325,79 +323,35 @@ namespace SahalinEnergyBoltStressCalculation.BTC_GasketTargetStress.Presenter
             bool res;
             if (grade == "Custom") // Выбран кастомный grade
             {
-                double help1;
-                double help2;
-                string[] yieldValues = PageView.GetYieldStressCustom();
-                if (Double.TryParse(yieldValues[0], out help1) == true && Double.TryParse(yieldValues[1], out help2) == true)
+                double help;
+
+                string yieldValue = PageView.GetYieldStressCustom();
+
+                if (Double.TryParse(yieldValue, out help) == true)
                 { // Введены YIELD Stress и его %
-                    if (help1 != 0.0 && help2 != 0.0)
-                    { // Оба не 0
-                        yieldStressValueCustom = help1;
-                        yieldStressPerCent = help2;
+                    if (help != 0.0)
+                    { // Не равен 0
+                        yieldStressValueCustom = help;
                         res = true;
                     }
-                    else if (help1 == 0.0)
+                    else
                     {
                         // Введён Yield Stress, равный 0
                         PageView.ShowErrorMessage("YieldStressNull");
                         res = false;
                     }
-                    else if (help2 == 0.0)
-                    {
-                        // Введён % Yield Stress, равный 0
-                        PageView.ShowErrorMessage("YieldStressNull");
-                        res = false;
-                    }
-                    else
-                    {
-                        // Введён Yield Stress И % Yield Stress, равный 0
-                        PageView.ShowErrorMessage("YieldStressNull");
-                        res = false;
-                    }
-                }
-                else if (Double.TryParse(yieldValues[0], out help1) == false && Double.TryParse(yieldValues[1], out help2) == true)
-                {
-                    // Не введён Yield Stress при выбранном bolt grade "Custom"
-                    PageView.ShowErrorMessage("Yield");
-                    res = false;
-                }
-                else if (Double.TryParse(yieldValues[0], out help1) == true && Double.TryParse(yieldValues[1], out help2) == false)
-                {
-                    // Не введён % YieldStress при выбранном bolt grade "Custom"
-                    PageView.ShowErrorMessage("PerCent");
-                    res = false;
                 }
                 else
                 {
-                    // Не введёны % YieldStress И YieldStress при выбранном bolt grade "Custom"
+                    // Не введён Yield Stress при выбранном bolt grade "Custom"
                     PageView.ShowErrorMessage("Yield");
                     res = false;
                 }
             }
             else // Выбран grade из списка
             {
-                string[] yieldValues = PageView.GetYieldStressCustom();
-                double help;
-                if (Double.TryParse(yieldValues[1], out help) == true)
-                {
-                    if (help == 0)
-                    {
-                        // Введён % Yield Stress, равный 0
-                        PageView.ShowErrorMessage("YieldStressNull");
-                        res = false;
-                    }
-                    else
-                    {   // Введённый % не равен 0
-                        yieldStressPerCent = help;
-                        res = true;
-                    }
-                }
-                else
-                {
-                    // Не введён % YieldStress при выбранном bolt grade из списка
-                    PageView.ShowErrorMessage("PerCent");
-                    res = false;
-                }
+                yieldStressValueCustom = currentBoltGrade.YieldStressPsi;
+                res = true;
             }
             return res;
         }

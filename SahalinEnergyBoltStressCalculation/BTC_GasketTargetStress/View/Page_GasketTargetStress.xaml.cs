@@ -322,6 +322,7 @@ namespace SahalinEnergyBoltStressCalculation.BTC_GasketTargetStress.View
                     TextBoxYieldStress.IsReadOnly = false;
                     UpdateComboBoxWithSize();
                     SetVisibileYield();
+                    TextBoxYieldStress.Text = "";
                     break;
                 default:
                     TextBoxYieldStress.IsReadOnly = true;
@@ -453,13 +454,11 @@ namespace SahalinEnergyBoltStressCalculation.BTC_GasketTargetStress.View
         // Парсим данные и отдаём их в Presenter
 
         // Отдаём "собранные" с полей YieldStress и YieldPercent данные
-        public string[] GetYieldStressCustom()
+        public string GetYieldStressCustom()
         {
             string valueYield = TextBoxYieldStress.Text;
-            string perCent = TextBoxForYieldPercent.Text;
 
-            string[] arrString = new string[] { valueYield, perCent };
-            return arrString;
+            return valueYield;
         }
 
         // Отдаём "собранные" с полей ввода свойства болта
@@ -602,7 +601,6 @@ namespace SahalinEnergyBoltStressCalculation.BTC_GasketTargetStress.View
             var bSR = Math.Round(objectCalculator.GetSbsel(), 0);
             var perCent = Math.Round(objectCalculator.GetPercentOfYIELDStress(), 0);
             var tau = Math.Round(objectCalculator.GetTauGasketTargetStress(), 0);
-            var sigma = Math.Round(objectCalculator.GetSigma(), 0);
 
 
             var convertTau = Math.Round(objectCalculator.GetTauGasketTargetStress() * 1.3558, 0);
@@ -614,7 +612,6 @@ namespace SahalinEnergyBoltStressCalculation.BTC_GasketTargetStress.View
 
             TextBlock_TorqueMoment.Text = "τ = " + tau.ToString() + " Lbf-Ft = " + convertTau.ToString() + " N-m";
 
-            TextBoxFor_CalculateSigma.Text = sigma.ToString();
         }
 
         // Делаю видимыми таблицы с результатами и невидимым инфобаннер
