@@ -1,4 +1,5 @@
-﻿using SahalinEnergyBoltStressCalculation.BTC_PressureAndGasketType.Presenter;
+﻿using SahalinEnergyBoltStressCalculation.BTC_PressureAndGasketType.CalculationClass;
+using SahalinEnergyBoltStressCalculation.BTC_PressureAndGasketType.Presenter;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -33,6 +34,9 @@ namespace SahalinEnergyBoltStressCalculation.BTC_PressureAndGasketType.View
         private void InitFun()
         {
             presenter_PressureAndGaskerType.PageView = this;
+            ComboBoxWithGrades.SelectionChanged += ListenerForGradeComboBox;
+            ComboBoxWithBoltSize.SelectionChanged += ListenerForBoltSizeComboBox;
+            CalculationButton_PressureAndGasketType.Click += ListenerForCalculationButton;
         }
 
 
@@ -627,6 +631,56 @@ namespace SahalinEnergyBoltStressCalculation.BTC_PressureAndGasketType.View
                     MessageBox.Show("Gasket Width должен быть больше 0");
                     break;
             }
+        }
+
+        // Изменения View в результате вычислительных операций
+        public void ChangeUIOnCalculation(Calculator_PressureAndGasketType objectCalculator, string grade, string size)
+        {
+
+            SetResultTablesVisibility();
+
+            var wm1 = Math.Round(objectCalculator.Get_Wm1(), 0);
+            var wm2 = Math.Round(objectCalculator.Get_Wm2(), 0);
+            var singleBoltLoad_Newton = Math.Round(objectCalculator.GetSingleBoltLoad_Newton(), 0);
+            var singleBoltLoad_Lbf = Math.Round(objectCalculator.GetSingleBoltLoad_Lbf(), 0);
+            var bSR = Math.Round(objectCalculator.GetBoltStressRequired_3calc(), 0);
+            var perCent = Math.Round(objectCalculator.GetPerCentOfYIELDStress_3calc(), 1);
+
+            var tau1_Lbf_ft = Math.Round(objectCalculator.GetTau_API6AAnnexD(), 0);
+            var tau1_Newton_m = Math.Round(objectCalculator.GetTau_API6AAnnexD() * 1.3558, 0);
+
+            var tau2_Lbf_ft = Math.Round(objectCalculator.GetTau_ASMEPCC_1AppendixJ(), 0);
+            var tau2_Newton_m = Math.Round(objectCalculator.GetTau_ASMEPCC_1AppendixJ() * 1.3558, 0);
+
+            var tau3_Lbf_ft = Math.Round(objectCalculator.GetTau_ASMEPCC_1AppendixK_Simplified(), 0);
+            var tau3_Newton_m = Math.Round(objectCalculator.GetTau_ASMEPCC_1AppendixK_Simplified() * 1.3558, 0);
+
+
+
+            TextBlock_Wm1.Text = "Wm1 = " + wm1.ToString() + " N";
+            TextBlock_Wm2.Text = "Wm2 = " + wm2.ToString() + " N";
+
+            TextBlock_SingleBoltLoad.Text = singleBoltLoad_Newton.ToString() + " N = " + singleBoltLoad_Lbf.ToString() + " Lbf";
+            TextBlock_BoltStressRequired.Text = bSR.ToString() + " psi";
+            TextBlock_PerCentOfYIELDStress.Text = perCent.ToString() + " %";
+
+
+            TextBlock_TorqueMoment_API6AAnnexD.Text = "τ = " + tau1_Lbf_ft.ToString() + " Lbf-Ft = " + tau1_Newton_m.ToString() + " N-m";
+            TextBlock_TorqueMoment_AppendixJ.Text = "τ = " + tau2_Lbf_ft.ToString() + " Lbf-Ft = " + tau2_Newton_m.ToString() + " N-m";
+            TextBlock_TorqueMoment_AppendixK.Text = "τ = " + tau3_Lbf_ft.ToString() + " Lbf-Ft = " + tau3_Newton_m.ToString() + " N-m";
+
+        }
+
+        // Делаю видимыми таблицы с результатами и невидимым инфобаннер
+        private void SetResultTablesVisibility()
+        {
+            InfoBanner.Visibility = Visibility.Hidden;
+            Table_Wm1.Visibility = Visibility.Visible;
+            Table_Wm2.Visibility = Visibility.Visible;
+            Table_ThreeRes.Visibility = Visibility.Visible;
+            Table_TorqueMoment_API6AAnnexD.Visibility = Visibility;
+            Table_TorqueMoment_AppendixJ.Visibility = Visibility.Visible;
+            Table_TorqueMoment_AppendixK.Visibility = Visibility.Visible;
         }
 
 

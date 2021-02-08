@@ -459,7 +459,7 @@
                            Background="#674172" 
                        Foreground="White"
                        Padding="3 0 3 0">
-                    Basic gasket seating
+                    Basic gasket
                     <LineBreak/>
                     seating width b
                     <TextBlock FontSize="8">
@@ -471,12 +471,147 @@
                          PreviewTextInput="OnlyNumbersOrCommaOneTime"
                              PreviewKeyDown="WithoutSpace">
                     <!---->
-                    
+
                 </TextBox>
             </StackPanel>
 
 
         </StackPanel>
+
+        
+
+        <StackPanel Name="Table_Wm1" Orientation="Vertical" Grid.Row="0" Grid.Column="1"
+                    HorizontalAlignment="Center" VerticalAlignment="Center"
+                    Visibility="Hidden">
+            <TextBlock Background="#e64d3d" FontSize="20" FontWeight="Bold"
+                       Foreground="White" Padding="5 2 5 2" Margin="0">
+                Required bolts load for the operating conditions
+            </TextBlock>
+            <TextBlock Name="TextBlock_Wm1" Background="White" FontSize="25" FontWeight="Bold"
+                       Foreground="Black" Padding="5 2 5 2" Margin="0">
+                Wm1
+            </TextBlock>
+        </StackPanel>
+
+        <StackPanel Name="Table_Wm2" Orientation="Vertical" Grid.Row="1" Grid.Column="1"
+                    HorizontalAlignment="Center" VerticalAlignment="Center"
+                    Visibility="Hidden">
+            
+            <TextBlock Background="#e64d3d" FontSize="20" FontWeight="Bold"
+                       Foreground="White" Padding="5 2 5 2" Margin="0">
+                Minimum initial bolts load for gasket seating
+            </TextBlock>
+            <TextBlock Name="TextBlock_Wm2" Background="White" FontSize="25" FontWeight="Bold"
+                       Foreground="Black" Padding="5 2 5 2" Margin="0">
+                Wm2
+            </TextBlock>
+        </StackPanel>
+
+        <StackPanel Name ="Table_ThreeRes" Orientation="Horizontal" Grid.Column="1" Grid.Row="2"
+                    HorizontalAlignment="Center" VerticalAlignment="Center"
+                    Visibility="Hidden">
+
+            <StackPanel Name="Table_SingleBoltLoad" Orientation="Vertical"
+                    HorizontalAlignment="Center" VerticalAlignment="Center">
+
+                <TextBlock Background="#e64d3d" FontSize="20" FontWeight="Bold"
+                       Foreground="White" Padding="5 2 5 2" Margin="0">
+                Single bolt load
+                </TextBlock>
+                <TextBlock Name="TextBlock_SingleBoltLoad" Background="White" FontSize="25" FontWeight="Bold"
+                       Foreground="Black" Padding="5 2 5 2" Margin="0">
+                SingleBoltLoad
+                </TextBlock>
+            </StackPanel>
+
+            <StackPanel Name="Table_BoltStressRequired" Orientation="Vertical"
+                    HorizontalAlignment="Center" VerticalAlignment="Center">
+                <TextBlock Background="#e64d3d" FontSize="20" FontWeight="Bold"
+                       Foreground="White" Padding="5 2 5 2" Margin="0">
+                Bolt stress required
+                </TextBlock>
+                <TextBlock Name="TextBlock_BoltStressRequired" Background="White" FontSize="25" FontWeight="Bold"
+                       Foreground="Black" Padding="5 2 5 2" Margin="0">
+                Bolt stress required
+                </TextBlock>
+            </StackPanel>
+
+            <StackPanel  Name="Table_PerCentOfYIELDStress" Orientation="Vertical"
+                    HorizontalAlignment="Center" VerticalAlignment="Center">
+                <TextBlock Background="#e64d3d" FontSize="20" FontWeight="Bold"
+                       Foreground="White" Padding="5 2 5 2" Margin="0">
+                % of yield stress
+                </TextBlock>
+                <TextBlock Name="TextBlock_PerCentOfYIELDStress" Background="White" FontSize="25" FontWeight="Bold"
+                       Foreground="Black" Padding="5 2 5 2" Margin="0">
+                %
+                </TextBlock>
+            </StackPanel>
+
+
+        </StackPanel>
+
+
+
+        <StackPanel Name="Table_TorqueMoment_API6AAnnexD" Orientation="Vertical" Grid.Row="3" Grid.Column="1"
+                    HorizontalAlignment="Center" VerticalAlignment="Center"
+                    Visibility="Hidden">
+            <TextBlock Background="#e64d3d" FontSize="25" FontWeight="Bold"
+                       Foreground="White" Padding="5 2 5 2" Margin="0">
+                API 6A Annex D
+            </TextBlock>
+            <TextBlock Name="TextBlock_TorqueMoment_API6AAnnexD" Background="White" FontSize="25" FontWeight="Bold"
+                       Foreground="Black" Padding="5 2 5 2" Margin="0">
+                τ
+            </TextBlock>
+        </StackPanel>
+
+        <StackPanel Name="Table_TorqueMoment_AppendixJ" Orientation="Vertical" Grid.Row="4" Grid.Column="1"
+                    HorizontalAlignment="Center" VerticalAlignment="Center"
+                    Visibility="Hidden">
+            <TextBlock Background="#e64d3d" FontSize="25" FontWeight="Bold"
+                       Foreground="White" Padding="5 2 5 2" Margin="0">
+                ASME PCC-1 Appendix J
+            </TextBlock>
+            <TextBlock Name="TextBlock_TorqueMoment_AppendixJ" Background="White" FontSize="25" FontWeight="Bold"
+                       Foreground="Black" Padding="5 2 5 2" Margin="0">
+                τ
+            </TextBlock>
+        </StackPanel>
+
+        <StackPanel Name="Table_TorqueMoment_AppendixK" Orientation="Vertical" Grid.Row="5" Grid.Column="1"
+                    HorizontalAlignment="Center" VerticalAlignment="Center"
+                    Visibility="Hidden">
+            <TextBlock Background="#e64d3d" FontSize="25" FontWeight="Bold"
+                       Foreground="White" Padding="5 2 5 2" Margin="0">
+                ASME PCC-1 Appendix K
+            </TextBlock>
+            <TextBlock Name="TextBlock_TorqueMoment_AppendixK" Background="White" FontSize="25" FontWeight="Bold"
+                       Foreground="Black" Padding="5 2 5 2" Margin="0">
+                τ
+            </TextBlock>
+        </StackPanel>
+
+
+        <Button x:Name="InfoBanner" Grid.Row="2" Grid.Column="1" Visibility="Visible">
+            <Button.Template>
+                <ControlTemplate TargetType="Button">
+                    <Border Background="#e64d3d" HorizontalAlignment="Center">
+                        <ContentControl Content="{TemplateBinding Content}"
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
+            </Button.Template>
+            <TextBlock FontSize="25" Foreground="White" Padding="10" FontWeight="Bold">
+                ВВЕДИТЕ ДАННЫЕ
+                <LineBreak/>
+                И НАЖМИТЕ "ПОСЧИТАТЬ"
+            </TextBlock>
+        </Button>
+
+
+
 
 
 
@@ -488,10 +623,6 @@
                 FontWeight="Bold">
             ПОСЧИТАТЬ
         </Button>
-
-
-
-
 
     </Grid>
 </Page>

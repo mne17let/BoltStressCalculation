@@ -27,7 +27,7 @@ namespace SahalinEnergyBoltStressCalculation.BTCalculation.CalculationBTClasses
 
         public CalculateBTC() { }
 
-        public double GetF()
+        public virtual double GetF()
         {
             double sigmaLocal = GetSigma();
             double aSLocal = GetAs();

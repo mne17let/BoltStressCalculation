@@ -1,4 +1,5 @@
-﻿using SahalinEnergyBoltStressCalculation.BTC_PressureAndGasketType.View;
+﻿using SahalinEnergyBoltStressCalculation.BTC_PressureAndGasketType.CalculationClass;
+using SahalinEnergyBoltStressCalculation.BTC_PressureAndGasketType.View;
 using SahalinEnergyBoltStressCalculation.BTCalculation.Model;
 using SahalinEnergyBoltStressCalculation.LogicClassesFolder.CalculationOne;
 using System;
@@ -294,9 +295,9 @@ namespace SahalinEnergyBoltStressCalculation.BTC_PressureAndGasketType.Presenter
         }
 
         // Создание объекта-калькулятора и установка в него необходимых данных
-        private Calculator_GasketTargetStress CreateCalculator(string statusGrade, string statusSize)
+        private Calculator_PressureAndGasketType CreateCalculator(string statusGrade, string statusSize)
         {
-            Calculator_GasketTargetStress objectCalculator = new Calculator_GasketTargetStress();
+            Calculator_PressureAndGasketType objectCalculator = new Calculator_PressureAndGasketType();
 
             if (statusGrade == "Custom")
             {
@@ -310,20 +311,35 @@ namespace SahalinEnergyBoltStressCalculation.BTC_PressureAndGasketType.Presenter
             if (statusSize == "Custom")
             {
                 objectCalculator.threadMajorDiameter_D = customD;
+                objectCalculator.pitchDiameterOfThread_E = customE;
+                objectCalculator.hexSize_H = customH;
+                objectCalculator.nutInternalChamfer_K = customK;
                 objectCalculator.threadPitch_P = customP;
+                objectCalculator.numberOfThreadsPerInch = customNOTPI;
+                objectCalculator.nutWidth = customNutWidth;
             }
             else
             {
                 objectCalculator.threadMajorDiameter_D = currentBolt.ThreadMajorDiameter_D;
+                objectCalculator.pitchDiameterOfThread_E = currentBolt.PitchDiameterOfThread_E;
+                objectCalculator.hexSize_H = currentBolt.HexSize_H;
+                objectCalculator.nutInternalChamfer_K = currentBolt.NutInternalChamfer_K;
                 objectCalculator.threadPitch_P = currentBolt.ThreadPitch_P;
+                objectCalculator.numberOfThreadsPerInch = currentBolt.NumberOfThreadsPerInch;
+                objectCalculator.nutWidth = currentBolt.NutWidth;
             }
+
 
             objectCalculator.fCoeff = frictionCoeffPresenter;
             objectCalculator.kCoeff = kCoeffPresenter;
             objectCalculator.numOfBolts = numOfBoltsPresenter;
             objectCalculator.gasketOutsideDiameter = gasketOutsideDiameterPresenter;
             objectCalculator.gasketInsideDiameter = gasketInsideDiameterPresenter;
-            objectCalculator.targetAssemblyGasketStress = targetAssemblyGasketStressPresenter;
+            objectCalculator.internalDesignPressure = internalDesignPressurePresenter;
+            objectCalculator.gasketFactor_m = gasketFactorPresenter;
+            objectCalculator.minimumDesignSeatingStress_y = minimumDesignSeatingStressPresenter;
+            objectCalculator.basicGasketSeatingWidth_b0 = basicGasketSeatingWidthPresenter;
+            objectCalculator.gasketWidth_N = gasketWidthPresenter;
 
             return objectCalculator;
 
@@ -642,7 +658,7 @@ namespace SahalinEnergyBoltStressCalculation.BTC_PressureAndGasketType.Presenter
             else
             {
                 // Всё в порядке, устанавливаем нужное значение Gasket Factor m в Presenter
-                internalDesignPressurePresenter = help;
+                gasketFactorPresenter = help;
                 checkGF_m = true;
             }
 
@@ -670,7 +686,7 @@ namespace SahalinEnergyBoltStressCalculation.BTC_PressureAndGasketType.Presenter
             else
             {
                 // Всё в порядке, устанавливаем нужное значение в Presenter
-                internalDesignPressurePresenter = help;
+                minimumDesignSeatingStressPresenter = help;
                 checkMDSS_y = true;
             }
 
@@ -698,7 +714,7 @@ namespace SahalinEnergyBoltStressCalculation.BTC_PressureAndGasketType.Presenter
             else
             {
                 // Всё в порядке, устанавливаем нужное значение в Presenter
-                internalDesignPressurePresenter = help;
+                basicGasketSeatingWidthPresenter = help;
                 checkBGSW_b0 = true;
             }
 
@@ -726,7 +742,7 @@ namespace SahalinEnergyBoltStressCalculation.BTC_PressureAndGasketType.Presenter
             else
             {
                 // Всё в порядке, устанавливаем нужное значение в Presenter
-                internalDesignPressurePresenter = help;
+                gasketWidthPresenter = help;
                 checkGW_N = true;
             }
 
