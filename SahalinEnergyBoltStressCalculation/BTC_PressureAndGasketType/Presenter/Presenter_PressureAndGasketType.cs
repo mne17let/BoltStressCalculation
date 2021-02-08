@@ -1,5 +1,4 @@
-﻿using SahalinEnergyBoltStressCalculation.BTC_GasketTargetStress.CalculationClass;
-using SahalinEnergyBoltStressCalculation.BTC_GasketTargetStress.View;
+﻿using SahalinEnergyBoltStressCalculation.BTC_PressureAndGasketType.View;
 using SahalinEnergyBoltStressCalculation.BTCalculation.Model;
 using SahalinEnergyBoltStressCalculation.LogicClassesFolder.CalculationOne;
 using System;
@@ -8,21 +7,20 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SahalinEnergyBoltStressCalculation.BTC_GasketTargetStress.Presenter
+namespace SahalinEnergyBoltStressCalculation.BTC_PressureAndGasketType.Presenter
 {
-    class Presenter_GasketTargetStress
+    class Presenter_PressureAndGasketType
     {
-
         // Реализация Singleton
-        private static Presenter_GasketTargetStress instanse;
+        private static Presenter_PressureAndGasketType instanse;
 
-        private Presenter_GasketTargetStress() { }
+        private Presenter_PressureAndGasketType() { }
 
-        public static Presenter_GasketTargetStress GetInstance()
+        public static Presenter_PressureAndGasketType GetInstance()
         {
             if (instanse == null)
             {
-                instanse = new Presenter_GasketTargetStress();
+                instanse = new Presenter_PressureAndGasketType();
             }
             return instanse;
         }
@@ -32,7 +30,7 @@ namespace SahalinEnergyBoltStressCalculation.BTC_GasketTargetStress.Presenter
         private WorkWithDataBaseBTC workWithDataBase = WorkWithDataBaseBTC.GetInstance();
 
         // Переменная для работы с View
-        public Page_GasketTargetStress PageView { private get; set; }
+        public Page_PressureAndGasketType PageView { private get; set; }
 
         // Переменные со списком данных для определённых Bolt Grade и Bolt Size
         List<BoltGradeProperties> gradeData = new List<BoltGradeProperties>();
@@ -42,21 +40,33 @@ namespace SahalinEnergyBoltStressCalculation.BTC_GasketTargetStress.Presenter
         private BoltGradeProperties currentBoltGrade;
         private BoltProperties currentBolt;
 
-
         // Переменные, получаемые из View
 
         double yieldStressValueCustom;
 
+        double numOfBoltsPresenter;
+
         double customD;
+        double customE;
+        double customH;
+        double customK;
         double customP;
+        double customNOTPI;
+        double customNutWidth;
+        
 
         double frictionCoeffPresenter;
         double kCoeffPresenter;
-        double numOfBoltsPresenter;
+
+        double internalDesignPressurePresenter;
         double gasketOutsideDiameterPresenter;
         double gasketInsideDiameterPresenter;
-        double targetAssemblyGasketStressPresenter;
 
+
+        double gasketFactorPresenter;
+        double minimumDesignSeatingStressPresenter;
+        double basicGasketSeatingWidthPresenter;
+        double gasketWidthPresenter;
 
 
 
@@ -157,9 +167,15 @@ namespace SahalinEnergyBoltStressCalculation.BTC_GasketTargetStress.Presenter
         public double[] GetBoltSizeProperties()
         {
             double currentThreadMajorDiameter_D = currentBolt.ThreadMajorDiameter_D;
+            double currentPitchDiameterOfThread_E = currentBolt.PitchDiameterOfThread_E;
+            double currentHexSize_H = currentBolt.HexSize_H;
+            double currentNutInternalChamfer_K = currentBolt.NutInternalChamfer_K;
             double currentThreadPitch_P = currentBolt.ThreadPitch_P;
+            double currentNumberOfThreadsPerInch_NOTPI = currentBolt.NumberOfThreadsPerInch;
+            double currentNutWidth = currentBolt.NutWidth;
 
-            var properties = new double[] {currentThreadMajorDiameter_D, currentThreadPitch_P};
+            var properties = new double[] {currentThreadMajorDiameter_D, currentPitchDiameterOfThread_E, currentHexSize_H,
+            currentNutInternalChamfer_K, currentThreadPitch_P, currentNumberOfThreadsPerInch_NOTPI, currentNutWidth};
             return properties;
         }
 
@@ -222,9 +238,29 @@ namespace SahalinEnergyBoltStressCalculation.BTC_GasketTargetStress.Presenter
                 // Gasket Inside Diameter не введён
                 return;
             }
-            else if (CheckTargetAssemblyGasketStress() == false)
+            else if (CheckInternalDesignPressure() == false)
             {
-                // Target Assembly Gasket Stress не введён
+                // не введён или не входит в допустимый диапазон
+                return;
+            }
+            else if (CheckGasketFactor() == false)
+            {
+                // не введён или не входит в допустимый диапазон
+                return;
+            }
+            else if (CheckMinimumDesignSeatingStress() == false)
+            {
+                // не введён или не входит в допустимый диапазон
+                return;
+            }
+            else if (CheckBasicGasketSeatingWidth() == false)
+            {
+                // не введён или не входит в допустимый диапазон
+                return;
+            }
+            else if (CheckGasketWidth_N() == false)
+            {
+                // не введён или не входит в допустимый диапазон
                 return;
             }
             else
@@ -265,7 +301,8 @@ namespace SahalinEnergyBoltStressCalculation.BTC_GasketTargetStress.Presenter
             if (statusGrade == "Custom")
             {
                 objectCalculator.yieldStressPsi = yieldStressValueCustom;
-            } else
+            }
+            else
             {
                 objectCalculator.yieldStressPsi = currentBoltGrade.YieldStressPsi;
             }
@@ -274,7 +311,8 @@ namespace SahalinEnergyBoltStressCalculation.BTC_GasketTargetStress.Presenter
             {
                 objectCalculator.threadMajorDiameter_D = customD;
                 objectCalculator.threadPitch_P = customP;
-            } else
+            }
+            else
             {
                 objectCalculator.threadMajorDiameter_D = currentBolt.ThreadMajorDiameter_D;
                 objectCalculator.threadPitch_P = currentBolt.ThreadPitch_P;
@@ -303,11 +341,11 @@ namespace SahalinEnergyBoltStressCalculation.BTC_GasketTargetStress.Presenter
                     res = false;
                     break;
                 case "Custom":
-                    // Проверка, введён ли Yield Stress и % от Yield Stress в случае, если bolt grade выбран "Custom"
+                    // Проверка, введён ли Yield Stress в случае, если bolt grade выбран "Custom"
                     res = SetUpYield(statusGrade);
                     break;
                 default:
-                    // Проверка, введён ли % от Yield Stress в случае, если bolt grade выбран из списка
+                    // bolt grade выбран из списка
                     res = SetUpYield(statusGrade);
                     break;
             }
@@ -379,17 +417,24 @@ namespace SahalinEnergyBoltStressCalculation.BTC_GasketTargetStress.Presenter
         // в специальные переменные в Presenter'е
         private bool setUpProperties(string statusSize)
         {
-
             bool checkingProp;
             double helpD;
+            double helpE;
+            double helpH;
+            double helpK;
             double helpP;
-            string[] prop = PageView.GetProperties();
-            if (Double.TryParse(prop[0], out helpD) == false || Double.TryParse(prop[1], out helpP) == false)
+            double helpNOTPI;
+            double helpNutWidth;
+            string[] prop = PageView.GetPropertiesCustom();
+            if (Double.TryParse(prop[0], out helpD) == false || Double.TryParse(prop[1], out helpE) == false
+                || Double.TryParse(prop[2], out helpH) == false
+                || Double.TryParse(prop[3], out helpK) == false || Double.TryParse(prop[4], out helpP) == false
+                || Double.TryParse(prop[5], out helpNOTPI) == false || Double.TryParse(prop[6], out helpNutWidth) == false)
             {
                 PageView.ShowErrorMessage("Properties");
                 checkingProp = false;
             }
-            else if (helpD == 0.0 || helpP == 0.0)
+            else if (helpD == 0.0 || helpE == 0.0 || helpH == 0.0 || helpK == 0.0 || helpP == 0.0 || helpNOTPI == 0.0 || helpNutWidth == 0.0)
             {
                 PageView.ShowErrorMessage("PropertiesNull");
                 checkingProp = false;
@@ -397,7 +442,12 @@ namespace SahalinEnergyBoltStressCalculation.BTC_GasketTargetStress.Presenter
             else
             {
                 customD = helpD;
+                customE = helpE;
+                customH = helpH;
+                customK = helpK;
                 customP = helpP;
+                customNOTPI = helpNOTPI;
+                customNutWidth = helpNutWidth;
                 checkingProp = true;
             }
             return checkingProp;
@@ -423,7 +473,7 @@ namespace SahalinEnergyBoltStressCalculation.BTC_GasketTargetStress.Presenter
             }
             else
             {
-                // Всё в порядке, устанавливаем нужное значение коэффициента трения во ViewModel
+                // Всё в порядке, устанавливаем нужное значение коэффициента трения в Presenter
                 frictionCoeffPresenter = help;
                 checkFC = true;
             }
@@ -451,7 +501,7 @@ namespace SahalinEnergyBoltStressCalculation.BTC_GasketTargetStress.Presenter
             }
             else
             {
-                // Всё в порядке, устанавливаем нужное значение коэффициента К во ViewModel
+                // Всё в порядке, устанавливаем нужное значение коэффициента К в Presenter
                 kCoeffPresenter = help;
                 checkKC = true;
             }
@@ -479,7 +529,7 @@ namespace SahalinEnergyBoltStressCalculation.BTC_GasketTargetStress.Presenter
             }
             else
             {
-                // Всё в порядке, устанавливаем нужное значение коэффициента К во ViewModel
+                // Всё в порядке, устанавливаем нужное значение число болтов К в Presenter
                 numOfBoltsPresenter = help;
                 checkNB = true;
             }
@@ -543,33 +593,147 @@ namespace SahalinEnergyBoltStressCalculation.BTC_GasketTargetStress.Presenter
             return checkGID;
         }
 
-        // Проверка, введён ли Target Assembly Gasket Stress и запись его в переменную
-        private bool CheckTargetAssemblyGasketStress()
+        // Проверка, введён ли Internal Design Pressure и запись его в переменную
+        private bool CheckInternalDesignPressure()
         {
 
-            bool checkTAGS;
+            bool checkIDP;
             double help;
-            string helpString = PageView.GetTargetAssemblyGasketStress();
+            string helpString = PageView.GetInternalDesignPressure();
             if (Double.TryParse(helpString, out help) == false)
             {
-                PageView.ShowErrorMessage("TargetAssemblyGasketStress");
-                checkTAGS = false;
+                PageView.ShowErrorMessage("InternalDesignPressure");
+                checkIDP = false;
             }
             else if (help <= 0)
             {
-                // Target Assembly Gasket Stress не входит необходимый диапазон
-                PageView.ShowErrorMessage("TargetAssemblyGasketStressLimits");
-                checkTAGS = false;
+                // не входит необходимый диапазон
+                PageView.ShowErrorMessage("InternalDesignPressureLimits");
+                checkIDP = false;
             }
             else
             {
-                // Всё в порядке, устанавливаем нужное значение Target Assembly Gasket Stress в Presenter
-                targetAssemblyGasketStressPresenter = help;
-                checkTAGS = true;
+                // Всё в порядке, устанавливаем нужное значение Internal Design Pressure в Presenter
+                internalDesignPressurePresenter = help;
+                checkIDP = true;
             }
 
-            return checkTAGS;
+            return checkIDP;
         }
+
+        // Проверка, введён ли Gasket Factor m и запись его в переменную
+        private bool CheckGasketFactor()
+        {
+
+            bool checkGF_m;
+            double help;
+            string helpString = PageView.GetGasketFactor_m();
+            if (Double.TryParse(helpString, out help) == false)
+            {
+                PageView.ShowErrorMessage("GasketFactor_m");
+                checkGF_m = false;
+            }
+            else if (help < 0)
+            {
+                // не входит необходимый диапазон
+                PageView.ShowErrorMessage("GasketFactor_m_Limits");
+                checkGF_m = false;
+            }
+            else
+            {
+                // Всё в порядке, устанавливаем нужное значение Gasket Factor m в Presenter
+                internalDesignPressurePresenter = help;
+                checkGF_m = true;
+            }
+
+            return checkGF_m;
+        }
+
+        // Проверка, введён ли Minimum Design Seating Stress y и запись его в переменную
+        private bool CheckMinimumDesignSeatingStress()
+        {
+
+            bool checkMDSS_y;
+            double help;
+            string helpString = PageView.GetMinimumDesignSeatingStress_y();
+            if (Double.TryParse(helpString, out help) == false)
+            {
+                PageView.ShowErrorMessage("MinimumDesignSeatingStress_y");
+                checkMDSS_y = false;
+            }
+            else if (help < 0)
+            {
+                // не входит необходимый диапазон
+                PageView.ShowErrorMessage("MinimumDesignSeatingStress_y_Limits");
+                checkMDSS_y = false;
+            }
+            else
+            {
+                // Всё в порядке, устанавливаем нужное значение в Presenter
+                internalDesignPressurePresenter = help;
+                checkMDSS_y = true;
+            }
+
+            return checkMDSS_y;
+        }
+
+        // Проверка, введён ли Basic Gasket Seating Width b0 и запись его в переменную
+        private bool CheckBasicGasketSeatingWidth()
+        {
+
+            bool checkBGSW_b0;
+            double help;
+            string helpString = PageView.GetBasicGasketSeatingWidth_b0();
+            if (Double.TryParse(helpString, out help) == false)
+            {
+                PageView.ShowErrorMessage("BasicGasketSeatingWidth_b0");
+                checkBGSW_b0 = false;
+            }
+            else if (help <= 0)
+            {
+                // не входит необходимый диапазон
+                PageView.ShowErrorMessage("BasicGasketSeatingWidth_b0_Limits");
+                checkBGSW_b0 = false;
+            }
+            else
+            {
+                // Всё в порядке, устанавливаем нужное значение в Presenter
+                internalDesignPressurePresenter = help;
+                checkBGSW_b0 = true;
+            }
+
+            return checkBGSW_b0;
+        }
+
+        // Проверка, введён ли Gasket Width N и запись его в переменную
+        private bool CheckGasketWidth_N()
+        {
+
+            bool checkGW_N;
+            double help;
+            string helpString = PageView.GetGasketWidth_N();
+            if (Double.TryParse(helpString, out help) == false)
+            {
+                PageView.ShowErrorMessage("GasketWidth_N");
+                checkGW_N = false;
+            }
+            else if (help <= 0)
+            {
+                // не входит необходимый диапазон
+                PageView.ShowErrorMessage("GasketWidth_N_Limits");
+                checkGW_N = false;
+            }
+            else
+            {
+                // Всё в порядке, устанавливаем нужное значение в Presenter
+                internalDesignPressurePresenter = help;
+                checkGW_N = true;
+            }
+
+            return checkGW_N;
+        }
+
+
 
     }
 }

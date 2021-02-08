@@ -85,9 +85,9 @@
                            Padding="3">YEILD Stress, psi</TextBlock>
                 <TextBox Name="TextBoxYieldStress" FontSize="15" 
                      VerticalAlignment="Center" Visibility="Visible"
-                             >
-                    <!--PreviewTextInput="OnlyNumbersOrCommaOneTime"
-                             PreviewKeyDown="WithoutSpace"-->
+                      PreviewTextInput="OnlyNumbersOrCommaOneTime"
+                             PreviewKeyDown="WithoutSpace" >
+                    <!---->
                 </TextBox>
             </StackPanel>
 
@@ -129,14 +129,15 @@
 
             <StackPanel Orientation="Vertical" VerticalAlignment="Center"
                         Margin="5 0 5 0">
-                <TextBlock Name="TextNumberOfBolts" FontSize="15" VerticalAlignment="Center"
+                <TextBlock FontSize="15" VerticalAlignment="Center"
                        Background="#674172" 
                        Foreground="White" Visibility="Visible"
                            Padding="3">Number of bolts</TextBlock>
                 <TextBox Name="TextBoxFor_NumberOfBolts" FontSize="15" 
-                     VerticalAlignment="Center" Visibility="Visible">
-                    <!--PreviewTextInput="OnlyIntegerNumbers"
-                             PreviewKeyDown="WithoutSpace"-->
+                     VerticalAlignment="Center" Visibility="Visible"
+                         PreviewTextInput="OnlyIntegerNumbers"
+                             PreviewKeyDown="WithoutSpace">
+                    <!---->
                 </TextBox>
             </StackPanel>
 
@@ -156,9 +157,9 @@
                     Diameter D, in
                 </TextBlock>
                 <TextBox Name="TextBoxFor_D" VerticalAlignment="Center" FontSize="20" 
-                     
-                     >
-                    <!--PreviewTextInput="OnlyNumbers" PreviewKeyDown="WithoutSpace"-->
+                     PreviewTextInput="OnlyNumbersOrCommaOneTime"
+                             PreviewKeyDown="WithoutSpace">
+                    <!---->
                 </TextBox>
             </StackPanel>
 
@@ -173,8 +174,9 @@
                     of thread E, in
                 </TextBlock>
                 <TextBox Name="TextBoxFor_E" VerticalAlignment="Center" FontSize="20" 
-                     >
-                    <!--PreviewTextInput="OnlyNumbers" PreviewKeyDown="WithoutSpace"-->
+                     PreviewTextInput="OnlyNumbersOrCommaOneTime"
+                             PreviewKeyDown="WithoutSpace">
+                    <!---->
 
                 </TextBox>
             </StackPanel>
@@ -189,8 +191,10 @@
                     <LineBreak/>
                     H, in
                 </TextBlock>
-                <TextBox Name="TextBoxFor_H" VerticalAlignment="Center" FontSize="20">
-                    <!--PreviewTextInput="OnlyNumbers" PreviewKeyDown="WithoutSpace"-->
+                <TextBox Name="TextBoxFor_H" VerticalAlignment="Center" FontSize="20"
+                         PreviewTextInput="OnlyNumbersOrCommaOneTime"
+                             PreviewKeyDown="WithoutSpace">
+                    <!---->
 
                 </TextBox>
             </StackPanel>
@@ -205,9 +209,10 @@
                     <LineBreak/>
                     chamfer K, in
                 </TextBlock>
-                <TextBox Name="TextBoxFor_K" VerticalAlignment="Center" FontSize="20">
-
-                    <!--PreviewTextInput="OnlyNumbers" PreviewKeyDown="WithoutSpace"-->
+                <TextBox Name="TextBoxFor_K" VerticalAlignment="Center" FontSize="20"
+                         PreviewTextInput="OnlyNumbersOrCommaOneTime"
+                             PreviewKeyDown="WithoutSpace">
+                    <!---->
 
                 </TextBox>
             </StackPanel>
@@ -222,8 +227,10 @@
                     <LineBreak/>
                     P, in
                 </TextBlock>
-                <TextBox Name="TextBoxFor_P" VerticalAlignment="Center" FontSize="20">
-                    <!--PreviewTextInput="OnlyNumbers" PreviewKeyDown="WithoutSpace"-->
+                <TextBox Name="TextBoxFor_P" VerticalAlignment="Center" FontSize="20"
+                         PreviewTextInput="OnlyNumbersOrCommaOneTime"
+                             PreviewKeyDown="WithoutSpace">
+                    <!---->
                     
                 </TextBox>
             </StackPanel>
@@ -238,9 +245,11 @@
                     <LineBreak/>
                     threads per inch
                 </TextBlock>
-                <TextBox Name="TextBoxFor_NOTPI" VerticalAlignment="Center" FontSize="20">
+                <TextBox Name="TextBoxFor_NOTPI" VerticalAlignment="Center" FontSize="20"
+                         PreviewTextInput="OnlyNumbersOrCommaOneTime"
+                             PreviewKeyDown="WithoutSpace">
 
-                    <!--PreviewTextInput="OnlyNumbers" PreviewKeyDown="WithoutSpace"-->
+                    <!---->
                 </TextBox>
             </StackPanel>
 
@@ -254,8 +263,10 @@
                     <LineBreak/>
                 </TextBlock>
                 <TextBox Name="TextBoxFor_NutWidth" VerticalAlignment="Center"
-                         FontSize="20">
-                    <!--PreviewTextInput="OnlyNumbers" PreviewKeyDown="WithoutSpace"-->
+                         FontSize="20"
+                         PreviewTextInput="OnlyNumbersOrCommaOneTime"
+                             PreviewKeyDown="WithoutSpace">
+                    <!---->
                 </TextBox>
             </StackPanel>
 
@@ -265,7 +276,7 @@
                     HorizontalAlignment="Center" Grid.Column="0" Grid.Row="3">
             <StackPanel Orientation="Vertical" VerticalAlignment="Center"
                         Margin="5">
-                <TextBlock Name="FrictionCoefficientText" FontSize="12"
+                <TextBlock FontSize="12"
                            VerticalAlignment="Center"
                            Background="#674172" 
                        Foreground="White"
@@ -274,12 +285,11 @@
                     <LineBreak/>
                     coefficient f
                 </TextBlock>
-                <TextBox Name="TextBoxForFrictionCoefficient" VerticalAlignment="Center"
-                         FontSize="20"
-                     MaxLength="7"
-                         >
-                    <!--PreviewTextInput="OnlyNumbersAndCountK"
-                         PreviewKeyDown="WithoutSpaceAndMinus004"-->
+                <TextBox Name="TextBoxFor_FrictionCoefficient" VerticalAlignment="Center"
+                         FontSize="20" MaxLength="7"
+                         PreviewTextInput="OnlyNumbersAndCountK"
+                         PreviewKeyDown="WithoutSpaceAndMinus004">
+                    <!---->
                 </TextBox>
             </StackPanel>
 
@@ -294,17 +304,17 @@
                     <LineBreak/>
                     factor K
                 </TextBlock>
-                <TextBox Name="TextBoxForKCoefficient" VerticalAlignment="Center"
-                         FontSize="20"
-                     MaxLength="7" >
-                    <!--PreviewTextInput="OnlyNumbersOrCommaOneTime"
-                             PreviewKeyDown="WithoutSpace"-->
+                <TextBox Name="TextBoxFor_KCoefficient" VerticalAlignment="Center"
+                         FontSize="20" MaxLength="7"
+                         PreviewTextInput="OnlyNumbersOrCommaOneTime"
+                             PreviewKeyDown="WithoutSpace">
+                    <!---->
                 </TextBox>
             </StackPanel>
 
             <StackPanel Orientation="Vertical" VerticalAlignment="Center"
                         Margin="5">
-                <TextBlock Name="InternalDesignPressureText" FontSize="12"
+                <TextBlock FontSize="12"
                            VerticalAlignment="Center"
                            Background="#674172" 
                        Foreground="White"
@@ -314,10 +324,10 @@
                     pressure, bar
                 </TextBlock>
                 <TextBox Name="TextBoxFor_InternalDesignPressure" VerticalAlignment="Center"
-                         FontSize="20"
-                     MaxLength="7" >
-                    <!--PreviewTextInput="OnlyNumbersOrCommaOneTime"
-                             PreviewKeyDown="WithoutSpace"-->
+                         FontSize="20" MaxLength="7"
+                         PreviewTextInput="OnlyNumbersOrCommaOneTime"
+                             PreviewKeyDown="WithoutSpace">
+                    <!---->
                 </TextBox>
             </StackPanel>
 
@@ -348,9 +358,9 @@
                 </TextBlock>
                 <TextBox Name="TextBoxFor_GasketOutsideDiameter" VerticalAlignment="Center"
                          FontSize="20"
-                     >
-                    <!--PreviewTextInput="OnlyNumbersOrCommaOneTime"
-                             PreviewKeyDown="WithoutSpace"-->
+                         PreviewTextInput="OnlyNumbersOrCommaOneTime"
+                             PreviewKeyDown="WithoutSpace">
+                    <!---->
                 </TextBox>
             </StackPanel>
 
@@ -373,9 +383,9 @@
                 </TextBlock>
                 <TextBox Name="TextBoxFor_GasketInsideDiameter" VerticalAlignment="Center"
                          FontSize="20"
-                     >
-                    <!--PreviewTextInput="OnlyNumbersOrCommaOneTime"
-                             PreviewKeyDown="WithoutSpace"-->
+                         PreviewTextInput="OnlyNumbersOrCommaOneTime"
+                             PreviewKeyDown="WithoutSpace">
+                    <!---->
                 </TextBox>
             </StackPanel>
 
@@ -390,11 +400,11 @@
                     <LineBreak/>
                     width N
                 </TextBlock>
-                <TextBox Name="TextBoxFor_TargetAssemblyGasketStress" VerticalAlignment="Center"
+                <TextBox Name="TextBoxFor_GasketWidth_N" VerticalAlignment="Center"
                          FontSize="20"
-                     >
-                    <!--PreviewTextInput="OnlyNumbersOrCommaOneTime"
-                             PreviewKeyDown="WithoutSpace"-->
+                         PreviewTextInput="OnlyNumbersOrCommaOneTime"
+                             PreviewKeyDown="WithoutSpace">
+                    <!---->
                 </TextBox>
             </StackPanel>
 
@@ -417,9 +427,9 @@
                 </TextBlock>
                 <TextBox Name="TextBoxFor_GasketFactor" VerticalAlignment="Center"
                          FontSize="20"
-                     >
-                    <!--PreviewTextInput="OnlyNumbersOrCommaOneTime"
-                             PreviewKeyDown="WithoutSpace"-->
+                         PreviewTextInput="OnlyNumbersOrCommaOneTime"
+                             PreviewKeyDown="WithoutSpace">
+                    <!---->
                 </TextBox>
             </StackPanel>
 
@@ -436,9 +446,9 @@
                 </TextBlock>
                 <TextBox Name="TextBoxFor_MinimumDesignSeatingStress" VerticalAlignment="Center"
                          FontSize="20"
-                     >
-                    <!--PreviewTextInput="OnlyNumbersOrCommaOneTime"
-                             PreviewKeyDown="WithoutSpace"-->
+                         PreviewTextInput="OnlyNumbersOrCommaOneTime"
+                             PreviewKeyDown="WithoutSpace">
+                    <!---->
                 </TextBox>
             </StackPanel>
 
@@ -458,9 +468,9 @@
                 </TextBlock>
                 <TextBox Name="TextBoxFor_BasicGasketSeatingWidth" VerticalAlignment="Center"
                          FontSize="20"
-                     >
-                    <!--PreviewTextInput="OnlyNumbersOrCommaOneTime"
-                             PreviewKeyDown="WithoutSpace"-->
+                         PreviewTextInput="OnlyNumbersOrCommaOneTime"
+                             PreviewKeyDown="WithoutSpace">
+                    <!---->
                     
                 </TextBox>
             </StackPanel>
