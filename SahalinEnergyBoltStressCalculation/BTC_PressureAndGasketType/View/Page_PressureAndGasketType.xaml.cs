@@ -1,5 +1,6 @@
 ﻿using SahalinEnergyBoltStressCalculation.BTC_PressureAndGasketType.CalculationClass;
 using SahalinEnergyBoltStressCalculation.BTC_PressureAndGasketType.Presenter;
+using SahalinEnergyBoltStressCalculation.MainWindowFolder;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,6 +23,9 @@ namespace SahalinEnergyBoltStressCalculation.BTC_PressureAndGasketType.View
     /// </summary>
     public partial class Page_PressureAndGasketType : Page
     {
+        // Переменная главного окна
+        public MainWindow mainWindow;
+
         // Переменная Presenter'а
         private Presenter_PressureAndGasketType presenter_PressureAndGaskerType = Presenter_PressureAndGasketType.GetInstance();
 
@@ -37,6 +41,7 @@ namespace SahalinEnergyBoltStressCalculation.BTC_PressureAndGasketType.View
             ComboBoxWithGrades.SelectionChanged += ListenerForGradeComboBox;
             ComboBoxWithBoltSize.SelectionChanged += ListenerForBoltSizeComboBox;
             CalculationButton_PressureAndGasketType.Click += ListenerForCalculationButton;
+            TableButton_PressureAndGasketType.Click += OpenWindowWithTable;
         }
 
 
@@ -94,6 +99,11 @@ namespace SahalinEnergyBoltStressCalculation.BTC_PressureAndGasketType.View
             statusSize = itemSize.Content.ToString();
 
             presenter_PressureAndGaskerType.BeginCalculation(statusGrade, statusSize);
+        }
+
+        private void OpenWindowWithTable(object sender, RoutedEventArgs e)
+        {
+            mainWindow.ShowWindow();
         }
 
 

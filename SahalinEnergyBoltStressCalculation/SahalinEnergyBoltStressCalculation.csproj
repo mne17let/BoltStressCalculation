@@ -132,6 +132,9 @@
       <DependentUpon>Page_PressureAndGasketType.xaml</DependentUpon>
     </Compile>
     <Compile Include="BTC_SingleBoltStress\CalculationBTClasses\CalculateBTC.cs" />
+    <Compile Include="MainWindowFolder\TableWindow.xaml.cs">
+      <DependentUpon>TableWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Model\Model_Classes\BoltGradeProperties.cs" />
     <Compile Include="Model\DataBaseClasses\MyDataBaseContext.cs" />
     <Compile Include="App.xaml.cs">
@@ -146,6 +149,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="BTC_SingleBoltStress\View\PageBoltTorqueCalculation.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MainWindowFolder\TableWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -202,9 +209,20 @@
   <ItemGroup>
     <Resource Include="Images\iconLogoIco.ico" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Images\tableIcon.png" />
+  </ItemGroup>
   <ItemGroup>
     <Resource Include="iconLogoIco.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\table1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\table2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\table3.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

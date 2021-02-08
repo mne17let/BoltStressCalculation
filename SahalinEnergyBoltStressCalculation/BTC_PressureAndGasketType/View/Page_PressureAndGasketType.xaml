@@ -15,7 +15,8 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
-                        <Border Name="CalcButtonBorder" Background="{TemplateBinding Background}">
+                        <Border Name="CalcButtonBorder" Background="{TemplateBinding Background}"
+                                VerticalAlignment="{TemplateBinding VerticalAlignment}">
                             <ContentControl Content="{TemplateBinding Content}"
                             HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                             VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
@@ -413,6 +414,23 @@
 
         <StackPanel Orientation="Horizontal" VerticalAlignment="Center"
                     HorizontalAlignment="Center" Grid.Column="0" Grid.Row="5">
+
+
+            <Button Name="TableButton_PressureAndGasketType" Grid.Row="6" Grid.Column="0" 
+                Grid.ColumnSpan="2" FontSize="15" 
+                Style="{StaticResource CalculationButtonStyle}" Foreground="White"
+                HorizontalContentAlignment="Center" VerticalAlignment="Center"
+                VerticalContentAlignment="Center" Margin="0 0 20 0"
+                FontWeight="Bold">
+                <StackPanel Orientation="Horizontal">
+
+                    <TextBlock HorizontalAlignment="Center" Padding="10">
+                Таблица для определения m, y , b0
+                    </TextBlock>
+                    <Image Margin="5" RenderOptions.BitmapScalingMode="HighQuality" MaxHeight="25" MaxWidth="25" Source="pack://application:,,,/Images/tableIcon.png"/>
+                </StackPanel>
+            </Button>
+
 
             <StackPanel Orientation="Vertical" VerticalAlignment="Center"
                         Margin="5">

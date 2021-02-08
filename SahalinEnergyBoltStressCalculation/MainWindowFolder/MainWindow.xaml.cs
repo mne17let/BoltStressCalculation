@@ -17,6 +17,7 @@ using System.Data.Entity;
 using SahalinEnergyBoltStressCalculation.PageClassesFolder;
 using SahalinEnergyBoltStressCalculation.BTC_GasketTargetStress.View;
 using SahalinEnergyBoltStressCalculation.BTC_PressureAndGasketType.View;
+using SahalinEnergyBoltStressCalculation.MainWindowFolder;
 
 namespace SahalinEnergyBoltStressCalculation
 {
@@ -34,6 +35,7 @@ namespace SahalinEnergyBoltStressCalculation
         {
             InitializeComponent();
             InitFun();
+            page_PressureAndGasketType.mainWindow = this;
         }
 
         public void InitFun()
@@ -103,6 +105,15 @@ namespace SahalinEnergyBoltStressCalculation
 
             InfoButton.Content = ct;
 
+        }
+
+        public void ShowWindow()
+        {
+            Window tableOneWindow = new TableWindow();
+
+            tableOneWindow.Owner = this;
+
+            tableOneWindow.Show();
         }
 
 
