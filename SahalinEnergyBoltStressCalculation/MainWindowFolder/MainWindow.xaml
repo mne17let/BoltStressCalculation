@@ -72,6 +72,7 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="0.05*"></RowDefinition>
+            <RowDefinition Height="0.07*"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
         
@@ -95,7 +96,23 @@
                 BTC based on pressure and gasket type
             </Button>
         </Grid>
-        
-        <Frame Name="MainFrame" Grid.Row="1" NavigationUIVisibility="Hidden"></Frame>
+
+        <Button x:Name="InfoButton" Grid.ColumnSpan="2" Grid.Row="1" 
+                Foreground="White">
+            <Button.Template>
+                <ControlTemplate TargetType="Button">
+                    <Border Background="#e64d3d">
+                        <ContentControl Content="{TemplateBinding Content}"
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
+            </Button.Template>
+            <TextBlock FontSize="25" FontWeight="Bold">
+                Torque calculation based on bolt material yield stress
+            </TextBlock>
+        </Button>
+
+        <Frame Name="MainFrame" Grid.Row="3" NavigationUIVisibility="Hidden"></Frame>
     </Grid>
 </Window>

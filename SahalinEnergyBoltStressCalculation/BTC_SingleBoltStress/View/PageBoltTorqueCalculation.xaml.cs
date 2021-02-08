@@ -241,7 +241,7 @@ namespace SahalinEnergyBoltStressCalculation.PageClassesFolder
             double e = properties[1];
             double h = properties[2];
             double k = properties[3];
-            double p = properties[4];
+            double p = Math.Round(properties[4], 4);
             double notpi = properties[5];
             double nW = properties[6];
 

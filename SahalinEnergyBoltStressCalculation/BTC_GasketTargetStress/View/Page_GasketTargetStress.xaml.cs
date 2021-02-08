@@ -437,7 +437,8 @@ namespace SahalinEnergyBoltStressCalculation.BTC_GasketTargetStress.View
         {
             double[] properties = presenter_GasketTargetStress.GetBoltSizeProperties();
             double d = properties[0];
-            double p = properties[1];
+            double p = Math.Round(properties[1], 4);
+
 
 
 
@@ -553,6 +554,10 @@ namespace SahalinEnergyBoltStressCalculation.BTC_GasketTargetStress.View
                 case "YieldStressNull":
                     MessageBox.Show("Значения Yield Stress и % Yield Stress не могут быть равны 0");
                     break;
+                case "YieldStressNullOnly":
+                    MessageBox.Show("Значение Yield Stress не может быть равным 0");
+                    break;
+
 
                 case "KCoeff":
                     MessageBox.Show("Введите коэффициент К");

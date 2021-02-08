@@ -54,9 +54,15 @@ namespace SahalinEnergyBoltStressCalculation
 
             
             btn.Style = (Style)this.FindResource("NavigationPickedButtonStyle");
-
             ButtonNavigation_BTC_GasketTargetStress.Style = (Style)this.FindResource("NavigationUnpickedButtonStyle");
             ButtonNavigation_BTC_PressureAndGasketType.Style = (Style)this.FindResource("NavigationUnpickedButtonStyle");
+
+            ContentControl ct = new ContentControl();
+            ct.Content = "Torque calculation based on bolt material yield stress";
+            ct.FontSize = 25;
+            ct.FontWeight = FontWeights.Bold;
+
+            InfoButton.Content = ct;
         }
 
         public void BTCGasketTargetStressButtonClick(object buttonIbject, RoutedEventArgs args_name)
@@ -67,9 +73,15 @@ namespace SahalinEnergyBoltStressCalculation
 
 
             btn.Style = (Style)this.FindResource("NavigationPickedButtonStyle");
-
             ButtonNavigation_BTC_SingleBoltStress.Style = (Style)this.FindResource("NavigationUnpickedButtonStyle");
             ButtonNavigation_BTC_PressureAndGasketType.Style = (Style)this.FindResource("NavigationUnpickedButtonStyle");
+
+            ContentControl ct = new ContentControl();
+            ct.Content = "Torque calculation based on target assembly gasket stress";
+            ct.FontSize = 25;
+            ct.FontWeight = FontWeights.Bold;
+
+            InfoButton.Content = ct;
 
         }
 
@@ -81,9 +93,15 @@ namespace SahalinEnergyBoltStressCalculation
 
 
             btn.Style = (Style)this.FindResource("NavigationPickedButtonStyle");
-
             ButtonNavigation_BTC_GasketTargetStress.Style = (Style)this.FindResource("NavigationUnpickedButtonStyle");
             ButtonNavigation_BTC_SingleBoltStress.Style = (Style)this.FindResource("NavigationUnpickedButtonStyle");
+
+            ContentControl ct = new ContentControl();
+            ct.Content = "Torque calculation based on pressure and minimum gasket seating stress";
+            ct.FontSize = 25;
+            ct.FontWeight = FontWeights.Bold;
+
+            InfoButton.Content = ct;
 
         }
 

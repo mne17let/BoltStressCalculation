@@ -43,7 +43,6 @@
             <ColumnDefinition Width="0.6*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="0.6*"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
@@ -57,23 +56,9 @@
         
         
 
-        <Button Grid.ColumnSpan="2" Grid.Row="0" 
-                Foreground="White">
-            <Button.Template>
-                <ControlTemplate TargetType="Button">
-                    <Border Background="#e64d3d">
-                        <ContentControl Content="{TemplateBinding Content}"
-                                        HorizontalAlignment="Center"
-                                        VerticalAlignment="Center"/>
-                    </Border>
-                </ControlTemplate>
-            </Button.Template>
-            <TextBlock FontSize="25" FontWeight="Bold">
-                Torque calculation based on bolt material yield stress
-            </TextBlock>
-        </Button>
+        
 
-        <ComboBox Name="ComboBoxWithGrades" Grid.Row="1" Grid.Column="0" 
+        <ComboBox Name="ComboBoxWithGrades" Grid.Row="0" Grid.Column="0" 
                   HorizontalAlignment="Center" VerticalAlignment="Center"
                   FontSize="30" FontWeight="Bold" SelectedIndex="0"
                   VerticalContentAlignment="Center">
@@ -91,7 +76,8 @@
             <ComboBoxItem Name="Grade102">A193 B8M2 class 2B</ComboBoxItem>
             <ComboBoxItem Name="Grade112">A453 grade 660 A, B and C</ComboBoxItem>
         </ComboBox>
-        <StackPanel Grid.Row="2" Grid.Column="0" Orientation="Horizontal"
+        
+        <StackPanel Grid.Row="1" Grid.Column="0" Orientation="Horizontal"
                     HorizontalAlignment="Center">
             <StackPanel Orientation="Vertical" VerticalAlignment="Center"
                         Margin="5 0 5 0">
@@ -129,7 +115,7 @@
 
         </StackPanel>
 
-        <ComboBox Name="ComboBoxWithBoltSize" Grid.Row="3" Grid.Column="0"
+        <ComboBox Name="ComboBoxWithBoltSize" Grid.Row="2" Grid.Column="0"
                   HorizontalAlignment="Center" VerticalAlignment="Center"
                   FontSize="30" FontWeight="Bold" SelectedIndex="0" IsEnabled="False"
                   HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
@@ -160,7 +146,7 @@
             <ComboBoxItem Name="Size21">4" UN8</ComboBoxItem>
         </ComboBox>
 
-        <StackPanel Grid.Row="4" Grid.Column="0" Orientation="Horizontal"
+        <StackPanel Grid.Row="3" Grid.Column="0" Orientation="Horizontal"
                     HorizontalAlignment="Center" VerticalAlignment="Center">
 
             <StackPanel Orientation="Vertical" VerticalAlignment="Center"
@@ -248,9 +234,9 @@
                        Background="#674172" 
                        Foreground="White"
                            Padding="3 0 3 0">
-                    Number of threads
+                    Number of
                     <LineBreak/>
-                    per inch
+                    threads per inch
                 </TextBlock>
                 <TextBox Name="TextBoxFor_NOTPI" VerticalAlignment="Center" FontSize="20" 
                      PreviewTextInput="OnlyNumbers" PreviewKeyDown="WithoutSpace">
@@ -273,7 +259,8 @@
             </StackPanel>
             
         </StackPanel>
-        <StackPanel Grid.Row="5" Grid.Column="0" Orientation="Horizontal"
+        
+        <StackPanel Grid.Row="4" Grid.Column="0" Orientation="Horizontal"
                     VerticalAlignment="Center" HorizontalAlignment="Center">
 
             <StackPanel Orientation="Vertical" VerticalAlignment="Center"
@@ -288,7 +275,7 @@
                 <TextBox Name="TextBoxForFrictionCoefficient" VerticalAlignment="Center"
                          FontSize="20" MaxLength="8"
                      PreviewTextInput="OnlyNumbersAndCountK" 
-                     PreviewKeyDown="WithoutSpaceAndMinus004" ToolTip="Введите коэффициент трения">
+                     PreviewKeyDown="WithoutSpaceAndMinus004">
                 </TextBox>
             </StackPanel>
 
@@ -311,7 +298,8 @@
         </StackPanel>
 
 
-        <StackPanel Name="ForcePerBoltTable" Orientation="Vertical" Grid.Row="2" Grid.Column="1"
+        
+        <StackPanel Name="ForcePerBoltTable" Orientation="Vertical" Grid.Row="1" Grid.Column="1"
                     HorizontalAlignment="Center" VerticalAlignment="Center"
                     Visibility="Hidden">
             <TextBlock Background="#e64d3d" FontSize="25" FontWeight="Bold"
@@ -324,7 +312,7 @@
             </TextBlock>
         </StackPanel>
 
-        <StackPanel  Name="ResOne_Table" Orientation="Vertical" Grid.Row="3" Grid.Column="1"
+        <StackPanel  Name="ResOne_Table" Orientation="Vertical" Grid.Row="2" Grid.Column="1"
                     HorizontalAlignment="Center" VerticalAlignment="Center"
                     Visibility="Hidden">
             <TextBlock Background="#e64d3d" FontSize="25" FontWeight="Bold"
@@ -337,9 +325,7 @@
             </TextBlock>
         </StackPanel>
 
-
-
-        <StackPanel Name="ResTwo_Table" Orientation="Vertical" Grid.Row="4" Grid.Column="1"
+        <StackPanel Name="ResTwo_Table" Orientation="Vertical" Grid.Row="3" Grid.Column="1"
                     HorizontalAlignment="Center" VerticalAlignment="Center"
                     Visibility="Hidden">
             <TextBlock Background="#e64d3d" FontSize="25" FontWeight="Bold"
@@ -352,7 +338,7 @@
             </TextBlock>
         </StackPanel>
 
-        <StackPanel Name="ResThree_Table" Orientation="Vertical" Grid.Row="5" Grid.Column="1"
+        <StackPanel Name="ResThree_Table" Orientation="Vertical" Grid.Row="4" Grid.Column="1"
                     HorizontalAlignment="Center" VerticalAlignment="Center"
                     Visibility="Hidden">
             <TextBlock Background="#e64d3d" FontSize="25" FontWeight="Bold"
@@ -366,7 +352,8 @@
         </StackPanel>
 
 
-        <Button x:Name="InfoBanner" Grid.Row="3" Grid.Column="1">
+        
+        <Button x:Name="InfoBanner" Grid.Row="2" Grid.Column="1">
             <Button.Template>
                 <ControlTemplate TargetType="Button">
                     <Border Background="#e64d3d" HorizontalAlignment="Center">
@@ -383,7 +370,8 @@
             </TextBlock>
         </Button>
 
-        <Button Name="CalculationButton_SingleBoltStress" Grid.Row="7" Grid.Column="0" 
+        
+        <Button Name="CalculationButton_SingleBoltStress" Grid.Row="5" Grid.Column="0" 
                 Grid.ColumnSpan="2" FontSize="30" 
                 Style="{StaticResource CalcButtonStyle}" Foreground="White"
                 HorizontalContentAlignment="Center"

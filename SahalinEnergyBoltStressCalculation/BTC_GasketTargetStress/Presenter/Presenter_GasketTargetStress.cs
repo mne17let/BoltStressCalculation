@@ -46,7 +46,6 @@ namespace SahalinEnergyBoltStressCalculation.BTC_GasketTargetStress.Presenter
         // Переменные, получаемые из View
 
         double yieldStressValueCustom;
-        double yieldStressPerCent;
 
         double customD;
         double customP;
@@ -316,7 +315,7 @@ namespace SahalinEnergyBoltStressCalculation.BTC_GasketTargetStress.Presenter
         }
 
         // Считывание данных с полей свойств болта
-        // Проверка, введены ли b в случае, если выбран размер болта Custom и установка их
+        // Проверка, введены ли % YIELD stress и YIELD stress в случае, если выбран размер болта Custom и установка их
         // в специальные переменные в Presenter'е
         private bool SetUpYield(string grade)
         {
@@ -337,7 +336,7 @@ namespace SahalinEnergyBoltStressCalculation.BTC_GasketTargetStress.Presenter
                     else
                     {
                         // Введён Yield Stress, равный 0
-                        PageView.ShowErrorMessage("YieldStressNull");
+                        PageView.ShowErrorMessage("YieldStressNullOnly");
                         res = false;
                     }
                 }
@@ -350,7 +349,6 @@ namespace SahalinEnergyBoltStressCalculation.BTC_GasketTargetStress.Presenter
             }
             else // Выбран grade из списка
             {
-                yieldStressValueCustom = currentBoltGrade.YieldStressPsi;
                 res = true;
             }
             return res;

@@ -201,7 +201,6 @@
     <Resource Include="Images\iconLogoIco.ico" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="BTC_PressureAndGasketType\Model\" />
     <Folder Include="BTC_PressureAndGasketType\Presenter\" />
   </ItemGroup>
   <ItemGroup>

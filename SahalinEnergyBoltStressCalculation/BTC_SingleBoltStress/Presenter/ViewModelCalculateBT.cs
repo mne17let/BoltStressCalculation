@@ -332,7 +332,7 @@ namespace SahalinEnergyBoltStressCalculation.LogicClassesFolder
         }
 
         // Считывание данных с полей свойств болта
-        // Проверка, введены ли b в случае, если выбран размер болта Custom и установка их
+        // Проверка, введены ли % YIELD stress и YIELD stress в случае, если выбран размер болта Custom и установка их
         // в специальные переменные в Presenter'е
         private bool SetUpYield(string grade)
         {

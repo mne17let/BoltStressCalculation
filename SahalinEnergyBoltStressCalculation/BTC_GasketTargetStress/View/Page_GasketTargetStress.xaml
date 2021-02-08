@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:SahalinEnergyBoltStressCalculation.BTC_GasketTargetStress.View"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      
       Title="Page_GasketTargetStress">
 
     <Page.Resources>
@@ -48,7 +48,6 @@
             <ColumnDefinition Width="0.6*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="0.6*"/>
             <RowDefinition/>
             <RowDefinition/>
             <RowDefinition/>
@@ -57,27 +56,13 @@
             <RowDefinition Height="0.5*"/>
         </Grid.RowDefinitions>
 
-        <Button Grid.ColumnSpan="2" Grid.Row="0" 
-                Foreground="White">
-            <Button.Template>
-                <ControlTemplate TargetType="Button">
-                    <Border Background="#e64d3d">
-                        <ContentControl Content="{TemplateBinding Content}"
-                                        HorizontalAlignment="Center"
-                                        VerticalAlignment="Center"/>
-                    </Border>
-                </ControlTemplate>
-            </Button.Template>
-            <TextBlock FontSize="25" FontWeight="Bold">
-                Torque calculation based on target assembly gasket stress
-            </TextBlock>
-        </Button>
+        
 
 
-        <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="0"
+        <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="0"
                     HorizontalAlignment="Center">
 
-            <ComboBox Name="ComboBoxWithGrades" Grid.Row="1" Grid.Column="0" 
+            <ComboBox Name="ComboBoxWithGrades"
                   HorizontalAlignment="Center" VerticalAlignment="Center"
                   FontSize="30" FontWeight="Bold" SelectedIndex="0"
                   VerticalContentAlignment="Center">
@@ -113,7 +98,7 @@
                 
             </StackPanel>
 
-        <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.Column="0"
+        <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="0"
                     HorizontalAlignment="Center">
             <ComboBox Name="ComboBoxWithBoltSize"
                   HorizontalAlignment="Center" VerticalAlignment="Center"
@@ -162,7 +147,7 @@
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center"
-                    VerticalAlignment="Center" Grid.Row="3" Grid.Column="0">
+                    VerticalAlignment="Center" Grid.Row="2" Grid.Column="0">
 
             <StackPanel Orientation="Vertical" VerticalAlignment="Center"
                         Margin="5">
@@ -203,7 +188,7 @@
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" VerticalAlignment="Center"
-                    HorizontalAlignment="Center" Grid.Column="0" Grid.Row="4">
+                    HorizontalAlignment="Center" Grid.Column="0" Grid.Row="3">
             <StackPanel Orientation="Vertical" VerticalAlignment="Center"
                         Margin="5">
                 <TextBlock Name="FrictionCoefficientText" FontSize="12"
@@ -247,7 +232,7 @@
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" VerticalAlignment="Center"
-                    HorizontalAlignment="Center" Grid.Column="0" Grid.Row="5">
+                    HorizontalAlignment="Center" Grid.Column="0" Grid.Row="4">
 
             <StackPanel Orientation="Vertical" VerticalAlignment="Center"
                         Margin="5">
@@ -261,6 +246,9 @@
                     diameter G
                     <TextBlock FontSize="10">
                         od
+                    </TextBlock>
+                    <TextBlock FontSize="12">
+                        , mm
                     </TextBlock>
                 </TextBlock>
                 <TextBox Name="TextBoxFor_GasketOutsideDiameter" VerticalAlignment="Center"
@@ -283,6 +271,9 @@
                     <TextBlock FontSize="10">
                         id
                     </TextBlock>
+                    <TextBlock FontSize="12">
+                        , mm
+                    </TextBlock>
                 </TextBlock>
                 <TextBox Name="TextBoxFor_GasketInsideDiameter" VerticalAlignment="Center"
                          FontSize="20"
@@ -304,6 +295,9 @@
                     <TextBlock FontSize="10">
                         т
                     </TextBlock>
+                    <TextBlock FontSize="12">
+                        , psi
+                    </TextBlock>
                 </TextBlock>
                 <TextBox Name="TextBoxFor_TargetAssemblyGasketStress" VerticalAlignment="Center"
                          FontSize="20"
@@ -316,7 +310,7 @@
         </StackPanel>
 
 
-        <StackPanel Name="Table_BoltStressRequired" Orientation="Vertical" Grid.Row="2" Grid.Column="1"
+        <StackPanel Name="Table_BoltStressRequired" Orientation="Vertical" Grid.Row="1" Grid.Column="1"
                     HorizontalAlignment="Center" VerticalAlignment="Center"
                     Visibility="Hidden">
             <TextBlock Background="#e64d3d" FontSize="25" FontWeight="Bold"
@@ -329,7 +323,7 @@
             </TextBlock>
         </StackPanel>
 
-        <StackPanel  Name="Table_PerCentOfYIELDStress" Orientation="Vertical" Grid.Row="3" Grid.Column="1"
+        <StackPanel  Name="Table_PerCentOfYIELDStress" Orientation="Vertical" Grid.Row="2" Grid.Column="1"
                     HorizontalAlignment="Center" VerticalAlignment="Center"
                     Visibility="Hidden">
             <TextBlock Background="#e64d3d" FontSize="25" FontWeight="Bold"
@@ -342,9 +336,7 @@
             </TextBlock>
         </StackPanel>
 
-
-
-        <StackPanel Name="Table_TorqueMoment" Orientation="Vertical" Grid.Row="4" Grid.Column="1"
+        <StackPanel Name="Table_TorqueMoment" Orientation="Vertical" Grid.Row="3" Grid.Column="1"
                     HorizontalAlignment="Center" VerticalAlignment="Center"
                     Visibility="Hidden">
             <TextBlock Background="#e64d3d" FontSize="25" FontWeight="Bold"
@@ -358,7 +350,7 @@
         </StackPanel>
 
 
-        <Button x:Name="InfoBanner" Grid.Row="3" Grid.Column="1" Visibility="Visible">
+        <Button x:Name="InfoBanner" Grid.Row="2" Grid.Column="1" Visibility="Visible">
             <Button.Template>
                 <ControlTemplate TargetType="Button">
                     <Border Background="#e64d3d" HorizontalAlignment="Center">
@@ -378,7 +370,7 @@
 
 
 
-        <Button Name="CalculationButton_GasketTargetStress" Grid.Row="7" Grid.Column="0" 
+        <Button Name="CalculationButton_GasketTargetStress" Grid.Row="5" Grid.Column="0" 
                 Grid.ColumnSpan="2" FontSize="30" 
                 Style="{StaticResource CalculationButtonStyle}" Foreground="White"
                 HorizontalContentAlignment="Center"
