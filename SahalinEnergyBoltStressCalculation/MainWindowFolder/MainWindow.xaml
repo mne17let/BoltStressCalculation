@@ -16,7 +16,7 @@
     <Window.Resources>
         <Style x:Key="NavigationUnpickedButtonStyle" TargetType="Button">
             <Setter Property="Background" Value="#674172"/>
-            <Setter Property="FontWeight" Value="Bold"/>
+            <!--Setter Property="FontWeight" Value="Bold"-->
 
             <Setter Property="Template">
                 <Setter.Value>
@@ -44,7 +44,7 @@
 
         <Style x:Key="NavigationPickedButtonStyle" TargetType="Button">
             <Setter Property="Background" Value="#e64d3d"/>
-            <Setter Property="FontWeight" Value="Bold"/>
+            <!--Setter Property="FontWeight" Value="Bold"-->
 
             <Setter Property="Template">
                 <Setter.Value>
@@ -75,12 +75,28 @@
     <Grid>
 
         <Grid.RowDefinitions>
-            <RowDefinition Height="0.05*"></RowDefinition>
             <RowDefinition Height="0.07*"></RowDefinition>
+            <RowDefinition Height="0.05*"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
 
-        <Grid Grid.Row="0">
+        <Button x:Name="InfoButton" Grid.ColumnSpan="2" Grid.Row="0" 
+                Foreground="White">
+            <Button.Template>
+                <ControlTemplate TargetType="Button">
+                    <Border Background="#e64d3d" HorizontalAlignment="Stretch">
+                        <ContentControl Content="{TemplateBinding Content}"
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
+            </Button.Template>
+            <TextBlock FontSize="25">
+                Torque calculation based on bolt material yield stress
+            </TextBlock>
+        </Button>
+        
+        <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
@@ -101,21 +117,7 @@
             </Button>
         </Grid>
 
-        <Button x:Name="InfoButton" Grid.ColumnSpan="2" Grid.Row="1" 
-                Foreground="White">
-            <Button.Template>
-                <ControlTemplate TargetType="Button">
-                    <Border Background="#e64d3d" HorizontalAlignment="Stretch">
-                        <ContentControl Content="{TemplateBinding Content}"
-                                        HorizontalAlignment="Center"
-                                        VerticalAlignment="Center"/>
-                    </Border>
-                </ControlTemplate>
-            </Button.Template>
-            <TextBlock FontSize="25" FontWeight="Bold">
-                Torque calculation based on bolt material yield stress
-            </TextBlock>
-        </Button>
+        
 
 
         <Frame Name="MainFrame" Grid.Row="3" NavigationUIVisibility="Hidden"></Frame>

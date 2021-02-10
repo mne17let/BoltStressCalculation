@@ -29,6 +29,7 @@ namespace SahalinEnergyBoltStressCalculation.BTC_PressureAndGasketType.View
         // Переменная Presenter'а
         private Presenter_PressureAndGasketType presenter_PressureAndGaskerType = Presenter_PressureAndGasketType.GetInstance();
 
+
         public Page_PressureAndGasketType()
         {
             InitializeComponent();
@@ -350,7 +351,7 @@ namespace SahalinEnergyBoltStressCalculation.BTC_PressureAndGasketType.View
         }
 
         // Делаю видимым ComboBox с размерами и доступным для выбора элемента
-        public void SetVisibleAndEnabledComboBoxWithSizes()
+        private void SetVisibleAndEnabledComboBoxWithSizes()
         {
             ComboBoxWithBoltSize.Visibility = Visibility.Visible;
             ComboBoxWithBoltSize.IsEnabled = true;
@@ -369,6 +370,7 @@ namespace SahalinEnergyBoltStressCalculation.BTC_PressureAndGasketType.View
                 case "Custom":
                     SetReadOnlyFalseForPropertiesTextBlocks();
                     SetEmptyPropertiesWhenGradeChange();
+                    TextBoxYieldStress.Text = "";
                     break;
                 default:
                     SetSizeProperties();

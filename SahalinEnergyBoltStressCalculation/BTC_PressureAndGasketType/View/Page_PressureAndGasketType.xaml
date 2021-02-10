@@ -81,62 +81,68 @@
         </Grid.RowDefinitions>
 
 
-        <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="0"
+        <Viewbox Grid.Row="0" Grid.Column="0" Margin="5 10 5 10"
+                 MaxHeight="50">
+
+            <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="0"
                     HorizontalAlignment="Center" VerticalAlignment="Center">
 
-            <ComboBox Name="ComboBoxWithGrades" 
+                <ComboBox Name="ComboBoxWithGrades" 
                   HorizontalAlignment="Center" VerticalAlignment="Center"
                   FontSize="30" FontWeight="Bold" SelectedIndex="0"
                   VerticalContentAlignment="Center">
-                <ComboBoxItem Name="HintItemGrade" MaxHeight="0">Pick bolt grade</ComboBoxItem>
-                <ComboBoxItem Name="DefaultItemGrade">Custom</ComboBoxItem>
-                <ComboBoxItem Name="Grade111">A193 B7</ComboBoxItem>
-                <ComboBoxItem Name="Grade22">A193 B7M</ComboBoxItem>
-                <ComboBoxItem Name="Grade32">A193 B16</ComboBoxItem>
-                <ComboBoxItem Name="Grade42">A320 L7</ComboBoxItem>
-                <ComboBoxItem Name="Grade52">A320 L7M</ComboBoxItem>
-                <ComboBoxItem Name="Grade62">A320 L43</ComboBoxItem>
-                <ComboBoxItem Name="Grade72">A193 B8 class 1</ComboBoxItem>
-                <ComboBoxItem Name="Grade82">A193/A320 B8 class 2</ComboBoxItem>
-                <ComboBoxItem Name="Grade92">A193/A320 B8M class 2</ComboBoxItem>
-                <ComboBoxItem Name="Grade102">A193 B8M2 class 2B</ComboBoxItem>
-                <ComboBoxItem Name="Grade112">A453 grade 660 A, B and C</ComboBoxItem>
-            </ComboBox>
+                    <ComboBoxItem Name="HintItemGrade" MaxHeight="0">Pick bolt grade</ComboBoxItem>
+                    <ComboBoxItem Name="DefaultItemGrade">Custom</ComboBoxItem>
+                    <ComboBoxItem Name="Grade111">A193 B7</ComboBoxItem>
+                    <ComboBoxItem Name="Grade22">A193 B7M</ComboBoxItem>
+                    <ComboBoxItem Name="Grade32">A193 B16</ComboBoxItem>
+                    <ComboBoxItem Name="Grade42">A320 L7</ComboBoxItem>
+                    <ComboBoxItem Name="Grade52">A320 L7M</ComboBoxItem>
+                    <ComboBoxItem Name="Grade62">A320 L43</ComboBoxItem>
+                    <ComboBoxItem Name="Grade72">A193 B8 class 1</ComboBoxItem>
+                    <ComboBoxItem Name="Grade82">A193/A320 B8 class 2</ComboBoxItem>
+                    <ComboBoxItem Name="Grade92">A193/A320 B8M class 2</ComboBoxItem>
+                    <ComboBoxItem Name="Grade102">A193 B8M2 class 2B</ComboBoxItem>
+                    <ComboBoxItem Name="Grade112">A453 grade 660 A, B and C</ComboBoxItem>
+                </ComboBox>
 
-            <ComboBox Name="ComboBoxWithBoltSize"
+                <ComboBox Name="ComboBoxWithBoltSize"
                   HorizontalAlignment="Center" VerticalAlignment="Center"
                   FontSize="30" FontWeight="Bold" SelectedIndex="0" IsEnabled="False"
                   HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
                       Visibility="Collapsed">
-                <ComboBoxItem Name="HintItemSizeBeforeGrade" MaxHeight="0">Pick bolt grade at first</ComboBoxItem>
-                <ComboBoxItem Name="HintItemSize" MaxHeight="0">Pick bolt size</ComboBoxItem>
-                <ComboBoxItem Name="DefaultItem">Custom</ComboBoxItem>
-                <ComboBoxItem Name="Size1">1/2" UNC</ComboBoxItem>
-                <ComboBoxItem Name="Size2">5/8" UNC</ComboBoxItem>
-                <ComboBoxItem Name="Size3">3/4" UNC</ComboBoxItem>
-                <ComboBoxItem Name="Size4">7/8" UNC</ComboBoxItem>
-                <ComboBoxItem Name="Size5">1" UN8</ComboBoxItem>
-                <ComboBoxItem Name="Size6">1 1/8" UN8</ComboBoxItem>
-                <ComboBoxItem Name="Size7">1 1/4" UN8</ComboBoxItem>
-                <ComboBoxItem Name="Size8">1 3/8" UN8</ComboBoxItem>
-                <ComboBoxItem Name="Size9">1 1/2" UN8</ComboBoxItem>
-                <ComboBoxItem Name="Size10">1 5/8" UN8</ComboBoxItem>
-                <ComboBoxItem Name="Size11">1 3/4" UN8</ComboBoxItem>
-                <ComboBoxItem Name="Size12">1 7/8" UN8</ComboBoxItem>
-                <ComboBoxItem Name="Size13">2" UN8</ComboBoxItem>
-                <ComboBoxItem Name="Size14">2 1/4" UN8</ComboBoxItem>
-                <ComboBoxItem Name="Size15">2 1/2" UN8</ComboBoxItem>
-                <ComboBoxItem Name="Size16">2 3/4" UN8</ComboBoxItem>
-                <ComboBoxItem Name="Size17">3" UN8</ComboBoxItem>
-                <ComboBoxItem Name="Size18">3 1/4" UN8</ComboBoxItem>
-                <ComboBoxItem Name="Size19">3 1/2" UN8</ComboBoxItem>
-                <ComboBoxItem Name="Size20">3 3/4" UN8</ComboBoxItem>
-                <ComboBoxItem Name="Size21">4" UN8</ComboBoxItem>
-            </ComboBox>
+                    <ComboBoxItem Name="HintItemSizeBeforeGrade" MaxHeight="0">Pick bolt grade at first</ComboBoxItem>
+                    <ComboBoxItem Name="HintItemSize" MaxHeight="0">Pick bolt size</ComboBoxItem>
+                    <ComboBoxItem Name="DefaultItem">Custom</ComboBoxItem>
+                    <ComboBoxItem Name="Size1">1/2" UNC</ComboBoxItem>
+                    <ComboBoxItem Name="Size2">5/8" UNC</ComboBoxItem>
+                    <ComboBoxItem Name="Size3">3/4" UNC</ComboBoxItem>
+                    <ComboBoxItem Name="Size4">7/8" UNC</ComboBoxItem>
+                    <ComboBoxItem Name="Size5">1" UN8</ComboBoxItem>
+                    <ComboBoxItem Name="Size6">1 1/8" UN8</ComboBoxItem>
+                    <ComboBoxItem Name="Size7">1 1/4" UN8</ComboBoxItem>
+                    <ComboBoxItem Name="Size8">1 3/8" UN8</ComboBoxItem>
+                    <ComboBoxItem Name="Size9">1 1/2" UN8</ComboBoxItem>
+                    <ComboBoxItem Name="Size10">1 5/8" UN8</ComboBoxItem>
+                    <ComboBoxItem Name="Size11">1 3/4" UN8</ComboBoxItem>
+                    <ComboBoxItem Name="Size12">1 7/8" UN8</ComboBoxItem>
+                    <ComboBoxItem Name="Size13">2" UN8</ComboBoxItem>
+                    <ComboBoxItem Name="Size14">2 1/4" UN8</ComboBoxItem>
+                    <ComboBoxItem Name="Size15">2 1/2" UN8</ComboBoxItem>
+                    <ComboBoxItem Name="Size16">2 3/4" UN8</ComboBoxItem>
+                    <ComboBoxItem Name="Size17">3" UN8</ComboBoxItem>
+                    <ComboBoxItem Name="Size18">3 1/4" UN8</ComboBoxItem>
+                    <ComboBoxItem Name="Size19">3 1/2" UN8</ComboBoxItem>
+                    <ComboBoxItem Name="Size20">3 3/4" UN8</ComboBoxItem>
+                    <ComboBoxItem Name="Size21">4" UN8</ComboBoxItem>
+                </ComboBox>
 
 
 
-        </StackPanel>
+            </StackPanel>
+        </Viewbox>
+        
+        
 
 
         <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="0"
@@ -619,7 +625,7 @@
             </StackPanel>
         </Viewbox>
 
-        <Viewbox Grid.Row="2" Grid.Column="1" Margin="5 10 5 10">
+        <Viewbox Grid.Row="0" Grid.Column="1" Margin="5 10 5 5">
             <Button x:Name="InfoBanner" Grid.Row="2" Grid.Column="1" Visibility="Visible">
                 <Button.Template>
                     <ControlTemplate TargetType="Button">

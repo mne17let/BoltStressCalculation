@@ -41,6 +41,7 @@ namespace SahalinEnergyBoltStressCalculation.BTC_PressureAndGasketType.Presenter
         private BoltGradeProperties currentBoltGrade;
         private BoltProperties currentBolt;
 
+
         // Переменные, получаемые из View
 
         double yieldStressValueCustom;

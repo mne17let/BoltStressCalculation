@@ -104,18 +104,18 @@ namespace SahalinEnergyBoltStressCalculation.PageClassesFolder
             switch (status)
             {
                 case "Custom":
-                    ComboBoxWithBoltSize.IsEnabled = true;
                     TextBoxYieldStress.IsReadOnly = false;
                     UpdateComboBoxWithSize();
                     SetVisibileYield();
                     TextBoxYieldStress.Text = "";
+                    SetVisibleAndEnabledComboBoxWithSizes();
                     break;
                 default: 
                     TextBoxYieldStress.IsReadOnly = true;
-                    ComboBoxWithBoltSize.IsEnabled = true;
                     UpdateComboBoxWithSize();
                     SetEmptyPropertiesWhenGradeChange();
                     SetHiddenVisibilityForYieldStress();
+                    SetVisibleAndEnabledComboBoxWithSizes();
                     break;
             }
             
@@ -131,8 +131,8 @@ namespace SahalinEnergyBoltStressCalculation.PageClassesFolder
         // Скрытие полей YieldStress и YieldStress-подписи
         private void SetHiddenVisibilityForYieldStress()
         {
-            TextYeildStress.Visibility = Visibility.Hidden;
-            TextBoxYieldStress.Visibility = Visibility.Hidden;
+            TextYeildStress.Visibility = Visibility.Collapsed;
+            TextBoxYieldStress.Visibility = Visibility.Collapsed;
         }
 
         // Очистка полей свойств болта, зависящих от его размера
@@ -171,6 +171,13 @@ namespace SahalinEnergyBoltStressCalculation.PageClassesFolder
             };
         }
 
+        // Делаю видимым ComboBox с размерами и доступным для выбора элемента
+        private void SetVisibleAndEnabledComboBoxWithSizes()
+        {
+            ComboBoxWithBoltSize.Visibility = Visibility.Visible;
+            ComboBoxWithBoltSize.IsEnabled = true;
+        }
+
 
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -184,6 +191,7 @@ namespace SahalinEnergyBoltStressCalculation.PageClassesFolder
                 case "Custom":
                     SetReadOnlyFalseForPropertiesTextBlocks();
                     SetEmptyPropertiesWhenGradeChange();
+                    TextBoxYieldStress.Text = "";
                     break;
                 default:
                     SetSizeProperties();
