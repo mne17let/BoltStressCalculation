@@ -101,6 +101,7 @@ namespace SahalinEnergyBoltStressCalculation.BTC_PressureAndGasketType.View
             presenter_PressureAndGaskerType.BeginCalculation(statusGrade, statusSize);
         }
 
+        // Посылаем объекту главного окна команду "Открыть окно с таблицей"
         private void OpenWindowWithTable(object sender, RoutedEventArgs e)
         {
             mainWindow.ShowWindow();
@@ -151,6 +152,7 @@ namespace SahalinEnergyBoltStressCalculation.BTC_PressureAndGasketType.View
             }
         }
 
+        // Только целые числа
         private void OnlyIntegerNumbers(object sender, TextCompositionEventArgs textSymbols)
         {
             var currentText = (string)((TextBox)sender).Text;
@@ -279,18 +281,19 @@ namespace SahalinEnergyBoltStressCalculation.BTC_PressureAndGasketType.View
             switch (status)
             {
                 case "Custom":
-                    ComboBoxWithBoltSize.IsEnabled = true;
                     TextBoxYieldStress.IsReadOnly = false;
                     UpdateComboBoxWithSize();
                     SetVisibileYield();
                     TextBoxYieldStress.Text = "";
+                    SetVisibleAndEnabledComboBoxWithSizes();
                     break;
                 default:
                     TextBoxYieldStress.IsReadOnly = true;
                     ComboBoxWithBoltSize.IsEnabled = true;
                     UpdateComboBoxWithSize();
                     SetEmptyPropertiesWhenGradeChange();
-                    SetHiddenVisibilityForYieldStress();
+                    SetCollapsedVisibilityForYieldStress();
+                    SetVisibleAndEnabledComboBoxWithSizes();
                     break;
             }
 
@@ -304,10 +307,10 @@ namespace SahalinEnergyBoltStressCalculation.BTC_PressureAndGasketType.View
         }
 
         // Скрытие полей YieldStress и YieldStress-подписи
-        private void SetHiddenVisibilityForYieldStress()
+        private void SetCollapsedVisibilityForYieldStress()
         {
-            TextYeildStress.Visibility = Visibility.Hidden;
-            TextBoxYieldStress.Visibility = Visibility.Hidden;
+            TextYeildStress.Visibility = Visibility.Collapsed;
+            TextBoxYieldStress.Visibility = Visibility.Collapsed;
         }
 
         // Очистка полей свойств болта, зависящих от его размера
@@ -344,6 +347,13 @@ namespace SahalinEnergyBoltStressCalculation.BTC_PressureAndGasketType.View
                 cmbItem.Content = s;
                 ComboBoxWithBoltSize.Items.Add(cmbItem);
             };
+        }
+
+        // Делаю видимым ComboBox с размерами и доступным для выбора элемента
+        public void SetVisibleAndEnabledComboBoxWithSizes()
+        {
+            ComboBoxWithBoltSize.Visibility = Visibility.Visible;
+            ComboBoxWithBoltSize.IsEnabled = true;
         }
 
 

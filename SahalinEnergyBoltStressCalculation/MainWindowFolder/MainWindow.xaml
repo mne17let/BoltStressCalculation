@@ -8,8 +8,11 @@
         Title="Sakhalin Energy Bolt torque calculation"
         WindowState="Maximized"
         ResizeMode="CanResize"
-        MinHeight="500"
-        MinWidth="1210">
+        MinHeight="600"
+        MinWidth="900"
+        >
+    <!--MinHeight="600"
+        MinWidth="900"-->
     <Window.Resources>
         <Style x:Key="NavigationUnpickedButtonStyle" TargetType="Button">
             <Setter Property="Background" Value="#674172"/>
@@ -70,12 +73,13 @@
 
     </Window.Resources>
     <Grid>
+
         <Grid.RowDefinitions>
             <RowDefinition Height="0.05*"></RowDefinition>
             <RowDefinition Height="0.07*"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
-        
+
         <Grid Grid.Row="0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition></ColumnDefinition>
@@ -101,7 +105,7 @@
                 Foreground="White">
             <Button.Template>
                 <ControlTemplate TargetType="Button">
-                    <Border Background="#e64d3d">
+                    <Border Background="#e64d3d" HorizontalAlignment="Stretch">
                         <ContentControl Content="{TemplateBinding Content}"
                                         HorizontalAlignment="Center"
                                         VerticalAlignment="Center"/>
@@ -113,6 +117,8 @@
             </TextBlock>
         </Button>
 
+
         <Frame Name="MainFrame" Grid.Row="3" NavigationUIVisibility="Hidden"></Frame>
+
     </Grid>
 </Window>
