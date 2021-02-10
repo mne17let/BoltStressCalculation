@@ -15,8 +15,6 @@
                     <ControlTemplate TargetType="Button">
                         <Border Name="CalcButtonBorder" Background="{TemplateBinding Background}">
                             <ContentControl Content="{TemplateBinding Content}"
-                                            Foreground="{TemplateBinding Foreground}"
-                                            FontWeight="{TemplateBinding FontWeight}"
                             HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                             VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
                         </Border>
@@ -52,10 +50,13 @@
             <RowDefinition Height="*"></RowDefinition>
             <RowDefinition Height="0.5*"></RowDefinition>
         </Grid.RowDefinitions>
+        
+        
+        
+        
+        
 
-
-
-
+        
 
         <ComboBox Name="ComboBoxWithGrades" Grid.Row="0" Grid.Column="0" 
                   HorizontalAlignment="Center" VerticalAlignment="Center"
@@ -75,9 +76,7 @@
             <ComboBoxItem Name="Grade102">A193 B8M2 class 2B</ComboBoxItem>
             <ComboBoxItem Name="Grade112">A453 grade 660 A, B and C</ComboBoxItem>
         </ComboBox>
-
-
-
+        
         <StackPanel Grid.Row="1" Grid.Column="0" Orientation="Horizontal"
                     HorizontalAlignment="Center">
             <StackPanel Orientation="Vertical" VerticalAlignment="Center"
@@ -341,14 +340,15 @@
             </TextBlock>
         </Button>
 
-
-        <Button Name="CalculationButton_SingleBoltStress" Grid.Column="0" Grid.Row="5"
-                Grid.ColumnSpan="2" FontSize="30" FontWeight="Bold"
+        
+        <Button Name="CalculationButton_SingleBoltStress" Grid.Row="5" Grid.Column="0" 
+                Grid.ColumnSpan="2" FontSize="30" 
                 Style="{StaticResource CalcButtonStyle}" Foreground="White"
                 HorizontalContentAlignment="Center"
-                VerticalContentAlignment="Center">
+                VerticalContentAlignment="Center"
+                FontWeight="Bold">
             ПОСЧИТАТЬ
         </Button>
-
+        
     </Grid>
 </Page>

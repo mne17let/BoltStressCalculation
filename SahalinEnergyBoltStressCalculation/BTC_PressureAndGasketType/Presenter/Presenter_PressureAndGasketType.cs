@@ -619,7 +619,7 @@ namespace SahalinEnergyBoltStressCalculation.BTC_PressureAndGasketType.Presenter
             else
             {
                 // Всё в порядке, устанавливаем нужное значение Internal Design Pressure в Presenter
-                internalDesignPressurePresenter = help;
+                internalDesignPressurePresenter = help / 10;
                 checkIDP = true;
             }
 
