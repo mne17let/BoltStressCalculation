@@ -318,8 +318,6 @@ namespace SahalinEnergyBoltStressCalculation.BTC_PressureAndGasketType.View
             TextBoxFor_H.Text = "";
             TextBoxFor_K.Text = "";
             TextBoxFor_P.Text = "";
-            TextBoxFor_NOTPI.Text = "";
-            TextBoxFor_NutWidth.Text = "";
         }
 
         // Обновление списка ComboBox с размерами после выбора grade болта
@@ -378,8 +376,6 @@ namespace SahalinEnergyBoltStressCalculation.BTC_PressureAndGasketType.View
             TextBoxFor_H.IsReadOnly = false;
             TextBoxFor_K.IsReadOnly = false;
             TextBoxFor_P.IsReadOnly = false;
-            TextBoxFor_NOTPI.IsReadOnly = false;
-            TextBoxFor_NutWidth.IsReadOnly = false;
         }
 
         // Установка YieldStress в случае, если выбран не "Custom" grade болта и не "Custom" размер болта
@@ -404,21 +400,17 @@ namespace SahalinEnergyBoltStressCalculation.BTC_PressureAndGasketType.View
             TextBoxFor_H.IsReadOnly = true;
             TextBoxFor_K.IsReadOnly = true;
             TextBoxFor_P.IsReadOnly = true;
-            TextBoxFor_NOTPI.IsReadOnly = true;
-            TextBoxFor_NutWidth.IsReadOnly = true;
         }
 
         // Получение свойств болта, зависящих от его размера и установка в текстовые поля
         private void SetSizeProperties()
         {
             double[] properties = presenter_PressureAndGaskerType.GetBoltSizeProperties();
-            double d = properties[0];
-            double e = properties[1];
-            double h = properties[2];
-            double k = properties[3];
+            double d = Math.Round(properties[0], 4);
+            double e = Math.Round(properties[1], 4);
+            double h = Math.Round(properties[2], 4);
+            double k = Math.Round(properties[3], 4);
             double p = Math.Round(properties[4], 4);
-            double notpi = properties[5];
-            double nW = properties[6];
 
 
             TextBoxFor_D.Text = d.ToString();
@@ -430,10 +422,6 @@ namespace SahalinEnergyBoltStressCalculation.BTC_PressureAndGasketType.View
             TextBoxFor_K.Text = k.ToString();
 
             TextBoxFor_P.Text = p.ToString();
-
-            TextBoxFor_NOTPI.Text = notpi.ToString();
-
-            TextBoxFor_NutWidth.Text = nW.ToString();
 
         }
 
@@ -460,10 +448,8 @@ namespace SahalinEnergyBoltStressCalculation.BTC_PressureAndGasketType.View
             string h = TextBoxFor_H.Text;
             string k = TextBoxFor_K.Text;
             string p = TextBoxFor_P.Text;
-            string notpi = TextBoxFor_NOTPI.Text;
-            string nW = TextBoxFor_NutWidth.Text;
 
-            string[] properties = new string[] { d, e, h, k, p, notpi, nW };
+            string[] properties = new string[] { d, e, h, k, p};
             return properties;
         }
 

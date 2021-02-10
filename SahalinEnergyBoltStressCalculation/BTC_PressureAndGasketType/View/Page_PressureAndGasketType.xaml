@@ -232,42 +232,7 @@
                          PreviewTextInput="OnlyNumbersOrCommaOneTime"
                              PreviewKeyDown="WithoutSpace">
                     <!---->
-                    
-                </TextBox>
-            </StackPanel>
 
-            <StackPanel Orientation="Vertical" VerticalAlignment="Center"
-                        Margin="5">
-                <TextBlock FontSize="12" VerticalAlignment="Center"
-                       Background="#674172" 
-                       Foreground="White"
-                           Padding="3 0 3 0">
-                    Number of
-                    <LineBreak/>
-                    threads per inch
-                </TextBlock>
-                <TextBox Name="TextBoxFor_NOTPI" VerticalAlignment="Center" FontSize="20"
-                         PreviewTextInput="OnlyNumbersOrCommaOneTime"
-                             PreviewKeyDown="WithoutSpace">
-
-                    <!---->
-                </TextBox>
-            </StackPanel>
-
-            <StackPanel Orientation="Vertical" VerticalAlignment="Center"
-                        Margin="5">
-                <TextBlock FontSize="12"
-                       Background="#674172" 
-                       Foreground="White"
-                           Padding="3 0 3 0">
-                    Nut width
-                    <LineBreak/>
-                </TextBlock>
-                <TextBox Name="TextBoxFor_NutWidth" VerticalAlignment="Center"
-                         FontSize="20"
-                         PreviewTextInput="OnlyNumbersOrCommaOneTime"
-                             PreviewKeyDown="WithoutSpace">
-                    <!---->
                 </TextBox>
             </StackPanel>
 

@@ -120,10 +120,5 @@ namespace SahalinEnergyBoltStressCalculation.BTC_PressureAndGasketType.Calculati
             return GetSingleBoltLoad_Lbf();
         }
 
-
-        public double GetResult()
-        {
-            return 0.0; 
-        }
     }
 }

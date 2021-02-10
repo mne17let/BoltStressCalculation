@@ -15,6 +15,8 @@
                     <ControlTemplate TargetType="Button">
                         <Border Name="CalcButtonBorder" Background="{TemplateBinding Background}">
                             <ContentControl Content="{TemplateBinding Content}"
+                                            Foreground="{TemplateBinding Foreground}"
+                                            FontWeight="{TemplateBinding FontWeight}"
                             HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                             VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
                         </Border>
@@ -50,13 +52,10 @@
             <RowDefinition Height="*"></RowDefinition>
             <RowDefinition Height="0.5*"></RowDefinition>
         </Grid.RowDefinitions>
-        
-        
-        
-        
-        
 
-        
+
+
+
 
         <ComboBox Name="ComboBoxWithGrades" Grid.Row="0" Grid.Column="0" 
                   HorizontalAlignment="Center" VerticalAlignment="Center"
@@ -76,7 +75,9 @@
             <ComboBoxItem Name="Grade102">A193 B8M2 class 2B</ComboBoxItem>
             <ComboBoxItem Name="Grade112">A453 grade 660 A, B and C</ComboBoxItem>
         </ComboBox>
-        
+
+
+
         <StackPanel Grid.Row="1" Grid.Column="0" Orientation="Horizontal"
                     HorizontalAlignment="Center">
             <StackPanel Orientation="Vertical" VerticalAlignment="Center"
@@ -228,36 +229,6 @@
                 </TextBox>
             </StackPanel>
 
-            <StackPanel Orientation="Vertical" VerticalAlignment="Center"
-                        Margin="5">
-                <TextBlock FontSize="12" VerticalAlignment="Center"
-                       Background="#674172" 
-                       Foreground="White"
-                           Padding="3 0 3 0">
-                    Number of
-                    <LineBreak/>
-                    threads per inch
-                </TextBlock>
-                <TextBox Name="TextBoxFor_NOTPI" VerticalAlignment="Center" FontSize="20" 
-                     PreviewTextInput="OnlyNumbers" PreviewKeyDown="WithoutSpace">
-                </TextBox>
-            </StackPanel>
-
-            <StackPanel Orientation="Vertical" VerticalAlignment="Center"
-                        Margin="5">
-                <TextBlock FontSize="12"
-                       Background="#674172" 
-                       Foreground="White"
-                           Padding="3 0 3 0">
-                    Nut width
-                    <LineBreak/>
-                </TextBlock>
-                <TextBox Name="TextBoxFor_NutWidth" VerticalAlignment="Center"
-                         FontSize="20" 
-                     PreviewTextInput="OnlyNumbers" PreviewKeyDown="WithoutSpace">
-                </TextBox>
-            </StackPanel>
-            
         </StackPanel>
         
         <StackPanel Grid.Row="4" Grid.Column="0" Orientation="Horizontal"
@@ -370,15 +341,14 @@
             </TextBlock>
         </Button>
 
-        
-        <Button Name="CalculationButton_SingleBoltStress" Grid.Row="5" Grid.Column="0" 
-                Grid.ColumnSpan="2" FontSize="30" 
+
+        <Button Name="CalculationButton_SingleBoltStress" Grid.Column="0" Grid.Row="5"
+                Grid.ColumnSpan="2" FontSize="30" FontWeight="Bold"
                 Style="{StaticResource CalcButtonStyle}" Foreground="White"
                 HorizontalContentAlignment="Center"
-                VerticalContentAlignment="Center"
-                FontWeight="Bold">
+                VerticalContentAlignment="Center">
             ПОСЧИТАТЬ
         </Button>
-        
+
     </Grid>
 </Page>

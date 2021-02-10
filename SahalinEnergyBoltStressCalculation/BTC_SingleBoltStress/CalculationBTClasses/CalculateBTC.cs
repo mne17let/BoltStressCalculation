@@ -13,7 +13,7 @@ namespace SahalinEnergyBoltStressCalculation.BTCalculation.CalculationBTClasses
         public double yieldStressPsi;
         public double threadMajorDiameter_D;
         public double pitchDiameterOfThread_E;
-        public double hexSize_H;
+        public double hexSize_H = 1;
         public double nutInternalChamfer_K;
         public double threadPitch_P;
         public double numberOfThreadsPerInch;
@@ -88,6 +88,10 @@ namespace SahalinEnergyBoltStressCalculation.BTCalculation.CalculationBTClasses
 
         public double GetTau_ASMEPCC_1AppendixJ()
         {
+            numberOfThreadsPerInch = 1 / threadPitch_P;
+            nutWidth = hexSize_H;
+
+
             double d2 = threadMajorDiameter_D - 0.6495 / numberOfThreadsPerInch;
 
             double de = (threadMajorDiameter_D + nutWidth) / 2.0;

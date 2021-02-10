@@ -436,7 +436,7 @@ namespace SahalinEnergyBoltStressCalculation.BTC_GasketTargetStress.View
         private void SetSizeProperties()
         {
             double[] properties = presenter_GasketTargetStress.GetBoltSizeProperties();
-            double d = properties[0];
+            double d = Math.Round(properties[0], 4);
             double p = Math.Round(properties[1], 4);
 
 
