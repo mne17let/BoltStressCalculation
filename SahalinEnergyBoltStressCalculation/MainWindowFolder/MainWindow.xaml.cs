@@ -61,7 +61,7 @@ namespace SahalinEnergyBoltStressCalculation
 
             ContentControl ct = new ContentControl();
             ct.Content = "Torque calculation based on bolt material yield stress";
-            ct.FontSize = 25;
+            ct.FontSize = 20;
 
             InfoButton.Content = ct;
         }
@@ -79,7 +79,7 @@ namespace SahalinEnergyBoltStressCalculation
 
             ContentControl ct = new ContentControl();
             ct.Content = "Torque calculation based on target assembly gasket stress";
-            ct.FontSize = 25;
+            ct.FontSize = 20;
 
             InfoButton.Content = ct;
 
@@ -98,7 +98,7 @@ namespace SahalinEnergyBoltStressCalculation
 
             ContentControl ct = new ContentControl();
             ct.Content = "Torque calculation based on pressure and minimum gasket seating stress";
-            ct.FontSize = 25;
+            ct.FontSize = 20;
 
             InfoButton.Content = ct;
 
