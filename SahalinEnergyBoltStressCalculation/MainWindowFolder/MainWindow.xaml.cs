@@ -34,6 +34,10 @@ namespace SahalinEnergyBoltStressCalculation
         public MainWindow()
         {
             InitializeComponent();
+
+            // Меняю стиль окна, чтобы применить нужный шрифт
+            Style = (Style)FindResource(typeof(Window));
+
             InitFun();
             page_PressureAndGasketType.mainWindow = this;
         }
@@ -61,7 +65,7 @@ namespace SahalinEnergyBoltStressCalculation
 
             ContentControl ct = new ContentControl();
             ct.Content = "Torque calculation based on bolt material yield stress";
-            ct.FontSize = 20;
+            ct.FontSize = 15;
 
             InfoButton.Content = ct;
         }
@@ -79,7 +83,7 @@ namespace SahalinEnergyBoltStressCalculation
 
             ContentControl ct = new ContentControl();
             ct.Content = "Torque calculation based on target assembly gasket stress";
-            ct.FontSize = 20;
+            ct.FontSize = 15;
 
             InfoButton.Content = ct;
 
@@ -98,7 +102,7 @@ namespace SahalinEnergyBoltStressCalculation
 
             ContentControl ct = new ContentControl();
             ct.Content = "Torque calculation based on pressure and minimum gasket seating stress";
-            ct.FontSize = 20;
+            ct.FontSize = 15;
 
             InfoButton.Content = ct;
 

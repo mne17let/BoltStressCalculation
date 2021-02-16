@@ -8,15 +8,17 @@
         Title="Sakhalin Energy Bolt torque calculation"
         WindowState="Normal"
         ResizeMode="CanMinimize"
-        MaxHeight="400"
-        MaxWidth="711"
+        MaxHeight="500"
+        MaxWidth="500"
         >
     <!--MinHeight="600"
         MinWidth="900"-->
     <Window.Resources>
         <Style x:Key="NavigationUnpickedButtonStyle" TargetType="Button">
-            <Setter Property="Background" Value="#674172"/>
-            <!--Setter Property="FontWeight" Value="Bold"-->
+            <Setter Property="Background" Value="Black"/>
+
+            <!--Setter Property="Background" Value="#674172"-->
+            
 
             <Setter Property="Template">
                 <Setter.Value>
@@ -30,10 +32,12 @@
                         </Border>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
-                                <Setter Property="Background" Value="Green"/>
+                                <Setter Property="Background" Value="Gray"/>
+                                <!--Setter Property="Background" Value="Green"-->
                             </Trigger>
                             <Trigger Property="IsPressed" Value="True">
-                                <Setter Property="Background" Value="#e64d3d"/>
+                                <Setter Property="Background" Value="DarkGray"/>
+                                <!--Setter Property="Background" Value="#e64d3d"-->
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
@@ -43,7 +47,7 @@
         </Style>
 
         <Style x:Key="NavigationPickedButtonStyle" TargetType="Button">
-            <Setter Property="Background" Value="#e64d3d"/>
+            <Setter Property="Background" Value="#2574A9"/> 
             <!--Setter Property="FontWeight" Value="Bold"-->
 
             <Setter Property="Template">
@@ -58,16 +62,20 @@
                         </Border>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
-                                <Setter Property="Background" Value="#D24D57"/>
+                                <Setter Property="Background" Value="#67809F"/>
                             </Trigger>
                             <Trigger Property="IsPressed" Value="True">
-                                <Setter Property="Background" Value="#e64d3d"/>
+                                <Setter Property="Background" Value="#5C97BF"/>
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
 
+        </Style>
+
+        <Style TargetType="Window">
+            <Setter Property="FontFamily" Value="/Fonts/#HelveticaNeueCyr"></Setter>
         </Style>
 
 
@@ -84,14 +92,14 @@
                 Foreground="White">
             <Button.Template>
                 <ControlTemplate TargetType="Button">
-                    <Border Background="#e64d3d" HorizontalAlignment="Stretch">
+                    <Border Background="Black" HorizontalAlignment="Stretch">
                         <ContentControl Content="{TemplateBinding Content}"
                                         HorizontalAlignment="Center"
                                         VerticalAlignment="Center"/>
                     </Border>
                 </ControlTemplate>
             </Button.Template>
-            <TextBlock FontSize="20">
+            <TextBlock FontSize="15">
                 Torque calculation based on bolt material yield stress
             </TextBlock>
         </Button>
@@ -103,17 +111,19 @@
                 <ColumnDefinition></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <Button x:Name="ButtonNavigation_BTC_SingleBoltStress" Padding="2"
-                    FontSize="13"
-                    Grid.Column="0" Style="{StaticResource NavigationPickedButtonStyle}">
-                BTC based on single bolt stress
+                    FontSize="12" Grid.Column="0"
+                    Style="{StaticResource NavigationPickedButtonStyle}">
+                Single bolt stress
             </Button>
-            <Button x:Name="ButtonNavigation_BTC_GasketTargetStress" Padding="2" FontSize="13"
-                    Grid.Column="1" Style="{StaticResource NavigationUnpickedButtonStyle}">
-                BTC based on gasket target stress
+            <Button x:Name="ButtonNavigation_BTC_GasketTargetStress" Padding="2"
+                    FontSize="12" Grid.Column="1"
+                    Style="{StaticResource NavigationUnpickedButtonStyle}">
+                Gasket target stress
             </Button>
-            <Button x:Name="ButtonNavigation_BTC_PressureAndGasketType" Padding="2" FontSize="13"
-                    Grid.Column="2" Style="{StaticResource NavigationUnpickedButtonStyle}">
-                BTC based on pressure and gasket type
+            <Button x:Name="ButtonNavigation_BTC_PressureAndGasketType" Padding="2"
+                    FontSize="12" Grid.Column="2"
+                    Style="{StaticResource NavigationUnpickedButtonStyle}">
+                Flange design stress
             </Button>
         </Grid>
 

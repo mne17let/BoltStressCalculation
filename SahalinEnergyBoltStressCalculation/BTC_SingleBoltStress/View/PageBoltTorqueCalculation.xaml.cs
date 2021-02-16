@@ -21,6 +21,7 @@ namespace SahalinEnergyBoltStressCalculation.PageClassesFolder
         public PageBoltTorqueCalculation()
         {
             InitializeComponent();
+            Style = (Style)FindResource(typeof(Page));
             InitFun();
         }
 
@@ -124,15 +125,13 @@ namespace SahalinEnergyBoltStressCalculation.PageClassesFolder
         // Установка видимости для полей YieldStress и YieldStress-подписи
         private void SetVisibileYield()
         {
-            TextYeildStress.Visibility = Visibility.Visible;
-            TextBoxYieldStress.Visibility = Visibility.Visible;
+            YeildStressTable.Visibility = Visibility.Visible;
         }
 
         // Скрытие полей YieldStress и YieldStress-подписи
         private void SetHiddenVisibilityForYieldStress()
         {
-            TextYeildStress.Visibility = Visibility.Collapsed;
-            TextBoxYieldStress.Visibility = Visibility.Collapsed;
+            YeildStressTable.Visibility = Visibility.Collapsed;
         }
 
         // Очистка полей свойств болта, зависящих от его размера
@@ -214,10 +213,24 @@ namespace SahalinEnergyBoltStressCalculation.PageClassesFolder
         // Установка YieldStress в случае, если выбран не "Custom" grade болта и не "Custom" размер болта
         private void SetYieldStress()
         {
+            ComboBoxItem itemGrade = (ComboBoxItem)((ComboBox)ComboBoxWithGrades).SelectedItem;
+
+
+            // Переменная, отвечающая за то, выбран ли "Custom" grade болта (или вообще ничего не выбрано и стоит "Pick grade/size")
+            string statusGrade;
+
+            statusGrade = itemGrade.Content.ToString();
+
+
             var a = viewModelAtCalculationBTC.GetCurrentYieldStress();
+
             if (viewModelAtCalculationBTC.GetCurrentYieldStress() == 0.0)
             {
                 return;
+            } else if (statusGrade == "Custom")
+            {
+                return;
+                // TextBoxYieldStress.Text = "";
             } else
             {
                 TextBoxYieldStress.Text = viewModelAtCalculationBTC.GetCurrentYieldStress().ToString();
@@ -520,10 +533,8 @@ namespace SahalinEnergyBoltStressCalculation.PageClassesFolder
         private void SetResultTablesVisibility()
         {
             InfoBanner.Visibility = Visibility.Hidden;
-            ResOne_Table.Visibility = Visibility.Visible;
-            ResTwo_Table.Visibility = Visibility.Visible;
-            ResThree_Table.Visibility = Visibility.Visible;
-            ForcePerBoltTable.Visibility = Visibility.Visible;
+            ResultGrid.Visibility = Visibility.Visible;
+            SigmaTable.Visibility = Visibility.Visible;
         }
 
 
