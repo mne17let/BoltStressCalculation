@@ -44,7 +44,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="0.8*"></RowDefinition>
             <RowDefinition></RowDefinition>
-            <RowDefinition Height="0.15*"></RowDefinition>
+            <RowDefinition Height="25"></RowDefinition>
         </Grid.RowDefinitions>
 
         <Grid Grid.Row="0">
@@ -406,7 +406,7 @@
                     </TextBox>
                 </StackPanel>
 
-                <StackPanel Grid.Column="1" Orientation="Horizontal" Margin="5">
+                <StackPanel Grid.Column="1" Orientation="Horizontal" Margin="5" VerticalAlignment="Center">
                     <TextBlock Name="KCoefficientText" FontSize="15" Background="White" 
                        Foreground="Black" Padding="5 3 5 3">
                 Nut factor K
@@ -429,7 +429,7 @@
                 VerticalAlignment="Center">
             <Button.Template>
                 <ControlTemplate TargetType="Button">
-                    <Border Background="#e64d3d" HorizontalAlignment="Center">
+                    <Border Background="Black" HorizontalAlignment="Center">
                         <ContentControl Content="{TemplateBinding Content}"
                                         HorizontalAlignment="Center"
                                         VerticalAlignment="Center"/>
@@ -437,11 +437,24 @@
                 </ControlTemplate>
             </Button.Template>
             <StackPanel>
-                <TextBlock FontSize="20" Foreground="White" Padding="10">
-                ВВЕДИТЕ ДАННЫЕ
-                <LineBreak/>
-                И НАЖМИТЕ "ПОСЧИТАТЬ"
+                <TextBlock FontSize="15" Foreground="White" Padding="10">
+                Введите данные и нажмите "посчитать"
                 </TextBlock>
+
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    <TextBlock FontSize="15" Foreground="White" Padding="10"
+                               VerticalAlignment="Center">
+                Создано совместно
+                    </TextBlock>
+                    <Image Source="pack://application:,,,/Images/sahalinLogo.png"
+                           RenderOptions.BitmapScalingMode="HighQuality"
+                           Height="40" Width="40" Margin="5"/>
+                    <Image Source="pack://application:,,,/Images/rguLogo.png"
+                           RenderOptions.BitmapScalingMode="HighQuality"
+                           Height="40" Width="40" Margin="5"/>
+                </StackPanel>
+                
+                
 
             </StackPanel>
             
@@ -462,8 +475,8 @@
             </Grid.ColumnDefinitions>
             
             <StackPanel Name="ForcePerBoltTable" Orientation="Vertical" Grid.Row="0"
-                        Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center"
-                        Margin="2">
+                        Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center"
+                        Margin="5 0 0 0">
 
                 <TextBlock Background="#e64d3d" FontSize="15" Foreground="White"
                            Padding="5 2 5 2" Margin="0">
@@ -528,8 +541,7 @@
         <Button Name="CalculationButton_SingleBoltStress" Grid.Row="2" FontSize="20" 
                 Style="{StaticResource CalcButtonStyle}" Foreground="White"
                 HorizontalContentAlignment="Center"
-                VerticalContentAlignment="Center"
-                FontWeight="Bold">
+                VerticalContentAlignment="Center">
             ПОСЧИТАТЬ
         </Button>
         

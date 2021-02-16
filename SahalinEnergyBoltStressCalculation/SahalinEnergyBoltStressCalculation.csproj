@@ -135,6 +135,9 @@
     <Compile Include="MainWindowFolder\TableWindow.xaml.cs">
       <DependentUpon>TableWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="MainWindowFolder\TableWindowCalculationTwo.xaml.cs">
+      <DependentUpon>TableWindowCalculationTwo.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Model\Model_Classes\BoltGradeProperties.cs" />
     <Compile Include="Model\DataBaseClasses\MyDataBaseContext.cs" />
     <Compile Include="App.xaml.cs">
@@ -153,6 +156,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="MainWindowFolder\TableWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MainWindowFolder\TableWindowCalculationTwo.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -224,6 +231,15 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\table3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\rguLogo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\sahalinLogo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\table4.jpeg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

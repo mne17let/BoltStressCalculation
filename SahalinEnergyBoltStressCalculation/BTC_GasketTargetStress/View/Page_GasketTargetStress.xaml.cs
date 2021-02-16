@@ -25,10 +25,16 @@ namespace SahalinEnergyBoltStressCalculation.BTC_GasketTargetStress.View
         // Переменная Presenter'а
         private Presenter_GasketTargetStress presenter_GasketTargetStress = Presenter_GasketTargetStress.GetInstance();
 
+        // Переменная главного окна
+        public MainWindow mainWindowCalculationTwo;
+
 
         public Page_GasketTargetStress()
         {
             InitializeComponent();
+
+            // Применяю стиль с нужным шрифтом
+            Style = (Style)FindResource(typeof(Page));
             InitFun();
         }
 
@@ -40,6 +46,7 @@ namespace SahalinEnergyBoltStressCalculation.BTC_GasketTargetStress.View
             ComboBoxWithGrades.SelectionChanged += ListenerForGradeComboBox;
             ComboBoxWithBoltSize.SelectionChanged += ListenerForBoltSizeComboBox;
             CalculationButton_GasketTargetStress.Click += ListenerForCalculationButton;
+            TableButton_GasketTargetStress.Click += OpenWindowWithTable;
         }
 
 
@@ -96,6 +103,12 @@ namespace SahalinEnergyBoltStressCalculation.BTC_GasketTargetStress.View
             statusSize = itemSize.Content.ToString();
 
             presenter_GasketTargetStress.BeginCalculation(statusGrade, statusSize);
+        }
+
+        // Посылаем объекту главного окна команду "Открыть окно с таблицей"
+        private void OpenWindowWithTable(object sender, RoutedEventArgs e)
+        {
+            mainWindowCalculationTwo.ShowWindowCalculationTwo();
         }
 
 
@@ -338,15 +351,13 @@ namespace SahalinEnergyBoltStressCalculation.BTC_GasketTargetStress.View
         // Установка видимости для полей YieldStress и YieldStress-подписи
         private void SetVisibileYield()
         {
-            TextYeildStress.Visibility = Visibility.Visible;
-            TextBoxYieldStress.Visibility = Visibility.Visible;
+            YeildStressTable.Visibility = Visibility.Visible;
         }
 
         // Скрытие полей YieldStress и YieldStress-подписи
         private void SetHiddenVisibilityForYieldStress()
         {
-            TextYeildStress.Visibility = Visibility.Collapsed;
-            TextBoxYieldStress.Visibility = Visibility.Collapsed;
+            YeildStressTable.Visibility = Visibility.Collapsed;
         }
 
         // Очистка полей свойств болта, зависящих от его размера
@@ -625,15 +636,33 @@ namespace SahalinEnergyBoltStressCalculation.BTC_GasketTargetStress.View
 
             TextBlock_TorqueMoment.Text = "τ = " + tau.ToString() + " Lbf-Ft = " + convertTau.ToString() + " N-m";
 
+            CheckConditionAndShowErrorOrNot(objectCalculator.GetPercentOfYIELDStress());
+
         }
 
         // Делаю видимыми таблицы с результатами и невидимым инфобаннер
         private void SetResultTablesVisibility()
         {
             InfoBanner.Visibility = Visibility.Hidden;
-            Table_BoltStressRequired.Visibility = Visibility.Visible;
-            Table_PerCentOfYIELDStress.Visibility = Visibility.Visible;
-            Table_TorqueMoment.Visibility = Visibility.Visible;
+            ResultGrid.Visibility = Visibility.Visible;
+        }
+
+        // Вывожу ошибку проверки условия, если значение не входит в лимит
+        private void CheckConditionAndShowErrorOrNot(double perCentForCheck)
+        {
+            if (perCentForCheck > 80)
+            {
+                TextBlock_ConditionResult.Visibility = Visibility.Visible;
+                TextBlock_ConditionResult.Text = "Bolt stress upper limit control failed [>80%]";
+            } else if (perCentForCheck < 20)
+            {
+                TextBlock_ConditionResult.Visibility = Visibility.Visible;
+                TextBlock_ConditionResult.Text = "Bolt stress lower limit control failed [<20%]";
+            }
+            else
+            {
+                TextBlock_ConditionResult.Visibility = Visibility.Collapsed;
+            }
         }
     }
 }

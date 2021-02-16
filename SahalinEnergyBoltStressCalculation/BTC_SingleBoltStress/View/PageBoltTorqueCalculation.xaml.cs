@@ -21,6 +21,8 @@ namespace SahalinEnergyBoltStressCalculation.PageClassesFolder
         public PageBoltTorqueCalculation()
         {
             InitializeComponent();
+
+            // Применяю стиль с нужным шрифтом
             Style = (Style)FindResource(typeof(Page));
             InitFun();
         }

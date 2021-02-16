@@ -33,40 +33,62 @@
             </Setter>
         </Style>
 
+        <Style x:Key="TableButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="#F9690E"/>
 
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Name="CalcButtonBorder" Background="{TemplateBinding Background}"
+                                VerticalAlignment="{TemplateBinding VerticalAlignment}">
+                            <ContentControl Content="{TemplateBinding Content}"
+                            HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                            VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#476995"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Background" Value="#e64d3d"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style TargetType="{x:Type Page}">
+            <Setter Property="FontFamily" Value="/Fonts/#HelveticaNeueCyr"></Setter>
+        </Style>
     </Page.Resources>
-
+ 
 
     <Grid>
         
         <Grid.Background>
             <ImageBrush ImageSource="pack://application:,,,/Images/backgroundWhite.png"/>
         </Grid.Background>
-        
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
+
         <Grid.RowDefinitions>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition Height="0.5*"/>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition Height="25"></RowDefinition>
         </Grid.RowDefinitions>
 
 
+        <Grid Grid.Row="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0.5*"/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition Height="0.5*"/>
+            </Grid.RowDefinitions>
 
-        <Viewbox Grid.Row="0" Grid.Column="0" Margin="5 10 5 10"
-                 MaxHeight="60">
-            <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="0"
-                    HorizontalAlignment="Center">
+            <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Center"
+                        VerticalAlignment="Center">
 
-                <ComboBox Name="ComboBoxWithGrades"
-                  HorizontalAlignment="Center" VerticalAlignment="Center"
-                  FontSize="30" FontWeight="Bold" SelectedIndex="0"
-                  VerticalContentAlignment="Center">
+                <ComboBox Name="ComboBoxWithGrades" FontSize="15" SelectedIndex="0">
                     <ComboBoxItem Name="HintItemGrade" MaxHeight="0">Pick bolt grade</ComboBoxItem>
                     <ComboBoxItem Name="DefaultItemGrade">Custom</ComboBoxItem>
                     <ComboBoxItem Name="Grade111">A193 B7</ComboBoxItem>
@@ -82,11 +104,8 @@
                     <ComboBoxItem Name="Grade112">A453 grade 660 A, B and C</ComboBoxItem>
                 </ComboBox>
 
-                <ComboBox Name="ComboBoxWithBoltSize"
-                  HorizontalAlignment="Center" VerticalAlignment="Center"
-                  FontSize="30" FontWeight="Bold" SelectedIndex="0" IsEnabled="False"
-                  HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
-                      Visibility="Collapsed">
+                <ComboBox Name="ComboBoxWithBoltSize" FontSize="15" SelectedIndex="0" IsEnabled="False"
+                          Visibility="Collapsed">
 
                     <ComboBoxItem Name="HintItemSizeBeforeGrade" MaxHeight="0">Pick bolt grade at first</ComboBoxItem>
                     <ComboBoxItem Name="HintItemSize" MaxHeight="0">Pick bolt size</ComboBoxItem>
@@ -115,288 +134,417 @@
                 </ComboBox>
 
             </StackPanel>
-        </Viewbox>
-        
 
-        
 
-        <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="0"
-                    HorizontalAlignment="Center">
-            
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
 
-            <StackPanel Orientation="Vertical" VerticalAlignment="Center"
-                        Margin="5 0 5 0">
-                <TextBlock Name="TextNumberOfBolts" FontSize="15" VerticalAlignment="Center"
-                       Background="#674172" 
-                       Foreground="White" Visibility="Visible"
-                           Padding="3">Number of bolts</TextBlock>
-                <TextBox Name="TextBoxFor_NumberOfBolts" FontSize="15" 
-                     VerticalAlignment="Center" Visibility="Visible"
-                         PreviewTextInput="OnlyIntegerNumbers"
+
+                <Grid Name="YeildStressTable" Grid.Column="0" HorizontalAlignment="Center"
+                      VerticalAlignment="Center">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Name="TextYeildStress" FontSize="12" Background="White" Grid.Row="0"
+                       Foreground="Black" Padding="2">YEILD Stress, psi</TextBlock>
+
+                    <Grid Grid.Row="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="0.3*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <TextBox Name="TextBoxYieldStress" FontSize="15" Grid.Column="0"
+                             PreviewTextInput="OnlyNumbersOrCommaOneTime" PreviewKeyDown="WithoutSpace">
+                        </TextBox>
+
+                        <TextBlock FontSize="12" Background="White" Grid.Column="1"
+                       Foreground="Black" Padding="3">psi</TextBlock>
+                    </Grid>
+
+                </Grid>
+                
+                <Grid Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Name="TextNumberOfBolts" FontSize="12" Background="White" 
+                       Foreground="Black" Padding="2" Grid.Row="0">
+                        Number of bolts
+                    </TextBlock>
+
+                    <TextBox Name="TextBoxFor_NumberOfBolts" FontSize="15" Grid.Row="1"
+                             VerticalAlignment="Center" PreviewTextInput="OnlyIntegerNumbers"
                              PreviewKeyDown="WithoutSpace">
-                </TextBox>
-            </StackPanel>
+                    </TextBox>
+                </Grid>
 
-            <StackPanel Orientation="Vertical" VerticalAlignment="Center"
-                        Margin="5 0 5 0">
-                <TextBlock Name="TextYeildStress" FontSize="15" VerticalAlignment="Center"
-                       Background="#674172" 
-                       Foreground="White" Visibility="Visible"
-                           Padding="3">YEILD Stress, psi</TextBlock>
-                <TextBox Name="TextBoxYieldStress" FontSize="15" 
-                     VerticalAlignment="Center" Visibility="Visible"
-                             PreviewTextInput="OnlyNumbersOrCommaOneTime"
-                             PreviewKeyDown="WithoutSpace">
-                </TextBox>
-            </StackPanel>
+                <Grid Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
 
-        </StackPanel>
-
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center"
-                    VerticalAlignment="Center" Grid.Row="2" Grid.Column="0">
-
-            <StackPanel Orientation="Vertical" VerticalAlignment="Center"
-                        Margin="5">
-                <TextBlock FontSize="12" VerticalAlignment="Center" 
-                       Background="#674172" 
-                       Foreground="White"
-                       Padding="3 0 3 0">
+                    <TextBlock FontSize="12" Background="White" Grid.Row="0" Foreground="Black"
+                               Padding="3 1 3 1">
                     Thread Major
                     <LineBreak/>
-                    Diameter D, in
-                </TextBlock>
-                <TextBox Name="TextBoxFor_D" VerticalAlignment="Center" FontSize="20"
-                         PreviewTextInput="OnlyNumbersOrCommaOneTime"
-                             PreviewKeyDown="WithoutSpace">
-                   
-                </TextBox>
-            </StackPanel>
+                    Diameter D
+                    </TextBlock>
+
+                    <Grid Grid.Row="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="0.2*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <TextBox Name="TextBoxFor_D" FontSize="15" Grid.Column="0"
+                             PreviewTextInput="OnlyNumbersOrCommaOneTime" PreviewKeyDown="WithoutSpace">
+                        </TextBox>
+
+                        <TextBlock FontSize="12" Background="White" Grid.Column="1" Foreground="Black"
+                               Padding="3">
+                            in
+                        </TextBlock>
+                    </Grid>
 
 
+                </Grid>
 
-            <StackPanel Orientation="Vertical" VerticalAlignment="Center"
-                        Margin="5">
-                <TextBlock FontSize="12" VerticalAlignment="Center"
-                       Background="#674172" 
-                       Foreground="White"
-                           Padding="3 0 3 0">
-                    Thread pitch
+                <Grid Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+
+                    <TextBlock FontSize="12" Background="White" Grid.Row="0" Foreground="Black"
+                               Padding="3 1 3 1">
+                    Thread pitch P
                     <LineBreak/>
-                    P, in
-                </TextBlock>
-                <TextBox Name="TextBoxFor_P" VerticalAlignment="Center" FontSize="20"
-                         PreviewTextInput="OnlyNumbersOrCommaOneTime"
-                             PreviewKeyDown="WithoutSpace">
-                    
-                </TextBox>
-            </StackPanel>
-            
-        </StackPanel>
 
-        <StackPanel Orientation="Horizontal" VerticalAlignment="Center"
-                    HorizontalAlignment="Center" Grid.Column="0" Grid.Row="3">
-            <StackPanel Orientation="Vertical" VerticalAlignment="Center"
-                        Margin="5">
-                <TextBlock Name="FrictionCoefficientText" FontSize="12"
-                           VerticalAlignment="Center"
-                           Background="#674172" 
-                       Foreground="White"
-                       Padding="3 0 3 0">
-                    Friction
-                    <LineBreak/>
-                    coefficient f
-                </TextBlock>
-                <TextBox Name="TextBoxForFrictionCoefficient" VerticalAlignment="Center"
-                         FontSize="20"
-                     MaxLength="7"  ToolTip="Введите коэффициент трения"
-                         PreviewTextInput="OnlyNumbersAndCountK"
-                         PreviewKeyDown="WithoutSpaceAndMinus004">
-                </TextBox>
-            </StackPanel>
+                    </TextBlock>
 
-            <StackPanel Orientation="Vertical" VerticalAlignment="Center"
-                        Margin="5">
-                <TextBlock Name="KCoefficientText" FontSize="12"
-                           VerticalAlignment="Center"
-                           Background="#674172" 
-                       Foreground="White"
-                       Padding="3 0 3 0">
-                    Nut
-                    <LineBreak/>
-                    factor K
-                </TextBlock>
-                <TextBox Name="TextBoxForKCoefficient" VerticalAlignment="Center"
-                         FontSize="20"
-                     MaxLength="7" PreviewTextInput="OnlyNumbersOrCommaOneTime"
-                             PreviewKeyDown="WithoutSpace">
-                </TextBox>
-            </StackPanel>
+                    <Grid Grid.Row="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="0.2*"/>
+                        </Grid.ColumnDefinitions>
 
-            
+                        <TextBox Name="TextBoxFor_P" FontSize="15" Grid.Column="0"
+                             PreviewTextInput="OnlyNumbersOrCommaOneTime" PreviewKeyDown="WithoutSpace">
+                        </TextBox>
+
+                        <TextBlock FontSize="12" Background="White" Grid.Column="1" Foreground="Black"
+                               Padding="3">
+                            in
+                        </TextBlock>
+                    </Grid>
 
 
-        </StackPanel>
+                </Grid>
 
-        <StackPanel Orientation="Horizontal" VerticalAlignment="Center"
-                    HorizontalAlignment="Center" Grid.Column="0" Grid.Row="4">
+            </Grid>
 
-            <StackPanel Orientation="Vertical" VerticalAlignment="Center"
-                        Margin="5">
-                <TextBlock FontSize="12"
-                           VerticalAlignment="Center"
-                           Background="#674172" 
-                       Foreground="White"
-                       Padding="3 0 3 0">
+            <Grid Grid.Row="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Grid Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Grid.Row="0" FontSize="12" Background="White" Foreground="Black"
+                               Padding="3 1 3 1">
                     Gasket outside
                     <LineBreak/>
                     diameter G
                     <TextBlock FontSize="10">
                         od
                     </TextBlock>
-                    <TextBlock FontSize="12">
-                        , mm
                     </TextBlock>
-                </TextBlock>
-                <TextBox Name="TextBoxFor_GasketOutsideDiameter" VerticalAlignment="Center"
-                         FontSize="20"
-                     PreviewTextInput="OnlyNumbersOrCommaOneTime"
-                             PreviewKeyDown="WithoutSpace">
-                </TextBox>
-            </StackPanel>
 
-            <StackPanel Orientation="Vertical" VerticalAlignment="Center"
-                        Margin="5">
-                <TextBlock FontSize="12"
-                           VerticalAlignment="Center"
-                           Background="#674172" 
-                       Foreground="White"
-                       Padding="3 0 3 0">
+                    <Grid Grid.Row="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="0.3*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <TextBox Name="TextBoxFor_GasketOutsideDiameter" FontSize="12" Grid.Row="0"
+                             PreviewTextInput="OnlyNumbersOrCommaOneTime" PreviewKeyDown="WithoutSpace"
+                             Padding="2">
+                        </TextBox>
+
+                        <TextBlock Grid.Column="1" FontSize="12" Padding="3" Background="White">
+                        mm
+                        </TextBlock>
+                    </Grid>
+
+                </Grid>
+
+
+                <Grid Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Grid.Row="0" FontSize="12" Background="White" Foreground="Black"
+                               Padding="3 1 3 1">
                     Gasket inside
                     <LineBreak/>
                     diameter G
                     <TextBlock FontSize="10">
-                        id
+                        od
                     </TextBlock>
-                    <TextBlock FontSize="12">
-                        , mm
                     </TextBlock>
-                </TextBlock>
-                <TextBox Name="TextBoxFor_GasketInsideDiameter" VerticalAlignment="Center"
-                         FontSize="20"
-                     PreviewTextInput="OnlyNumbersOrCommaOneTime"
-                             PreviewKeyDown="WithoutSpace">
-                </TextBox>
-            </StackPanel>
+                    <Grid Grid.Row="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="0.3*"/>
+                        </Grid.ColumnDefinitions>
 
-            <StackPanel Orientation="Vertical" VerticalAlignment="Center"
-                        Margin="5">
-                <TextBlock FontSize="12"
-                           VerticalAlignment="Center"
-                           Background="#674172" 
-                       Foreground="White"
-                       Padding="3 0 3 0">
-                    Target assembly
-                    <LineBreak/>
-                    gasket stress Sg
+                        <TextBox Name="TextBoxFor_GasketInsideDiameter" FontSize="12" Grid.Row="0"
+                             PreviewTextInput="OnlyNumbersOrCommaOneTime" PreviewKeyDown="WithoutSpace"
+                             Padding="2">
+                        </TextBox>
+
+                        <TextBlock Grid.Column="1" FontSize="12" Padding="3" Background="White">
+                        mm
+                        </TextBlock>
+                    </Grid>
+
+                </Grid>
+
+
+                <Grid Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+
+                    <TextBlock FontSize="12" Background="#F9690E" Foreground="White" Padding="5 3 5 3"
+                               Grid.Row="0">
+                        Target assembly
+                        <LineBreak/>
+                        gasket stress Sg
                     <TextBlock FontSize="10">
                         т
                     </TextBlock>
-                    <TextBlock FontSize="12">
-                        , psi
                     </TextBlock>
-                </TextBlock>
-                <TextBox Name="TextBoxFor_TargetAssemblyGasketStress" VerticalAlignment="Center"
-                         FontSize="20"
-                     PreviewTextInput="OnlyNumbersOrCommaOneTime"
-                             PreviewKeyDown="WithoutSpace">
-                </TextBox>
-            </StackPanel>
+
+                    <Grid Grid.Row="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="0.2*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <TextBox Name="TextBoxFor_TargetAssemblyGasketStress" FontSize="12" Grid.Column="0"
+                             PreviewTextInput="OnlyNumbersOrCommaOneTime" PreviewKeyDown="WithoutSpace"
+                             Padding="2">
+                        </TextBox>
 
 
-        </StackPanel>
+                        <TextBlock FontSize="12" Background="White" Padding="2 3 2 3" Grid.Column="1">
+                        psi
+                        </TextBlock>
+                    </Grid>
 
 
-        <Viewbox Grid.Row="1" Grid.Column="1" Margin="5 10 5 10"
-                 MaxHeight="70">
-            <StackPanel Name="Table_BoltStressRequired" Orientation="Vertical" Grid.Row="1" Grid.Column="1"
+
+
+                </Grid>
+
+            </Grid>
+
+            <Grid Grid.Row="3">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+
+                <StackPanel Grid.Column="0" Orientation="Horizontal" Margin="5" VerticalAlignment="Center"
+                            HorizontalAlignment="Center">
+                    <TextBlock Name="FrictionCoefficientText" FontSize="12"
+                           Background="White" Foreground="Black" Padding="5 3 5 3">
+                Friction coefficient f
+                    </TextBlock>
+
+                    <TextBox Name="TextBoxForFrictionCoefficient" FontSize="12" MaxLength="8"
+                     PreviewTextInput="OnlyNumbersAndCountK" 
+                     PreviewKeyDown="WithoutSpaceAndMinus004"
+                             Padding="2" MinWidth="35">
+                    </TextBox>
+                </StackPanel>
+
+                <StackPanel Grid.Column="1" Orientation="Horizontal" Margin="5" VerticalAlignment="Center"
+                            HorizontalAlignment="Center">
+                    <TextBlock Name="KCoefficientText" FontSize="12" Background="White" 
+                       Foreground="Black" Padding="5 3 5 3">
+                Nut factor K
+                    </TextBlock>
+                    <TextBox Name="TextBoxForKCoefficient" FontSize="12" MaxLength="8"
+                         PreviewTextInput="OnlyNumbersOrCommaOneTime" PreviewKeyDown="WithoutSpace"
+                             Padding="2" MinWidth="35">
+                    </TextBox>
+                </StackPanel>
+
+
+                <Button Name="TableButton_GasketTargetStress" Grid.Column="2" 
+                Grid.ColumnSpan="2" FontSize="12" 
+                Style="{StaticResource TableButtonStyle}" Foreground="White"
+                HorizontalContentAlignment="Center" VerticalAlignment="Center"
+                        HorizontalAlignment="Center"
+                VerticalContentAlignment="Center"
+                FontWeight="Bold" >
+                    <StackPanel Orientation="Horizontal">
+
+                        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center"
+                               Margin="5 0 0 0">
+                            Таблица
+                        </TextBlock>
+                        <Image Margin="5" RenderOptions.BitmapScalingMode="HighQuality" MaxHeight="20"
+                               MaxWidth="20" Source="pack://application:,,,/Images/tableIcon.png"/>
+                    </StackPanel>
+                </Button>
+            </Grid>
+
+            
+
+
+        </Grid>
+
+
+        <Grid Grid.Row="1" Name="ResultGrid" Visibility="Collapsed">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="0" HorizontalAlignment="Center">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                
+                <StackPanel Name="Table_BoltStressRequired" Orientation="Vertical"
                     HorizontalAlignment="Center" VerticalAlignment="Center"
-                    Visibility="Hidden">
-                <TextBlock Background="#e64d3d" FontSize="25" FontWeight="Bold"
-                       Foreground="White" Padding="5 2 5 2" Margin="0">
+                    Grid.Column="0" Margin="5">
+                    <TextBlock Background="#e64d3d" FontSize="15" Foreground="White"
+                           Padding="5 2 5 2" Margin="0">
                 Bolt stress required
-                </TextBlock>
-                <TextBlock Name="TextBlock_BoltStressRequired" Background="White" FontSize="25" FontWeight="Bold"
+                    </TextBlock>
+                    <TextBlock Name="TextBlock_BoltStressRequired" Background="White" FontSize="15"
                        Foreground="Black" Padding="5 2 5 2" Margin="0">
                 Sbsel
-                </TextBlock>
-            </StackPanel>
-        </Viewbox>
+                    </TextBlock>
+                </StackPanel>
 
-        <Viewbox Grid.Row="2" Grid.Column="1" Margin="5 10 5 10"
-                 MaxHeight="70">
-            <StackPanel  Name="Table_PerCentOfYIELDStress" Orientation="Vertical" Grid.Row="2" Grid.Column="1"
-                    HorizontalAlignment="Center" VerticalAlignment="Center"
-                    Visibility="Hidden">
-                <TextBlock Background="#e64d3d" FontSize="25" FontWeight="Bold"
-                       Foreground="White" Padding="5 2 5 2" Margin="0">
-                % of yield stress
-                </TextBlock>
-                <TextBlock Name="TextBlock_PerCentOfYIELDStress" Background="White" FontSize="25" FontWeight="Bold"
-                       Foreground="Black" Padding="5 2 5 2" Margin="0">
-                %
-                </TextBlock>
-            </StackPanel>
-        </Viewbox>
-
-        <Viewbox Grid.Row="3" Grid.Column="1" Margin="5 10 5 10"
-                 MaxHeight="70">
-            <StackPanel Name="Table_TorqueMoment" Orientation="Vertical" Grid.Row="3" Grid.Column="1"
-                    HorizontalAlignment="Center" VerticalAlignment="Center"
-                    Visibility="Hidden">
-                <TextBlock Background="#e64d3d" FontSize="25" FontWeight="Bold"
-                       Foreground="White" Padding="5 2 5 2" Margin="0">
+                <StackPanel Name="Table_TorqueMoment" Orientation="Vertical" Grid.Column="1"
+                    HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5">
+                    <TextBlock Background="#e64d3d" FontSize="15" Foreground="White"
+                           Padding="5 2 5 2" Margin="0">
                 ASME PCC-1 Appendix O
-                </TextBlock>
-                <TextBlock Name="TextBlock_TorqueMoment" Background="White" FontSize="25" FontWeight="Bold"
-                       Foreground="Black" Padding="5 2 5 2" Margin="0">
+                    </TextBlock>
+                    <TextBlock Name="TextBlock_TorqueMoment" Background="White" FontSize="15"
+                           Foreground="Black" Padding="5 2 5 2" Margin="0">
                 τ
+                    </TextBlock>
+                </StackPanel>
+            </Grid>
+
+
+            <StackPanel Orientation="Horizontal" Grid.Row="1"
+                        HorizontalAlignment="Center" VerticalAlignment="Center">
+
+                <StackPanel  Name="Table_PerCentOfYIELDStress" Orientation="Vertical"
+                         Margin="5">
+                    <TextBlock Background="#e64d3d" FontSize="15" Foreground="White"
+                           Padding="5 2 5 2">
+                % of yield stress
+                    </TextBlock>
+
+                    <TextBlock Name="TextBlock_PerCentOfYIELDStress" Background="White" FontSize="15"
+                           Foreground="Black" Padding="5 2 5 2" Margin="0">
+                %
+                    </TextBlock>
+                </StackPanel>
+                
+                <TextBlock Name="TextBlock_ConditionResult" Background="#e64d3d" FontSize="15"
+                           Foreground="White" Padding="5 2 5 2" Margin="5" TextWrapping="Wrap"
+                           VerticalAlignment="Center" Visibility="Collapsed">
+                        Bolt stress lower limit control failed [&lt;20%]
                 </TextBlock>
+                    
+
             </StackPanel>
-        </Viewbox>
-        
-        
+
+            
 
 
-        <Viewbox Grid.Row="2" Grid.Column="1" Margin="5 10 5 10">
-            <Button x:Name="InfoBanner" Grid.Row="2" Grid.Column="1" Visibility="Visible">
+
+        </Grid>
+        
+        
+        <Button x:Name="InfoBanner" Grid.Row="1" Visibility="Visible"
+                HorizontalAlignment="Center" VerticalAlignment="Center">
                 <Button.Template>
                     <ControlTemplate TargetType="Button">
-                        <Border Background="#e64d3d" HorizontalAlignment="Center">
+                        <Border Background="Black" HorizontalAlignment="Center">
                             <ContentControl Content="{TemplateBinding Content}"
                                         HorizontalAlignment="Center"
                                         VerticalAlignment="Center"/>
                         </Border>
                     </ControlTemplate>
                 </Button.Template>
-                <TextBlock FontSize="25" Foreground="White" Padding="10" FontWeight="Bold">
-                ВВЕДИТЕ ДАННЫЕ
-                <LineBreak/>
-                И НАЖМИТЕ "ПОСЧИТАТЬ"
+            <StackPanel>
+                <TextBlock FontSize="15" Foreground="White" Padding="10">
+                Введите данные и нажмите "посчитать"
                 </TextBlock>
-            </Button>
-        </Viewbox>
-        
-        
-        
+
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    <TextBlock FontSize="15" Foreground="White" Padding="10"
+                               VerticalAlignment="Center">
+                Создано совместно
+                    </TextBlock>
+                    <Image Source="pack://application:,,,/Images/sahalinLogo.png"
+                           RenderOptions.BitmapScalingMode="HighQuality"
+                           Height="40" Width="40" Margin="5"/>
+                    <Image Source="pack://application:,,,/Images/rguLogo.png"
+                           RenderOptions.BitmapScalingMode="HighQuality"
+                           Height="40" Width="40" Margin="5"/>
+                </StackPanel>
 
 
 
-        <Button Name="CalculationButton_GasketTargetStress" Grid.Row="5" Grid.Column="0" 
-                Grid.ColumnSpan="2" FontSize="30" 
+            </StackPanel>
+        </Button>
+
+
+
+
+
+
+            <Button Name="CalculationButton_GasketTargetStress" Grid.Row="2"
+                Grid.ColumnSpan="2" FontSize="20" 
                 Style="{StaticResource CalculationButtonStyle}" Foreground="White"
                 HorizontalContentAlignment="Center"
-                VerticalContentAlignment="Center"
-                FontWeight="Bold">
+                VerticalContentAlignment="Center">
             ПОСЧИТАТЬ
         </Button>
 

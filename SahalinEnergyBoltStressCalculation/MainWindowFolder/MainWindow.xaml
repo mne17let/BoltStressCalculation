@@ -9,7 +9,7 @@
         WindowState="Normal"
         ResizeMode="CanMinimize"
         MaxHeight="500"
-        MaxWidth="500"
+        MaxWidth="550"
         >
     <!--MinHeight="600"
         MinWidth="900"-->

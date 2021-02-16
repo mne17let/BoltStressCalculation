@@ -36,10 +36,11 @@ namespace SahalinEnergyBoltStressCalculation
             InitializeComponent();
 
             // Меняю стиль окна, чтобы применить нужный шрифт
-            Style = (Style)FindResource(typeof(Window));
+            //Style = (Style)FindResource(typeof(Window));
 
             InitFun();
             page_PressureAndGasketType.mainWindow = this;
+            page_GasketTargetStress.mainWindowCalculationTwo = this;
         }
 
         public void InitFun()
@@ -115,6 +116,15 @@ namespace SahalinEnergyBoltStressCalculation
             tableOneWindow.Owner = this;
 
             tableOneWindow.Show();
+        }
+
+        public void ShowWindowCalculationTwo()
+        {
+            Window tableCalculationTwoWindow = new TableWindowCalculationTwo();
+
+            tableCalculationTwoWindow.Owner = this;
+
+            tableCalculationTwoWindow.Show();
         }
 
 
