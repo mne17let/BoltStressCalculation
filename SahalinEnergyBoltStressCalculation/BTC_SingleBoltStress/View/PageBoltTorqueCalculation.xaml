@@ -426,7 +426,7 @@
         
         
         <Button x:Name="InfoBanner" Grid.Row="1" HorizontalAlignment="Center"
-                VerticalAlignment="Center">
+                VerticalAlignment="Center" Margin="0 0 0 50">
             <Button.Template>
                 <ControlTemplate TargetType="Button">
                     <Border Background="Black" HorizontalAlignment="Center">

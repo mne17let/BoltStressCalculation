@@ -33,6 +33,10 @@ namespace SahalinEnergyBoltStressCalculation.BTC_PressureAndGasketType.View
         public Page_PressureAndGasketType()
         {
             InitializeComponent();
+
+            // Применяю стиль с нужным шрифтом
+            Style = (Style)FindResource(typeof(Page));
+
             InitFun();
         }
 

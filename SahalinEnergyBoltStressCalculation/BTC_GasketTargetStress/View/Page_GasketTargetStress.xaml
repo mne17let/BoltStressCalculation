@@ -71,7 +71,7 @@
         </Grid.Background>
 
         <Grid.RowDefinitions>
-            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition></RowDefinition>
             <RowDefinition></RowDefinition>
             <RowDefinition Height="25"></RowDefinition>
         </Grid.RowDefinitions>
@@ -256,9 +256,9 @@
 
             <Grid Grid.Row="2">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
 
                 <Grid Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center">
@@ -499,8 +499,8 @@
 
 
         </Grid>
-        
-        
+
+
         <Button x:Name="InfoBanner" Grid.Row="1" Visibility="Visible"
                 HorizontalAlignment="Center" VerticalAlignment="Center">
                 <Button.Template>

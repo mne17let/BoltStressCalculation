@@ -35,6 +35,7 @@ namespace SahalinEnergyBoltStressCalculation.BTC_GasketTargetStress.View
 
             // Применяю стиль с нужным шрифтом
             Style = (Style)FindResource(typeof(Page));
+
             InitFun();
         }
 
@@ -647,7 +648,7 @@ namespace SahalinEnergyBoltStressCalculation.BTC_GasketTargetStress.View
             ResultGrid.Visibility = Visibility.Visible;
         }
 
-        // Вывожу ошибку проверки условия, если значение не входит в лимит
+        // Вывожу ошибку проверки условия, если значение не входит в лимит. Либо скрываю поле ошибки, если всё в порядке.
         private void CheckConditionAndShowErrorOrNot(double perCentForCheck)
         {
             if (perCentForCheck > 80)
