@@ -409,10 +409,10 @@ namespace SahalinEnergyBoltStressCalculation.BTC_PressureAndGasketType.Presenter
                     res = false;
                     break;
                 case "Custom":
-                    res = setUpProperties(statusSize);
+                    res = setUpProperties();
                     break;
                 default:
-                    res = setUpProperties(statusSize);
+                    res = setUpProperties();
                     break;
             }
             return res;
@@ -421,7 +421,7 @@ namespace SahalinEnergyBoltStressCalculation.BTC_PressureAndGasketType.Presenter
         // Получение данных с полей свойств болта
         // Проверка, введены ли свойства болта в случае, если выбран размер болта Custom и установка их
         // в специальные переменные в Presenter'е
-        private bool setUpProperties(string statusSize)
+        private bool setUpProperties()
         {
             bool checkingProp;
             double helpD;
