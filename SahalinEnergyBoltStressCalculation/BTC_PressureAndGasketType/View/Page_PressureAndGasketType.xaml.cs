@@ -226,7 +226,15 @@ namespace SahalinEnergyBoltStressCalculation.BTC_PressureAndGasketType.View
             }
             else
             {
-                resultWriting = true;
+                var arrText = currentText.ToArray();
+                if (arrText.Length == 5)
+                {
+                    resultWriting = false;
+                }
+                else
+                {
+                    resultWriting = true;
+                }
             }
 
             string helpCurrentTextFCoeff = currentText + textSymbols.Text;
@@ -288,7 +296,7 @@ namespace SahalinEnergyBoltStressCalculation.BTC_PressureAndGasketType.View
                 case "Custom":
                     UpdateComboBoxWithSize();
                     SetIsReadOnlyFalseFor_YieldTextBox();
-                    SetVisibleAndEnabledComboBoxWithSizes();
+                    SetEnabledComboBoxWithSizes();
                     ClearYieldStressTextBox();
                     break;
                 default:
@@ -296,7 +304,7 @@ namespace SahalinEnergyBoltStressCalculation.BTC_PressureAndGasketType.View
                     UpdateComboBoxWithSize();
                     SetEmptyPropertiesWhenGradeChange();
                     SetIsReadOnlyTrueFor_YieldTextBox();
-                    SetVisibleAndEnabledComboBoxWithSizes();
+                    SetEnabledComboBoxWithSizes();
                     break;
             }
 
@@ -326,7 +334,6 @@ namespace SahalinEnergyBoltStressCalculation.BTC_PressureAndGasketType.View
             TextBoxFor_D.Text = "";
             TextBoxFor_E.Text = "";
             TextBoxFor_H.Text = "";
-            TextBoxFor_K.Text = "";
             TextBoxFor_P.Text = "";
         }
 
@@ -357,9 +364,8 @@ namespace SahalinEnergyBoltStressCalculation.BTC_PressureAndGasketType.View
         }
 
         // Делаю видимым ComboBox с размерами и доступным для выбора элемента
-        private void SetVisibleAndEnabledComboBoxWithSizes()
+        private void SetEnabledComboBoxWithSizes()
         {
-            ComboBoxWithBoltSize.Visibility = Visibility.Visible;
             ComboBoxWithBoltSize.IsEnabled = true;
         }
 
@@ -393,7 +399,6 @@ namespace SahalinEnergyBoltStressCalculation.BTC_PressureAndGasketType.View
             TextBoxFor_D.IsReadOnly = false;
             TextBoxFor_E.IsReadOnly = false;
             TextBoxFor_H.IsReadOnly = false;
-            TextBoxFor_K.IsReadOnly = false;
             TextBoxFor_P.IsReadOnly = false;
         }
 
@@ -435,7 +440,6 @@ namespace SahalinEnergyBoltStressCalculation.BTC_PressureAndGasketType.View
             TextBoxFor_D.IsReadOnly = true;
             TextBoxFor_E.IsReadOnly = true;
             TextBoxFor_H.IsReadOnly = true;
-            TextBoxFor_K.IsReadOnly = true;
             TextBoxFor_P.IsReadOnly = true;
         }
 
@@ -446,8 +450,7 @@ namespace SahalinEnergyBoltStressCalculation.BTC_PressureAndGasketType.View
             double d = Math.Round(properties[0], 4);
             double e = Math.Round(properties[1], 4);
             double h = Math.Round(properties[2], 4);
-            double k = Math.Round(properties[3], 4);
-            double p = Math.Round(properties[4], 4);
+            double p = Math.Round(properties[3], 4);
 
 
             TextBoxFor_D.Text = d.ToString();
@@ -455,8 +458,6 @@ namespace SahalinEnergyBoltStressCalculation.BTC_PressureAndGasketType.View
             TextBoxFor_E.Text = e.ToString();
 
             TextBoxFor_H.Text = h.ToString();
-
-            TextBoxFor_K.Text = k.ToString();
 
             TextBoxFor_P.Text = p.ToString();
 
@@ -483,10 +484,9 @@ namespace SahalinEnergyBoltStressCalculation.BTC_PressureAndGasketType.View
             string d = TextBoxFor_D.Text;
             string e = TextBoxFor_E.Text;
             string h = TextBoxFor_H.Text;
-            string k = TextBoxFor_K.Text;
             string p = TextBoxFor_P.Text;
 
-            string[] properties = new string[] { d, e, h, k, p};
+            string[] properties = new string[] { d, e, h, p};
             return properties;
         }
 

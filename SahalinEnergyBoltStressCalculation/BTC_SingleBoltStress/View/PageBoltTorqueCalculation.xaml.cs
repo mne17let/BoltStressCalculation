@@ -110,14 +110,14 @@ namespace SahalinEnergyBoltStressCalculation.PageClassesFolder
                     ClearYieldStressTextBox();
                     UpdateComboBoxWithSize();
                     SetIsReadOnlyFalseFor_TextBoxYieldStress();
-                    SetVisibleAndEnabledComboBoxWithSizes();
+                    SetEnabledComboBoxWithSizes();
                     break;
                 default:
                     ClearYieldStressTextBox();
                     UpdateComboBoxWithSize();
                     SetEmptyPropertiesWhenGradeChange();
                     SetIsReadOnlyTrueFor_TextBoxYieldStress();
-                    SetVisibleAndEnabledComboBoxWithSizes();
+                    SetEnabledComboBoxWithSizes();
                     break;
             }
             
@@ -177,9 +177,8 @@ namespace SahalinEnergyBoltStressCalculation.PageClassesFolder
         }
 
         // Делаю видимым ComboBox с размерами и доступным для выбора элемента
-        private void SetVisibleAndEnabledComboBoxWithSizes()
+        private void SetEnabledComboBoxWithSizes()
         {
-            ComboBoxWithBoltSize.Visibility = Visibility.Visible;
             ComboBoxWithBoltSize.IsEnabled = true;
         }
 
@@ -400,8 +399,17 @@ namespace SahalinEnergyBoltStressCalculation.PageClassesFolder
                 }
             } else
             {
-                resultWriting = true;
+                var arrText = currentText.ToArray();
+                if (arrText.Length == 5)
+                {
+                    resultWriting = false;
+                } else
+                {
+                    resultWriting = true;
+                }
+                
             }
+
 
             string helpCurrentTextFCoeff = currentText + textSymbols.Text;
             double helpK;

@@ -5,12 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SahalinEnergyBoltStressCalculation.MainWindowFolder"
         mc:Ignorable="d"
-        Title="TableWindowCalculationTwo" Height="420" Width="800"
-        MinHeight="420" MinWidth="800">
+        Title="TableWindowCalculationTwo" Height="375" Width="800"
+        MinHeight="375" MinWidth="800">
     <Grid>
         <ScrollViewer>
             <StackPanel>
-                <TextBlock FontSize="20" TextWrapping="Wrap" Padding="10">
+                <TextBlock FontSize="15" TextWrapping="Wrap" Padding="10">
                     <TextBlock Foreground="White" Background="Red" FontWeight="Bold">
                         Warning!
                     </TextBlock>

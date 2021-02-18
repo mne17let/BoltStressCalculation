@@ -85,9 +85,16 @@
             </Grid.RowDefinitions>
 
             <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Center"
-                        VerticalAlignment="Center" Margin="1">
+                        VerticalAlignment="Center" Margin="2 1 2 1">
 
-                <ComboBox Name="ComboBoxWithGrades" FontSize="13" SelectedIndex="0">
+                <TextBlock FontSize="13" HorizontalAlignment="Center" VerticalAlignment="Center"
+                           FontFamily="Segoe UI" FontWeight="Bold"
+                           Foreground="Black" Padding="2 1 2 1">
+                Bolt grade
+                </TextBlock>
+
+                <ComboBox Name="ComboBoxWithGrades" FontSize="13" SelectedIndex="0"
+                          HorizontalContentAlignment="Center" MinWidth="190">
                     <ComboBoxItem Name="HintItemGrade" MaxHeight="0">Pick bolt grade</ComboBoxItem>
                     <ComboBoxItem Name="DefaultItemGrade">Custom</ComboBoxItem>
                     <ComboBoxItem Name="Grade111">A193 B7</ComboBoxItem>
@@ -103,8 +110,13 @@
                     <ComboBoxItem Name="Grade112">A453 grade 660 A, B and C</ComboBoxItem>
                 </ComboBox>
 
+                <TextBlock FontSize="13" Margin="5 0 0 0" HorizontalAlignment="Center" FontFamily="Segoe UI"
+                           FontWeight="Bold"
+                           VerticalAlignment="Center" Foreground="Black" Padding="2 1 2 1">
+                Bolt size
+                </TextBlock>
                 <ComboBox Name="ComboBoxWithBoltSize" FontSize="12" SelectedIndex="0" IsEnabled="False"
-                          Visibility="Collapsed">
+                          HorizontalContentAlignment="Center" MinWidth="140">
                     <ComboBoxItem Name="HintItemSizeBeforeGrade" MaxHeight="0">Pick bolt grade at first</ComboBoxItem>
                     <ComboBoxItem Name="HintItemSize" MaxHeight="0">Pick bolt size</ComboBoxItem>
                     <ComboBoxItem Name="DefaultItem">Custom</ComboBoxItem>
@@ -149,7 +161,7 @@
                     Number of bolts
                     </TextBlock>
 
-                    <TextBox Name="TextBoxFor_NumberOfBolts" FontSize="12" Grid.Row="1"
+                    <TextBox Name="TextBoxFor_NumberOfBolts" FontSize="12" Grid.Row="1" MaxLength="3"
                          PreviewTextInput="OnlyIntegerNumbers" PreviewKeyDown="WithoutSpace">
                         <!---->
                     </TextBox>
@@ -175,7 +187,7 @@
                             <ColumnDefinition Width="0.3*"/>
                         </Grid.ColumnDefinitions>
 
-                        <TextBox Name="TextBoxYieldStress" FontSize="12" Grid.Column="0"
+                        <TextBox Name="TextBoxYieldStress" FontSize="12" Grid.Column="0" MaxLength="7"
                          PreviewTextInput="OnlyNumbersOrCommaOneTime" PreviewKeyDown="WithoutSpace">
                             <!---->
                         </TextBox>
@@ -212,7 +224,8 @@
                         </Grid.ColumnDefinitions>
 
                         <TextBox Name="TextBoxFor_GasketOutsideDiameter" FontSize="12" Grid.Column="0"
-                         PreviewTextInput="OnlyNumbersOrCommaOneTime" PreviewKeyDown="WithoutSpace">
+                         PreviewTextInput="OnlyNumbersOrCommaOneTime" PreviewKeyDown="WithoutSpace"
+                                 MaxLength="6">
                             <!---->
                         </TextBox>
 
@@ -248,7 +261,8 @@
                         </Grid.ColumnDefinitions>
 
                         <TextBox Name="TextBoxFor_GasketInsideDiameter" FontSize="12" Grid.Column="0"
-                         PreviewTextInput="OnlyNumbersOrCommaOneTime" PreviewKeyDown="WithoutSpace">
+                                 PreviewTextInput="OnlyNumbersOrCommaOneTime" PreviewKeyDown="WithoutSpace"
+                                 MaxLength="6">
                             <!---->
                         </TextBox>
 
@@ -280,7 +294,7 @@
                             <ColumnDefinition Width="0.3*"/>
                         </Grid.ColumnDefinitions>
 
-                        <TextBox Name="TextBoxFor_Size_N" FontSize="12" Grid.Column="0"
+                        <TextBox Name="TextBoxFor_Size_N" FontSize="12" Grid.Column="0" MaxLength="5"
                          PreviewTextInput="OnlyNumbersOrCommaOneTime" PreviewKeyDown="WithoutSpace">
                             <!---->
                         </TextBox>
@@ -309,7 +323,7 @@
 
                     <TextBlock Grid.Row="0" FontSize="12" Background="White"
                                Foreground="Black" Padding="2 1 2 1">
-                    Thread Major Diameter
+                    Nominal diameter of bolt
                     </TextBlock>
 
                     <Grid Grid.Row="1">
@@ -318,7 +332,7 @@
                             <ColumnDefinition Width="0.2*"/>
                         </Grid.ColumnDefinitions>
 
-                        <TextBox Name="TextBoxFor_D" FontSize="12" Grid.Column="0"
+                        <TextBox Name="TextBoxFor_D" FontSize="12" Grid.Column="0" MaxLength="6"
                              PreviewTextInput="OnlyNumbersOrCommaOneTime" PreviewKeyDown="WithoutSpace">
                         </TextBox>
 
@@ -349,7 +363,7 @@
                             <ColumnDefinition Width="0.2*"/>
                         </Grid.ColumnDefinitions>
 
-                        <TextBox Name="TextBoxFor_E" FontSize="12" Grid.Column="0"
+                        <TextBox Name="TextBoxFor_E" FontSize="12" Grid.Column="0" MaxLength="6"
                                  PreviewTextInput="OnlyNumbersOrCommaOneTime" PreviewKeyDown="WithoutSpace">
                         </TextBox>
 
@@ -372,7 +386,7 @@
                     <TextBlock Grid.Row="0" FontSize="12" Background="White" 
                        Foreground="Black"
                            Padding="2 1 2 1">
-                    Hex size (nut)
+                    Hex width across flats
                     </TextBlock>
 
                     <Grid Grid.Row="1">
@@ -381,39 +395,7 @@
                             <ColumnDefinition Width="0.2*"/>
                         </Grid.ColumnDefinitions>
 
-                        <TextBox Name="TextBoxFor_H" FontSize="12" Grid.Column="0"
-                                 PreviewTextInput="OnlyNumbersOrCommaOneTime" PreviewKeyDown="WithoutSpace">
-                        </TextBox>
-
-                        <TextBlock Grid.Column="1" FontSize="12" Background="White"
-                               Foreground="Black" Padding="1">
-                            in
-                        </TextBlock>
-                    </Grid>
-
-
-                </Grid>
-
-
-                <Grid Grid.Column="3" Margin="3 1 3 1"
-                      HorizontalAlignment="Center" VerticalAlignment="Center">
-                    <Grid.RowDefinitions>
-                        <RowDefinition/>
-                        <RowDefinition/>
-                    </Grid.RowDefinitions>
-
-                    <TextBlock Grid.Row="0" FontSize="12" Background="White" 
-                       Foreground="Black" Padding="2 1 2 1">
-                    Nut internal chamfer
-                    </TextBlock>
-
-                    <Grid Grid.Row="1">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition/>
-                            <ColumnDefinition Width="0.2*"/>
-                        </Grid.ColumnDefinitions>
-
-                        <TextBox Name="TextBoxFor_K" FontSize="12" Grid.Column="0"
+                        <TextBox Name="TextBoxFor_H" FontSize="12" Grid.Column="0" MaxLength="6"
                                  PreviewTextInput="OnlyNumbersOrCommaOneTime" PreviewKeyDown="WithoutSpace">
                         </TextBox>
 
@@ -436,7 +418,6 @@
                     <TextBlock FontSize="12" Background="White" Grid.Row="0"
                        Foreground="Black" Padding="2 1 2 1">
                     Thread pitch
-
                     </TextBlock>
 
                     <Grid Grid.Row="1">
@@ -445,7 +426,7 @@
                             <ColumnDefinition Width="0.2*"/>
                         </Grid.ColumnDefinitions>
 
-                        <TextBox Name="TextBoxFor_P" FontSize="12" Grid.Column="0"
+                        <TextBox Name="TextBoxFor_P" FontSize="12" Grid.Column="0" MaxLength="6"
                                  PreviewTextInput="OnlyNumbersOrCommaOneTime" PreviewKeyDown="WithoutSpace">
                         </TextBox>
 
@@ -468,13 +449,13 @@
                             HorizontalAlignment="Center">
                     <TextBlock Name="FrictionCoefficientText" FontSize="12"
                            Background="White" Foreground="Black" Padding="3 3 3 1">
-                Friction coefficient f
+                Friction coefficient
                     </TextBlock>
 
-                    <TextBox Name="TextBoxFor_FrictionCoefficient" FontSize="12" MaxLength="8"
+                    <TextBox Name="TextBoxFor_FrictionCoefficient" FontSize="12" MaxLength="5"
                      PreviewTextInput="OnlyNumbersAndCountK" 
                      PreviewKeyDown="WithoutSpaceAndMinus004"
-                             Padding="1" MinWidth="35">
+                             Padding="1" MinWidth="50">
                     </TextBox>
                 </StackPanel>
 
@@ -484,9 +465,9 @@
                        Foreground="Black" Padding="3 3 3 1">
                 Nut factor K
                     </TextBlock>
-                    <TextBox Name="TextBoxFor_KCoefficient" FontSize="12" MaxLength="8"
+                    <TextBox Name="TextBoxFor_KCoefficient" FontSize="12" MaxLength="5"
                          PreviewTextInput="OnlyNumbersOrCommaOneTime" PreviewKeyDown="WithoutSpace"
-                             Padding="1" MinWidth="35">
+                             Padding="1" MinWidth="50">
                     </TextBox>
                 </StackPanel>
 
@@ -510,7 +491,8 @@
                         </Grid.ColumnDefinitions>
 
                         <TextBox Name="TextBoxFor_InternalDesignPressure" FontSize="12" Grid.Column="0"
-                                 PreviewTextInput="OnlyNumbersOrCommaOneTime" PreviewKeyDown="WithoutSpace">
+                                 PreviewTextInput="OnlyNumbersOrCommaOneTime" PreviewKeyDown="WithoutSpace"
+                                 MaxLength="5">
                         </TextBox>
 
                         <TextBlock Grid.Column="1" FontSize="12" Background="White"
@@ -541,7 +523,7 @@
                     Gasket factor - m
                     </TextBlock>
 
-                    <TextBox Name="TextBoxFor_GasketFactor" FontSize="12" Grid.Row="1"
+                    <TextBox Name="TextBoxFor_GasketFactor" FontSize="12" Grid.Row="1" MaxLength="4"
                                  PreviewTextInput="OnlyNumbersOrCommaOneTime" PreviewKeyDown="WithoutSpace">
                     </TextBox>
 
@@ -567,7 +549,8 @@
                         </Grid.ColumnDefinitions>
 
                         <TextBox Name="TextBoxFor_MinimumDesignSeatingStress" FontSize="12" Grid.Column="0"
-                                 PreviewTextInput="OnlyNumbersOrCommaOneTime" PreviewKeyDown="WithoutSpace">
+                                 PreviewTextInput="OnlyNumbersOrCommaOneTime" PreviewKeyDown="WithoutSpace"
+                                 MaxLength="4">
                         </TextBox>
 
                         <TextBlock Grid.Column="1" FontSize="12" Background="White"
@@ -602,7 +585,8 @@
                         </Grid.ColumnDefinitions>
 
                         <TextBox Name="TextBoxFor_BasicGasketSeatingWidth" FontSize="12" Grid.Column="0"
-                                 PreviewTextInput="OnlyNumbersOrCommaOneTime" PreviewKeyDown="WithoutSpace">
+                                 PreviewTextInput="OnlyNumbersOrCommaOneTime" PreviewKeyDown="WithoutSpace"
+                                 MaxLength="5" TextAlignment="Right">
                         </TextBox>
 
                         <TextBlock Grid.Column="1" FontSize="12" Background="White"

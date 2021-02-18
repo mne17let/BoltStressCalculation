@@ -87,8 +87,13 @@
 
             <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Center"
                         VerticalAlignment="Center">
+                <TextBlock FontSize="15"
+                           Background="White" Foreground="Black" Padding="3 1 3 1">
+                Bolt grade
+                </TextBlock>
 
-                <ComboBox Name="ComboBoxWithGrades" FontSize="15" SelectedIndex="0">
+                <ComboBox Name="ComboBoxWithGrades" FontSize="15" SelectedIndex="0" MinWidth="210"
+                          HorizontalContentAlignment="Center">
                     <ComboBoxItem Name="HintItemGrade" MaxHeight="0">Pick bolt grade</ComboBoxItem>
                     <ComboBoxItem Name="DefaultItemGrade">Custom</ComboBoxItem>
                     <ComboBoxItem Name="Grade111">A193 B7</ComboBoxItem>
@@ -103,9 +108,14 @@
                     <ComboBoxItem Name="Grade102">A193 B8M2 class 2B</ComboBoxItem>
                     <ComboBoxItem Name="Grade112">A453 grade 660 A, B and C</ComboBoxItem>
                 </ComboBox>
+                
+                <TextBlock FontSize="15" Margin="5 0 0 0"
+                           Background="White" Foreground="Black" Padding="3 1 3 1">
+                Bolt size
+                </TextBlock>
 
                 <ComboBox Name="ComboBoxWithBoltSize" FontSize="15" SelectedIndex="0" IsEnabled="False"
-                          Visibility="Collapsed">
+                          MinWidth="170" HorizontalContentAlignment="Center">
 
                     <ComboBoxItem Name="HintItemSizeBeforeGrade" MaxHeight="0">Pick bolt grade at first</ComboBoxItem>
                     <ComboBoxItem Name="HintItemSize" MaxHeight="0">Pick bolt size</ComboBoxItem>
@@ -153,7 +163,7 @@
                     </Grid.RowDefinitions>
 
                     <TextBlock Name="TextYeildStress" FontSize="12" Background="White" Grid.Row="0"
-                       Foreground="Black" Padding="2">YEILD Stress, psi</TextBlock>
+                       Foreground="Black" Padding="2">Yield strength</TextBlock>
 
                     <Grid Grid.Row="1">
                         <Grid.ColumnDefinitions>
@@ -161,7 +171,7 @@
                             <ColumnDefinition Width="0.3*"/>
                         </Grid.ColumnDefinitions>
 
-                        <TextBox Name="TextBoxYieldStress" FontSize="15" Grid.Column="0"
+                        <TextBox Name="TextBoxYieldStress" FontSize="15" Grid.Column="0" MaxLength="7"
                              PreviewTextInput="OnlyNumbersOrCommaOneTime" PreviewKeyDown="WithoutSpace">
                         </TextBox>
 
@@ -182,7 +192,7 @@
                         Number of bolts
                     </TextBlock>
 
-                    <TextBox Name="TextBoxFor_NumberOfBolts" FontSize="15" Grid.Row="1"
+                    <TextBox Name="TextBoxFor_NumberOfBolts" FontSize="15" Grid.Row="1"  MaxLength="3"
                              VerticalAlignment="Center" PreviewTextInput="OnlyIntegerNumbers"
                              PreviewKeyDown="WithoutSpace">
                     </TextBox>
@@ -196,18 +206,18 @@
 
                     <TextBlock FontSize="12" Background="White" Grid.Row="0" Foreground="Black"
                                Padding="3 1 3 1">
-                    Thread Major
+                    Nominal diameter
                     <LineBreak/>
-                    Diameter D
+                    of bolt
                     </TextBlock>
-
+                    
                     <Grid Grid.Row="1">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition/>
                             <ColumnDefinition Width="0.2*"/>
                         </Grid.ColumnDefinitions>
 
-                        <TextBox Name="TextBoxFor_D" FontSize="15" Grid.Column="0"
+                        <TextBox Name="TextBoxFor_D" FontSize="15" Grid.Column="0"  MaxLength="6"
                              PreviewTextInput="OnlyNumbersOrCommaOneTime" PreviewKeyDown="WithoutSpace">
                         </TextBox>
 
@@ -228,7 +238,7 @@
 
                     <TextBlock FontSize="12" Background="White" Grid.Row="0" Foreground="Black"
                                Padding="3 1 3 1">
-                    Thread pitch P
+                    Thread pitch
                     <LineBreak/>
 
                     </TextBlock>
@@ -239,7 +249,7 @@
                             <ColumnDefinition Width="0.2*"/>
                         </Grid.ColumnDefinitions>
 
-                        <TextBox Name="TextBoxFor_P" FontSize="15" Grid.Column="0"
+                        <TextBox Name="TextBoxFor_P" FontSize="15" Grid.Column="0" MaxLength="6"
                              PreviewTextInput="OnlyNumbersOrCommaOneTime" PreviewKeyDown="WithoutSpace">
                         </TextBox>
 
@@ -271,10 +281,7 @@
                                Padding="3 1 3 1">
                     Gasket outside
                     <LineBreak/>
-                    diameter G
-                    <TextBlock FontSize="10">
-                        od
-                    </TextBlock>
+                    diameter
                     </TextBlock>
 
                     <Grid Grid.Row="1">
@@ -285,7 +292,7 @@
 
                         <TextBox Name="TextBoxFor_GasketOutsideDiameter" FontSize="12" Grid.Row="0"
                              PreviewTextInput="OnlyNumbersOrCommaOneTime" PreviewKeyDown="WithoutSpace"
-                             Padding="2">
+                             Padding="2" MaxLength="6">
                         </TextBox>
 
                         <TextBlock Grid.Column="1" FontSize="12" Padding="3" Background="White">
@@ -306,10 +313,7 @@
                                Padding="3 1 3 1">
                     Gasket inside
                     <LineBreak/>
-                    diameter G
-                    <TextBlock FontSize="10">
-                        od
-                    </TextBlock>
+                    diameter
                     </TextBlock>
                     <Grid Grid.Row="1">
                         <Grid.ColumnDefinitions>
@@ -319,7 +323,7 @@
 
                         <TextBox Name="TextBoxFor_GasketInsideDiameter" FontSize="12" Grid.Row="0"
                              PreviewTextInput="OnlyNumbersOrCommaOneTime" PreviewKeyDown="WithoutSpace"
-                             Padding="2">
+                             Padding="2" MaxLength="6">
                         </TextBox>
 
                         <TextBlock Grid.Column="1" FontSize="12" Padding="3" Background="White">
@@ -330,57 +334,56 @@
                 </Grid>
 
 
-                <StackPanel Grid.Column="2" Orientation="Horizontal"
-                            HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Grid Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center">
+
                     
-                    <Grid Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <Grid Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center">
                         <Grid.RowDefinitions>
                             <RowDefinition/>
                             <RowDefinition/>
                         </Grid.RowDefinitions>
 
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="0.4*"/>
+                        </Grid.ColumnDefinitions>
+
+
                         <TextBlock FontSize="12" Background="#195acf" Foreground="White"
-                                   Padding="5 3 5 3" Grid.Row="0">
-                        Target assembly
-                        <LineBreak/>
-                        gasket stress Sg
-                    <TextBlock FontSize="10">
-                        т
-                    </TextBlock>
-                    </TextBlock>
+                                   Padding="5 3 5 3" Grid.Column="0" Grid.Row="0">
+                                Target assembly
+                                <LineBreak/>
+                                gasket stress
+                            </TextBlock>
 
-                        <Grid Grid.Row="1">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition/>
-                                <ColumnDefinition Width="0.2*"/>
-                            </Grid.ColumnDefinitions>
+                        
+                        <Button Name="TableButton_GasketTargetStress" Width="30" Grid.Row="0"
+                            Grid.Column="1" Style="{StaticResource TableButtonStyle}">
+                                <TextBlock Foreground="White" FontFamily="Segoe UI" FontWeight="Bold"
+                                           FontSize="20">
+                            ?
+                                </TextBlock>
 
-                            <TextBox Name="TextBoxFor_TargetAssemblyGasketStress" FontSize="12" Grid.Column="0"
-                             PreviewTextInput="OnlyNumbersOrCommaOneTime" PreviewKeyDown="WithoutSpace"
-                             Padding="2">
+                            </Button>
+
+
+                        <TextBox Name="TextBoxFor_TargetAssemblyGasketStress" FontSize="12"
+                                     Grid.Column="0" Grid.Row="1" PreviewTextInput="OnlyNumbersOrCommaOneTime"
+                                     PreviewKeyDown="WithoutSpace" Padding="2" MaxLength="7">
+
                             </TextBox>
 
 
-                            <TextBlock FontSize="12" Background="White" Padding="2 3 2 3" Grid.Column="1">
-                        psi
-                            </TextBlock>
-                        </Grid>
-
-
-
+                        <TextBlock FontSize="12" Background="White" Padding="3 2 3 2" Grid.Column="1"
+                                   Grid.Row="1">
+                                psi
+                        </TextBlock>
 
                     </Grid>
 
-                    <Button Name="TableButton_GasketTargetStress" HorizontalAlignment="Center"
-                            VerticalAlignment="Center" Style="{StaticResource TableButtonStyle}"
-                            Margin="3">
-                        
-                        <Image Margin="3" RenderOptions.BitmapScalingMode="HighQuality" Height="20"
-                           Width="20" Source="pack://application:,,,/Images/tableIcon.png"/>
+                    
 
-                    </Button>
-
-                </StackPanel>
+                </Grid>
                 
                 
 
@@ -397,10 +400,10 @@
                             HorizontalAlignment="Center">
                     <TextBlock Name="FrictionCoefficientText" FontSize="12"
                            Background="White" Foreground="Black" Padding="5 3 5 3">
-                Friction coefficient f
+                Friction coefficient
                     </TextBlock>
 
-                    <TextBox Name="TextBoxForFrictionCoefficient" FontSize="12" MaxLength="8"
+                    <TextBox Name="TextBoxForFrictionCoefficient" FontSize="12" MaxLength="5"
                      PreviewTextInput="OnlyNumbersAndCountK" 
                      PreviewKeyDown="WithoutSpaceAndMinus004"
                              Padding="2" MinWidth="35">
@@ -411,9 +414,9 @@
                             HorizontalAlignment="Center">
                     <TextBlock Name="KCoefficientText" FontSize="12" Background="White" 
                        Foreground="Black" Padding="5 3 5 3">
-                Nut factor K
+                Nut factor
                     </TextBlock>
-                    <TextBox Name="TextBoxForKCoefficient" FontSize="12" MaxLength="8"
+                    <TextBox Name="TextBoxForKCoefficient" FontSize="12" MaxLength="5"
                          PreviewTextInput="OnlyNumbersOrCommaOneTime" PreviewKeyDown="WithoutSpace"
                              Padding="2" MinWidth="35">
                     </TextBox>
@@ -421,9 +424,6 @@
 
 
             </Grid>
-
-            
-
 
         </Grid>
 

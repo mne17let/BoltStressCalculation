@@ -271,7 +271,15 @@ namespace SahalinEnergyBoltStressCalculation.BTC_GasketTargetStress.View
             }
             else
             {
-                resultWriting = true;
+                var arrText = currentText.ToArray();
+                if (arrText.Length == 5)
+                {
+                    resultWriting = false;
+                }
+                else
+                {
+                    resultWriting = true;
+                }
             }
 
             string helpCurrentTextFCoeff = currentText + textSymbols.Text;
@@ -334,7 +342,7 @@ namespace SahalinEnergyBoltStressCalculation.BTC_GasketTargetStress.View
                 case "Custom":
                     UpdateComboBoxWithSize();
                     SetIsReadOnlyFalseForYieldStress();
-                    SetVisibleAndEnabledComboBoxWithSizes();
+                    SetEnabledComboBoxWithSizes();
                     ClearYieldStressTextBox();
                     break;
                 default:
@@ -342,7 +350,7 @@ namespace SahalinEnergyBoltStressCalculation.BTC_GasketTargetStress.View
                     SetEmptyPropertiesWhenGradeChange();
                     SetIsReadOnlyTrueForYieldStress();
                     ClearYieldStressTextBox();
-                    SetVisibleAndEnabledComboBoxWithSizes();
+                    SetEnabledComboBoxWithSizes();
                     break;
             }
 
@@ -400,10 +408,9 @@ namespace SahalinEnergyBoltStressCalculation.BTC_GasketTargetStress.View
         }
 
         // Делаю видимым ComboBox с размерами и доступным для выбора элемента
-        private void SetVisibleAndEnabledComboBoxWithSizes()
+        private void SetEnabledComboBoxWithSizes()
         {
             ComboBoxWithBoltSize.IsEnabled = true;
-            ComboBoxWithBoltSize.Visibility = Visibility.Visible;
         }
 
 
