@@ -286,36 +286,38 @@ namespace SahalinEnergyBoltStressCalculation.BTC_PressureAndGasketType.View
             switch (status)
             {
                 case "Custom":
-                    TextBoxYieldStress.IsReadOnly = false;
                     UpdateComboBoxWithSize();
-                    SetVisibileYield();
-                    TextBoxYieldStress.Text = "";
+                    SetIsReadOnlyFalseFor_YieldTextBox();
                     SetVisibleAndEnabledComboBoxWithSizes();
+                    ClearYieldStressTextBox();
                     break;
                 default:
-                    TextBoxYieldStress.IsReadOnly = true;
-                    ComboBoxWithBoltSize.IsEnabled = true;
+                    ClearYieldStressTextBox();
                     UpdateComboBoxWithSize();
                     SetEmptyPropertiesWhenGradeChange();
-                    SetCollapsedVisibilityForYieldStress();
+                    SetIsReadOnlyTrueFor_YieldTextBox();
                     SetVisibleAndEnabledComboBoxWithSizes();
                     break;
             }
 
         }
 
-        // Установка видимости для полей YieldStress и YieldStress-подписи
-        private void SetVisibileYield()
+        // Очистка TextBox с YieldStress
+        private void ClearYieldStressTextBox()
         {
-            TextYeildStress.Visibility = Visibility.Visible;
-            TextBoxYieldStress.Visibility = Visibility.Visible;
+            TextBoxYieldStress.Text = "";
+        }
+
+        // Установка видимости для полей YieldStress и YieldStress-подписи
+        private void SetIsReadOnlyFalseFor_YieldTextBox()
+        {
+            TextBoxYieldStress.IsReadOnly = false;
         }
 
         // Скрытие полей YieldStress и YieldStress-подписи
-        private void SetCollapsedVisibilityForYieldStress()
+        private void SetIsReadOnlyTrueFor_YieldTextBox()
         {
-            TextYeildStress.Visibility = Visibility.Collapsed;
-            TextBoxYieldStress.Visibility = Visibility.Collapsed;
+            TextBoxYieldStress.IsReadOnly = true;
         }
 
         // Очистка полей свойств болта, зависящих от его размера
@@ -374,7 +376,8 @@ namespace SahalinEnergyBoltStressCalculation.BTC_PressureAndGasketType.View
                 case "Custom":
                     SetReadOnlyFalseForPropertiesTextBlocks();
                     SetEmptyPropertiesWhenGradeChange();
-                    TextBoxYieldStress.Text = "";
+                    SetIsReadOnlyFalseFor_YieldTextBox();
+                    ClearYieldStressTextBox();
                     break;
                 default:
                     SetSizeProperties();
@@ -397,14 +400,32 @@ namespace SahalinEnergyBoltStressCalculation.BTC_PressureAndGasketType.View
         // Установка YieldStress в случае, если выбран не "Custom" grade болта и не "Custom" размер болта
         private void SetYieldStress()
         {
-            if (presenter_PressureAndGaskerType.GetCurrentYieldStress() == 0.0)
+            ComboBoxItem itemGrade = (ComboBoxItem)((ComboBox)ComboBoxWithGrades).SelectedItem;
+
+
+            // Переменная, отвечающая за то, выбран ли "Custom" grade болта (или вообще ничего не выбрано и стоит "Pick grade/size")
+            string statusGrade;
+
+            statusGrade = itemGrade.Content.ToString();
+
+
+            var a = presenter_PressureAndGaskerType.GetCurrentYieldStress();
+
+
+            if (a == 0.0)
             {
                 return;
             }
+            else if (statusGrade == "Custom")
+            {
+                SetIsReadOnlyFalseFor_YieldTextBox();
+                return;
+                // TextBoxYieldStress.Text = "";
+            }
             else
             {
-                TextBoxYieldStress.Text = presenter_PressureAndGaskerType.GetCurrentYieldStress().ToString();
-                SetVisibileYield();
+                TextBoxYieldStress.Text = a.ToString();
+                SetIsReadOnlyTrueFor_YieldTextBox();
             }
         }
 

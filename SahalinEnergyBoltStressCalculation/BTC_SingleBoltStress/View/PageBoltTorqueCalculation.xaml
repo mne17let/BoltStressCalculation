@@ -112,9 +112,7 @@
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
 
-                <Grid Name="YeildStressTable" Grid.Column="0"
-                      VerticalAlignment="Center" HorizontalAlignment="Center"
-                      Visibility="Collapsed">
+                <Grid Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center">
                     <Grid.RowDefinitions>
                         <RowDefinition/>
                         <RowDefinition/>
@@ -179,9 +177,9 @@
                         <RowDefinition/>
                         <RowDefinition/>
                     </Grid.RowDefinitions>
-                    
-                    <TextBlock Grid.Row="0" FontSize="12" Background="White"
-                               Foreground="Black" Padding="2">
+
+                    <TextBlock Grid.Row="0" FontSize="12" Background="#e64d3d"
+                               Foreground="White" Padding="2">
                         σ
                     </TextBlock>
 

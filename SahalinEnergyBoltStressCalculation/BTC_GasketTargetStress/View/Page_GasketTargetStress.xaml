@@ -145,7 +145,7 @@
                 </Grid.ColumnDefinitions>
 
 
-                <Grid Name="YeildStressTable" Grid.Column="0" HorizontalAlignment="Center"
+                <Grid Grid.Column="0" HorizontalAlignment="Center"
                       VerticalAlignment="Center">
                     <Grid.RowDefinitions>
                         <RowDefinition/>

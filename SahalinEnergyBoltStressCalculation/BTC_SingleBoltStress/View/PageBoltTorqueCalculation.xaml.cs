@@ -107,33 +107,38 @@ namespace SahalinEnergyBoltStressCalculation.PageClassesFolder
             switch (status)
             {
                 case "Custom":
-                    TextBoxYieldStress.IsReadOnly = false;
+                    ClearYieldStressTextBox();
                     UpdateComboBoxWithSize();
-                    SetVisibileYield();
-                    TextBoxYieldStress.Text = "";
+                    SetIsReadOnlyFalseFor_TextBoxYieldStress();
                     SetVisibleAndEnabledComboBoxWithSizes();
                     break;
-                default: 
-                    TextBoxYieldStress.IsReadOnly = true;
+                default:
+                    ClearYieldStressTextBox();
                     UpdateComboBoxWithSize();
                     SetEmptyPropertiesWhenGradeChange();
-                    SetHiddenVisibilityForYieldStress();
+                    SetIsReadOnlyTrueFor_TextBoxYieldStress();
                     SetVisibleAndEnabledComboBoxWithSizes();
                     break;
             }
             
         }
 
-        // Установка видимости для полей YieldStress и YieldStress-подписи
-        private void SetVisibileYield()
+        // Очистка TextBox с YieldStress
+        private void ClearYieldStressTextBox()
         {
-            YeildStressTable.Visibility = Visibility.Visible;
+            TextBoxYieldStress.Text = "";
+        }
+
+        // Установка видимости для полей YieldStress и YieldStress-подписи
+        private void SetIsReadOnlyFalseFor_TextBoxYieldStress()
+        {
+            TextBoxYieldStress.IsReadOnly = false;
         }
 
         // Скрытие полей YieldStress и YieldStress-подписи
-        private void SetHiddenVisibilityForYieldStress()
+        private void SetIsReadOnlyTrueFor_TextBoxYieldStress()
         {
-            YeildStressTable.Visibility = Visibility.Collapsed;
+            TextBoxYieldStress.IsReadOnly = true;
         }
 
         // Очистка полей свойств болта, зависящих от его размера
@@ -190,9 +195,10 @@ namespace SahalinEnergyBoltStressCalculation.PageClassesFolder
             switch (size)
             {
                 case "Custom":
+                    ClearYieldStressTextBox();
                     SetReadOnlyFalseForPropertiesTextBlocks();
                     SetEmptyPropertiesWhenGradeChange();
-                    TextBoxYieldStress.Text = "";
+                    SetIsReadOnlyFalseFor_TextBoxYieldStress();
                     break;
                 default:
                     SetSizeProperties();
@@ -226,17 +232,18 @@ namespace SahalinEnergyBoltStressCalculation.PageClassesFolder
 
             var a = viewModelAtCalculationBTC.GetCurrentYieldStress();
 
-            if (viewModelAtCalculationBTC.GetCurrentYieldStress() == 0.0)
+            if (a == 0.0)
             {
                 return;
             } else if (statusGrade == "Custom")
             {
+                SetIsReadOnlyFalseFor_TextBoxYieldStress();
                 return;
                 // TextBoxYieldStress.Text = "";
             } else
             {
-                TextBoxYieldStress.Text = viewModelAtCalculationBTC.GetCurrentYieldStress().ToString();
-                SetVisibileYield();
+                TextBoxYieldStress.Text = a.ToString();
+                SetIsReadOnlyTrueFor_TextBoxYieldStress();
             }
         }
 
