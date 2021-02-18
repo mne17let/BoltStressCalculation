@@ -687,18 +687,8 @@ namespace SahalinEnergyBoltStressCalculation.BTC_PressureAndGasketType.View
         private void SetResultTablesVisibility()
         {
             InfoBanner.Visibility = Visibility.Hidden;
-            Table_Wm1.Visibility = Visibility.Visible;
-            Table_Wm2.Visibility = Visibility.Visible;
-            Table_ThreeRes.Visibility = Visibility.Visible;
-            Table_TorqueMoment_API6AAnnexD.Visibility = Visibility;
-            Table_TorqueMoment_AppendixJ.Visibility = Visibility.Visible;
-            Table_TorqueMoment_AppendixK.Visibility = Visibility.Visible;
+            ResultGrid.Visibility = Visibility.Visible;
         }
-
-
-
-
-
 
     }
 }

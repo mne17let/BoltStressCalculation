@@ -10,9 +10,9 @@
     <Grid>
         <ScrollViewer>
             <StackPanel>
-                <Image Source="pack://application:,,,/Images/table1.png" RenderOptions.BitmapScalingMode="HighQuality"/>
-                <Image Source="pack://application:,,,/Images/table2.png" RenderOptions.BitmapScalingMode="HighQuality"/>
-                <Image Source="pack://application:,,,/Images/table3.png" RenderOptions.BitmapScalingMode="HighQuality"/>
+                <Image Source="pack://application:,,,/Images/table1.jpg" RenderOptions.BitmapScalingMode="HighQuality"/>
+                <Image Source="pack://application:,,,/Images/table2.jpg" RenderOptions.BitmapScalingMode="HighQuality"/>
+                <Image Source="pack://application:,,,/Images/table3.jpg" RenderOptions.BitmapScalingMode="HighQuality"/>
             </StackPanel>
             
         </ScrollViewer>
