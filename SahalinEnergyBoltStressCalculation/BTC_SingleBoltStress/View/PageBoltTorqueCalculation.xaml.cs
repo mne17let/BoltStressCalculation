@@ -147,7 +147,6 @@ namespace SahalinEnergyBoltStressCalculation.PageClassesFolder
             TextBoxFor_D.Text = "";
             TextBoxFor_E.Text = "";
             TextBoxFor_H.Text = "";
-            TextBoxFor_K.Text = "";
             TextBoxFor_P.Text = "";
         }
 
@@ -214,7 +213,6 @@ namespace SahalinEnergyBoltStressCalculation.PageClassesFolder
             TextBoxFor_D.IsReadOnly = false;
             TextBoxFor_E.IsReadOnly = false;
             TextBoxFor_H.IsReadOnly = false;
-            TextBoxFor_K.IsReadOnly = false;
             TextBoxFor_P.IsReadOnly = false;
         }
 
@@ -253,7 +251,6 @@ namespace SahalinEnergyBoltStressCalculation.PageClassesFolder
             TextBoxFor_D.IsReadOnly = true;
             TextBoxFor_E.IsReadOnly = true;
             TextBoxFor_H.IsReadOnly = true;
-            TextBoxFor_K.IsReadOnly = true;
             TextBoxFor_P.IsReadOnly = true;
         }
 
@@ -264,8 +261,7 @@ namespace SahalinEnergyBoltStressCalculation.PageClassesFolder
             double d = Math.Round(properties[0], 4);
             double e = Math.Round(properties[1], 4);
             double h = Math.Round(properties[2], 4);
-            double k = Math.Round(properties[3], 4);
-            double p = Math.Round(properties[4], 4);
+            double p = Math.Round(properties[3], 4);
 
 
             TextBoxFor_D.Text = d.ToString();
@@ -273,8 +269,6 @@ namespace SahalinEnergyBoltStressCalculation.PageClassesFolder
             TextBoxFor_E.Text = e.ToString();
 
             TextBoxFor_H.Text = h.ToString();
-
-            TextBoxFor_K.Text = k.ToString();
 
             TextBoxFor_P.Text = p.ToString();
         }
@@ -518,7 +512,6 @@ namespace SahalinEnergyBoltStressCalculation.PageClassesFolder
             var tauAPI6AAnnexD = Math.Round(objectCalculator.GetTau_API6AAnnexD(), 0);
             var tauASMEPCC_1AppendixJ = Math.Round(objectCalculator.GetTau_ASMEPCC_1AppendixJ(), 0);
             var tauASMEPCC_1AppendixK_Simplified = Math.Round(objectCalculator.GetTau_ASMEPCC_1AppendixK_Simplified(), 0);
-            var sigma = Math.Round(objectCalculator.GetSigma(), 0);
 
 
             var convertF = Math.Round(objectCalculator.GetF() * 4.4482, 0);
@@ -534,8 +527,6 @@ namespace SahalinEnergyBoltStressCalculation.PageClassesFolder
             Text_TauASMEPCC_1AppendixK_Simplified.Text = "τ = " + tauASMEPCC_1AppendixK_Simplified.ToString() + " Lbf-Ft = " + convertTauASMEPCC_1AppendixK_Simplified.ToString() + " N-m";
 
             TextBlock_ForcePerBolt.Text = "F = " + f.ToString() + " Lbf = " + convertF.ToString() + " N";
-
-            TextBoxForCalculateSigma.Text = sigma.ToString();
         }
 
         // Делаю видимыми таблицы с результатами и невидимым инфобаннер
@@ -543,7 +534,6 @@ namespace SahalinEnergyBoltStressCalculation.PageClassesFolder
         {
             InfoBanner.Visibility = Visibility.Hidden;
             ResultGrid.Visibility = Visibility.Visible;
-            SigmaTable.Visibility = Visibility.Visible;
         }
 
 
@@ -573,10 +563,9 @@ namespace SahalinEnergyBoltStressCalculation.PageClassesFolder
             string d = TextBoxFor_D.Text;
             string e = TextBoxFor_E.Text;
             string h = TextBoxFor_H.Text;
-            string k = TextBoxFor_K.Text;
             string p = TextBoxFor_P.Text;
 
-            string[] properties = new string[] { d, e, h, k, p};
+            string[] properties = new string[] { d, e, h, p};
             return properties;
         }
 

@@ -256,7 +256,7 @@ namespace SahalinEnergyBoltStressCalculation.BTC_PressureAndGasketType.Presenter
                 // не введён или не входит в допустимый диапазон
                 return;
             }
-            else if (CheckGasketWidth_N() == false)
+            else if (CheckSize_N() == false)
             {
                 // не введён или не входит в допустимый диапазон
                 return;
@@ -712,21 +712,21 @@ namespace SahalinEnergyBoltStressCalculation.BTC_PressureAndGasketType.Presenter
         }
 
         // Проверка, введён ли Gasket Width N и запись его в переменную
-        private bool CheckGasketWidth_N()
+        private bool CheckSize_N()
         {
 
             bool checkGW_N;
             double help;
-            string helpString = PageView.GetGasketWidth_N();
+            string helpString = PageView.GetSize_N();
             if (Double.TryParse(helpString, out help) == false)
             {
-                PageView.ShowErrorMessage("GasketWidth_N");
+                PageView.ShowErrorMessage("Size_N");
                 checkGW_N = false;
             }
             else if (help <= 0)
             {
                 // не входит необходимый диапазон
-                PageView.ShowErrorMessage("GasketWidth_N_Limits");
+                PageView.ShowErrorMessage("Size_N_Limits");
                 checkGW_N = false;
             }
             else

@@ -63,7 +63,6 @@
             <Setter Property="FontFamily" Value="/Fonts/#HelveticaNeueCyr"></Setter>
         </Style>
 
-
     </Page.Resources>
     <Grid>
         <Grid.Background>
@@ -272,7 +271,7 @@
 
                     <TextBlock FontSize="12" Background="White" Foreground="Black"
                            Padding="2" Grid.Row="0">
-                    Gasket width
+                    Size N
                     </TextBlock>
 
                     <Grid Grid.Row="1">
@@ -281,7 +280,7 @@
                             <ColumnDefinition Width="0.3*"/>
                         </Grid.ColumnDefinitions>
 
-                        <TextBox Name="TextBoxFor_GasketWidth_N" FontSize="12" Grid.Column="0"
+                        <TextBox Name="TextBoxFor_Size_N" FontSize="12" Grid.Column="0"
                          PreviewTextInput="OnlyNumbersOrCommaOneTime" PreviewKeyDown="WithoutSpace">
                             <!---->
                         </TextBox>

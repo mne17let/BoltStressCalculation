@@ -51,7 +51,6 @@ namespace SahalinEnergyBoltStressCalculation.LogicClassesFolder
         double customD;
         double customE;
         double customH;
-        double customK;
         double customP;
 
         double frictionCoeffViewModel;
@@ -159,11 +158,9 @@ namespace SahalinEnergyBoltStressCalculation.LogicClassesFolder
             double currentThreadMajorDiameter_D = currentBolt.ThreadMajorDiameter_D;
             double currentPitchDiameterOfThread_E = currentBolt.PitchDiameterOfThread_E;
             double currentHexSize_H = currentBolt.HexSize_H;
-            double currentNutInternalChamfer_K = currentBolt.NutInternalChamfer_K;
             double currentThreadPitch_P = currentBolt.ThreadPitch_P;
 
-            var properties = new double[] {currentThreadMajorDiameter_D, currentPitchDiameterOfThread_E, currentHexSize_H,
-            currentNutInternalChamfer_K, currentThreadPitch_P};
+            var properties = new double[] {currentThreadMajorDiameter_D, currentPitchDiameterOfThread_E, currentHexSize_H, currentThreadPitch_P};
             return properties;
         }
 
@@ -295,17 +292,15 @@ namespace SahalinEnergyBoltStressCalculation.LogicClassesFolder
             double helpD;
             double helpE;
             double helpH;
-            double helpK;
             double helpP;
             string[] prop = PageCalculationBT.GetProperties();
             if (Double.TryParse(prop[0], out helpD) == false || Double.TryParse(prop[1], out helpE) == false
-                || Double.TryParse(prop[2], out helpH) == false
-                || Double.TryParse(prop[3], out helpK) == false || Double.TryParse(prop[4], out helpP) == false)
+                || Double.TryParse(prop[2], out helpH) == false || Double.TryParse(prop[3], out helpP) == false)
             {
                 PageCalculationBT.ShowErrorMessage("Properties");
                 checkingProp = false;
             }
-            else if (helpD == 0.0 || helpE == 0.0 || helpH == 0.0 || helpK == 0.0 || helpP == 0.0)
+            else if (helpD == 0.0 || helpE == 0.0 || helpH == 0.0 || helpP == 0.0)
             {
                 PageCalculationBT.ShowErrorMessage("PropertiesNull");
                 checkingProp = false;
@@ -315,7 +310,6 @@ namespace SahalinEnergyBoltStressCalculation.LogicClassesFolder
                 customD = helpD;
                 customE = helpE;
                 customH = helpH;
-                customK = helpK;
                 customP = helpP;
                 checkingProp = true;
             }
@@ -486,7 +480,7 @@ namespace SahalinEnergyBoltStressCalculation.LogicClassesFolder
                 objectCalculator.threadMajorDiameter_D = customD;
                 objectCalculator.pitchDiameterOfThread_E = customE;
                 objectCalculator.hexSize_H = customH;
-                objectCalculator.nutInternalChamfer_K = customK;
+                objectCalculator.nutInternalChamfer_K = 0.125;
                 objectCalculator.threadPitch_P = customP;
             }
             else
@@ -504,9 +498,6 @@ namespace SahalinEnergyBoltStressCalculation.LogicClassesFolder
             return objectCalculator;
 
         }
-
-
-
 
         // Подключение к базе данных и загрузка из неё двух таблиц
         public void LoadDataFromDB()

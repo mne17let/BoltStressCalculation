@@ -554,9 +554,9 @@ namespace SahalinEnergyBoltStressCalculation.BTC_PressureAndGasketType.View
         }
 
         // Отдаём "собанный" с поля ввода Gasket width N
-        public string GetGasketWidth_N()
+        public string GetSize_N()
         {
-            string gW_N = TextBoxFor_GasketWidth_N.Text;
+            string gW_N = TextBoxFor_Size_N.Text;
             return gW_N;
         }
 
@@ -657,11 +657,11 @@ namespace SahalinEnergyBoltStressCalculation.BTC_PressureAndGasketType.View
                     MessageBox.Show("Basic Gasket Seating Width b0 должен быть больше 0");
                     break;
 
-                case "GasketWidth_N":
-                    MessageBox.Show("Введите Gasket Width");
+                case "Size_N":
+                    MessageBox.Show("Введите Size N");
                     break;
-                case "GasketWidth_N_Limits":
-                    MessageBox.Show("Gasket Width должен быть больше 0");
+                case "Size_N_Limits":
+                    MessageBox.Show("Size N должен быть больше 0");
                     break;
             }
         }
