@@ -70,8 +70,7 @@
     <SignManifests>true</SignManifests>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>
-    </ApplicationIcon>
+    <ApplicationIcon>iconIco.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
@@ -225,6 +224,12 @@
     <Resource Include="Images\table1.jpg" />
     <Resource Include="Images\table2.jpg" />
     <Resource Include="Images\table3.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\iconIco.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="iconIco.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
