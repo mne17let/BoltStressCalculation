@@ -284,6 +284,175 @@ namespace SahalinEnergyBoltStressCalculation.BTC_PressureAndGasketType.View
         }
 
 
+        // Показываем сразу же подсчёт Size N и b0, если вводится внутренний или внешний диаметр
+        private void OnlyNumbersAnd_CountSizeN_and_B0(object sender, TextCompositionEventArgs textSymbols)
+        {
+            var currentObject = (TextBox)sender;
+            var currentText = (string)((TextBox)sender).Text;
+
+            int resParse;
+            bool resultWriting = false;
+
+            if (Int32.TryParse(textSymbols.Text, out resParse) == false && textSymbols.Text != ",")
+            {
+                textSymbols.Handled = true; // отклоняем ввод   
+            }
+            else if (textSymbols.Text == ",")
+            {
+
+                if (currentText == "")
+                {
+                    textSymbols.Handled = true; // отклоняем ввод
+                    return;
+                }
+
+                var arrText = currentText.ToArray();
+                var charSymbol = char.Parse(textSymbols.Text);
+                for (int i = 0; i < arrText.Length; i++)
+                {
+                    if (charSymbol == arrText[i])
+                    {
+                        textSymbols.Handled = true; // отклоняем ввод
+                        return;
+                    }
+                }
+            }
+            else if (currentText == "0")
+            {
+                if (textSymbols.Text != ".")
+                {
+                    textSymbols.Handled = true; // отклоняем ввод
+                }
+            }
+            else
+            {
+                var arrText = currentText.ToArray();
+                if (arrText.Length == 6)
+                {
+                    resultWriting = false;
+                }
+                else
+                {
+                    resultWriting = true;
+                }
+            }
+
+            string helpCurrentTextOutsideDiameter;
+            string helpCurrentTextInsideDiameter;
+
+            if (currentObject.Name == TextBoxFor_GasketOutsideDiameter.Name)
+            {
+                helpCurrentTextOutsideDiameter = currentText + textSymbols.Text;
+                helpCurrentTextInsideDiameter = TextBoxFor_GasketInsideDiameter.Text;
+            } else
+            {
+                helpCurrentTextInsideDiameter = currentText + textSymbols.Text; 
+                helpCurrentTextOutsideDiameter = TextBoxFor_GasketOutsideDiameter.Text;
+            }
+
+
+            double helpOut;
+            double helpIn;
+            
+            if (Double.TryParse(helpCurrentTextOutsideDiameter, out helpOut) == true
+                && Double.TryParse(helpCurrentTextInsideDiameter, out helpIn) == true
+                && resultWriting == true)
+            {
+                SetAuto_SizeN_And_B0(helpOut, helpIn);
+            }
+        }
+
+        // Вводим коэфффициент b0 и Size_N "на ходу"
+        private void SetAuto_SizeN_And_B0(double helpOut, double helpIn)
+        {
+            if (helpOut > helpIn && helpIn != 0.0)
+            {
+                double newSizeN = (helpOut - helpIn) / 2;
+                double newB0 = newSizeN / 2;
+                TextBoxFor_Size_N.Text = newSizeN.ToString();
+                TextBoxFor_BasicGasketSeatingWidth.Text = newB0.ToString();
+            } else
+            {
+                TextBoxFor_Size_N.Text = "";
+                TextBoxFor_BasicGasketSeatingWidth.Text = "";
+            }
+
+        }
+
+        // Обновляем коэффициент b0 и Size_N в случае "стирания" одного из диаметров
+        private void WithoutSpace_And_Update_SizeN_And_b0(object sender, KeyEventArgs button)
+        {
+
+
+            if (button.Key == Key.Space)
+            {
+                button.Handled = true; // если пробел, отклоняем ввод
+            }
+            else if (button.Key == Key.Back)
+            {
+                var currentObject = (TextBox)sender;
+                var currentText = (string)((TextBox)sender).Text;
+
+                string helpCurrentTextOutsideDiameter = TextBoxFor_GasketOutsideDiameter.Text; ;
+                string helpCurrentTextInsideDiameter = TextBoxFor_GasketInsideDiameter.Text;
+
+
+                int countCurrentLength;
+                int code;
+
+
+                if (currentObject.Name == TextBoxFor_GasketOutsideDiameter.Name)
+                {
+                    countCurrentLength = helpCurrentTextOutsideDiameter.Length;
+                    code = 1;
+
+                }
+                else
+                {
+                    countCurrentLength = helpCurrentTextInsideDiameter.Length;
+                    code = 2;
+                }
+
+                if (countCurrentLength > 0 && code == 1)
+                {
+                    string deleteLast = helpCurrentTextOutsideDiameter.Remove(countCurrentLength - 1);
+                    double helpOut;
+                    double helpIn;
+
+                    if (Double.TryParse(deleteLast, out helpOut) == true && Double.TryParse(helpCurrentTextInsideDiameter, out helpIn) == true)
+                    {
+                        SetAuto_SizeN_And_B0(helpOut, helpIn);
+                    }
+                    else
+                    {
+                        TextBoxFor_Size_N.Text = "";
+                        TextBoxFor_BasicGasketSeatingWidth.Text = "";
+                    }
+
+                }
+                else if (countCurrentLength > 0 && code == 2)
+                {
+                    string deleteLast = helpCurrentTextInsideDiameter.Remove(countCurrentLength - 1);
+                    double helpOut;
+                    double helpIn;
+
+                    if (Double.TryParse(deleteLast, out helpIn) == true && Double.TryParse(helpCurrentTextOutsideDiameter, out helpOut) == true)
+                    {
+                        SetAuto_SizeN_And_B0(helpOut, helpIn);
+                    }
+                    else
+                    {
+                        TextBoxFor_Size_N.Text = "";
+                        TextBoxFor_BasicGasketSeatingWidth.Text = "";
+                    }
+                }
+
+
+            }
+
+        }
+
+
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         // Изменения UI после выбора bolt grade
@@ -627,6 +796,10 @@ namespace SahalinEnergyBoltStressCalculation.BTC_PressureAndGasketType.View
                     break;
                 case "GasketInsideDiameterLimits":
                     MessageBox.Show("Gasket Inside Diameter должен быть больше 0");
+                    break;
+
+                case "OutMoreThanIn_Diameter":
+                    MessageBox.Show("Gasket Outside Diameter должен быть больше, чем Gasket Inside Diameter");
                     break;
 
                 case "InternalDesignPressure":

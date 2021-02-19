@@ -637,6 +637,10 @@ namespace SahalinEnergyBoltStressCalculation.BTC_GasketTargetStress.View
                     MessageBox.Show("Gasket Inside Diameter должен быть больше 0");
                     break;
 
+                case "OutMoreThanIn_Diameter":
+                    MessageBox.Show("Gasket Outside Diameter должен быть больше, чем Gasket Inside Diameter");
+                    break;
+
                 case "TargetAssemblyGasketStress":
                     MessageBox.Show("Введите Target Assembly Gasket Stress");
                     break;

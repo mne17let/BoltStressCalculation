@@ -222,6 +222,11 @@ namespace SahalinEnergyBoltStressCalculation.BTC_GasketTargetStress.Presenter
                 // Gasket Inside Diameter не введён
                 return;
             }
+            else if (CheckOutMoreIn_Diameter() == false)
+            {
+                // Внешний диаметр меньше или равен внутреннему
+                return;
+            }
             else if (CheckTargetAssemblyGasketStress() == false)
             {
                 // Target Assembly Gasket Stress не введён
@@ -541,6 +546,25 @@ namespace SahalinEnergyBoltStressCalculation.BTC_GasketTargetStress.Presenter
             }
 
             return checkGID;
+        }
+
+        // Проверка, больше ли Gasket Outside Diameter чем Gasket Inside Diameter и вывод ошибки, если нет
+        private bool CheckOutMoreIn_Diameter()
+        {
+
+            bool checkOMI;
+
+            if (gasketOutsideDiameterPresenter > gasketInsideDiameterPresenter)
+            {
+                checkOMI = true;
+            }
+            else
+            {
+                PageView.ShowErrorMessage("OutMoreThanIn_Diameter");
+                checkOMI = false;
+            }
+
+            return checkOMI;
         }
 
         // Проверка, введён ли Target Assembly Gasket Stress и запись его в переменную

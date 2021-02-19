@@ -393,10 +393,13 @@
                 <RowDefinition/>
                 <RowDefinition/>
                 <RowDefinition/>
-                <RowDefinition/>
             </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
 
-            <StackPanel Name="ForcePerBoltTable" Orientation="Vertical" Grid.Row="0"
+            <StackPanel Name="ForcePerBoltTable" Orientation="Vertical" Grid.Row="0" Grid.Column="0"
                         HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5 2 5 2">
 
                 <TextBlock Background="#e64d3d" FontSize="12" Foreground="White"
@@ -410,7 +413,7 @@
                 </TextBlock>
                     </StackPanel>
 
-            <StackPanel  Name="ResOne_Table" Orientation="Vertical" Grid.Row="1"
+            <StackPanel  Name="ResOne_Table" Orientation="Vertical" Grid.Row="0" Grid.Column="1"
                     HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5 2 5 2">
                 
                 <TextBlock Background="#e64d3d" FontSize="12"
@@ -424,7 +427,7 @@
                 </TextBlock>
             </StackPanel>
 
-            <StackPanel Name="ResTwo_Table" Orientation="Vertical" Grid.Row="2"
+            <StackPanel Name="ResTwo_Table" Orientation="Vertical" Grid.Row="1" Grid.Column="1"
                     HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5 2 5 2">
                 
                 <TextBlock Background="#e64d3d" FontSize="12"
@@ -438,7 +441,7 @@
                 </TextBlock>
             </StackPanel>
 
-            <StackPanel Name="ResThree_Table" Orientation="Vertical" Grid.Row="3"
+            <StackPanel Name="ResThree_Table" Orientation="Vertical" Grid.Row="2" Grid.Column="1"
                     HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5 2 5 2">
 
                 <TextBlock Background="#e64d3d" FontSize="12"
