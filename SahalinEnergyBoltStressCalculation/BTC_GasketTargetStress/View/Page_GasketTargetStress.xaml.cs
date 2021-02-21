@@ -578,13 +578,13 @@ namespace SahalinEnergyBoltStressCalculation.BTC_GasketTargetStress.View
             switch (code)
             {
                 case "Yield":
-                    MessageBox.Show("Введите значение Yield Stress");
+                    MessageBox.Show("Input the yield strength value");
                     break;
                 case "PerCent":
-                    MessageBox.Show("Введите значение % Yield Stress");
+                    MessageBox.Show("Input the percentage of yield strength value");
                     break;
                 case "Properties":
-                    MessageBox.Show("Введите значения всех характеристик болта");
+                    MessageBox.Show("Input all bolt characteristics values");
                     break;
                 case "BoltSize":
                     MessageBox.Show("Pick bolt size");
@@ -593,59 +593,59 @@ namespace SahalinEnergyBoltStressCalculation.BTC_GasketTargetStress.View
                     MessageBox.Show("Pick bolt grade");
                     break;
                 case "FCoeff":
-                    MessageBox.Show("Введите значение коэффициента трения");
+                    MessageBox.Show("Input the friction coefficient value");
                     break;
                 case "FCoeffLimits":
-                    MessageBox.Show("Коэффициент трения не может быть меньше или равен 0 или больше 1");
+                    MessageBox.Show("The friction coefficient must be greater than 0 and less than or equal to 1");
                     break;
                 case "PropertiesNull":
-                    MessageBox.Show("Значения характеристик болта не могут быть равны 0");
+                    MessageBox.Show("Bolt characteristic value cannot be 0");
                     break;
                 case "YieldStressNull":
-                    MessageBox.Show("Значения Yield Stress и % Yield Stress не могут быть равны 0");
+                    MessageBox.Show("Yield strength must be greater than 0");
                     break;
                 case "YieldStressNullOnly":
-                    MessageBox.Show("Значение Yield Stress не может быть равным 0");
+                    MessageBox.Show("Yield strength must be greater than 0");
                     break;
 
 
                 case "KCoeff":
-                    MessageBox.Show("Введите коэффициент К");
+                    MessageBox.Show("Input nut factor K");
                     break;
                 case "KCoeffLimits":
-                    MessageBox.Show("Коэффициент К не может быть равен 0");
+                    MessageBox.Show("Nut factor must be greater than 0");
                     break;
 
                 case "NumberOfBolts":
-                    MessageBox.Show("Введите число болтов");
+                    MessageBox.Show("Input the number of bolts");
                     break;
                 case "NumberOfBoltsLimits":
-                    MessageBox.Show("Число болтов должно быть больше 0");
+                    MessageBox.Show("Number of bolts must be greater than 0");
                     break;
 
                 case "GasketOutsideDiameter":
-                    MessageBox.Show("Введите Gasket Outside Diameter");
+                    MessageBox.Show("Input gasket outside diameter");
                     break;
                 case "GasketOutsideDiameterLimits":
-                    MessageBox.Show("Gasket Outside Diameter должен быть больше 0");
+                    MessageBox.Show("Gasket outside diameter must be greater than 0");
                     break;
 
                 case "GasketInsideDiameter":
-                    MessageBox.Show("Введите Gasket Inside Diameter");
+                    MessageBox.Show("Input gasket inside diameter");
                     break;
                 case "GasketInsideDiameterLimits":
-                    MessageBox.Show("Gasket Inside Diameter должен быть больше 0");
+                    MessageBox.Show("Gasket inside diameter must be greater than 0");
                     break;
 
                 case "OutMoreThanIn_Diameter":
-                    MessageBox.Show("Gasket Outside Diameter должен быть больше, чем Gasket Inside Diameter");
+                    MessageBox.Show("Gasket outside diameter must be greater than gasket inside diameter");
                     break;
 
                 case "TargetAssemblyGasketStress":
-                    MessageBox.Show("Введите Target Assembly Gasket Stress");
+                    MessageBox.Show("Input target assembly gasket stress");
                     break;
                 case "TargetAssemblyGasketStressLimits":
-                    MessageBox.Show("Target Assembly Gasket Stress должен быть больше 0");
+                    MessageBox.Show("Target assembly gasket stress must be greater than 0");
                     break;
             }
         }

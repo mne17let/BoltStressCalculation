@@ -344,13 +344,13 @@ namespace SahalinEnergyBoltStressCalculation.LogicClassesFolder
                     else if (help2 == 0.0)
                     {
                         // Введён % Yield Stress, равный 0
-                        PageCalculationBT.ShowErrorMessage("YieldStressNull");
+                        PageCalculationBT.ShowErrorMessage("YieldStressPercentNull");
                         res = false;
                     }
                     else
                     {
-                        // Введён Yield Stress И % Yield Stress, равный 0
-                        PageCalculationBT.ShowErrorMessage("YieldStressNull");
+                        // Введён Yield Stress И % Yield Stress, равные 0
+                        PageCalculationBT.ShowErrorMessage("YieldStressNullBoth");
                         res = false;
                     }
                 }

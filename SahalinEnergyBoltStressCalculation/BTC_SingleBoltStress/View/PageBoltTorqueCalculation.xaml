@@ -366,13 +366,13 @@
             </Button.Template>
             <StackPanel>
                 <TextBlock FontSize="15" Foreground="White" Padding="10">
-                Введите данные и нажмите "посчитать"
+                Input data and click "Get result"
                 </TextBlock>
 
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                     <TextBlock FontSize="15" Foreground="White" Padding="10"
                                VerticalAlignment="Center">
-                Создано совместно
+                Created jointly
                     </TextBlock>
                     <Image Source="pack://application:,,,/Images/sahalinLogo.png"
                            RenderOptions.BitmapScalingMode="HighQuality"
@@ -463,7 +463,7 @@
                 FontFamily="Segoe UI" Style="{StaticResource CalcButtonStyle}" Foreground="White"
                 HorizontalContentAlignment="Center"
                 VerticalContentAlignment="Center">
-            ПОСЧИТАТЬ
+            GET RESULT
         </Button>
         
     </Grid>

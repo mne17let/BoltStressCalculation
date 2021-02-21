@@ -758,6 +758,5 @@ namespace SahalinEnergyBoltStressCalculation.BTC_PressureAndGasketType.Presenter
         }
 
 
-
     }
 }

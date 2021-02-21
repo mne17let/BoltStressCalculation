@@ -332,7 +332,7 @@ namespace SahalinEnergyBoltStressCalculation.BTC_GasketTargetStress.Presenter
                 string yieldValue = PageView.GetYieldStressCustom();
 
                 if (Double.TryParse(yieldValue, out help) == true)
-                { // Введены YIELD Stress и его %
+                { // Введен YIELD Stress
                     if (help != 0.0)
                     { // Не равен 0
                         yieldStressValueCustom = help;

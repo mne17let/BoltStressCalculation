@@ -739,13 +739,13 @@ namespace SahalinEnergyBoltStressCalculation.BTC_PressureAndGasketType.View
             switch (code)
             {
                 case "Yield":
-                    MessageBox.Show("Введите значение Yield Stress");
+                    MessageBox.Show("Input the yield strength value");
                     break;
                 case "PerCent":
-                    MessageBox.Show("Введите значение % Yield Stress");
+                    MessageBox.Show("Input the percentage of yield strength value");
                     break;
                 case "Properties":
-                    MessageBox.Show("Введите значения всех характеристик болта");
+                    MessageBox.Show("Input all bolt characteristics values");
                     break;
                 case "BoltSize":
                     MessageBox.Show("Pick bolt size");
@@ -754,87 +754,87 @@ namespace SahalinEnergyBoltStressCalculation.BTC_PressureAndGasketType.View
                     MessageBox.Show("Pick bolt grade");
                     break;
                 case "FCoeff":
-                    MessageBox.Show("Введите значение коэффициента трения");
+                    MessageBox.Show("Input the friction coefficient value");
                     break;
                 case "FCoeffLimits":
-                    MessageBox.Show("Коэффициент трения не может быть меньше или равен 0 или больше 1");
+                    MessageBox.Show("The friction coefficient must be greater than 0 and less than or equal to 1");
                     break;
                 case "PropertiesNull":
-                    MessageBox.Show("Значения характеристик болта не могут быть равны 0");
+                    MessageBox.Show("Bolt characteristic value cannot be 0");
                     break;
                 case "YieldStressNull":
-                    MessageBox.Show("Значения Yield Stress и % Yield Stress не могут быть равны 0");
+                    MessageBox.Show("Yield strength must be greater than 0");
                     break;
                 case "YieldStressNullOnly":
-                    MessageBox.Show("Значение Yield Stress не может быть равным 0");
+                    MessageBox.Show("Yield strength must be greater than 0");
                     break;
 
 
                 case "KCoeff":
-                    MessageBox.Show("Введите коэффициент К");
+                    MessageBox.Show("Input nut factor K");
                     break;
                 case "KCoeffLimits":
-                    MessageBox.Show("Коэффициент К не может быть равен 0");
+                    MessageBox.Show("Nut factor must be greater than 0");
                     break;
 
                 case "NumberOfBolts":
-                    MessageBox.Show("Введите число болтов");
+                    MessageBox.Show("Input the number of bolts");
                     break;
                 case "NumberOfBoltsLimits":
-                    MessageBox.Show("Число болтов должно быть больше 0");
+                    MessageBox.Show("Number of bolts must be greater than 0");
                     break;
 
                 case "GasketOutsideDiameter":
-                    MessageBox.Show("Введите Gasket Outside Diameter");
+                    MessageBox.Show("Input gasket outside diameter");
                     break;
                 case "GasketOutsideDiameterLimits":
-                    MessageBox.Show("Gasket Outside Diameter должен быть больше 0");
+                    MessageBox.Show("Gasket outside diameter must be greater than 0");
                     break;
 
                 case "GasketInsideDiameter":
-                    MessageBox.Show("Введите Gasket Inside Diameter");
+                    MessageBox.Show("Input gasket inside diameter");
                     break;
                 case "GasketInsideDiameterLimits":
-                    MessageBox.Show("Gasket Inside Diameter должен быть больше 0");
+                    MessageBox.Show("Gasket inside diameter must be greater than 0");
                     break;
 
                 case "OutMoreThanIn_Diameter":
-                    MessageBox.Show("Gasket Outside Diameter должен быть больше, чем Gasket Inside Diameter");
+                    MessageBox.Show("Gasket outside diameter must be greater than gasket inside diameter");
                     break;
 
                 case "InternalDesignPressure":
-                    MessageBox.Show("Введите Internal Design Pressure");
+                    MessageBox.Show("Input internal design pressure");
                     break;
                 case "InternalDesignPressureLimits":
-                    MessageBox.Show("Internal Design Pressure должен быть больше 0");
+                    MessageBox.Show("Internal design pressure must be greater than 0");
                     break;
 
                 case "GasketFactor_m":
-                    MessageBox.Show("Введите Gasket Factor m");
+                    MessageBox.Show("Input gasket factor - m");
                     break;
                 case "GasketFactor_m_Limits":
-                    MessageBox.Show("Gasket Factor не может быть меньше 0");
+                    MessageBox.Show("Gasket factor must be greater than or equal to 0");
                     break;
 
                 case "MinimumDesignSeatingStress_y":
-                    MessageBox.Show("Введите Minimum Design Seating Stress");
+                    MessageBox.Show("Input minimum design seating stress - y");
                     break;
                 case "MinimumDesignSeatingStress_y_Limits":
-                    MessageBox.Show("Minimum Design Seating Stress не может быть меньше 0");
+                    MessageBox.Show("Minimum design seating stress must be greater than or equal to 0");
                     break;
 
                 case "BasicGasketSeatingWidth_b0":
-                    MessageBox.Show("Введите Basic Gasket Seating Width b0");
+                    MessageBox.Show("Input basic gasket seating width b0");
                     break;
                 case "BasicGasketSeatingWidth_b0_Limits":
-                    MessageBox.Show("Basic Gasket Seating Width b0 должен быть больше 0");
+                    MessageBox.Show("Basic gasket seating width b0 must be greater than 0");
                     break;
 
                 case "Size_N":
-                    MessageBox.Show("Введите Size N");
+                    MessageBox.Show("Input size N");
                     break;
                 case "Size_N_Limits":
-                    MessageBox.Show("Size N должен быть больше 0");
+                    MessageBox.Show("Size N must be greater than 0");
                     break;
             }
         }

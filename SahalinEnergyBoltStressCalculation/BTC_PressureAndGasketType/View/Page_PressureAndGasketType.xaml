@@ -82,7 +82,7 @@
                 <RowDefinition/>
                 <RowDefinition/>
                 <RowDefinition/>
-                <RowDefinition Height="1.7*"/>
+                <RowDefinition Height="2*"/>
             </Grid.RowDefinitions>
 
             <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Center"
@@ -464,8 +464,7 @@
 
             </StackPanel>
 
-
-            <Grid Grid.Row="6" VerticalAlignment="Center" Margin="2 0 0 0">
+            <Grid Grid.Row="6" Margin="2 0 0 0">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="30"/>
                     <ColumnDefinition/>
@@ -481,7 +480,7 @@
                         VerticalAlignment="Center" Name="TableButton_PressureAndGasketType"
                         Style="{StaticResource TableButtonStyle}" Height="24" Width="24"
                         Margin="3 1 3 1">
-                    <TextBlock FontFamily="Segoe UI" FontWeight="Bold" FontSize="17"
+                    <TextBlock FontFamily="Segoe UI" FontWeight="Bold" FontSize="18"
                                Foreground="White">
                         ?
                     </TextBlock>
@@ -597,11 +596,6 @@
                 </StackPanel>
 
                 
-
-                
-                
-
-
             </Grid>
 
 
@@ -747,13 +741,13 @@
             </Button.Template>
             <StackPanel>
                 <TextBlock FontSize="15" Foreground="White" Padding="10">
-                Введите данные и нажмите "посчитать"
+                Input data and click "Get result"
                 </TextBlock>
 
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                     <TextBlock FontSize="15" Foreground="White" Padding="10"
                                VerticalAlignment="Center">
-                Создано совместно
+                Created jointly
                     </TextBlock>
                     <Image Source="pack://application:,,,/Images/sahalinLogo.png"
                            RenderOptions.BitmapScalingMode="HighQuality"
@@ -772,7 +766,7 @@
                 FontSize="15" FontWeight="Bold" FontFamily="Segoe UI"
                 Style="{StaticResource CalculationButtonStyle}" Foreground="White"
                 HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
-            ПОСЧИТАТЬ
+            GET RESULT
         </Button>
 
     </Grid>
