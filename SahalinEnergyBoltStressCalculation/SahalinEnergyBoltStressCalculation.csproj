@@ -226,10 +226,13 @@
     <Resource Include="iconIco.ico" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Images\table4.JPG" />
+  </ItemGroup>
+  <ItemGroup>
     <Resource Include="Images\iconIco.ico" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\table4.JPG" />
+    <Resource Include="newLogo.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
