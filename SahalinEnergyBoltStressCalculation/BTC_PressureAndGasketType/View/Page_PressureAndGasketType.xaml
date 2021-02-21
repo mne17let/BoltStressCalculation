@@ -98,17 +98,23 @@
                           HorizontalContentAlignment="Center" MinWidth="200">
                     <ComboBoxItem Name="HintItemGrade" MaxHeight="0">Pick bolt grade</ComboBoxItem>
                     <ComboBoxItem Name="DefaultItemGrade">Custom</ComboBoxItem>
-                    <ComboBoxItem Name="Grade111">A193 B7</ComboBoxItem>
-                    <ComboBoxItem Name="Grade22">A193 B7M</ComboBoxItem>
-                    <ComboBoxItem Name="Grade32">A193 B16</ComboBoxItem>
-                    <ComboBoxItem Name="Grade42">A320 L7</ComboBoxItem>
-                    <ComboBoxItem Name="Grade52">A320 L7M</ComboBoxItem>
-                    <ComboBoxItem Name="Grade62">A320 L43</ComboBoxItem>
-                    <ComboBoxItem Name="Grade72">A193 B8 class 1</ComboBoxItem>
-                    <ComboBoxItem Name="Grade82">A193/A320 B8 class 2</ComboBoxItem>
-                    <ComboBoxItem Name="Grade92">A193/A320 B8M class 2</ComboBoxItem>
-                    <ComboBoxItem Name="Grade102">A193 B8M2 class 2B</ComboBoxItem>
-                    <ComboBoxItem Name="Grade112">A453 grade 660 A, B and C</ComboBoxItem>
+                    <ComboBoxItem Name="GradeA193_B7">A193 B7</ComboBoxItem>
+                    <ComboBoxItem Name="GradeA193_B7M">A193 B7M</ComboBoxItem>
+                    <ComboBoxItem Name="GradeA193_B16">A193 B16</ComboBoxItem>
+                    <ComboBoxItem Name="GradeA320_L7">A320 L7</ComboBoxItem>
+                    <ComboBoxItem Name="GradeA320_L7M">A320 L7M</ComboBoxItem>
+                    <ComboBoxItem Name="GradeA320_L43">A320 L43</ComboBoxItem>
+                    <ComboBoxItem Name="GradeA193_B8_Class1">A193 B8 class 1</ComboBoxItem>
+                    <ComboBoxItem Name="GradeA193_B8_Class2">A193/A320 B8 class 2</ComboBoxItem>
+                    <ComboBoxItem Name="GradeA193_B8M_Class2">A193/A320 B8M class 2</ComboBoxItem>
+                    <ComboBoxItem Name="GradeA193_B8M2_Class2B">A193 B8M2 class 2B</ComboBoxItem>
+                    <ComboBoxItem Name="GradeA453_Grade_660_A_B_AndC">A453 grade 660 A, B and C</ComboBoxItem>
+                    <ComboBoxItem Name="GradeISO_898_1_Class8_8">ISO 898-1 Class 8.8</ComboBoxItem>
+                    <ComboBoxItem Name="GradeISO_898_1_Class10_9">ISO 898-1 Class 10.9</ComboBoxItem>
+                    <ComboBoxItem Name="GradeISO_898_1_Class12_9">ISO 898-1 Class 12.9</ComboBoxItem>
+                    <ComboBoxItem Name="GradeISO_3506_1_A4_50">ISO 3506-1 A4-50</ComboBoxItem>
+                    <ComboBoxItem Name="GradeISO_3506_1_A4_70">ISO 3506-1 A4-70</ComboBoxItem>
+                    <ComboBoxItem Name="GradeISO_3506_1_A4_80">ISO 3506-1 A4-80</ComboBoxItem>
                 </ComboBox>
 
                 <TextBlock FontSize="13" Margin="5 0 0 0" HorizontalAlignment="Center" FontFamily="Segoe UI"
