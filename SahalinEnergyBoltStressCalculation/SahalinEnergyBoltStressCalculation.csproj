@@ -234,6 +234,9 @@
   <ItemGroup>
     <Resource Include="newLogo.ico" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\telegramLogo.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
