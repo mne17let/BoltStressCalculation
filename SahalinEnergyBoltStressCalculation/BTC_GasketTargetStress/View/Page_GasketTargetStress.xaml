@@ -424,7 +424,7 @@
         </StackPanel>
 
 
-        <Grid Grid.Row="2" Name="ResultGrid" Visibility="Visible">
+        <Grid Grid.Row="2" Name="ResultGrid" Visibility="Collapsed">
             <Grid.RowDefinitions>
                 <RowDefinition/>
                 <RowDefinition/>
@@ -483,7 +483,7 @@
         </Grid>
 
 
-        <Button x:Name="InfoBanner" Grid.Row="2" Visibility="Collapsed"
+        <Button x:Name="InfoBanner" Grid.Row="2" Visibility="Visible"
                 HorizontalAlignment="Center" VerticalAlignment="Center">
             <Button.Template>
                 <ControlTemplate TargetType="Button">
@@ -508,7 +508,7 @@
 
                     <Image Source="pack://application:,,,/Images/telegramLogo.png"
                            RenderOptions.BitmapScalingMode="HighQuality"
-                           Height="35" Width="35" Margin="0 0 5 0"/>
+                           Height="30" Width="30" Margin="0 0 5 0"/>
                     <TextBlock Background="#31a8dc" HorizontalAlignment="Center" Foreground="White"
                                VerticalAlignment="Center" Padding="5">
                     @mne_17_let
