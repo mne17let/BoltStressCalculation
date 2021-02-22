@@ -510,24 +510,24 @@
             </Button.Template>
             <StackPanel>
                 <TextBlock FontSize="15" Foreground="White" Padding="10">
-                Input data and click "Get result"
+                Input data and click "Calculate"
                 </TextBlock>
 
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                    <TextBlock FontSize="15" Foreground="White" Padding="10"
-                               VerticalAlignment="Center">
-                Created jointly
+                <TextBlock FontSize="15" Foreground="White" Padding="10"
+                               VerticalAlignment="Center" HorizontalAlignment="Center">
+                Any questions?
+                </TextBlock>
+
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0 0 0 5"> 
+
+                    <Image Source="pack://application:,,,/Images/telegramLogo.png"
+                           RenderOptions.BitmapScalingMode="HighQuality"
+                           Height="35" Width="35" Margin="0 0 5 0"/>
+                    <TextBlock Background="#31a8dc" HorizontalAlignment="Center" Foreground="White"
+                               VerticalAlignment="Center" Padding="5">
+                    @mne_17_let
                     </TextBlock>
-                    <Image Source="pack://application:,,,/Images/sahalinLogo.png"
-                           RenderOptions.BitmapScalingMode="HighQuality"
-                           Height="40" Width="40" Margin="5"/>
-                    <Image Source="pack://application:,,,/Images/rguLogo.png"
-                           RenderOptions.BitmapScalingMode="HighQuality"
-                           Height="40" Width="40" Margin="5"/>
                 </StackPanel>
-
-
-
             </StackPanel>
         </Button>
         
@@ -541,7 +541,7 @@
                 FontFamily="Segoe UI" Style="{StaticResource CalculationButtonStyle}" Foreground="White"
                 HorizontalContentAlignment="Center"
                 VerticalContentAlignment="Center">
-            GET RESULT
+            CALCULATE
         </Button>
 
     </Grid>

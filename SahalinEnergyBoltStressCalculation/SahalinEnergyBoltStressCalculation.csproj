@@ -70,7 +70,7 @@
     <SignManifests>true</SignManifests>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>iconIco.ico</ApplicationIcon>
+    <ApplicationIcon>newIcon22.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
@@ -212,27 +212,21 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\rguLogo.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\sahalinLogo.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Images\table1.jpg" />
     <Resource Include="Images\table2.jpg" />
     <Resource Include="Images\table3.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="iconIco.ico" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Images\table4.JPG" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\iconIco.ico" />
+    <Resource Include="Images\telegramLogo.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="newLogo.ico" />
+    <Resource Include="Images\newIcon22.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="newIcon22.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
