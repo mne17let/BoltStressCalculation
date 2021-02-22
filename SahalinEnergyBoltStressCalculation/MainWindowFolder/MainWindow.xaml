@@ -15,7 +15,7 @@
         MinWidth="900"-->
     <Window.Resources>
         <Style x:Key="NavigationUnpickedButtonStyle" TargetType="Button">
-            <Setter Property="Background" Value="Black"/>
+            <Setter Property="Background" Value="#d9d9d9"/>
 
             <!--Setter Property="Background" Value="#674172"-->
             
@@ -25,7 +25,7 @@
                     <ControlTemplate TargetType="Button" x:Name="NotPicked">
                         <Border  Background="{TemplateBinding Background}">
                             <ContentControl Content="{TemplateBinding Content}"
-                                            Foreground="White"
+                                            Foreground="Black"
                                             VerticalAlignment="Center"
                                             HorizontalAlignment="Center">
                             </ContentControl>
@@ -47,7 +47,7 @@
         </Style>
 
         <Style x:Key="NavigationPickedButtonStyle" TargetType="Button">
-            <Setter Property="Background" Value="#2574A9"/> 
+            <Setter Property="Background" Value="#d9d9d9"/> 
             <!--Setter Property="FontWeight" Value="Bold"-->
 
             <Setter Property="Template">
@@ -55,7 +55,7 @@
                     <ControlTemplate TargetType="Button" x:Name="NotPicked">
                         <Border  Background="{TemplateBinding Background}">
                             <ContentControl Content="{TemplateBinding Content}"
-                                            Foreground="White"
+                                            Foreground="Black"
                                             VerticalAlignment="Center"
                                             HorizontalAlignment="Center">
                             </ContentControl>
@@ -83,51 +83,63 @@
     <Grid>
 
         <Grid.RowDefinitions>
-            <RowDefinition Height="0.1*"></RowDefinition>
+            <RowDefinition Height="0.07*"></RowDefinition>
             <RowDefinition Height="0.07*"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
 
-        <Button x:Name="InfoButton" Grid.ColumnSpan="2" Grid.Row="0" 
-                Foreground="White">
+        
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Border BorderBrush="Black" BorderThickness="1" Grid.Column="0">
+                <Button x:Name="ButtonNavigation_BTC_SingleBoltStress" Padding="2"
+                    FontSize="12"
+                    Style="{StaticResource NavigationPickedButtonStyle}">
+                    Single bolt stress
+                </Button>
+            </Border>
+
+            <Border BorderBrush="Black" BorderThickness="1" Grid.Column="1">
+                <Button x:Name="ButtonNavigation_BTC_GasketTargetStress" Padding="2"
+                    FontSize="12"
+                    Style="{StaticResource NavigationUnpickedButtonStyle}">
+                    Gasket target stress
+                </Button>
+            </Border>
+
+            <Border BorderBrush="Black" BorderThickness="1" Grid.Column="2">
+                <Button x:Name="ButtonNavigation_BTC_PressureAndGasketType" Padding="2"
+                    FontSize="12"
+                    Style="{StaticResource NavigationUnpickedButtonStyle}">
+                    Flange design stress
+                </Button>
+            </Border>
+
+
+            
+        </Grid>
+
+        <Button x:Name="InfoButton" Grid.ColumnSpan="2" Grid.Row="1" 
+                Foreground="Black">
             <Button.Template>
                 <ControlTemplate TargetType="Button">
-                    <Border Background="Black" HorizontalAlignment="Stretch">
+                    <Border Background="#d9d9d9" HorizontalAlignment="Stretch">
                         <ContentControl Content="{TemplateBinding Content}"
                                         HorizontalAlignment="Center"
                                         VerticalAlignment="Center"/>
                     </Border>
                 </ControlTemplate>
             </Button.Template>
-            <TextBlock FontSize="15">
+            <TextBlock FontSize="12">
                 Torque calculation based on bolt material yield stress
             </TextBlock>
         </Button>
-        
-        <Grid Grid.Row="1">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition></ColumnDefinition>
-                <ColumnDefinition></ColumnDefinition>
-                <ColumnDefinition></ColumnDefinition>
-            </Grid.ColumnDefinitions>
-            <Button x:Name="ButtonNavigation_BTC_SingleBoltStress" Padding="2"
-                    FontSize="12" Grid.Column="0"
-                    Style="{StaticResource NavigationPickedButtonStyle}">
-                Single bolt stress
-            </Button>
-            <Button x:Name="ButtonNavigation_BTC_GasketTargetStress" Padding="2"
-                    FontSize="12" Grid.Column="1"
-                    Style="{StaticResource NavigationUnpickedButtonStyle}">
-                Gasket target stress
-            </Button>
-            <Button x:Name="ButtonNavigation_BTC_PressureAndGasketType" Padding="2"
-                    FontSize="12" Grid.Column="2"
-                    Style="{StaticResource NavigationUnpickedButtonStyle}">
-                Flange design stress
-            </Button>
-        </Grid>
 
-        
+
 
 
         <Frame Name="MainFrame" Grid.Row="3" NavigationUIVisibility="Hidden"></Frame>

@@ -534,13 +534,13 @@ namespace SahalinEnergyBoltStressCalculation.PageClassesFolder
             var convertTauASMEPCC_1AppendixK_Simplified = Math.Round(objectCalculator.GetTau_ASMEPCC_1AppendixK_Simplified() * 1.3558, 0);
 
 
-            Text_TauAPI6AAnnexD.Text = "τ = " + tauAPI6AAnnexD.ToString() + " Lbf-Ft = " + convertTauAPI6AAnnexD.ToString() + " N-m";
+            Text_TauAPI6AAnnexD.Text = " " + convertTauAPI6AAnnexD.ToString() + " N∙m (" + tauAPI6AAnnexD.ToString() + " Lbf∙Ft)";
 
-            Text_TauASMEPCC_1AppendixJ.Text = "τ = " + tauASMEPCC_1AppendixJ.ToString() + " Lbf-Ft = " + convertTauASMEPCC_1AppendixJ.ToString() + " N-m";
+            Text_TauASMEPCC_1AppendixJ.Text = " " + convertTauASMEPCC_1AppendixJ.ToString() + " N∙m (" + tauASMEPCC_1AppendixJ.ToString() + " Lbf∙Ft)";
 
-            Text_TauASMEPCC_1AppendixK_Simplified.Text = "τ = " + tauASMEPCC_1AppendixK_Simplified.ToString() + " Lbf-Ft = " + convertTauASMEPCC_1AppendixK_Simplified.ToString() + " N-m";
+            Text_TauASMEPCC_1AppendixK_Simplified.Text = " " + convertTauASMEPCC_1AppendixK_Simplified.ToString() + " N∙m (" + tauASMEPCC_1AppendixK_Simplified.ToString() + " Lbf∙Ft)";
 
-            TextBlock_ForcePerBolt.Text = "F = " + f.ToString() + " Lbf = " + convertF.ToString() + " N";
+            TextBlock_ForcePerBolt.Text = " " + convertF.ToString() + " N (" + f.ToString() + " Lbf)";
         }
 
         // Делаю видимыми таблицы с результатами и невидимым инфобаннер

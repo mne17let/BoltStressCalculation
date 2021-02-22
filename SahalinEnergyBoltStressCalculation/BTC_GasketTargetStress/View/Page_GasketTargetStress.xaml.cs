@@ -665,11 +665,11 @@ namespace SahalinEnergyBoltStressCalculation.BTC_GasketTargetStress.View
             var convertTau = Math.Round(objectCalculator.GetTauGasketTargetStress() * 1.3558, 0);
 
 
-            TextBlock_BoltStressRequired.Text = bSR.ToString() + " psi";
+            TextBlock_BoltStressRequired.Text = " " + bSR.ToString() + " psi";
 
-            TextBlock_PerCentOfYIELDStress.Text = perCent.ToString() + " %";
+            TextBlock_PerCentOfYIELDStress.Text = " " + perCent.ToString() + " % ";
 
-            TextBlock_TorqueMoment.Text = "τ = " + tau.ToString() + " Lbf-Ft = " + convertTau.ToString() + " N-m";
+            TextBlock_TorqueMoment.Text = " " + convertTau.ToString() + " N∙m (" + tau.ToString() + " Lbf∙Ft) ";
 
             CheckConditionAndShowErrorOrNot(objectCalculator.GetPercentOfYIELDStress());
 
@@ -688,11 +688,11 @@ namespace SahalinEnergyBoltStressCalculation.BTC_GasketTargetStress.View
             if (perCentForCheck > 80)
             {
                 TextBlock_ConditionResult.Visibility = Visibility.Visible;
-                TextBlock_ConditionResult.Text = "Bolt stress upper limit control failed [>80%]";
+                TextBlock_ConditionResult.Text = ">80 % bolt stress upper limit control failed";
             } else if (perCentForCheck < 20)
             {
                 TextBlock_ConditionResult.Visibility = Visibility.Visible;
-                TextBlock_ConditionResult.Text = "Bolt stress lower limit control failed [<20%]";
+                TextBlock_ConditionResult.Text = "<20% bolt stress lower limit control failed";
             }
             else
             {

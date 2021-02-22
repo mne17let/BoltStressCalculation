@@ -86,11 +86,11 @@
                 <RowDefinition/>
             </Grid.RowDefinitions>
 
-            <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Center"
-                        VerticalAlignment="Center" Margin="2 0 2 0">
+            <StackPanel Grid.Row="0" Orientation="Horizontal"
+                        VerticalAlignment="Center">
 
                 <TextBlock FontSize="15" Foreground="Black" Padding="2 1 2 1" FontFamily="Segoe UI"
-                           FontWeight="Bold">
+                           FontWeight="Bold" Margin="5 0 0 0">
                 Bolt grade
                 </TextBlock>
 
@@ -118,6 +118,35 @@
 
 
                 </ComboBox>
+
+
+                <StackPanel Orientation="Horizontal" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center"
+                      Margin="5 1 2 1">
+
+                    <TextBlock Name="TextYeildStress" FontSize="15" Grid.Column="0" Foreground="Black"
+                               Margin="2 0 2 0">Yield strength</TextBlock>
+
+                    <Grid Grid.Column="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="0.3*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <TextBox Name="TextBoxYieldStress" FontSize="15" Grid.Column="0" MaxLength="7"
+                             PreviewTextInput="OnlyNumbersOrCommaOneTime" PreviewKeyDown="WithoutSpace"
+                                 MinWidth="70" TextAlignment="Right">
+                        </TextBox>
+
+                        <TextBlock FontSize="15" Grid.Column="1"
+                       Foreground="Black" Margin="2 0 2 0">psi</TextBlock>
+                    </Grid>
+
+                </StackPanel>
+
+
+            </StackPanel>
+
+            <StackPanel Grid.Row="1" VerticalAlignment="Center" Orientation="Horizontal">
 
                 <TextBlock FontSize="15" VerticalAlignment="Center" Foreground="Black"
                            FontFamily="Segoe UI" FontWeight="Bold" Margin="5 0 0 0" Padding="2 1 2 1">
@@ -153,40 +182,6 @@
                     <ComboBoxItem Name="Size21">4" UN8</ComboBoxItem>
                 </ComboBox>
 
-
-            </StackPanel>
-
-            <Grid Grid.Row="1" VerticalAlignment="Center">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                </Grid.ColumnDefinitions>
-
-
-                <StackPanel Orientation="Horizontal" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center"
-                      Margin="5 1 2 1">
-
-                    <TextBlock Name="TextYeildStress" FontSize="15" Grid.Column="0" Foreground="Black"
-                               Margin="2 0 2 0">Yield strength</TextBlock>
-
-                    <Grid Grid.Column="1">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition/>
-                            <ColumnDefinition Width="0.3*"/>
-                        </Grid.ColumnDefinitions>
-
-                        <TextBox Name="TextBoxYieldStress" FontSize="15" Grid.Column="0" MaxLength="7"
-                             PreviewTextInput="OnlyNumbersOrCommaOneTime" PreviewKeyDown="WithoutSpace"
-                                 MinWidth="70" TextAlignment="Right">
-                        </TextBox>
-
-                        <TextBlock FontSize="15" Grid.Column="1"
-                       Foreground="Black" Margin="2 0 2 0">psi</TextBlock>
-                    </Grid>
-
-                </StackPanel>
-
-
                 <StackPanel Orientation="Horizontal" Grid.Column="1" HorizontalAlignment="Left">
 
 
@@ -201,7 +196,7 @@
                     </TextBox>
                 </StackPanel>
 
-            </Grid>
+            </StackPanel>
 
 
             <Grid Grid.Row="2" VerticalAlignment="Center">
@@ -269,7 +264,43 @@
             </Grid>
 
 
-            <Grid Grid.Row="3" VerticalAlignment="Center">
+            <Grid Grid.Row="3">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+
+                <StackPanel Grid.Column="0" Orientation="Horizontal" Margin="5 1 2 1"
+                            VerticalAlignment="Center" HorizontalAlignment="Left">
+                    <TextBlock Name="FrictionCoefficientText" FontSize="15"
+                               Foreground="Black" Padding="2 1 2 1">
+                Friction coefficient
+                    </TextBlock>
+
+                    <TextBox Name="TextBoxForFrictionCoefficient" FontSize="15" MaxLength="5"
+                     PreviewTextInput="OnlyNumbersAndCountK" TextAlignment="Right"
+                     PreviewKeyDown="WithoutSpaceAndMinus004" MinWidth="50">
+                    </TextBox>
+                </StackPanel>
+
+                <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center"
+                            HorizontalAlignment="Left">
+                    <TextBlock Name="KCoefficientText" FontSize="15" Foreground="Black"
+                               Padding="2 1 2 1">
+                Nut factor K
+                    </TextBlock>
+                    <TextBox Name="TextBoxForKCoefficient" FontSize="15" MaxLength="5"
+                         PreviewTextInput="OnlyNumbersOrCommaOneTime" PreviewKeyDown="WithoutSpace"
+                         MinWidth="75" TextAlignment="Right">
+                    </TextBox>
+                </StackPanel>
+
+
+            </Grid>
+            
+
+            <Grid Grid.Row="4" VerticalAlignment="Center">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
                     <ColumnDefinition/>
@@ -331,53 +362,11 @@
             </Grid>
             
             
-            <Grid Grid.Row="4">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                </Grid.ColumnDefinitions>
+            
 
+            <StackPanel Grid.Row="5" Orientation="Horizontal" VerticalAlignment="Center">
 
-                <StackPanel Grid.Column="0" Orientation="Horizontal" Margin="5 1 2 1"
-                            VerticalAlignment="Center" HorizontalAlignment="Left">
-                    <TextBlock Name="FrictionCoefficientText" FontSize="15"
-                               Foreground="Black" Padding="2 1 2 1">
-                Friction coefficient
-                    </TextBlock>
-
-                    <TextBox Name="TextBoxForFrictionCoefficient" FontSize="15" MaxLength="5"
-                     PreviewTextInput="OnlyNumbersAndCountK" TextAlignment="Right"
-                     PreviewKeyDown="WithoutSpaceAndMinus004" MinWidth="50">
-                    </TextBox>
-                </StackPanel>
-
-                <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center"
-                            HorizontalAlignment="Left">
-                    <TextBlock Name="KCoefficientText" FontSize="15" Foreground="Black"
-                               Padding="2 1 2 1">
-                Nut factor K
-                    </TextBlock>
-                    <TextBox Name="TextBoxForKCoefficient" FontSize="15" MaxLength="5"
-                         PreviewTextInput="OnlyNumbersOrCommaOneTime" PreviewKeyDown="WithoutSpace"
-                         MinWidth="75" TextAlignment="Right">
-                    </TextBox>
-                </StackPanel>
-
-
-            </Grid>
-
-            <StackPanel Grid.Row="5" Orientation="Horizontal" HorizontalAlignment="Center"
-                        VerticalAlignment="Center">
-
-                <Button Name="TableButton_GasketTargetStress" Width="24" Height="24"
-                        Style="{StaticResource TableButtonStyle}">
-
-                    <TextBlock Foreground="White" FontFamily="Segoe UI" FontWeight="Bold"
-                                           FontSize="18">
-                            ?
-                    </TextBlock>
-
-                </Button>
+                
                 
                 
                 <Grid Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center"
@@ -388,8 +377,7 @@
                     </Grid.ColumnDefinitions>
 
 
-                    <TextBlock FontSize="15" Background="#195acf" Foreground="White"
-                                   Padding="2 1 2 1" Grid.Column="0">
+                    <TextBlock FontSize="15" Padding="2 1 2 1" Grid.Column="0">
                                 Target assembly gasket stress
                     </TextBlock>
 
@@ -407,7 +395,7 @@
                         </TextBox>
 
 
-                        <TextBlock FontSize="15" Background="White" Padding="2 1 2 1" Grid.Column="1">
+                        <TextBlock FontSize="15" Padding="2 1 2 1" Grid.Column="1">
                                 psi
                         </TextBlock>
 
@@ -416,6 +404,16 @@
 
 
                 </Grid>
+
+                <Button Name="TableButton_GasketTargetStress" Width="24" Height="24"
+                        Style="{StaticResource TableButtonStyle}">
+
+                    <TextBlock Foreground="White" FontFamily="Segoe UI" FontWeight="Bold"
+                                           FontSize="18">
+                            ?
+                    </TextBlock>
+
+                </Button>
 
             </StackPanel>
 
@@ -426,78 +424,66 @@
         </StackPanel>
 
 
-        <Grid Grid.Row="2" Name="ResultGrid" Visibility="Collapsed">
+        <Grid Grid.Row="2" Name="ResultGrid" Visibility="Visible">
             <Grid.RowDefinitions>
+                <RowDefinition/>
                 <RowDefinition/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
 
-            <Grid Grid.Row="0" HorizontalAlignment="Center">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                </Grid.ColumnDefinitions>
-                
-                <StackPanel Name="Table_BoltStressRequired" Orientation="Vertical"
-                    HorizontalAlignment="Center" VerticalAlignment="Center"
-                    Grid.Column="0" Margin="5">
-                    <TextBlock Background="#e64d3d" FontSize="15" Foreground="White"
-                           Padding="5 2 5 2" Margin="0">
-                Bolt stress required
-                    </TextBlock>
-                    <TextBlock Name="TextBlock_BoltStressRequired" Background="White" FontSize="15"
-                       Foreground="Black" Padding="5 2 5 2" Margin="0">
+            <StackPanel Grid.Row="0" Name="Table_BoltStressRequired" Orientation="Horizontal"
+                        VerticalAlignment="Center" Margin="5">
+                <TextBlock FontSize="15" FontFamily="Segoe UI">
+                Bolt stress =
+                </TextBlock>
+                <TextBlock Name="TextBlock_BoltStressRequired" FontSize="15" FontFamily="Segoe UI"
+                           FontWeight="Bold">
                 Sbsel
+                </TextBlock>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Grid.Row="1" VerticalAlignment="Center"
+                        Margin="5">
+
+                <StackPanel  Name="Table_PerCentOfYIELDStress" Orientation="Horizontal">
+                    <TextBlock FontSize="15" FontFamily="Segoe UI">
+                        Percentage of yield strength =
+                    </TextBlock>
+
+                    <TextBlock Name="TextBlock_PerCentOfYIELDStress" FontSize="15" FontWeight="Bold"
+                               FontFamily="Segoe UI">
+                        %
                     </TextBlock>
                 </StackPanel>
 
-                <StackPanel Name="Table_TorqueMoment" Orientation="Vertical" Grid.Column="1"
-                    HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5">
-                    <TextBlock Background="#e64d3d" FontSize="15" Foreground="White"
-                           Padding="5 2 5 2" Margin="0">
-                ASME PCC-1 Appendix O
-                    </TextBlock>
-                    <TextBlock Name="TextBlock_TorqueMoment" Background="White" FontSize="15"
-                           Foreground="Black" Padding="5 2 5 2" Margin="0">
-                τ
-                    </TextBlock>
-                </StackPanel>
-            </Grid>
-
-
-            <StackPanel Orientation="Horizontal" Grid.Row="1"
-                        HorizontalAlignment="Center" VerticalAlignment="Center">
-
-                <StackPanel  Name="Table_PerCentOfYIELDStress" Orientation="Vertical"
-                         Margin="5">
-                    <TextBlock Background="#e64d3d" FontSize="15" Foreground="White"
-                           Padding="5 2 5 2">
-                % of yield stress
-                    </TextBlock>
-
-                    <TextBlock Name="TextBlock_PerCentOfYIELDStress" Background="White" FontSize="15"
-                           Foreground="Black" Padding="5 2 5 2" Margin="0">
-                %
-                    </TextBlock>
-                </StackPanel>
-                
-                <TextBlock Name="TextBlock_ConditionResult" Background="#e64d3d" FontSize="15"
-                           Foreground="White" Padding="5 2 5 2" Margin="5" TextWrapping="Wrap"
-                           VerticalAlignment="Center" Visibility="Collapsed">
+                <TextBlock Name="TextBlock_ConditionResult" FontSize="12" FontFamily="Segoe UI"
+                           Foreground="Red" Visibility="Visible" VerticalAlignment="Center">
                         Bolt stress lower limit control failed [&lt;20%]
                 </TextBlock>
-                    
+
 
             </StackPanel>
 
-            
 
+            <StackPanel Grid.Row="2" Name="Table_TorqueMoment" Orientation="Horizontal"
+                        VerticalAlignment="Center" Margin="5">
+                <TextBlock FontSize="15" FontFamily="Segoe UI">
+                Torque =
+                </TextBlock>
+                <TextBlock Name="TextBlock_TorqueMoment" FontSize="15" FontFamily="Segoe UI"
+                           FontWeight="Bold">
+                τ
+                </TextBlock>
+                <TextBlock FontSize="10" FontFamily="Segoe UI" VerticalAlignment="Center">
+                ASME PCC-1 Appendix O
+                </TextBlock>
+            </StackPanel>
 
 
         </Grid>
 
 
-        <Button x:Name="InfoBanner" Grid.Row="2" Visibility="Visible"
+        <Button x:Name="InfoBanner" Grid.Row="2" Visibility="Collapsed"
                 HorizontalAlignment="Center" VerticalAlignment="Center">
             <Button.Template>
                 <ControlTemplate TargetType="Button">
@@ -513,7 +499,7 @@
                 Input data and click "Calculate"
                 </TextBlock>
 
-                <TextBlock FontSize="15" Foreground="White" Padding="10"
+                <TextBlock FontSize="15" Foreground="White" Padding="5"
                                VerticalAlignment="Center" HorizontalAlignment="Center">
                 Any questions?
                 </TextBlock>

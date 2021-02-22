@@ -863,17 +863,21 @@ namespace SahalinEnergyBoltStressCalculation.BTC_PressureAndGasketType.View
 
 
 
-            TextBlock_Wm1.Text = "Wm1 = " + wm1.ToString() + " N";
-            TextBlock_Wm2.Text = "Wm2 = " + wm2.ToString() + " N";
-
-            TextBlock_SingleBoltLoad.Text = singleBoltLoad_Newton.ToString() + " N = " + singleBoltLoad_Lbf.ToString() + " Lbf";
-            TextBlock_BoltStressRequired.Text = bSR.ToString() + " psi";
-            TextBlock_PerCentOfYIELDStress.Text = perCent.ToString() + " %";
+            TextBlock_SingleBoltLoad.Text = " " +singleBoltLoad_Newton.ToString() + " N (" + singleBoltLoad_Lbf.ToString() + " Lbf)";
 
 
-            TextBlock_TorqueMoment_API6AAnnexD.Text = "τ = " + tau1_Lbf_ft.ToString() + " Lbf-Ft = " + tau1_Newton_m.ToString() + " N-m";
-            TextBlock_TorqueMoment_AppendixJ.Text = "τ = " + tau2_Lbf_ft.ToString() + " Lbf-Ft = " + tau2_Newton_m.ToString() + " N-m";
-            TextBlock_TorqueMoment_AppendixK.Text = "τ = " + tau3_Lbf_ft.ToString() + " Lbf-Ft = " + tau3_Newton_m.ToString() + " N-m";
+            TextBlock_Wm1.Text = " " + wm1.ToString() + " N";
+            TextBlock_Wm2.Text = " " + wm2.ToString() + " N";
+
+            
+            TextBlock_BoltStressRequired.Text = " " + bSR.ToString() + " psi";
+
+            TextBlock_PerCentOfYIELDStress.Text = " " + perCent.ToString() + " %";
+
+
+            TextBlock_TorqueMoment_API6AAnnexD.Text = " " + tau1_Newton_m.ToString() + " N∙m (" + tau1_Lbf_ft.ToString() + " Lbf∙Ft)";
+            TextBlock_TorqueMoment_AppendixJ.Text = " " + tau2_Newton_m.ToString() + " N∙m (" + tau2_Lbf_ft.ToString() + " Lbf∙Ft)";
+            TextBlock_TorqueMoment_AppendixK.Text = " " + tau3_Newton_m.ToString() + " N∙m (" + tau3_Lbf_ft.ToString() + " Lbf∙Ft)";
 
         }
 
