@@ -513,7 +513,7 @@
                 Input data and click "Get results"
                 </TextBlock>
 
-                <TextBlock FontSize="15" Foreground="White" Padding="10"
+                <TextBlock FontSize="15" Foreground="White" Padding="5"
                                VerticalAlignment="Center" HorizontalAlignment="Center">
                 Any questions?
                 </TextBlock>
