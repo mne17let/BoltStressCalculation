@@ -739,22 +739,22 @@ namespace SahalinEnergyBoltStressCalculation.BTC_PressureAndGasketType.View
             switch (code)
             {
                 case "Yield":
-                    MessageBox.Show("Input the yield strength value");
+                    MessageBox.Show("Please enter Yield strength");
                     break;
                 case "PerCent":
-                    MessageBox.Show("Input the percentage of yield strength value");
+                    MessageBox.Show("Please enter Percentage of yield strength value");
                     break;
                 case "Properties":
-                    MessageBox.Show("Input all bolt characteristics values");
+                    MessageBox.Show("Please enter bolt data");
                     break;
                 case "BoltSize":
-                    MessageBox.Show("Pick bolt size");
+                    MessageBox.Show("Please select bolt size");
                     break;
                 case "BoltGrade":
-                    MessageBox.Show("Pick bolt grade");
+                    MessageBox.Show("Please select bolt grade");
                     break;
                 case "FCoeff":
-                    MessageBox.Show("Input the friction coefficient value");
+                    MessageBox.Show("Please enter Friction coefficient");
                     break;
                 case "FCoeffLimits":
                     MessageBox.Show("The friction coefficient must be greater than or equal to 0 and less than or equal to 1");
@@ -771,28 +771,28 @@ namespace SahalinEnergyBoltStressCalculation.BTC_PressureAndGasketType.View
 
 
                 case "KCoeff":
-                    MessageBox.Show("Input nut factor K");
+                    MessageBox.Show("Please enter Nut factor K");
                     break;
                 case "KCoeffLimits":
                     MessageBox.Show("Nut factor must be greater than or equal to 0");
                     break;
 
                 case "NumberOfBolts":
-                    MessageBox.Show("Input the number of bolts");
+                    MessageBox.Show("Please enter Number of bolts");
                     break;
                 case "NumberOfBoltsLimits":
                     MessageBox.Show("Number of bolts must be greater than 0");
                     break;
 
                 case "GasketOutsideDiameter":
-                    MessageBox.Show("Input gasket outside diameter");
+                    MessageBox.Show("Please enter Gasket outside diameter");
                     break;
                 case "GasketOutsideDiameterLimits":
                     MessageBox.Show("Gasket outside diameter must be greater than 0");
                     break;
 
                 case "GasketInsideDiameter":
-                    MessageBox.Show("Input gasket inside diameter");
+                    MessageBox.Show("Please enter Gasket inside diameter");
                     break;
                 case "GasketInsideDiameterLimits":
                     MessageBox.Show("Gasket inside diameter must be greater than 0");
@@ -803,35 +803,35 @@ namespace SahalinEnergyBoltStressCalculation.BTC_PressureAndGasketType.View
                     break;
 
                 case "InternalDesignPressure":
-                    MessageBox.Show("Input internal design pressure");
+                    MessageBox.Show("Please enter Internal design pressure");
                     break;
                 case "InternalDesignPressureLimits":
                     MessageBox.Show("Internal design pressure must be greater than 0");
                     break;
 
                 case "GasketFactor_m":
-                    MessageBox.Show("Input gasket factor - m");
+                    MessageBox.Show("Please enter Gasket factor - m");
                     break;
                 case "GasketFactor_m_Limits":
                     MessageBox.Show("Gasket factor must be greater than or equal to 0");
                     break;
 
                 case "MinimumDesignSeatingStress_y":
-                    MessageBox.Show("Input minimum design seating stress - y");
+                    MessageBox.Show("Please enter Minimum design seating stress - y");
                     break;
                 case "MinimumDesignSeatingStress_y_Limits":
                     MessageBox.Show("Minimum design seating stress must be greater than or equal to 0");
                     break;
 
                 case "BasicGasketSeatingWidth_b0":
-                    MessageBox.Show("Input basic gasket seating width b0");
+                    MessageBox.Show("Please enter Basic gasket seating width b0");
                     break;
                 case "BasicGasketSeatingWidth_b0_Limits":
                     MessageBox.Show("Basic gasket seating width b0 must be greater than 0");
                     break;
 
                 case "Size_N":
-                    MessageBox.Show("Input size N");
+                    MessageBox.Show("Please enter Size N");
                     break;
                 case "Size_N_Limits":
                     MessageBox.Show("Size N must be greater than 0");

@@ -474,22 +474,22 @@ namespace SahalinEnergyBoltStressCalculation.PageClassesFolder
             switch (code)
             {
                 case "Yield":
-                    MessageBox.Show("Input the yield strength value");
+                    MessageBox.Show("Please enter Yield strength");
                     break;
                 case "PerCent":
-                    MessageBox.Show("Input the percentage of yield strength value");
+                    MessageBox.Show("Please enter Percentage of yield strength");
                     break;
                 case "Properties":
-                    MessageBox.Show("Input all bolt characteristics values");
+                    MessageBox.Show("Please enter bolt data");
                     break;
                 case "BoltSize":
-                    MessageBox.Show("Pick bolt size");
+                    MessageBox.Show("Please select bolt size");
                     break;
                 case "BoltGrade":
-                    MessageBox.Show("Pick bolt grade");
+                    MessageBox.Show("Please select bolt grade");
                     break;
                 case "FCoeff":
-                    MessageBox.Show("Input the friction coefficient value");
+                    MessageBox.Show("Please enter Friction coefficient");
                     break;
                 case "FCoeffLimits":
                     MessageBox.Show("The friction coefficient must be greater than or equal to 0 and less than or equal to 1");
@@ -507,18 +507,12 @@ namespace SahalinEnergyBoltStressCalculation.PageClassesFolder
                     MessageBox.Show("Yield strength must be greater than 0");
                     break;
                 case "KCoeff":
-                    MessageBox.Show("Input nut factor K");
+                    MessageBox.Show("Please enter Factor K");
                     break;
                 case "KCoeffLimits":
                     MessageBox.Show("Nut factor must be greater than or equal to 0");
                     break;
             }
-        }
-
-        public void ShowErrorMessage(double textMessage)
-        {
-
-            MessageBox.Show(textMessage.ToString());
         }
 
         // Изменения View в результате вычислительных операций

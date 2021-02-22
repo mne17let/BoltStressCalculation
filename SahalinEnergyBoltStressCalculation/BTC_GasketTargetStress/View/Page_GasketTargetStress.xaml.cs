@@ -578,22 +578,22 @@ namespace SahalinEnergyBoltStressCalculation.BTC_GasketTargetStress.View
             switch (code)
             {
                 case "Yield":
-                    MessageBox.Show("Input the yield strength value");
+                    MessageBox.Show("Please enter Yield strength value");
                     break;
                 case "PerCent":
-                    MessageBox.Show("Input the percentage of yield strength value");
+                    MessageBox.Show("Please enter Percentage of yield strength value");
                     break;
                 case "Properties":
-                    MessageBox.Show("Input all bolt characteristics values");
+                    MessageBox.Show("Please enter bolt data");
                     break;
                 case "BoltSize":
-                    MessageBox.Show("Pick bolt size");
+                    MessageBox.Show("Please select bolt size");
                     break;
                 case "BoltGrade":
-                    MessageBox.Show("Pick bolt grade");
+                    MessageBox.Show("Please select bolt grade");
                     break;
                 case "FCoeff":
-                    MessageBox.Show("Input the friction coefficient value");
+                    MessageBox.Show("Please enter Friction coefficient value");
                     break;
                 case "FCoeffLimits":
                     MessageBox.Show("The friction coefficient must be greater than or equal to 0 and less than or equal to 1");
@@ -610,28 +610,28 @@ namespace SahalinEnergyBoltStressCalculation.BTC_GasketTargetStress.View
 
 
                 case "KCoeff":
-                    MessageBox.Show("Input nut factor K");
+                    MessageBox.Show("Please enter Nut factor K");
                     break;
                 case "KCoeffLimits":
                     MessageBox.Show("Nut factor must be greater than or equal to 0");
                     break;
 
                 case "NumberOfBolts":
-                    MessageBox.Show("Input the number of bolts");
+                    MessageBox.Show("Please enter Number of bolts");
                     break;
                 case "NumberOfBoltsLimits":
                     MessageBox.Show("Number of bolts must be greater than 0");
                     break;
 
                 case "GasketOutsideDiameter":
-                    MessageBox.Show("Input gasket outside diameter");
+                    MessageBox.Show("Please enter Gasket outside diameter");
                     break;
                 case "GasketOutsideDiameterLimits":
                     MessageBox.Show("Gasket outside diameter must be greater than 0");
                     break;
 
                 case "GasketInsideDiameter":
-                    MessageBox.Show("Input gasket inside diameter");
+                    MessageBox.Show("Please enter Gasket inside diameter");
                     break;
                 case "GasketInsideDiameterLimits":
                     MessageBox.Show("Gasket inside diameter must be greater than 0");
@@ -642,7 +642,7 @@ namespace SahalinEnergyBoltStressCalculation.BTC_GasketTargetStress.View
                     break;
 
                 case "TargetAssemblyGasketStress":
-                    MessageBox.Show("Input target assembly gasket stress");
+                    MessageBox.Show("Please enter Target assembly gasket stress");
                     break;
                 case "TargetAssemblyGasketStressLimits":
                     MessageBox.Show("Target assembly gasket stress must be greater than 0");
