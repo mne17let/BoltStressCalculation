@@ -772,7 +772,7 @@
                 FontSize="15" FontWeight="Bold" FontFamily="Segoe UI"
                 Style="{StaticResource CalculationButtonStyle}" Foreground="White"
                 HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
-            GET RESULT
+            GET RESULTS
         </Button>
 
     </Grid>

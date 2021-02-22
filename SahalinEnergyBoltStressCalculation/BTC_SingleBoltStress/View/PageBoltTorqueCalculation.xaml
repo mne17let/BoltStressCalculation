@@ -468,7 +468,7 @@
                 FontFamily="Segoe UI" Style="{StaticResource CalcButtonStyle}" Foreground="White"
                 HorizontalContentAlignment="Center"
                 VerticalContentAlignment="Center">
-            GET RESULT
+            GET RESULTS
         </Button>
         
     </Grid>
