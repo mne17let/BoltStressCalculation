@@ -492,7 +492,7 @@ namespace SahalinEnergyBoltStressCalculation.PageClassesFolder
                     MessageBox.Show("Input the friction coefficient value");
                     break;
                 case "FCoeffLimits":
-                    MessageBox.Show("The friction coefficient must be greater than 0 and less than or equal to 1");
+                    MessageBox.Show("The friction coefficient must be greater than or equal to 0 and less than or equal to 1");
                     break;
                 case "PropertiesNull":
                     MessageBox.Show("Bolt characteristic value cannot be 0");
@@ -500,19 +500,25 @@ namespace SahalinEnergyBoltStressCalculation.PageClassesFolder
                 case "YieldStressNull":
                     MessageBox.Show("Yield strength must be greater than 0");
                     break;
-                case "YieldStressPercentNull":
-                    MessageBox.Show("Yield strength percentage must be greater than 0");
+                case "YieldStressPercentLimits":
+                    MessageBox.Show("Yield strength percentage must be greater than or equal to 0");
                     break;
                 case "YieldStressNullBoth":
-                    MessageBox.Show("Yield strength and yield strength percentage must be greater than 0");
+                    MessageBox.Show("Yield strength must be greater than 0");
                     break;
                 case "KCoeff":
                     MessageBox.Show("Input nut factor K");
                     break;
                 case "KCoeffLimits":
-                    MessageBox.Show("Nut factor must be greater than 0");
+                    MessageBox.Show("Nut factor must be greater than or equal to 0");
                     break;
             }
+        }
+
+        public void ShowErrorMessage(double textMessage)
+        {
+
+            MessageBox.Show(textMessage.ToString());
         }
 
         // Изменения View в результате вычислительных операций

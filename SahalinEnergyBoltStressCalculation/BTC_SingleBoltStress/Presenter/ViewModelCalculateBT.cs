@@ -329,29 +329,24 @@ namespace SahalinEnergyBoltStressCalculation.LogicClassesFolder
                 string[] yieldValues = PageCalculationBT.GetYieldStressCustom();
                 if (Double.TryParse(yieldValues[0], out help1) == true && Double.TryParse(yieldValues[1], out help2) == true)
                 {
-                    if (help1 != 0.0 && help2 != 0.0)
-                    {   // Введены YIELD Stress и его %
-                        yieldStressValueCustom = help1;
-                        yieldStressPerCent = help2;
-                        res = true;
-                    }
-                    else if (help1 == 0.0)
+                    if (help1 <= 0.0)
                     {
                         // Введён Yield Stress, равный 0
                         PageCalculationBT.ShowErrorMessage("YieldStressNull");
                         res = false;
                     }
-                    else if (help2 == 0.0)
+                    else if (help2 < 0.0)
                     {
                         // Введён % Yield Stress, равный 0
-                        PageCalculationBT.ShowErrorMessage("YieldStressPercentNull");
+                        PageCalculationBT.ShowErrorMessage("YieldStressPercentLimits");
                         res = false;
                     }
                     else
                     {
-                        // Введён Yield Stress И % Yield Stress, равные 0
-                        PageCalculationBT.ShowErrorMessage("YieldStressNullBoth");
-                        res = false;
+                        // Введены YIELD Stress и его %
+                        yieldStressValueCustom = help1;
+                        yieldStressPerCent = help2;
+                        res = true;
                     }
                 }
                 else if (Double.TryParse(yieldValues[0], out help1) == false && Double.TryParse(yieldValues[1], out help2) == true)
@@ -379,10 +374,10 @@ namespace SahalinEnergyBoltStressCalculation.LogicClassesFolder
                 double help;
                 if (Double.TryParse(yieldValues[1], out help) == true)
                 {
-                    if (help == 0)
+                    if (help < 0)
                     {
                         // Введён % Yield Stress, равный 0
-                        PageCalculationBT.ShowErrorMessage("YieldStressNull");
+                        PageCalculationBT.ShowErrorMessage("YieldStressPercentLimits");
                         res = false;
                     }
                     else
@@ -413,7 +408,7 @@ namespace SahalinEnergyBoltStressCalculation.LogicClassesFolder
                 PageCalculationBT.ShowErrorMessage("FCoeff");
                 checkFC = false;
             }
-            else if (help <= 0 || help > 1)
+            else if (help < 0 || help > 1)
             {
                 // Коэффициент трения не входит необходимый диапазон
                 PageCalculationBT.ShowErrorMessage("FCoeffLimits");
@@ -441,7 +436,7 @@ namespace SahalinEnergyBoltStressCalculation.LogicClassesFolder
                 PageCalculationBT.ShowErrorMessage("KCoeff");
                 checkKC = false;
             }
-            else if (help <= 0)
+            else if (help < 0)
             {
                 // Коэффициент К не входит необходимый диапазон
                 PageCalculationBT.ShowErrorMessage("KCoeffLimits");

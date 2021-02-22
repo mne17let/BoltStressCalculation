@@ -420,7 +420,7 @@ namespace SahalinEnergyBoltStressCalculation.BTC_GasketTargetStress.Presenter
                 PageView.ShowErrorMessage("FCoeff");
                 checkFC = false;
             }
-            else if (help <= 0 || help > 1)
+            else if (help < 0 || help > 1)
             {
                 // Коэффициент трения не входит необходимый диапазон
                 PageView.ShowErrorMessage("FCoeffLimits");
@@ -448,7 +448,7 @@ namespace SahalinEnergyBoltStressCalculation.BTC_GasketTargetStress.Presenter
                 PageView.ShowErrorMessage("KCoeff");
                 checkKC = false;
             }
-            else if (help <= 0)
+            else if (help < 0)
             {
                 // Коэффициент К не входит необходимый диапазон
                 PageView.ShowErrorMessage("KCoeffLimits");

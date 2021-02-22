@@ -757,7 +757,7 @@ namespace SahalinEnergyBoltStressCalculation.BTC_PressureAndGasketType.View
                     MessageBox.Show("Input the friction coefficient value");
                     break;
                 case "FCoeffLimits":
-                    MessageBox.Show("The friction coefficient must be greater than 0 and less than or equal to 1");
+                    MessageBox.Show("The friction coefficient must be greater than or equal to 0 and less than or equal to 1");
                     break;
                 case "PropertiesNull":
                     MessageBox.Show("Bolt characteristic value cannot be 0");
@@ -774,7 +774,7 @@ namespace SahalinEnergyBoltStressCalculation.BTC_PressureAndGasketType.View
                     MessageBox.Show("Input nut factor K");
                     break;
                 case "KCoeffLimits":
-                    MessageBox.Show("Nut factor must be greater than 0");
+                    MessageBox.Show("Nut factor must be greater than or equal to 0");
                     break;
 
                 case "NumberOfBolts":
