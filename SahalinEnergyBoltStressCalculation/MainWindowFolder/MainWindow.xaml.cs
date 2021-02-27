@@ -36,7 +36,7 @@ namespace SahalinEnergyBoltStressCalculation
             InitializeComponent();
 
             // Меняю стиль окна, чтобы применить нужный шрифт
-            //Style = (Style)FindResource(typeof(Window));
+            Style = (Style)FindResource(typeof(Window));
 
             InitFun();
             page_PressureAndGasketType.mainWindow = this;

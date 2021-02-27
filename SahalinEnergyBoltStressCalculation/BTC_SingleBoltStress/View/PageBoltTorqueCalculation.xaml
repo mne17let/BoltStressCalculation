@@ -40,7 +40,7 @@
 
         <Grid.RowDefinitions>
             <RowDefinition></RowDefinition>
-            <RowDefinition Height="2"></RowDefinition>
+            <RowDefinition Height="1"></RowDefinition>
             <RowDefinition></RowDefinition>
             <RowDefinition Height="25"></RowDefinition>
         </Grid.RowDefinitions>
@@ -61,7 +61,7 @@
                 Bolt grade
                 </TextBlock>
                 
-                <ComboBox Name="ComboBoxWithGrades" SelectedIndex="0" FontSize="15" MinWidth="210"
+                <ComboBox Name="ComboBoxWithGrades" FontSize="15" MinWidth="210"
                           HorizontalContentAlignment="Center">
                     <ComboBoxItem Name="HintItemGrade" MaxHeight="0">Pick bolt grade</ComboBoxItem>
                     <ComboBoxItem Name="DefaultItemGrade">Custom</ComboBoxItem>
@@ -84,7 +84,7 @@
                     <ComboBoxItem Name="GradeISO_3506_1_A4_80">ISO 3506-1 A4-80</ComboBoxItem>
                 </ComboBox>
 
-                <Grid Margin="2 1 10 1">
+                <Grid Margin="25 1 10 1">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition/>
                         <ColumnDefinition/>
@@ -122,7 +122,7 @@
                 Bolt size
                 </TextBlock>
 
-                <ComboBox Name="ComboBoxWithBoltSize" FontSize="15" SelectedIndex="0" IsEnabled="False"
+                <ComboBox Name="ComboBoxWithBoltSize" FontSize="15" IsEnabled="False"
                           MinWidth="170" HorizontalContentAlignment="Center">
 
                     <ComboBoxItem Name="HintItemSizeBeforeGrade" MaxHeight="0">Pick bolt grade at first</ComboBoxItem>
@@ -151,7 +151,7 @@
                     <ComboBoxItem Name="Size21">4" UN8</ComboBoxItem>
                 </ComboBox>
 
-                <Grid Margin="10 1 2 1">
+                <Grid Margin="25 1 10 1">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition/>
                         <ColumnDefinition/>
@@ -328,7 +328,7 @@
 
                 <StackPanel Grid.Column="0" Orientation="Horizontal" Margin="5" VerticalAlignment="Center">
                     <TextBlock Name="FrictionCoefficientText" FontSize="15" Foreground="Black"
-                               VerticalAlignment="Center" Padding="0 0 2 0">
+                               VerticalAlignment="Center" Padding="2 0 2 0">
                 Friction coefficient
                     </TextBlock>
 
@@ -478,7 +478,7 @@
 
         
 
-        <Border BorderBrush="Black" BorderThickness="2" Grid.Row="3">
+        <Border BorderBrush="Black" BorderThickness="1" Grid.Row="3">
             <Button Name="CalculationButton_SingleBoltStress" FontSize="15" FontWeight="Bold"
                 FontFamily="Segoe UI" Style="{StaticResource CalcButtonStyle}"
                 HorizontalContentAlignment="Center"

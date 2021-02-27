@@ -70,7 +70,7 @@
 
         <Grid.RowDefinitions>
             <RowDefinition></RowDefinition>
-            <RowDefinition Height="2"></RowDefinition>
+            <RowDefinition Height="1"></RowDefinition>
             <RowDefinition></RowDefinition>
             <RowDefinition Height="25"></RowDefinition>
         </Grid.RowDefinitions>
@@ -94,7 +94,7 @@
                 Bolt grade
                 </TextBlock>
 
-                <ComboBox Name="ComboBoxWithGrades" FontSize="15" SelectedIndex="0" MinWidth="210"
+                <ComboBox Name="ComboBoxWithGrades" FontSize="15" MinWidth="210"
                           HorizontalContentAlignment="Center">
                     <ComboBoxItem Name="HintItemGrade" MaxHeight="0">Pick bolt grade</ComboBoxItem>
                     <ComboBoxItem Name="DefaultItemGrade">Custom</ComboBoxItem>
@@ -121,7 +121,7 @@
 
 
                 <StackPanel Orientation="Horizontal" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center"
-                      Margin="5 1 2 1">
+                      Margin="30 1 2 1">
 
                     <TextBlock Name="TextYeildStress" FontSize="15" Grid.Column="0" Foreground="Black"
                                Margin="2 0 2 0">Yield strength</TextBlock>
@@ -153,7 +153,7 @@
                 Bolt size
                 </TextBlock>
 
-                <ComboBox Name="ComboBoxWithBoltSize" FontSize="15" SelectedIndex="0" IsEnabled="False"
+                <ComboBox Name="ComboBoxWithBoltSize" FontSize="15" IsEnabled="False"
                           MinWidth="170" HorizontalContentAlignment="Center">
 
                     <ComboBoxItem Name="HintItemSizeBeforeGrade" MaxHeight="0">Pick bolt grade at first</ComboBoxItem>
@@ -182,7 +182,8 @@
                     <ComboBoxItem Name="Size21">4" UN8</ComboBoxItem>
                 </ComboBox>
 
-                <StackPanel Orientation="Horizontal" Grid.Column="1" HorizontalAlignment="Left">
+                <StackPanel Orientation="Horizontal" Grid.Column="1" HorizontalAlignment="Left"
+                            Margin="30 1 2 1">
 
 
                     <TextBlock Name="TextNumberOfBolts" FontSize="15" Foreground="Black" Margin="2 0 2 0"
@@ -523,7 +524,7 @@
         
         
 
-        <Border BorderBrush="Black" BorderThickness="2" Grid.Row="3">
+        <Border BorderBrush="Black" BorderThickness="1" Grid.Row="3">
             <Button Name="CalculationButton_GasketTargetStress" FontSize="15" FontWeight="Bold"
                 FontFamily="Segoe UI" Style="{StaticResource CalculationButtonStyle}"
                 HorizontalContentAlignment="Center"

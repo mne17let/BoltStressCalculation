@@ -159,7 +159,6 @@ namespace SahalinEnergyBoltStressCalculation.PageClassesFolder
             localItem.MaxHeight = 0;
             localItem.Content = "Pick bolt size";
             ComboBoxWithBoltSize.Items.Add(localItem);
-            ComboBoxWithBoltSize.SelectedIndex = 0;
 
             ComboBoxItem customItem = new ComboBoxItem();
             customItem.Content = "Custom";

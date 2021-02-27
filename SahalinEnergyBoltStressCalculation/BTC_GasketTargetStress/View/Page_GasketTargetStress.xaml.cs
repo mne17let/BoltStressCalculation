@@ -390,7 +390,6 @@ namespace SahalinEnergyBoltStressCalculation.BTC_GasketTargetStress.View
             pickBoltSizeItem.MaxHeight = 0;
             pickBoltSizeItem.Content = "Pick bolt size";
             ComboBoxWithBoltSize.Items.Add(pickBoltSizeItem);
-            ComboBoxWithBoltSize.SelectedIndex = 0;
 
             ComboBoxItem customItem = new ComboBoxItem();
             customItem.Content = "Custom";
