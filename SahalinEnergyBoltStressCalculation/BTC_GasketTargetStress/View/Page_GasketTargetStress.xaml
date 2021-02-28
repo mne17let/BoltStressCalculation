@@ -434,11 +434,10 @@
 
             <StackPanel Grid.Row="0" Name="Table_BoltStressRequired" Orientation="Horizontal"
                         VerticalAlignment="Center" Margin="5">
-                <TextBlock FontSize="15" FontFamily="Segoe UI">
+                <TextBlock FontSize="15">
                 Bolt stress =
                 </TextBlock>
-                <TextBlock Name="TextBlock_BoltStressRequired" FontSize="15" FontFamily="Segoe UI"
-                           FontWeight="Bold">
+                <TextBlock Name="TextBlock_BoltStressRequired" FontSize="15">
                 Sbsel
                 </TextBlock>
             </StackPanel>
@@ -447,17 +446,16 @@
                         Margin="5">
 
                 <StackPanel  Name="Table_PerCentOfYIELDStress" Orientation="Horizontal">
-                    <TextBlock FontSize="15" FontFamily="Segoe UI">
+                    <TextBlock FontSize="15">
                         Percentage of yield strength =
                     </TextBlock>
 
-                    <TextBlock Name="TextBlock_PerCentOfYIELDStress" FontSize="15" FontWeight="Bold"
-                               FontFamily="Segoe UI">
+                    <TextBlock Name="TextBlock_PerCentOfYIELDStress" FontSize="15">
                         %
                     </TextBlock>
                 </StackPanel>
 
-                <TextBlock Name="TextBlock_ConditionResult" FontSize="12" FontFamily="Segoe UI"
+                <TextBlock Name="TextBlock_ConditionResult" FontSize="12"
                            Foreground="Red" Visibility="Visible" VerticalAlignment="Center">
                         Bolt stress lower limit control failed [&lt;20%]
                 </TextBlock>
@@ -465,17 +463,15 @@
 
             </StackPanel>
 
-
             <StackPanel Grid.Row="2" Name="Table_TorqueMoment" Orientation="Horizontal"
                         VerticalAlignment="Center" Margin="5">
-                <TextBlock FontSize="15" FontFamily="Segoe UI">
+                <TextBlock FontSize="15">
                 Torque =
                 </TextBlock>
-                <TextBlock Name="TextBlock_TorqueMoment" FontSize="15" FontFamily="Segoe UI"
-                           FontWeight="Bold">
+                <TextBlock Name="TextBlock_TorqueMoment" FontSize="15">
                 τ
                 </TextBlock>
-                <TextBlock FontSize="10" FontFamily="Segoe UI" VerticalAlignment="Center">
+                <TextBlock FontSize="10" VerticalAlignment="Center">
                 ASME PCC-1 Appendix O
                 </TextBlock>
             </StackPanel>
@@ -519,11 +515,6 @@
         </Button>
         
         
-        
-        
-        
-        
-
         <Border BorderBrush="Black" BorderThickness="1" Grid.Row="3">
             <Button Name="CalculationButton_GasketTargetStress" FontSize="15" FontWeight="Bold"
                 FontFamily="Segoe UI" Style="{StaticResource CalculationButtonStyle}"

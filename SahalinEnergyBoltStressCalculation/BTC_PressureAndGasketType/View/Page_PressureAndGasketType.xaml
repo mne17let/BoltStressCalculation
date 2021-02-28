@@ -625,11 +625,10 @@
             <StackPanel Name="Table_SingleBoltLoad" Orientation="Horizontal" Grid.Row="0"
                         VerticalAlignment="Center" Margin="5 1 1 1">
 
-                <TextBlock FontSize="15" FontFamily="Segou UI">
+                <TextBlock FontSize="15">
                 Bolt preload force =
                 </TextBlock>
-                <TextBlock Name="TextBlock_SingleBoltLoad" FontSize="15" FontFamily="Segou UI"
-                               FontWeight="Bold">
+                <TextBlock Name="TextBlock_SingleBoltLoad" FontSize="15">
                 SingleBoltLoad
                 </TextBlock>
             </StackPanel>
@@ -637,11 +636,10 @@
             <StackPanel Name="Table_Wm1" Orientation="Horizontal" Grid.Row="1" Margin="5 1 1 1"
                         VerticalAlignment="Center">
 
-                <TextBlock FontSize="12" FontFamily="Segou UI">
+                <TextBlock FontSize="12">
                 Required bolts load for operating conditions Wm1 =
                 </TextBlock>
-                <TextBlock Name="TextBlock_Wm1" FontSize="12" FontFamily="Segou UI"
-                               FontWeight="Bold">
+                <TextBlock Name="TextBlock_Wm1" FontSize="12">
                 Wm1
                 </TextBlock>
             </StackPanel>
@@ -649,11 +647,10 @@
             <StackPanel Name="Table_Wm2" Orientation="Horizontal" Grid.Row="2" Margin="5 1 1 1"
                         VerticalAlignment="Center">
 
-                <TextBlock FontSize="12" FontFamily="Segou UI">
+                <TextBlock FontSize="12">
                 Minimum initial bolts load for gasket seating Wm2 =
                 </TextBlock>
-                <TextBlock Name="TextBlock_Wm2" FontSize="12" FontFamily="Segou UI"
-                               FontWeight="Bold">
+                <TextBlock Name="TextBlock_Wm2" FontSize="12">
                 Wm2
                 </TextBlock>
             </StackPanel>
@@ -664,11 +661,10 @@
                 <StackPanel Name="Table_BoltStressRequired" Orientation="Horizontal"
                         VerticalAlignment="Center">
 
-                    <TextBlock FontSize="15" FontFamily="Segou UI">
+                    <TextBlock FontSize="15">
                 Bolt stress =
                     </TextBlock>
-                    <TextBlock Name="TextBlock_BoltStressRequired" FontFamily="Segou UI"
-                           FontWeight="Bold" FontSize="15">
+                    <TextBlock Name="TextBlock_BoltStressRequired" FontSize="15">
                 Bolt stress required
                     </TextBlock>
                 </StackPanel>
@@ -676,11 +672,10 @@
                 <StackPanel  Name="Table_PerCentOfYIELDStress" Orientation="Horizontal"
                     HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10 0 0 0">
 
-                    <TextBlock FontSize="15" FontFamily="Segou UI">
+                    <TextBlock FontSize="15">
                 Percentage of yield strength =
                     </TextBlock>
-                    <TextBlock Name="TextBlock_PerCentOfYIELDStress" FontFamily="Segou UI"
-                           FontWeight="Bold" FontSize="15">
+                    <TextBlock Name="TextBlock_PerCentOfYIELDStress" FontSize="15">
                         %
                     </TextBlock>
                 </StackPanel>
@@ -694,16 +689,15 @@
             <StackPanel  Name="Table_TorqueMoment_API6AAnnexD" Orientation="Horizontal" Grid.Row="4"
                     VerticalAlignment="Center" Margin="5 1 1 1">
 
-                <TextBlock FontSize="15" FontFamily="Segoe UI">
+                <TextBlock FontSize="15">
                 Torque =
                 </TextBlock>
 
-                <TextBlock Name="TextBlock_TorqueMoment_API6AAnnexD" FontSize="15" FontFamily="Segoe UI"
-                           FontWeight="Bold">
+                <TextBlock Name="TextBlock_TorqueMoment_API6AAnnexD" FontSize="15">
                 F
                 </TextBlock>
 
-                <TextBlock FontSize="10" FontFamily="Segoe UI" Margin="5 0 0 0" VerticalAlignment="Center">
+                <TextBlock FontSize="10" Margin="5 0 0 0" VerticalAlignment="Center">
                 API 6A Annex D
                 </TextBlock>
             </StackPanel>
@@ -711,16 +705,15 @@
             <StackPanel Name="Table_TorqueMoment_AppendixJ" Orientation="Horizontal" Grid.Row="5" Grid.Column="1"
                     HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5 1 1 1">
 
-                <TextBlock FontSize="15" FontFamily="Segoe UI">
+                <TextBlock FontSize="15">
                 Torque =
                 </TextBlock>
 
-                <TextBlock Name="TextBlock_TorqueMoment_AppendixJ" FontSize="15" FontFamily="Segoe UI"
-                           FontWeight="Bold">
+                <TextBlock Name="TextBlock_TorqueMoment_AppendixJ" FontSize="15">
                 τ
                 </TextBlock>
 
-                <TextBlock FontSize="10" FontFamily="Segoe UI" Margin="5 0 0 0" VerticalAlignment="Center">
+                <TextBlock FontSize="10" Margin="5 0 0 0" VerticalAlignment="Center">
                 ASME PCC-1 Appendix J
                 </TextBlock>
             </StackPanel>
@@ -731,16 +724,15 @@
 
 
 
-                <TextBlock FontSize="15" FontFamily="Segoe UI">
+                <TextBlock FontSize="15">
                 Torque =
                 </TextBlock>
 
-                <TextBlock Name="TextBlock_TorqueMoment_AppendixK" FontSize="15" FontFamily="Segoe UI"
-                           FontWeight="Bold">
+                <TextBlock Name="TextBlock_TorqueMoment_AppendixK" FontSize="15">
                 τ
                 </TextBlock>
 
-                <TextBlock FontSize="10" FontFamily="Segoe UI" Margin="5 0 0 0" VerticalAlignment="Center">
+                <TextBlock FontSize="10" Margin="5 0 0 0" VerticalAlignment="Center">
                 ASME PCC-1 Appendix K
                 </TextBlock>
             </StackPanel>

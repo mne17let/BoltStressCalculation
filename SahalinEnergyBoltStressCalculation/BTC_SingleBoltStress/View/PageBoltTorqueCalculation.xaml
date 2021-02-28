@@ -409,12 +409,11 @@
             <StackPanel Name="ForcePerBoltTable" Orientation="Horizontal" Grid.Row="0" Grid.Column="0"
                         HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5">
 
-                <TextBlock FontSize="15" FontFamily="Segoe UI">
+                <TextBlock FontSize="15">
                 Bolt preload force =
                 </TextBlock>
 
-                <TextBlock Name="TextBlock_ForcePerBolt" FontSize="15" FontFamily="Segoe UI"
-                           FontWeight="Bold">
+                <TextBlock Name="TextBlock_ForcePerBolt" FontSize="15">
                 F
                 </TextBlock>
                 
@@ -423,16 +422,15 @@
             <StackPanel  Name="ResOne_Table" Orientation="Horizontal" Grid.Row="1"
                     HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5">
 
-                <TextBlock FontSize="15" FontFamily="Segoe UI">
+                <TextBlock FontSize="15">
                 Torque =
                 </TextBlock>
 
-                <TextBlock Name="Text_TauAPI6AAnnexD" FontSize="15" FontFamily="Segoe UI"
-                           FontWeight="Bold">
+                <TextBlock Name="Text_TauAPI6AAnnexD" FontSize="15">
                 F
                 </TextBlock>
 
-                <TextBlock FontSize="10" FontFamily="Segoe UI" Margin="5 0 0 0" VerticalAlignment="Center">
+                <TextBlock FontSize="10" Margin="5 0 0 0" VerticalAlignment="Center">
                 API 6A Annex D
                 </TextBlock>
             </StackPanel>
@@ -440,16 +438,15 @@
             <StackPanel Name="ResTwo_Table" Orientation="Horizontal" Grid.Row="2" Grid.Column="1"
                     HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5">
 
-                <TextBlock FontSize="15" FontFamily="Segoe UI">
+                <TextBlock FontSize="15">
                 Torque =
                 </TextBlock>
 
-                <TextBlock Name="Text_TauASMEPCC_1AppendixJ" FontSize="15" FontFamily="Segoe UI"
-                           FontWeight="Bold">
+                <TextBlock Name="Text_TauASMEPCC_1AppendixJ" FontSize="15">
                 F
                 </TextBlock>
 
-                <TextBlock FontSize="10" FontFamily="Segoe UI" Margin="5 0 0 0" VerticalAlignment="Center">
+                <TextBlock FontSize="10" Margin="5 0 0 0" VerticalAlignment="Center">
                 ASME PCC-1 Appendix J
                 </TextBlock>
             </StackPanel>
@@ -459,16 +456,15 @@
 
 
 
-                <TextBlock FontSize="15" FontFamily="Segoe UI">
+                <TextBlock FontSize="15">
                 Torque =
                 </TextBlock>
 
-                <TextBlock Name="Text_TauASMEPCC_1AppendixK_Simplified" FontSize="15" FontFamily="Segoe UI"
-                           FontWeight="Bold">
+                <TextBlock Name="Text_TauASMEPCC_1AppendixK_Simplified" FontSize="15">
                 F
                 </TextBlock>
 
-                <TextBlock FontSize="10" FontFamily="Segoe UI" Margin="5 0 0 0" VerticalAlignment="Center">
+                <TextBlock FontSize="10" Margin="5 0 0 0" VerticalAlignment="Center">
                 ASME PCC-1 Appendix K
                 </TextBlock>
             </StackPanel>
