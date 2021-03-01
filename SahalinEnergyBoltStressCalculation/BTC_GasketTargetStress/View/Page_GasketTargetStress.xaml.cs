@@ -578,10 +578,10 @@ namespace SahalinEnergyBoltStressCalculation.BTC_GasketTargetStress.View
             switch (code)
             {
                 case "Yield":
-                    MessageBox.Show("Please enter Yield strength value");
+                    MessageBox.Show("Please enter Yield strength");
                     break;
                 case "PerCent":
-                    MessageBox.Show("Please enter Percentage of yield strength value");
+                    MessageBox.Show("Please enter Percentage of yield strength");
                     break;
                 case "Properties":
                     MessageBox.Show("Please enter bolt data");
@@ -593,7 +593,7 @@ namespace SahalinEnergyBoltStressCalculation.BTC_GasketTargetStress.View
                     MessageBox.Show("Please select bolt grade");
                     break;
                 case "FCoeff":
-                    MessageBox.Show("Please enter Friction coefficient value");
+                    MessageBox.Show("Please enter Friction coefficient");
                     break;
                 case "FCoeffLimits":
                     MessageBox.Show("The friction coefficient must be greater than or equal to 0 and less than or equal to 1");

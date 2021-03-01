@@ -187,7 +187,7 @@ namespace SahalinEnergyBoltStressCalculation.BTC_GasketTargetStress.Presenter
         // Метод-организатор расчёта в Presenter
         public void BeginCalculation(string statusGrade, string statusSize)
         {
-            if (SetUpGrade(statusGrade) == false)
+            if (SetUpGrade(statusGrade, statusSize) == false)
             {
                 // Bolt Grade не выбран
                 return;
@@ -240,7 +240,7 @@ namespace SahalinEnergyBoltStressCalculation.BTC_GasketTargetStress.Presenter
                 string grade;
                 string size;
 
-                if (statusGrade == "Custom")
+                if (statusGrade == "Custom" || statusSize == "Custom")
                 {
                     grade = "Custom";
                 }
@@ -267,7 +267,7 @@ namespace SahalinEnergyBoltStressCalculation.BTC_GasketTargetStress.Presenter
         {
             Calculator_GasketTargetStress objectCalculator = new Calculator_GasketTargetStress();
 
-            if (statusGrade == "Custom")
+            if (statusGrade == "Custom" || statusSize == "Custom")
             {
                 objectCalculator.yieldStressPsi = yieldStressValueCustom;
             } else
@@ -297,7 +297,7 @@ namespace SahalinEnergyBoltStressCalculation.BTC_GasketTargetStress.Presenter
         }
 
         // Проверка, выбран ли bolt grade, вызов методов проверки ввода данных, которые от него зависят
-        private bool SetUpGrade(string statusGrade)
+        private bool SetUpGrade(string statusGrade, string statusSize)
         {
             bool res;
             switch (statusGrade)
@@ -309,11 +309,11 @@ namespace SahalinEnergyBoltStressCalculation.BTC_GasketTargetStress.Presenter
                     break;
                 case "Custom":
                     // Проверка, введён ли Yield Stress и % от Yield Stress в случае, если bolt grade выбран "Custom"
-                    res = SetUpYield(statusGrade);
+                    res = SetUpYield(statusGrade, statusSize);
                     break;
                 default:
                     // Проверка, введён ли % от Yield Stress в случае, если bolt grade выбран из списка
-                    res = SetUpYield(statusGrade);
+                    res = SetUpYield(statusGrade, statusSize);
                     break;
             }
             return res;
@@ -322,10 +322,10 @@ namespace SahalinEnergyBoltStressCalculation.BTC_GasketTargetStress.Presenter
         // Считывание данных с полей свойств болта
         // Проверка, введены ли % YIELD stress и YIELD stress в случае, если выбран размер болта Custom и установка их
         // в специальные переменные в Presenter'е
-        private bool SetUpYield(string grade)
+        private bool SetUpYield(string grade, string size)
         {
             bool res;
-            if (grade == "Custom") // Выбран кастомный grade
+            if (grade == "Custom" || size == "Custom") // Выбран кастомный grade
             {
                 double help;
 
