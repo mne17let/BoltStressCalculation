@@ -89,14 +89,14 @@
             <StackPanel Grid.Row="0" Orientation="Horizontal"
                         VerticalAlignment="Center">
 
-                <TextBlock FontSize="15" Foreground="Black" Padding="2 1 2 1" FontFamily="Segoe UI"
-                           FontWeight="Bold" Margin="5 0 0 0">
+                <TextBlock FontSize="15" Padding="2 1 2 1" FontWeight="Bold" Margin="5 0 0 0">
                 Bolt grade
                 </TextBlock>
+                
 
                 <ComboBox Name="ComboBoxWithGrades" FontSize="15" MinWidth="210"
                           HorizontalContentAlignment="Center">
-                    <ComboBoxItem Name="HintItemGrade" MaxHeight="0">Pick bolt grade</ComboBoxItem>
+                    <!--ComboBoxItem Name="HintItemGrade" MaxHeight="0">Pick bolt grade</-->
                     <ComboBoxItem Name="DefaultItemGrade">Custom</ComboBoxItem>
                     <ComboBoxItem Name="GradeA193_B7">A193 B7</ComboBoxItem>
                     <ComboBoxItem Name="GradeA193_B7M">A193 B7M</ComboBoxItem>
@@ -123,8 +123,7 @@
                 <StackPanel Orientation="Horizontal" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center"
                       Margin="30 1 2 1">
 
-                    <TextBlock Name="TextYeildStress" FontSize="15" Grid.Column="0" Foreground="Black"
-                               Margin="2 0 2 0">Yield strength</TextBlock>
+                    <TextBlock Name="TextYeildStress" FontSize="15" Grid.Column="0" Margin="2 0 2 0">Yield strength</TextBlock>
 
                     <Grid Grid.Column="1">
                         <Grid.ColumnDefinitions>
@@ -137,8 +136,7 @@
                                  MinWidth="70" TextAlignment="Right">
                         </TextBox>
 
-                        <TextBlock FontSize="15" Grid.Column="1"
-                       Foreground="Black" Margin="2 0 2 0">psi</TextBlock>
+                        <TextBlock FontSize="15" Grid.Column="1" Margin="2 0 2 0">psi</TextBlock>
                     </Grid>
 
                 </StackPanel>
@@ -148,16 +146,15 @@
 
             <StackPanel Grid.Row="1" VerticalAlignment="Center" Orientation="Horizontal">
 
-                <TextBlock FontSize="15" VerticalAlignment="Center" Foreground="Black"
-                           FontFamily="Segoe UI" FontWeight="Bold" Margin="5 0 0 0" Padding="2 1 2 1">
+                <TextBlock FontSize="15" VerticalAlignment="Center" FontWeight="Bold" Margin="5 0 0 0" Padding="2 1 2 1">
                 Bolt size
                 </TextBlock>
 
                 <ComboBox Name="ComboBoxWithBoltSize" FontSize="15" IsEnabled="False"
                           MinWidth="170" HorizontalContentAlignment="Center">
 
-                    <ComboBoxItem Name="HintItemSizeBeforeGrade" MaxHeight="0">Pick bolt grade at first</ComboBoxItem>
-                    <ComboBoxItem Name="HintItemSize" MaxHeight="0">Pick bolt size</ComboBoxItem>
+                    <!--ComboBoxItem Name="HintItemSizeBeforeGrade" MaxHeight="0">Pick bolt grade at first</-->
+                    <!--ComboBoxItem Name="HintItemSize" MaxHeight="0">Pick bolt size</-->
                     <ComboBoxItem Name="DefaultItem">Custom</ComboBoxItem>
                     <ComboBoxItem Name="Size1">1/2" UNC</ComboBoxItem>
                     <ComboBoxItem Name="Size2">5/8" UNC</ComboBoxItem>
@@ -186,7 +183,7 @@
                             Margin="30 1 2 1">
 
 
-                    <TextBlock Name="TextNumberOfBolts" FontSize="15" Foreground="Black" Margin="2 0 2 0"
+                    <TextBlock Name="TextNumberOfBolts" FontSize="15" Margin="2 0 2 0"
                                Grid.Column="0" VerticalAlignment="Center">
                         Number of bolts
                     </TextBlock>
@@ -209,8 +206,7 @@
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5 1 2 1"
                       Grid.Column="0">
 
-                    <TextBlock FontSize="15" Grid.Column="0" Foreground="Black"
-                               Padding="3 1 3 1">
+                    <TextBlock FontSize="15" Grid.Column="0" Padding="3 1 3 1">
                     Nominal diameter of bolt
                     </TextBlock>
 
@@ -225,8 +221,7 @@
                                  TextAlignment="Right" MinWidth="60">
                         </TextBox>
 
-                        <TextBlock FontSize="15" Grid.Column="1" Foreground="Black"
-                               Padding="2 1 2 1">
+                        <TextBlock FontSize="15" Grid.Column="1" Padding="2 1 2 1">
                             in
                         </TextBlock>
                     </Grid>
@@ -237,8 +232,7 @@
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left"
                       Grid.Column="1">
 
-                    <TextBlock FontSize="15" Grid.Column="0" Foreground="Black"
-                               Padding="3 1 3 1">
+                    <TextBlock FontSize="15" Grid.Column="0" Padding="3 1 3 1">
                     Thread pitch
                     </TextBlock>
 
@@ -253,8 +247,7 @@
                                  TextAlignment="Right" MinWidth="60">
                         </TextBox>
 
-                        <TextBlock FontSize="15" Grid.Column="1" Foreground="Black"
-                               Padding="2 1 2 1">
+                        <TextBlock FontSize="15" Grid.Column="1" Padding="2 1 2 1">
                             in
                         </TextBlock>
                     </Grid>
@@ -274,8 +267,7 @@
 
                 <StackPanel Grid.Column="0" Orientation="Horizontal" Margin="5 1 2 1"
                             VerticalAlignment="Center" HorizontalAlignment="Left">
-                    <TextBlock Name="FrictionCoefficientText" FontSize="15"
-                               Foreground="Black" Padding="2 1 2 1">
+                    <TextBlock Name="FrictionCoefficientText" FontSize="15" Padding="2 1 2 1">
                 Friction coefficient
                     </TextBlock>
 
@@ -287,8 +279,7 @@
 
                 <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center"
                             HorizontalAlignment="Left">
-                    <TextBlock Name="KCoefficientText" FontSize="15" Foreground="Black"
-                               Padding="2 1 2 1">
+                    <TextBlock Name="KCoefficientText" FontSize="15" Padding="2 1 2 1">
                 Nut factor K
                     </TextBlock>
                     <TextBox Name="TextBoxForKCoefficient" FontSize="15" MaxLength="5"
@@ -310,7 +301,7 @@
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5 1 2 1"
                       Grid.Column="0">
 
-                    <TextBlock Grid.Column="0" FontSize="15" Foreground="Black" Padding="2 1 2 1">
+                    <TextBlock Grid.Column="0" FontSize="15" Padding="2 1 2 1">
                     Gasket outside diameter
                     </TextBlock>
 
@@ -337,8 +328,7 @@
                             HorizontalAlignment="Left">
                     
 
-                    <TextBlock Grid.Column="0" FontSize="15" Foreground="Black"
-                               Padding="2 1 2 1">
+                    <TextBlock Grid.Column="0" FontSize="15" Padding="2 1 2 1">
                     Gasket inside diameter
                     </TextBlock>
                     
@@ -409,8 +399,7 @@
                 <Button Name="TableButton_GasketTargetStress" Width="24" Height="24"
                         Style="{StaticResource TableButtonStyle}">
 
-                    <TextBlock Foreground="White" FontFamily="Segoe UI" FontWeight="Bold"
-                                           FontSize="18">
+                    <TextBlock Foreground="White" FontWeight="Bold" FontSize="18" FontFamily="Segoe UI">
                             ?
                     </TextBlock>
 
@@ -437,7 +426,7 @@
                 <TextBlock FontSize="15">
                 Bolt stress =
                 </TextBlock>
-                <TextBlock Name="TextBlock_BoltStressRequired" FontSize="15">
+                <TextBlock Name="TextBlock_BoltStressRequired" FontSize="15" FontWeight="Bold">
                 Sbsel
                 </TextBlock>
             </StackPanel>
@@ -450,13 +439,13 @@
                         Percentage of yield strength =
                     </TextBlock>
 
-                    <TextBlock Name="TextBlock_PerCentOfYIELDStress" FontSize="15">
+                    <TextBlock Name="TextBlock_PerCentOfYIELDStress" FontSize="15" FontWeight="Bold">
                         %
                     </TextBlock>
                 </StackPanel>
 
                 <TextBlock Name="TextBlock_ConditionResult" FontSize="12"
-                           Foreground="Red" Visibility="Visible" VerticalAlignment="Center">
+                           Foreground="Red" Visibility="Visible" VerticalAlignment="Center" FontWeight="Bold">
                         Bolt stress lower limit control failed [&lt;20%]
                 </TextBlock>
 
@@ -468,7 +457,7 @@
                 <TextBlock FontSize="15">
                 Torque =
                 </TextBlock>
-                <TextBlock Name="TextBlock_TorqueMoment" FontSize="15">
+                <TextBlock Name="TextBlock_TorqueMoment" FontSize="15" FontWeight="Bold">
                 τ
                 </TextBlock>
                 <TextBlock FontSize="10" VerticalAlignment="Center">
@@ -517,7 +506,7 @@
         
         <Border BorderBrush="Black" BorderThickness="1" Grid.Row="3">
             <Button Name="CalculationButton_GasketTargetStress" FontSize="15" FontWeight="Bold"
-                FontFamily="Segoe UI" Style="{StaticResource CalculationButtonStyle}"
+                    Style="{StaticResource CalculationButtonStyle}"
                 HorizontalContentAlignment="Center"
                 VerticalContentAlignment="Center">
                 CALCULATE

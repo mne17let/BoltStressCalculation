@@ -56,14 +56,13 @@
             <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Left"
                         VerticalAlignment="Center" Margin="5 0 0 0">
                 <TextBlock FontSize="15" HorizontalAlignment="Center" VerticalAlignment="Center"
-                           FontFamily="Segoe UI" FontWeight="Bold" Margin="5 0 0 0"
-                           Foreground="Black" Padding="2 1 2 1">
+                           FontWeight="Bold" Margin="5 0 0 0" Padding="2 1 2 1">
                 Bolt grade
                 </TextBlock>
                 
                 <ComboBox Name="ComboBoxWithGrades" FontSize="15" MinWidth="210"
                           HorizontalContentAlignment="Center">
-                    <ComboBoxItem Name="HintItemGrade" MaxHeight="0">Pick bolt grade</ComboBoxItem>
+                    <!--ComboBoxItem Name="HintItemGrade" MaxHeight="0">Pick bolt grade</-->
                     <ComboBoxItem Name="DefaultItemGrade">Custom</ComboBoxItem>
                     <ComboBoxItem Name="GradeA193_B7">A193 B7</ComboBoxItem>
                     <ComboBoxItem Name="GradeA193_B7M">A193 B7M</ComboBoxItem>
@@ -90,8 +89,9 @@
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
 
-                    <TextBlock Name="TextYeildStress" FontSize="15" Grid.Column="0" Foreground="Black"
-                           Padding="2">Yield strength</TextBlock>
+                    <TextBlock Name="TextYeildStress" FontSize="15" Grid.Column="0" Padding="2">
+                        Yield strength
+                    </TextBlock>
 
                     <Grid Grid.Column="1">
                         <Grid.ColumnDefinitions>
@@ -104,7 +104,7 @@
                                  MaxLength="7" TextAlignment="Right">
                         </TextBox>
 
-                        <TextBlock FontSize="15" Grid.Column="1" Padding="2 1 0 0" Foreground="Black">
+                        <TextBlock FontSize="15" Grid.Column="1" Padding="2 1 0 0">
                             psi</TextBlock>
                     </Grid>
 
@@ -116,17 +116,16 @@
             <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Left" Margin="5 0 0 0"
                         VerticalAlignment="Center">
                 
-                <TextBlock FontSize="15" Margin="5 0 0 0" HorizontalAlignment="Center" FontFamily="Segoe UI"
-                           FontWeight="Bold"
-                           VerticalAlignment="Center" Foreground="Black" Padding="2 1 2 1">
+                <TextBlock FontSize="15" Margin="5 0 0 0" HorizontalAlignment="Center" FontWeight="Bold"
+                           VerticalAlignment="Center" Padding="2 1 2 1">
                 Bolt size
                 </TextBlock>
 
                 <ComboBox Name="ComboBoxWithBoltSize" FontSize="15" IsEnabled="False"
                           MinWidth="170" HorizontalContentAlignment="Center">
 
-                    <ComboBoxItem Name="HintItemSizeBeforeGrade" MaxHeight="0">Pick bolt grade at first</ComboBoxItem>
-                    <ComboBoxItem Name="HintItemSize" MaxHeight="0">Pick bolt size</ComboBoxItem>
+                    <!--ComboBoxItem Name="HintItemSizeBeforeGrade" MaxHeight="0">Pick bolt grade at first</-->
+                    <!--ComboBoxItem Name="HintItemSize" MaxHeight="0">Pick bolt size</ComboBoxItem-->
                     <ComboBoxItem Name="DefaultItem">Custom</ComboBoxItem>
                     <ComboBoxItem Name="Size1">1/2" UNC</ComboBoxItem>
                     <ComboBoxItem Name="Size2">5/8" UNC</ComboBoxItem>
@@ -157,7 +156,7 @@
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
                     
-                    <TextBlock Grid.Column="0" FontSize="15" Foreground="Black" Padding="2 1 2 0">
+                    <TextBlock Grid.Column="0" FontSize="15" Padding="2 1 2 0">
                         Percentage of yield strength
                     </TextBlock>
 
@@ -172,7 +171,7 @@
                              PreviewKeyDown="WithoutSpace" MaxLength="3" MinWidth="35" VerticalAlignment="Center">
                         </TextBox>
 
-                        <TextBlock Grid.Column="1" FontSize="15" Foreground="Black" Padding="2 1 0 0">
+                        <TextBlock Grid.Column="1" FontSize="15" Padding="2 1 0 0">
                         %
                         </TextBlock>
                     </Grid>
@@ -198,7 +197,7 @@
                         <RowDefinition/>
                     </Grid.RowDefinitions>
 
-                    <TextBlock Grid.Row="0" FontSize="15" Foreground="Black" Padding="2">
+                    <TextBlock Grid.Row="0" FontSize="15" Padding="2">
                     Nominal
                     <LineBreak/>
                     diameter of bolt
@@ -215,7 +214,7 @@
                                  TextAlignment="Right">
                         </TextBox>
 
-                        <TextBlock Grid.Column="1" FontSize="15" Foreground="Black" Padding="2 1 0 0">
+                        <TextBlock Grid.Column="1" FontSize="15" Padding="2 1 0 0">
                             in
                         </TextBlock>
                     </Grid>
@@ -230,7 +229,7 @@
                         <RowDefinition/>
                     </Grid.RowDefinitions>
 
-                    <TextBlock Grid.Row="0" FontSize="15" Foreground="Black" Padding="2">
+                    <TextBlock Grid.Row="0" FontSize="15" Padding="2">
                     Pitch diameter
                     <LineBreak/>
                     of thread
@@ -247,7 +246,7 @@
                                  TextAlignment="Right">
                         </TextBox>
 
-                        <TextBlock Grid.Column="1" FontSize="15" Foreground="Black" Padding="2 1 0 0">
+                        <TextBlock Grid.Column="1" FontSize="15" Padding="2 1 0 0">
                             in
                         </TextBlock>
                     </Grid>
@@ -262,7 +261,7 @@
                         <RowDefinition/>
                     </Grid.RowDefinitions>
 
-                    <TextBlock Grid.Row="0" FontSize="15" Foreground="Black" Padding="2">
+                    <TextBlock Grid.Row="0" FontSize="15" Padding="2">
                     Hex width
                     <LineBreak/>
                         across flats
@@ -279,7 +278,7 @@
                                  TextAlignment="Right">
                         </TextBox>
 
-                        <TextBlock Grid.Column="1" FontSize="15" Foreground="Black" Padding="2 1 0 0">
+                        <TextBlock Grid.Column="1" FontSize="15" Padding="2 1 0 0">
                             in
                         </TextBlock>
                     </Grid>
@@ -294,7 +293,7 @@
                         <RowDefinition/>
                     </Grid.RowDefinitions>
 
-                    <TextBlock FontSize="15" Grid.Row="0" Foreground="Black" Padding="2">
+                    <TextBlock FontSize="15" Grid.Row="0" Padding="2">
                     Thread pitch
                     </TextBlock>
 
@@ -309,7 +308,7 @@
                                  TextAlignment="Right">
                         </TextBox>
 
-                        <TextBlock Grid.Column="1" FontSize="15" Foreground="Black" Padding="2 1 0 0">
+                        <TextBlock Grid.Column="1" FontSize="15" Padding="2 1 0 0">
                             in
                         </TextBlock>
                     </Grid>
@@ -327,7 +326,7 @@
                 </Grid.ColumnDefinitions>
 
                 <StackPanel Grid.Column="0" Orientation="Horizontal" Margin="5" VerticalAlignment="Center">
-                    <TextBlock Name="FrictionCoefficientText" FontSize="15" Foreground="Black"
+                    <TextBlock Name="FrictionCoefficientText" FontSize="15"
                                VerticalAlignment="Center" Padding="2 0 2 0">
                 Friction coefficient
                     </TextBlock>
@@ -340,7 +339,7 @@
                 </StackPanel>
 
                 <StackPanel Grid.Column="1" Orientation="Horizontal" Margin="5" VerticalAlignment="Center">
-                    <TextBlock Name="KCoefficientText" FontSize="15" Foreground="Black"
+                    <TextBlock Name="KCoefficientText" FontSize="15"
                                VerticalAlignment="Center" Padding="0 0 2 0">
                 Nut factor K
                     </TextBlock>
@@ -413,7 +412,7 @@
                 Bolt preload force =
                 </TextBlock>
 
-                <TextBlock Name="TextBlock_ForcePerBolt" FontSize="15">
+                <TextBlock Name="TextBlock_ForcePerBolt" FontSize="15" FontWeight="Bold">
                 F
                 </TextBlock>
                 
@@ -426,7 +425,7 @@
                 Torque =
                 </TextBlock>
 
-                <TextBlock Name="Text_TauAPI6AAnnexD" FontSize="15">
+                <TextBlock Name="Text_TauAPI6AAnnexD" FontSize="15" FontWeight="Bold">
                 F
                 </TextBlock>
 
@@ -442,7 +441,7 @@
                 Torque =
                 </TextBlock>
 
-                <TextBlock Name="Text_TauASMEPCC_1AppendixJ" FontSize="15">
+                <TextBlock Name="Text_TauASMEPCC_1AppendixJ" FontSize="15" FontWeight="Bold">
                 F
                 </TextBlock>
 
@@ -454,13 +453,11 @@
             <StackPanel Name="ResThree_Table" Orientation="Horizontal" Grid.Row="3" Grid.Column="1"
                     HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5 2 5 2">
 
-
-
                 <TextBlock FontSize="15">
                 Torque =
                 </TextBlock>
 
-                <TextBlock Name="Text_TauASMEPCC_1AppendixK_Simplified" FontSize="15">
+                <TextBlock Name="Text_TauASMEPCC_1AppendixK_Simplified" FontSize="15" FontWeight="Bold">
                 F
                 </TextBlock>
 
@@ -476,7 +473,7 @@
 
         <Border BorderBrush="Black" BorderThickness="1" Grid.Row="3">
             <Button Name="CalculationButton_SingleBoltStress" FontSize="15" FontWeight="Bold"
-                FontFamily="Segoe UI" Style="{StaticResource CalcButtonStyle}"
+                Style="{StaticResource CalcButtonStyle}"
                 HorizontalContentAlignment="Center"
                 VerticalContentAlignment="Center">
                 CALCULATE

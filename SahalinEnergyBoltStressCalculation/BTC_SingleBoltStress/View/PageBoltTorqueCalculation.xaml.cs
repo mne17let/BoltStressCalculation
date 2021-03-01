@@ -86,14 +86,25 @@ namespace SahalinEnergyBoltStressCalculation.PageClassesFolder
             ComboBoxItem itemSize = (ComboBoxItem)((ComboBox)ComboBoxWithBoltSize).SelectedItem;
             ComboBoxItem itemGrade = (ComboBoxItem)((ComboBox)ComboBoxWithGrades).SelectedItem;
 
+            if (itemGrade == null)
+            {
+                ShowErrorMessage("BoltGrade");
+                return;
+            } else if (itemSize == null)
+            {
+                ShowErrorMessage("BoltSize");
+                return;
+            } else
+            {
+                // Переменные, отвечающие за то, выбран ли "Custom" size или grade болта (или вообще ничего не выбрано и стоит "Pick grade/size")
+                string statusGrade, statusSize;
 
-            // Переменные, отвечающие за то, выбран ли "Custom" size или grade болта (или вообще ничего не выбрано и стоит "Pick grade/size")
-            string statusGrade, statusSize;
+                statusGrade = itemGrade.Content.ToString();
+                statusSize = itemSize.Content.ToString();
+
+                viewModelAtCalculationBTC.BeginCalculation(statusGrade, statusSize);
+            }
             
-            statusGrade = itemGrade.Content.ToString();
-            statusSize = itemSize.Content.ToString();
-
-            viewModelAtCalculationBTC.BeginCalculation(statusGrade, statusSize);
         }
 
 
@@ -155,10 +166,10 @@ namespace SahalinEnergyBoltStressCalculation.PageClassesFolder
         {
             ComboBoxWithBoltSize.Items.Clear();
 
-            ComboBoxItem localItem = new ComboBoxItem();
+            /*ComboBoxItem localItem = new ComboBoxItem();
             localItem.MaxHeight = 0;
             localItem.Content = "Pick bolt size";
-            ComboBoxWithBoltSize.Items.Add(localItem);
+            ComboBoxWithBoltSize.Items.Add(localItem);*/
 
             ComboBoxItem customItem = new ComboBoxItem();
             customItem.Content = "Custom";

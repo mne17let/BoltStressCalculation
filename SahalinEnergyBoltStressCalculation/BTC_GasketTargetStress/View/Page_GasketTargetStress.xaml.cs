@@ -97,13 +97,26 @@ namespace SahalinEnergyBoltStressCalculation.BTC_GasketTargetStress.View
             ComboBoxItem itemGrade = (ComboBoxItem)((ComboBox)ComboBoxWithGrades).SelectedItem;
 
 
-            // Переменные, отвечающие за то, выбран ли "Custom" size или grade болта (или вообще ничего не выбрано и стоит "Pick grade/size")
-            string statusGrade, statusSize;
+            if (itemGrade == null)
+            {
+                ShowErrorMessage("BoltGrade");
+                return;
+            }
+            else if (itemSize == null)
+            {
+                ShowErrorMessage("BoltSize");
+                return;
+            }
+            else
+            {
+                // Переменные, отвечающие за то, выбран ли "Custom" size или grade болта (или вообще ничего не выбрано и стоит "Pick grade/size")
+                string statusGrade, statusSize;
 
-            statusGrade = itemGrade.Content.ToString();
-            statusSize = itemSize.Content.ToString();
+                statusGrade = itemGrade.Content.ToString();
+                statusSize = itemSize.Content.ToString();
 
-            presenter_GasketTargetStress.BeginCalculation(statusGrade, statusSize);
+                presenter_GasketTargetStress.BeginCalculation(statusGrade, statusSize);
+            }
         }
 
         // Посылаем объекту главного окна команду "Открыть окно с таблицей"
@@ -386,10 +399,10 @@ namespace SahalinEnergyBoltStressCalculation.BTC_GasketTargetStress.View
         {
             ComboBoxWithBoltSize.Items.Clear();
 
-            ComboBoxItem pickBoltSizeItem = new ComboBoxItem();
+            /*ComboBoxItem pickBoltSizeItem = new ComboBoxItem();
             pickBoltSizeItem.MaxHeight = 0;
             pickBoltSizeItem.Content = "Pick bolt size";
-            ComboBoxWithBoltSize.Items.Add(pickBoltSizeItem);
+            ComboBoxWithBoltSize.Items.Add(pickBoltSizeItem);*/
 
             ComboBoxItem customItem = new ComboBoxItem();
             customItem.Content = "Custom";
@@ -687,11 +700,11 @@ namespace SahalinEnergyBoltStressCalculation.BTC_GasketTargetStress.View
             if (perCentForCheck > 80)
             {
                 TextBlock_ConditionResult.Visibility = Visibility.Visible;
-                TextBlock_ConditionResult.Text = ">80 % bolt stress upper limit control failed";
+                TextBlock_ConditionResult.Text = "> 80 % bolt stress upper limit control failed";
             } else if (perCentForCheck < 20)
             {
                 TextBlock_ConditionResult.Visibility = Visibility.Visible;
-                TextBlock_ConditionResult.Text = "<20% bolt stress lower limit control failed";
+                TextBlock_ConditionResult.Text = "< 20% bolt stress lower limit control failed";
             }
             else
             {
