@@ -189,7 +189,7 @@ namespace SahalinEnergyBoltStressCalculation.LogicClassesFolder
         // Метод-организатор расчёта в Presenter
         public void BeginCalculation(string statusGrade, string statusSize)
         {
-            if (SetUpGrade(statusGrade) == false)
+            if (SetUpGrade(statusGrade, statusSize) == false)
             {
                 // Bolt Grade не выбран
                 return;
@@ -217,7 +217,7 @@ namespace SahalinEnergyBoltStressCalculation.LogicClassesFolder
                 string grade;
                 string size;
 
-                if (statusGrade == "Custom")
+                if (statusGrade == "Custom" || statusSize == "Custom")
                 {
                     grade = "Custom";
                 }
@@ -240,7 +240,7 @@ namespace SahalinEnergyBoltStressCalculation.LogicClassesFolder
         }
 
         // Проверка, выбран ли bolt grade, вызов методов проверки ввода данных, которые от него зависят
-        private bool SetUpGrade(string statusGrade)
+        private bool SetUpGrade(string statusGrade, string statusSize)
         {
             bool res;
             switch (statusGrade)
@@ -252,11 +252,11 @@ namespace SahalinEnergyBoltStressCalculation.LogicClassesFolder
                     break;
                 case "Custom":
                     // Проверка, введён ли Yield Stress и % от Yield Stress в случае, если bolt grade выбран "Custom"
-                    res = SetUpYield(statusGrade);
+                    res = SetUpYield(statusGrade, statusSize);
                     break;
                 default:
                     // Проверка, введён ли Yield Stress и % от Yield Stress в случае, если bolt grade выбран из списка
-                    res = SetUpYield(statusGrade);
+                    res = SetUpYield(statusGrade, statusSize);
                     break;
             }
             return res;
@@ -319,10 +319,10 @@ namespace SahalinEnergyBoltStressCalculation.LogicClassesFolder
         // Считывание данных с полей свойств болта
         // Проверка, введены ли % YIELD stress и YIELD stress в случае, если выбран размер болта Custom и установка их
         // в специальные переменные в Presenter'е
-        private bool SetUpYield(string grade)
+        private bool SetUpYield(string grade, string size)
         {
             bool res;
-            if (grade == "Custom") // Выбран кастомный grade
+            if (grade == "Custom" || size == "Custom") // Выбран кастомный grade или кастомный size
             {
                 double help1;
                 double help2;
@@ -343,7 +343,7 @@ namespace SahalinEnergyBoltStressCalculation.LogicClassesFolder
                     }
                     else
                     {
-                        // Введены YIELD Stress и его %
+                        // Введены и попадают в допустимые диапазоны YIELD Stress и его %
                         yieldStressValueCustom = help1;
                         yieldStressPerCent = help2;
                         res = true;
@@ -368,7 +368,7 @@ namespace SahalinEnergyBoltStressCalculation.LogicClassesFolder
                     res = false;
                 }
             }
-            else // Выбран grade из списка
+            else // Выбран grade из списка и size из списка
             {
                 string[] yieldValues = PageCalculationBT.GetYieldStressCustom();
                 double help;
@@ -459,7 +459,7 @@ namespace SahalinEnergyBoltStressCalculation.LogicClassesFolder
 
             CalculateBTC objectCalculator = new CalculateBTC();
 
-            if (statusGrade == "Custom")
+            if (statusGrade == "Custom" || statusSize == "Custom")
             {
                 objectCalculator.yieldStressPsi = yieldStressValueCustom;
                 objectCalculator.perCentYieldStress = yieldStressPerCent;
